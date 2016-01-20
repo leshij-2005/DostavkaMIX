@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="120sp"
+    android:layout_marginTop="10sp">
+
+    <FrameLayout
+        android:layout_width="90sp"
+        android:layout_height="90sp"
+        android:layout_marginBottom="8sp"
+        android:layout_marginTop="8sp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/dish_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:visibility="invisible"
+
+            app:riv_corner_radius="10dip"
+            app:riv_border_width="1dip"
+            app:riv_border_color="#333333"
+            app:riv_mutate_background="true"
+            app:riv_oval="false" />
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/dish_progress"
+            android:indeterminateDrawable="@drawable/white_progress"
+            android:visibility="visible"
+            />
+    </FrameLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+            foo:customFont="fonts/GothaProReg.otf"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:layout_marginLeft="5sp"
+            android:layout_marginTop="4sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:id="@+id/dish_name"
+            android:textColor="#ffff"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+
+            android:layout_marginLeft="5sp">
+
+            <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+                android:id="@+id/dish_descript"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                foo:customFont="fonts/GothaProReg.otf"
+                android:textColor="@color/dish_descript_color"
+                android:textSize="14sp"
+
+                />
+
+            <Button
+                android:id="@+id/dish_price"
+                android:layout_width="60sp"
+                android:layout_height="25sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginTop="18sp"
+
+                android:background="@drawable/outline_background"
+
+                android:textColor="@color/menu_catalog_color"
+
+                android:textAllCaps="false"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="1sp"
+        android:src="@drawable/dish_category_move" />
+
+</LinearLayout>

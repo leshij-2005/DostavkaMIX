@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="60sp"
+            android:background="@color/toolbar_background_color"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="170sp"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20sp"
+                android:background="@color/toolbar_background_color"
+                android:clickable="true"
+                android:src="@drawable/logo"
+                />
+            <FrameLayout
+                android:layout_width="15sp"
+                android:layout_height="8sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30sp"
+                android:layout_marginLeft="10sp"
+                android:background="@color/toolbar_background_color">
+                <ImageView
+                    android:id="@+id/icon_menu_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_menu"
+                    android:visibility="visible"/>
+                <ImageView
+                    android:id="@+id/icon_menu_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_menu_up"
+                    android:visibility="invisible"/>
+            </FrameLayout>
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_main" />
+
+
+</android.support.design.widget.CoordinatorLayout>

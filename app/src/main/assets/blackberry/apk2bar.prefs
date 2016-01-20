@@ -1,0 +1,5 @@
+#Wed Jan 20 16:19:27 YEKT 2016
+minimal.os.version=10.3.1
+application.category=core.media
+custom.manifest=true
+manifest.additions=false
