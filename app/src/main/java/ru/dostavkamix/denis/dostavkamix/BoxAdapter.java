@@ -40,7 +40,7 @@ public class BoxAdapter extends BaseAdapter {
     ArrayList<Dish> object;
     Typeface fontRub = null;
     Typeface fontReg = null;
-    ImageLoader imageLoader = null;
+    ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
     public BoxAdapter(Context ctx, ArrayList<Dish> object) {
         this.ctx = ctx;
@@ -89,50 +89,16 @@ public class BoxAdapter extends BaseAdapter {
         Dish d = getDish(position);
 
         final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.dish_progress);
-        final RoundedNetworkImageView dish_img = (RoundedNetworkImageView) view.findViewById(R.id.dish_img);
+        final NetworkImageView dish_img = (NetworkImageView) view.findViewById(R.id.dish_img);
 
         ((TextViewPlus) view.findViewById(R.id.dish_name)).setText(d.getNameDish());
         ((TextViewPlus) view.findViewById(R.id.dish_descript)).setText(d.getContent());
         ((Button) view.findViewById(R.id.dish_price)).setText(addRuble(String.valueOf(d.getPriceDish())));
 
-        ////
-        AppController.getInstance().getImageLoader().get(d.getImjDish(), new ImageLoader.ImageListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("json", "error loader");
-
-            }
-
-            @Override
-            public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
-                if (isImmediate && response.getBitmap() == null) return;
-                Log.d("json", "onResponse loader !!!!!!!!!!");
-                progressBar.setVisibility(View.INVISIBLE);
-                dish_img.setVisibility(View.VISIBLE);
-            }
-        });
-        imageLoader = AppController.getInstance().getImageLoader();
-
+        dish_img.setDefaultImageResId(R.drawable.white_progress);
         dish_img.setImageUrl(d.getImjDish(), imageLoader);
 
 
         return view;
     }
-
-    public class CropSquareTransformation implements Transformation {
-        @Override public Bitmap transform(Bitmap source) {
-            int size = Math.min(source.getWidth(), source.getHeight());
-            int x = (source.getWidth() - size) / 2;
-            int y = (source.getHeight() - size) / 2;
-            Bitmap result = Bitmap.createBitmap(source, x, y, size, size);
-            if (result != source) {
-                source.recycle();
-            }
-            return result;
-        }
-
-        @Override public String key() { return "square()"; }
-    }
-
-
 }

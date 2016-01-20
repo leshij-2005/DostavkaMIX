@@ -13,11 +13,11 @@
         android:layout_marginBottom="8sp"
         android:layout_marginTop="8sp">
 
-        <ru.dostavkamix.denis.dostavkamix.RoundedNetworkImageView
+        <com.android.volley.toolbox.NetworkImageView
             android:id="@+id/dish_img"
             android:layout_width="90sp"
             android:layout_height="90sp"
-            android:visibility="invisible"
+            android:visibility="visible"
             />
 
         <ProgressBar
@@ -27,7 +27,7 @@
             android:layout_marginBottom="15sp"
             android:id="@+id/dish_progress"
             android:indeterminateDrawable="@drawable/white_progress"
-            android:visibility="visible"
+            android:visibility="invisible"
             />
     </FrameLayout>
     
