@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     AppCompatImageView icon_menu_up = null;
     AppCompatImageView icon_menu_down = null;
     ListFragment dishList = null;
-    ListView slide_menu = null;
+    ListView listMain = null;
 
     BoxAdapter boxAdapter = null;
 
@@ -71,7 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         logo = (AppCompatImageView) findViewById(R.id.logo);
         icon_menu_up = (AppCompatImageView) findViewById(R.id.icon_menu_up);
         icon_menu_down = (AppCompatImageView) findViewById(R.id.icon_menu_down);
-        dishList = new dishListFragment();
+        //dishList = new dishListFragment();
+        listMain = (ListView) findViewById(R.id.listMain);
 
         new ParseTask().execute();
 
@@ -292,11 +293,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void updateListDish(ArrayList<Dish> aDish) {
         Log.d("json", "Готовлю фрагмент для обновления...");
         boxAdapter = new BoxAdapter(getApplicationContext(), aDish);
-        dishList.setListAdapter(boxAdapter);
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        //dishList.setListAdapter(boxAdapter);
+        //FragmentTransaction ft = getFragmentManager().beginTransaction();
         //ft.add(R.id.fragment_cont, dishList);
-        ft.replace(R.id.fragment_cont, dishList);
-        ft.commit();
+        //ft.replace(R.id.fragment_cont, dishList);
+        //ft.commit();
+        listMain.setAdapter(boxAdapter);
         Log.d("json", "Фрагмент обновлен!");
     }
 

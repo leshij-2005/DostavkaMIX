@@ -3,7 +3,8 @@
     xmlns:foo="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollbars="none">
     <LinearLayout
         android:id="@+id/hscroll"
         android:layout_width="fill_parent"
@@ -62,7 +63,7 @@
         />
     <ru.dostavkamix.denis.dostavkamix.TextViewPlus
         android:id="@+id/category0_3"
-        android:tag="876"
+        android:tag="878"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Сладкие роллы"

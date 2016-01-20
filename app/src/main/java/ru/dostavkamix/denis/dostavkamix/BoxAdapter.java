@@ -3,18 +3,28 @@ package ru.dostavkamix.denis.dostavkamix;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Callback;
+
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 
@@ -30,6 +40,7 @@ public class BoxAdapter extends BaseAdapter {
     ArrayList<Dish> object;
     Typeface fontRub = null;
     Typeface fontReg = null;
+    ImageLoader imageLoader = null;
 
     public BoxAdapter(Context ctx, ArrayList<Dish> object) {
         this.ctx = ctx;
@@ -78,27 +89,49 @@ public class BoxAdapter extends BaseAdapter {
         Dish d = getDish(position);
 
         final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.dish_progress);
-        final RoundedImageView dish_img = (RoundedImageView) view.findViewById(R.id.dish_img);
+        final RoundedNetworkImageView dish_img = (RoundedNetworkImageView) view.findViewById(R.id.dish_img);
 
-                ((TextViewPlus) view.findViewById(R.id.dish_name)).setText(d.getNameDish());
+        ((TextViewPlus) view.findViewById(R.id.dish_name)).setText(d.getNameDish());
         ((TextViewPlus) view.findViewById(R.id.dish_descript)).setText(d.getContent());
         ((Button) view.findViewById(R.id.dish_price)).setText(addRuble(String.valueOf(d.getPriceDish())));
-        Picasso.with(ctx)
-                .load(d.getImjDish())
-                .into(dish_img, new Callback() {
-                    @Override
-                    public void onSuccess() {
-                        progressBar.setVisibility(View.INVISIBLE);
-                        dish_img.setVisibility(View.VISIBLE);
-                    }
 
-                    @Override
-                    public void onError() {
+        ////
+        AppController.getInstance().getImageLoader().get(d.getImjDish(), new ImageLoader.ImageListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("json", "error loader");
 
-                    }
-                });
+            }
+
+            @Override
+            public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
+                if (isImmediate && response.getBitmap() == null) return;
+                Log.d("json", "onResponse loader !!!!!!!!!!");
+                progressBar.setVisibility(View.INVISIBLE);
+                dish_img.setVisibility(View.VISIBLE);
+            }
+        });
+        imageLoader = AppController.getInstance().getImageLoader();
+
+        dish_img.setImageUrl(d.getImjDish(), imageLoader);
+
 
         return view;
+    }
+
+    public class CropSquareTransformation implements Transformation {
+        @Override public Bitmap transform(Bitmap source) {
+            int size = Math.min(source.getWidth(), source.getHeight());
+            int x = (source.getWidth() - size) / 2;
+            int y = (source.getHeight() - size) / 2;
+            Bitmap result = Bitmap.createBitmap(source, x, y, size, size);
+            if (result != source) {
+                source.recycle();
+            }
+            return result;
+        }
+
+        @Override public String key() { return "square()"; }
     }
 
 

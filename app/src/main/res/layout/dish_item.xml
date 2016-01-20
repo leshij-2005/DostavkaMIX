@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:foo="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="120sp"
@@ -12,23 +13,18 @@
         android:layout_marginBottom="8sp"
         android:layout_marginTop="8sp">
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <ru.dostavkamix.denis.dostavkamix.RoundedNetworkImageView
             android:id="@+id/dish_img"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="center"
+            android:layout_width="90sp"
+            android:layout_height="90sp"
             android:visibility="invisible"
-
-            app:riv_corner_radius="10dip"
-            app:riv_border_width="1dip"
-            app:riv_border_color="#333333"
-            app:riv_mutate_background="true"
-            app:riv_oval="false" />
+            />
 
         <ProgressBar
-            android:layout_width="match_parent"
+            android:layout_width="35sp"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15sp"
             android:id="@+id/dish_progress"
             android:indeterminateDrawable="@drawable/white_progress"
             android:visibility="visible"
@@ -45,6 +41,9 @@
             foo:customFont="fonts/GothaProReg.otf"
             android:textStyle="bold"
             android:textSize="17sp"
+
+            android:text="text text"
+
             android:layout_marginLeft="5sp"
             android:layout_marginTop="4sp"
             android:layout_width="wrap_content"
@@ -65,6 +64,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginTop="-2sp"
+                android:lineSpacingMultiplier="1.1"
+
+                android:text="text texttext texttext texttext texttext texttext texttext texttext texttext text"
 
                 foo:customFont="fonts/GothaProReg.otf"
                 android:textColor="@color/dish_descript_color"

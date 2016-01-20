@@ -10,10 +10,10 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main" tools:context=".MainActivity">
 
-    <FrameLayout
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/fragment_cont">
-    </FrameLayout>
+        android:id="@+id/listMain"
+        android:scrollbars="none"/>
 
 </RelativeLayout>
