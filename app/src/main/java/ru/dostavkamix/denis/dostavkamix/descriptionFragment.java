@@ -1,6 +1,7 @@
 package ru.dostavkamix.denis.dostavkamix;
 
 import android.app.Fragment;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
@@ -46,7 +47,7 @@ public class descriptionFragment extends Fragment implements View.OnClickListene
         dish_name.setText(dish_name_frag);
         dish_descript.setText(dish_descript_frag);
         dish_price.setText(dish_price_frag);
-        dish_weight.setText(dish_weight_frag);
+        dish_weight.setText(dish_weight_frag + " гр.");
 
         rootView.findViewById(R.id.count_button1).setOnClickListener(this);
         rootView.findViewById(R.id.count_button2).setOnClickListener(this);
@@ -94,13 +95,17 @@ public class descriptionFragment extends Fragment implements View.OnClickListene
 
     public void selectOnButton(Button button)
     {
-        button.setBackgroundColor(getResources().getColor(R.color.menu_catalog_color));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            button.setBackground(getResources().getDrawable(R.drawable.rounded_button_on_select));
+        }
         button.setTextColor(getResources().getColor(R.color.md_black_1000));
         selectDishCount = button;
     }
     public void selectOffButton(Button button)
     {
-        button.setBackgroundColor(getResources().getColor(R.color.slide_background_color));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            button.setBackground(getResources().getDrawable(R.drawable.rounded_button_off_select));
+        }
         button.setTextColor(getResources().getColor(R.color.md_white_1000));
     }
 }

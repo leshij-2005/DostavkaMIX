@@ -15,29 +15,31 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
         android:orientation="horizontal">
 
         <ru.dostavkamix.denis.dostavkamix.TextViewPlus
             foo:customFont="fonts/GothaProReg.otf"
             android:id="@+id/dish_name_frag"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
             android:text="Name Dish1"
-            android:textSize="20sp"
+            android:textSize="23sp"
             android:textColor="@color/md_white_1000"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginRight="10sp"
             android:layout_weight="1">
             <ru.dostavkamix.denis.dostavkamix.TextViewPlus
                 foo:customFont="fonts/GothaProReg.otf"
                 android:id="@+id/dish_price_frag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="3sp"
                 android:text="1024 P"
                 android:textSize="22sp"
                 android:gravity="right"
@@ -49,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:text="1060 гр."
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textColor="@color/md_white_1000"/>
         </LinearLayout>
 
@@ -60,6 +62,8 @@
         android:id="@+id/dish_descript_frag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
         android:text="Name DishName DishName DishName DishName DishName DishName DishName DishName DishName DishName Dish"
         android:textColor="@color/dish_descript_color"
         android:textSize="14sp"/>
@@ -67,6 +71,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
         android:gravity="center_horizontal"
         android:text="Порции"
         android:textColor="@color/md_white_1000"
@@ -74,7 +79,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50sp"
+        android:layout_height="35sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
         android:orientation="horizontal">
         <Button
             android:layout_width="match_parent"
@@ -82,7 +90,7 @@
             android:layout_weight="1"
             android:id="@+id/count_button1"
 
-            android:background="@color/slide_background_color"
+            android:background="@drawable/rounded_button_on_select"
             android:text="1"
             android:textSize="@dimen/button_count_text_size"
             android:textColor="@color/md_white_1000"/>
@@ -181,13 +189,15 @@
         android:layout_width="match_parent"
         android:layout_height="50sp"
         android:layout_marginTop="10sp"
+        android:layout_marginRight="15sp"
+        android:layout_marginLeft="15sp"
 
         android:textAllCaps="false"
         android:text="В корзину"
         android:textColor="@color/md_black_1000"
         android:textSize="20sp"
 
-        android:background="@color/menu_catalog_color"/>
+        android:background="@drawable/rounded_button_on_select"/>
 
 
 </LinearLayout>
