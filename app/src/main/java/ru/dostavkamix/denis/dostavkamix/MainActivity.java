@@ -1,5 +1,6 @@
 package ru.dostavkamix.denis.dostavkamix;
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.graphics.Typeface;
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,6 +37,7 @@ import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     boolean isReadyDish = false;
+    boolean isShowDescriptFrag = false;
 
     ArrayList<Dish> dishs = new ArrayList<>();
     ArrayList<Category> categories = new ArrayList<>();
@@ -55,6 +58,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     TextViewPlus selectText = null;
 
+    private ListFragment MenuFragment;
+    private FragmentTransaction ft;
+
+    public void setIsShowDescriptFrag(boolean isShowDescriptFrag) {
+        this.isShowDescriptFrag = isShowDescriptFrag;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +76,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(false);
 
+        MenuFragment = new dishListFragment();
+        ft = getFragmentManager().beginTransaction();
+        //ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.setCustomAnimations(R.animator.slide_in, R.animator.slide_out);
+
+        ft.replace(R.id.frame_fragment, MenuFragment);
+        ft.addToBackStack(null);
+        ft.commit();
 
         logo = (AppCompatImageView) findViewById(R.id.logo);
         icon_menu_up = (AppCompatImageView) findViewById(R.id.icon_menu_up);
         icon_menu_down = (AppCompatImageView) findViewById(R.id.icon_menu_down);
-        dishList = new dishListFragment();
-        //listMain = (ListView) findViewById(R.id.listMain);
 
         new ParseTask().execute();
 
@@ -117,9 +132,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     @Override
     public void onBackPressed() {
+        Log.d("json", "click Back");
         if (slideMuneDrawer != null && slideMuneDrawer.isDrawerOpen()) {
             slideMuneDrawer.closeDrawer();
-        } else {
+        } else
+        if(isShowDescriptFrag) {
+            Log.d("json", "back to Menu");
+            ft = getFragmentManager().beginTransaction();
+            ft.setCustomAnimations(R.animator.slide_in, R.animator.slide_out);
+            ft.replace(R.id.frame_fragment, MenuFragment);
+            ft.addToBackStack(null);
+            setIsShowDescriptFrag(false);
+            ft.commit();
+        }
+        else
+        {
+            Log.d("json", "super back");
             super.onBackPressed();
         }
     }
@@ -292,12 +320,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void updateListDish(ArrayList<Dish> aDish) {
         Log.d("json", "Готовлю фрагмент для обновления...");
-        boxAdapter = new BoxAdapter(getApplicationContext(), aDish);
-        dishList.setListAdapter(boxAdapter);
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        boxAdapter = new BoxAdapter(this, aDish, ft);
+        MenuFragment.setListAdapter(boxAdapter);
         //ft.add(R.id.fragment_cont, dishList);
-        ft.replace(R.id.frame_fragment, dishList);
-        ft.commit();
+        //ft.replace(R.id.frame_fragment, MenuFragment);
+        //ft.commit();
         //listMain.setAdapter(boxAdapter);
         Log.d("json", "Фрагмент обновлен!");
     }
