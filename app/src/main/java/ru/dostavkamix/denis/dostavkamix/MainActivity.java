@@ -14,6 +14,7 @@ import android.text.Spanned;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -33,6 +34,7 @@ import java.util.ArrayList;
 import ru.dostavkamix.denis.dostavkamix.Dish.Catalog;
 import ru.dostavkamix.denis.dostavkamix.Dish.Category;
 import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
+import ru.dostavkamix.denis.dostavkamix.Fragments.FragmentOrder;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ListFragment MenuFragment;
     private FragmentTransaction ft;
+    private Fragment OrderFragment;
 
     public void setIsShowDescriptFrag(boolean isShowDescriptFrag) {
         this.isShowDescriptFrag = isShowDescriptFrag;
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setHomeButtonEnabled(false);
 
         MenuFragment = new dishListFragment();
+        OrderFragment = new FragmentOrder();
         ft = getFragmentManager().beginTransaction();
         //ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.setCustomAnimations(R.animator.slide_in, R.animator.slide_out);
@@ -88,6 +92,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         logo = (AppCompatImageView) findViewById(R.id.logo);
         icon_menu_up = (AppCompatImageView) findViewById(R.id.icon_menu_up);
         icon_menu_down = (AppCompatImageView) findViewById(R.id.icon_menu_down);
+
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ft = getFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.animator.slide_in, R.animator.slide_out);
+                ft.replace(R.id.frame_fragment, OrderFragment);
+                ft.addToBackStack(null);
+                setIsShowDescriptFrag(false);
+                ft.commit();
+            }
+        });
 
         new ParseTask().execute();
 

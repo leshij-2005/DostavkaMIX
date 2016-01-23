@@ -1,4 +1,4 @@
-package ru.dostavkamix.denis.dostavkamix;
+package ru.dostavkamix.denis.dostavkamix.Fragments;
 
 import android.app.Fragment;
 import android.os.Build;
@@ -11,6 +11,10 @@ import android.widget.Button;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+
+import ru.dostavkamix.denis.dostavkamix.AppController;
+import ru.dostavkamix.denis.dostavkamix.R;
+import ru.dostavkamix.denis.dostavkamix.TextViewPlus;
 
 /**
  * Created by den on 21.01.16.

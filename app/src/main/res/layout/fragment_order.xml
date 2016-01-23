@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:orientation="horizontal"
+        android:background="@color/toolbar_background_color">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10sp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:background="@color/toolbar_background_color">
+            <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+                foo:customFont="fonts/GothaProBol.otf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="0 руб."
+                android:textColor="@color/md_white_1000"/>
+
+            <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+                foo:customFont="fonts/GothaProReg.otf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+
+                android:text="bla bla bla"
+                android:textColor="@color/dish_descript_color"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10sp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:background="@color/toolbar_background_color">
+            <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+                foo:customFont="fonts/GothaProBol.otf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="0%"
+                android:textColor="@color/md_white_1000"/>
+
+            <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+                foo:customFont="fonts/GothaProReg.otf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+
+                android:text="bla bla bla"
+                android:textColor="@color/dish_descript_color"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="10sp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:background="@color/toolbar_background_color">
+            <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+                foo:customFont="fonts/GothaProBol.otf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="0 руб."
+                android:textColor="@color/md_white_1000"/>
+
+            <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+                foo:customFont="fonts/GothaProReg.otf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+
+                android:text="bla bla bla"
+                android:textColor="@color/dish_descript_color"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="380sp">
+    </ListView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50sp"/>
+
+
+</LinearLayout>
