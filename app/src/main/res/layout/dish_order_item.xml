@@ -26,9 +26,6 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ru.dostavkamix.denis.dostavkamix.TextViewPlus
-                android:layout_width="wrap_content"
-                android:layout_height="" />
 
 
         </LinearLayout>

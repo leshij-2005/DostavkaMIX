@@ -15,40 +15,70 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="60sp"
+            android:layout_height="56sp"
             android:background="@color/toolbar_background_color"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            <ImageView
-                android:id="@+id/logo"
-                android:layout_width="170sp"
-                android:layout_height="60sp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20sp"
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
                 android:background="@color/toolbar_background_color"
-                android:clickable="true"
-                android:src="@drawable/logo"
-                />
-            <FrameLayout
-                android:layout_width="15sp"
-                android:layout_height="8sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30sp"
-                android:layout_marginLeft="10sp"
-                android:background="@color/toolbar_background_color">
+                xmlns:foo="http://schemas.android.com/apk/res-auto">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/toolbar_background_color"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/logo"
+                        android:layout_width="150sp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/mix_logo"
+                        android:background="@color/toolbar_background_color"/>
+                </LinearLayout>
                 <ImageView
-                    android:id="@+id/icon_menu_down"
+                    android:layout_width="20sp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/bag_logo"
+                    android:src="@drawable/bag_logo"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/toolbar_background_color"
+                    android:layout_marginRight="5sp"/>
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_menu"
-                    android:visibility="visible"/>
-                <ImageView
-                    android:id="@+id/icon_menu_up"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_menu_up"
-                    android:visibility="invisible"/>
-            </FrameLayout>
+                    android:orientation="vertical"
+                    android:id="@+id/toolbar_lay_text"
+                    android:background="@color/toolbar_background_color"
+                    android:gravity="right"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="5sp">
+
+                    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+                        foo:customFont="fonts/GothaProBol.otf"
+                        android:id="@+id/toolbar_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2sp"
+                        android:text="0 P"
+                        android:textSize="12sp"
+                        android:textColor="@color/menu_catalog_color"
+                        android:background="@color/toolbar_background_color"/>
+                    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+                        foo:customFont="fonts/GothaProBol.otf"
+                        android:id="@+id/toolbar_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Оформить"
+                        android:textSize="12sp"
+                        android:textColor="@color/menu_catalog_color"
+                        android:background="@color/toolbar_background_color"/>
+                </LinearLayout>
+            </LinearLayout>
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>

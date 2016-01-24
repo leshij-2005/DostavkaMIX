@@ -37,19 +37,21 @@
             <ru.dostavkamix.denis.dostavkamix.TextViewPlus
                 foo:customFont="fonts/GothaProReg.otf"
                 android:id="@+id/dish_price_frag"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3sp"
                 android:text="1024 P"
                 android:textSize="22sp"
                 android:gravity="right"
+                android:layout_gravity="right"
                 android:textColor="@color/menu_catalog_color"/>
             <ru.dostavkamix.denis.dostavkamix.TextViewPlus
                 foo:customFont="fonts/GothaProReg.otf"
                 android:id="@+id/dish_weight_frag"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:layout_gravity="right"
                 android:text="1060 гр."
                 android:textSize="15sp"
                 android:textColor="@color/md_white_1000"/>

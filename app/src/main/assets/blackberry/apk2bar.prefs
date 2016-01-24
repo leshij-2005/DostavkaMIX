@@ -1,5 +1,5 @@
-#Wed Jan 20 16:19:27 YEKT 2016
-minimal.os.version=10.3.1
+#Sat Jan 23 22:57:20 UZT 2016
 application.category=core.media
-custom.manifest=true
-manifest.additions=false
+minimal.os.version=10.3.1
+custom.manifest=false
+manifest.additions=true

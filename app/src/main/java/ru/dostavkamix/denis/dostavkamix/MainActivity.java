@@ -90,8 +90,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ft.commit();
 
         logo = (AppCompatImageView) findViewById(R.id.logo);
-        icon_menu_up = (AppCompatImageView) findViewById(R.id.icon_menu_up);
-        icon_menu_down = (AppCompatImageView) findViewById(R.id.icon_menu_down);
 
         logo.setOnClickListener(new View.OnClickListener() {
             @Override
