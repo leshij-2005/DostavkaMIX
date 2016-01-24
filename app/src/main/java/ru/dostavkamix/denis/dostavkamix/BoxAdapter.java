@@ -102,13 +102,18 @@ public class BoxAdapter extends BaseAdapter {
 
         ((TextViewPlus) view.findViewById(R.id.dish_name)).setText(d.getNameDish());
         ((TextViewPlus) view.findViewById(R.id.dish_descript)).setText(d.getContent());
-        ((Button) view.findViewById(R.id.dish_price)).setText(addRuble(String.valueOf(d.getPriceDish())));
+
+        if(AppController.getInstance().onBag(d))
+        {
+            ((Button) view.findViewById(R.id.dish_price)).setText("уже");
+        } else {
+            ((Button) view.findViewById(R.id.dish_price)).setText(addRuble(String.valueOf(d.getPriceDish())));
+        }
 
         dish_img.setDefaultImageResId(R.drawable.white_progress);
         dish_img.setImageUrl(d.getImjDish(), imageLoader);
 
-        final View finalView = view;
-        ((LinearLayout) view.findViewById(R.id.dish_item)).setOnClickListener(new View.OnClickListener() {
+        (view.findViewById(R.id.dish_item)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("json", "Click item");
@@ -119,13 +124,34 @@ public class BoxAdapter extends BaseAdapter {
                 descriptFragment.setDish_weight_frag(d.getWeight());
                 descriptFragment.setDish_price_frag(addRuble(String.valueOf(d.getPriceDish())));
 
-                ft = ((Activity) mainActivity).getFragmentManager().beginTransaction();
+                ft = mainActivity.getFragmentManager().beginTransaction();
                 ft.setCustomAnimations(R.animator.slide_in, R.animator.slide_out);
-                ft.add(R.id.frame_fragment, descriptFragment);
+                ft.replace(R.id.frame_fragment, descriptFragment);
                 mainActivity.setIsShowDescriptFrag(true);
                 ft.commit();
             }
         });
+
+        final View finalView = view;
+        ((Button) view.findViewById(R.id.dish_price)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(AppController.getInstance().onBag(d))
+                {
+                    Log.d("json", "удаляю из корзины");
+                    AppController.getInstance().removeInBad(d);
+                    ((Button) finalView.findViewById(R.id.dish_price)).setText(addRuble(String.valueOf(d.getPriceDish())));
+                } else
+                {
+                    d.setCountOrder(1);
+                    Log.d("json", "в корзину");
+                    AppController.getInstance().addInBag(d);
+                    ((Button) finalView.findViewById(R.id.dish_price)).setText("уже");
+                }
+            }
+        });
+
+
 
 
         return view;

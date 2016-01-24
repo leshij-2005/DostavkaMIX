@@ -10,6 +10,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
+import java.util.ArrayList;
+
+import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
+
 /**
  * Created by den on 20.01.16.
  */
@@ -18,6 +22,7 @@ public class AppController extends Application {
 
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
+    private ArrayList<Dish> inBag = new ArrayList<>();
 
     private static AppController mInstance;
 
@@ -65,5 +70,47 @@ public class AppController extends Application {
         if (mRequestQueue != null) {
             mRequestQueue.cancelAll(tag);
         }
+    }
+
+    public ArrayList<Dish> getInBag() {
+        return inBag;
+    }
+
+    public void setInBag(ArrayList<Dish> inBag) {
+        this.inBag = inBag;
+    }
+
+    public void removeInBad(Dish dish)
+    {
+        if(getInBag() != null)
+        {
+            for (int i = 0; i < getInBag().size(); i++) {
+                if(getInBag().get(i).getIdDish() == dish.getIdDish())
+                {
+                    getInBag().remove(i);
+                    Log.d(TAG, "удаление из корзины");
+                    return;
+                }
+            }
+        } else Log.d(TAG, "блюда в корзине нет");
+    }
+
+    public void addInBag(Dish dish)
+    {
+        this.inBag.add(dish);
+        Log.d(TAG, "добавил в карзину");
+    }
+
+    public boolean onBag(Dish dish)
+    {
+            for (int i = 0; i < getInBag().size(); i++) {
+                if(getInBag().get(i).getIdDish() == dish.getIdDish())
+                {
+                    Log.d(TAG, "блюдо есть в корзине");
+                    return true;
+                }
+            }
+            Log.d(TAG, "блюда нет в корзине");
+            return false;
     }
 }

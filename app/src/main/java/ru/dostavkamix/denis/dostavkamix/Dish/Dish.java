@@ -22,6 +22,7 @@ public class Dish extends Category {
     private String nameDish = null;
     private String content = null;
     private String imjDish = null;
+    private int countOrder = 0;
 
     public Dish(int idCatalog, String nameCatalog, String imjCatalog, int idCategory, String nameCategory, String imjCategory, int idDish, int priceDish, String weight, String nameDish, String content, String imjDish) {
         super(idCatalog, nameCatalog, imjCatalog, idCategory, nameCategory, imjCategory);
@@ -31,6 +32,14 @@ public class Dish extends Category {
         this.nameDish = nameDish;
         this.content = content;
         this.imjDish = baseUrl + imjDish;
+    }
+
+    public int getCountOrder() {
+        return countOrder;
+    }
+
+    public void setCountOrder(int countOrder) {
+        this.countOrder = countOrder;
     }
 
     public int getIdDish() {
