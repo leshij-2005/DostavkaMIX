@@ -1,6 +1,12 @@
 package ru.dostavkamix.denis.dostavkamix.Fragments;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Fragment;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
@@ -13,6 +19,8 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
 import ru.dostavkamix.denis.dostavkamix.AppController;
+import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
+import ru.dostavkamix.denis.dostavkamix.MainActivity;
 import ru.dostavkamix.denis.dostavkamix.R;
 import ru.dostavkamix.denis.dostavkamix.TextViewPlus;
 
@@ -21,6 +29,8 @@ import ru.dostavkamix.denis.dostavkamix.TextViewPlus;
  */
 public class descriptionFragment extends Fragment implements View.OnClickListener {
     private Button selectDishCount = null;
+    private Dish onDish;
+    private MainActivity mainActivity;
 
     private String dish_img_frag = "";
     private String dish_name_frag = "";
@@ -36,6 +46,7 @@ public class descriptionFragment extends Fragment implements View.OnClickListene
     private TextViewPlus dish_descript;
     private TextViewPlus dish_price;
     private TextViewPlus dish_weight;
+    private Button inBag;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +57,7 @@ public class descriptionFragment extends Fragment implements View.OnClickListene
         dish_descript = (TextViewPlus) rootView.findViewById(R.id.dish_descript_frag);
         dish_price = (TextViewPlus) rootView.findViewById(R.id.dish_price_frag);
         dish_weight = (TextViewPlus) rootView.findViewById(R.id.dish_weight_frag);
+        inBag = (Button) rootView.findViewById(R.id.inBag);
 
         dish_img.setImageUrl(dish_img_frag, imageLoader);
         dish_name.setText(dish_name_frag);
@@ -63,6 +75,7 @@ public class descriptionFragment extends Fragment implements View.OnClickListene
         rootView.findViewById(R.id.count_button8).setOnClickListener(this);
         rootView.findViewById(R.id.count_button9).setOnClickListener(this);
         rootView.findViewById(R.id.count_button10).setOnClickListener(this);
+        inBag.setOnClickListener(this);
 
         selectOnButton((Button) rootView.findViewById(R.id.count_button1));
         return rootView;
@@ -90,26 +103,62 @@ public class descriptionFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        if(selectDishCount != v)
+        if(v.getId() != R.id.inBag) {
+            if (selectDishCount != v) {
+                selectOffButton(selectDishCount);
+                selectOnButton((Button) v);
+            }
+        } else
         {
-            selectOffButton(selectDishCount);
-            selectOnButton((Button) v);
+            onDish.setCountOrder(Integer.valueOf(String.valueOf(selectDishCount.getText())));
+            AppController.getInstance().addInBag(onDish);
+            mainActivity.updateBagPrice();
         }
     }
 
     public void selectOnButton(Button button)
     {
+/*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             button.setBackground(getResources().getDrawable(R.drawable.rounded_button_on_select));
         }
+
         button.setTextColor(getResources().getColor(R.color.md_black_1000));
+*/
+        TransitionDrawable drawable = (TransitionDrawable) button.getBackground();
+        drawable.startTransition(100);
+
+        ObjectAnimator colorAnim = ObjectAnimator.ofInt(
+                button,
+                "textColor",
+                Color.WHITE,
+                Color.BLACK);
+        colorAnim.setDuration(100);
+        colorAnim.setEvaluator(new ArgbEvaluator());
+        colorAnim.start();
+
         selectDishCount = button;
     }
     public void selectOffButton(Button button)
     {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            button.setBackground(getResources().getDrawable(R.drawable.rounded_button_off_select));
-        }
-        button.setTextColor(getResources().getColor(R.color.md_white_1000));
+        TransitionDrawable drawable = (TransitionDrawable) button.getBackground();
+        drawable.reverseTransition(100);
+
+        ObjectAnimator colorAnim = ObjectAnimator.ofInt(
+                button,
+                "textColor",
+                Color.BLACK,
+                Color.WHITE);
+        colorAnim.setDuration(100);
+        colorAnim.setEvaluator(new ArgbEvaluator());
+        colorAnim.start();
+    }
+
+    public void setOnDish(Dish onDish) {
+        this.onDish = onDish;
+    }
+
+    public void setMainActivity(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
     }
 }

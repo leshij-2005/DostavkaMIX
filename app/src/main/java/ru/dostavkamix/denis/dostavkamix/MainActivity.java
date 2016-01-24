@@ -1,5 +1,8 @@
 package ru.dostavkamix.denis.dostavkamix;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     AppCompatImageView logo = null;
     AppCompatImageView icon_menu_up = null;
     AppCompatImageView icon_menu_down = null;
+    TextViewPlus bag_price = null;
     ListFragment dishList = null;
     //ListView listMain = null;
 
@@ -63,6 +67,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ListFragment MenuFragment;
     private FragmentTransaction ft;
     private Fragment OrderFragment;
+    DialogFragment dlg1;
+
+    public void updateBagPrice()
+    {
+        bag_price.setText(AppController.getInstance().addRuble(String.valueOf(AppController.getInstance().getBagPrice())));
+    }
 
     public void setIsShowDescriptFrag(boolean isShowDescriptFrag) {
         this.isShowDescriptFrag = isShowDescriptFrag;
@@ -90,16 +100,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ft.commit();
 
         logo = (AppCompatImageView) findViewById(R.id.logo);
+        bag_price = (TextViewPlus) findViewById(R.id.toolbar_price);
 
         logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ft = getFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.animator.slide_in, R.animator.slide_out);
-                ft.replace(R.id.frame_fragment, OrderFragment);
-                ft.addToBackStack(null);
-                setIsShowDescriptFrag(false);
-                ft.commit();
+                dlg1.show(getFragmentManager(), "dlg1");
             }
         });
 
@@ -141,9 +147,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         selectCategory(menuCategoryText.get(0));
+        dlg1 = new InOrderDialog();
 
 
     }
+
+
     @Override
     public void onBackPressed() {
         Log.d("json", "click Back");

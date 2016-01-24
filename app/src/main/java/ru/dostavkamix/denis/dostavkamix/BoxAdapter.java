@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 
@@ -40,6 +42,7 @@ public class BoxAdapter extends BaseAdapter {
     Typeface fontRub = null;
     Typeface fontReg = null;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+    Animation anim_emerging = null;
 
     public BoxAdapter(MainActivity mainActivity, ArrayList<Dish> object, FragmentTransaction ft) {
         this.ctx = mainActivity.getApplicationContext();
@@ -50,6 +53,7 @@ public class BoxAdapter extends BaseAdapter {
         fontReg = Typeface.createFromAsset(ctx.getAssets(), "fonts/GothaProReg.otf");
         descriptFragment = new descriptionFragment();
         this.ft = ft;
+        anim_emerging = AnimationUtils.loadAnimation(mainActivity, R.anim.emerging_view);
     }
 
     @Override
@@ -118,6 +122,8 @@ public class BoxAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Log.d("json", "Click item");
 
+                descriptFragment.setMainActivity(mainActivity);
+                descriptFragment.setOnDish(d);
                 descriptFragment.setDish_img_frag(d.getImjDish());
                 descriptFragment.setDish_name_frag(d.getNameDish());
                 descriptFragment.setDish_descript_frag(d.getContent());
@@ -139,14 +145,18 @@ public class BoxAdapter extends BaseAdapter {
                 if(AppController.getInstance().onBag(d))
                 {
                     Log.d("json", "удаляю из корзины");
+                    d.setCountOrder(0);
                     AppController.getInstance().removeInBad(d);
                     ((Button) finalView.findViewById(R.id.dish_price)).setText(addRuble(String.valueOf(d.getPriceDish())));
+                    mainActivity.updateBagPrice();
                 } else
                 {
                     d.setCountOrder(1);
                     Log.d("json", "в корзину");
                     AppController.getInstance().addInBag(d);
                     ((Button) finalView.findViewById(R.id.dish_price)).setText("уже");
+                    ((Button) finalView.findViewById(R.id.dish_price)).startAnimation(anim_emerging);
+                    mainActivity.updateBagPrice();
                 }
             }
         });
