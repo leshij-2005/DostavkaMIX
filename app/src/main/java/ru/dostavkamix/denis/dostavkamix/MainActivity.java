@@ -311,7 +311,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     dish.getString("weight"),
                                     dish.getString("title"),
                                     dish.getString("content"),
-                                    dish.getString("image")
+                                    dish.getString("image"),
+                                    k
 
                             ));
                         }

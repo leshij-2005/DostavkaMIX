@@ -23,8 +23,9 @@ public class Dish extends Category {
     private String content = null;
     private String imjDish = null;
     private int countOrder = 0;
+    private int unic = 0;
 
-    public Dish(int idCatalog, String nameCatalog, String imjCatalog, int idCategory, String nameCategory, String imjCategory, int idDish, int priceDish, String weight, String nameDish, String content, String imjDish) {
+    public Dish(int idCatalog, String nameCatalog, String imjCatalog, int idCategory, String nameCategory, String imjCategory, int idDish, int priceDish, String weight, String nameDish, String content, String imjDish, int unic) {
         super(idCatalog, nameCatalog, imjCatalog, idCategory, nameCategory, imjCategory);
         this.idDish = idDish;
         this.priceDish = priceDish;
@@ -32,6 +33,11 @@ public class Dish extends Category {
         this.nameDish = nameDish;
         this.content = content;
         this.imjDish = baseUrl + imjDish;
+        this.unic = unic;
+    }
+
+    public int getUnic() {
+        return unic;
     }
 
     public int getCountOrder() {

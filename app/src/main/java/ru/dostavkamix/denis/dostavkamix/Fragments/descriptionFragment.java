@@ -3,8 +3,10 @@ package ru.dostavkamix.denis.dostavkamix.Fragments;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Build;
@@ -20,6 +22,7 @@ import com.android.volley.toolbox.NetworkImageView;
 
 import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
+import ru.dostavkamix.denis.dostavkamix.InOrderDialog;
 import ru.dostavkamix.denis.dostavkamix.MainActivity;
 import ru.dostavkamix.denis.dostavkamix.R;
 import ru.dostavkamix.denis.dostavkamix.TextViewPlus;
@@ -47,6 +50,7 @@ public class descriptionFragment extends Fragment implements View.OnClickListene
     private TextViewPlus dish_price;
     private TextViewPlus dish_weight;
     private Button inBag;
+    private DialogFragment dialogInBag;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -76,6 +80,7 @@ public class descriptionFragment extends Fragment implements View.OnClickListene
         rootView.findViewById(R.id.count_button9).setOnClickListener(this);
         rootView.findViewById(R.id.count_button10).setOnClickListener(this);
         inBag.setOnClickListener(this);
+        dialogInBag = new InOrderDialog();
 
         selectOnButton((Button) rootView.findViewById(R.id.count_button1));
         return rootView;
@@ -113,6 +118,19 @@ public class descriptionFragment extends Fragment implements View.OnClickListene
             onDish.setCountOrder(Integer.valueOf(String.valueOf(selectDishCount.getText())));
             AppController.getInstance().addInBag(onDish);
             mainActivity.updateBagPrice();
+
+            dialogInBag.show(mainActivity.getFragmentManager(), "dialogInBag");
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    dialogInBag.dismiss();
+                }
+            }).start();
         }
     }
 

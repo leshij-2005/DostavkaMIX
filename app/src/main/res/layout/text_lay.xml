@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    foo:customFont="fonts/GothaProReg.otf"
+    android:layout_width="150sp"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20sp"
+    android:textSize="20sp"
+    android:text="Добавлено"
+    android:textColor="@color/md_black_1000"
+    android:layout_gravity="center_horizontal|bottom"
+    android:gravity="center"
+    android:background="@drawable/background_dialog"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"/>

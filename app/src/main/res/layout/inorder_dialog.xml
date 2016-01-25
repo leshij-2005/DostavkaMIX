@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:foo="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
-              android:layout_width="200sp"
-              android:layout_height="200sp"
-    android:background="@drawable/background_dialog">
+              android:layout_width="140sp"
+              android:layout_height="120sp"
+              android:background="@drawable/background_dialog">
 
-    <TextView
-        android:layout_width="200sp"
-        android:layout_height="200sp"
-        android:text="Hello"
-        android:layout_gravity="center"
+    <ImageView
+        android:layout_width="35sp"
+        android:layout_height="100sp"
+        android:layout_marginBottom="25sp"
+        android:src="@drawable/check_black"
+        android:background="@color/menu_catalog_color"
+        android:layout_gravity="center"/>
+    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+        foo:customFont="fonts/GothaProReg.otf"
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20sp"
+        android:textSize="20sp"
+        android:text="Добавлено"
+        android:textColor="@color/md_black_1000"
+        android:layout_gravity="center_horizontal|bottom"
         android:gravity="center"
-        android:background="@drawable/background_dialog"/>
+        android:background="@color/menu_catalog_color"/>
 
-</LinearLayout>
+
+</FrameLayout>

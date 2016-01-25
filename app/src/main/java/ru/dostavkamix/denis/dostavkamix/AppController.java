@@ -114,7 +114,7 @@ public class AppController extends Application {
     public boolean onBag(Dish dish)
     {
             for (int i = 0; i < getInBag().size(); i++) {
-                if(getInBag().get(i).getIdDish() == dish.getIdDish())
+                if(getInBag().get(i).getIdDish() == dish.getIdDish() )
                 {
                     Log.d(TAG, "блюдо есть в корзине");
                     return true;

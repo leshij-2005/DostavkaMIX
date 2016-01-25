@@ -78,14 +78,14 @@
 
                 />
 
-            <Button
+            <ru.dostavkamix.denis.dostavkamix.priceButton
                 android:id="@+id/dish_price"
                 android:layout_width="60sp"
                 android:layout_height="25sp"
                 android:layout_marginRight="10sp"
                 android:layout_marginTop="18sp"
 
-                android:background="@drawable/outline_background"
+                android:background="@drawable/transition_check"
 
                 android:textColor="@color/menu_catalog_color"
 
