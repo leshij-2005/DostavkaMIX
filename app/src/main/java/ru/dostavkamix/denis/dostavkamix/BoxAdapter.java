@@ -39,6 +39,7 @@ import ru.dostavkamix.denis.dostavkamix.Fragments.descriptionFragment;
  */
 public class BoxAdapter extends BaseAdapter {
 
+    private final String TAG = getClass().getSimpleName();
     private descriptionFragment descriptFragment;
     private Fragment firstFragment;
     private FragmentTransaction ft;
@@ -75,6 +76,12 @@ public class BoxAdapter extends BaseAdapter {
             myChecked.put(position, true);
         }
 
+        notifyDataSetChanged();
+    }
+
+    public void setChecked(int position, boolean b)
+    {
+        myChecked.put(position, b);
         notifyDataSetChanged();
     }
 
@@ -155,7 +162,7 @@ public class BoxAdapter extends BaseAdapter {
         (view.findViewById(R.id.dish_item)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("json", "Click item");
+                Log.d(TAG, "Click item");
 
                 descriptFragment.setMainActivity(mainActivity);
                 descriptFragment.setOnDish(d);
@@ -173,83 +180,43 @@ public class BoxAdapter extends BaseAdapter {
             }
         });
          //////////////////////
-
-        Boolean checked = myChecked.get(position);
-        if(checked != null)
+        if(AppController.getInstance().onBag(getDish(position)))
         {
-            checkBut.setChecked(checked);
-            if(checked) {
-                d.setCountOrder(1);
-                AppController.getInstance().addInBag(d);
-                mainActivity.updateBagPrice();
-            }else {
-                d.setCountOrder(0);
-                AppController.getInstance().removeInBad(d);
-                mainActivity.updateBagPrice();
-            }
-
+            setChecked(position, true);
         }
 
         if(AppController.getInstance().onBag(d))
         {
-            //((Button) view.findViewById(R.id.dish_price)).setText("уже");
-            //((TransitionDrawable)((Button) view.findViewById(R.id.dish_price)).getBackground()).startTransition(100);
-            Log.d("json", "уже в корзине");
+            Log.d(TAG, "уже в корзине");
             checkBut.setChecked(true);
-            mainActivity.updateBagPrice();
         }
 
-        //final View finalView = view;
-        (view.findViewById(R.id.dish_price)).setOnClickListener(new View.OnClickListener() {
+        Boolean checked = myChecked.get(position);
+
+        if(checked != null)
+        {
+            checkBut.setChecked(checked);
+        }
+
+        checkBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                toggleChecked(position);
-                /*
-                if (AppController.getInstance().onBag(d)) {
-                    //TransitionDrawable td = (TransitionDrawable) ((Button) finalView.findViewById(R.id.dish_price)).getBackground();
-                    Log.d("json", "удаляю из корзины");
-                    d.setCountOrder(0);
-
-
-                    //((Button) finalView.findViewById(R.id.dish_price)).setText(addRuble(String.valueOf(d.getPriceDish())));
-                    /*
-                    ObjectAnimator colorAnim = ObjectAnimator.ofInt(
-                            ((Button) finalView.findViewById(R.id.dish_price)),
-                            "textColor",
-                            Color.TRANSPARENT,
-                            AppController.getInstance().getResources().getColor(R.color.menu_catalog_color));
-                    colorAnim.setDuration(100);
-                    colorAnim.setEvaluator(new ArgbEvaluator());
-                    colorAnim.start();
-                    td.reverseTransition(100);
-
-                    ((priceButton) finalView.findViewById(R.id.dish_price)).setChecked(false);
-                    AppController.getInstance().removeInBad(d);
-                    mainActivity.updateBagPrice();
-
+                if(AppController.getInstance().onBag(getDish(position)))
+                {
+                    Log.d(TAG, "Убираю из корзины");
+                    setChecked(position, false);
+                    AppController.getInstance().removeInBad(getDish(position));
                 } else {
-                    //TransitionDrawable td = (TransitionDrawable) ((Button) finalView.findViewById(R.id.dish_price)).getBackground();
-                    d.setCountOrder(1);
-                    Log.d("json", "в корзину");
-
-                    //((Button) finalView.findViewById(R.id.dish_price)).setText("уже");
-/*
-                    ObjectAnimator colorAnim = ObjectAnimator.ofInt(
-                            ((Button) finalView.findViewById(R.id.dish_price)),
-                            "textColor",
-                            AppController.getInstance().getResources().getColor(R.color.menu_catalog_color),
-                            Color.TRANSPARENT);
-                    colorAnim.setDuration(100);
-                    colorAnim.setEvaluator(new ArgbEvaluator());
-                    colorAnim.start();
-                    td.startTransition(100);
-
-                    ((priceButton) finalView.findViewById(R.id.dish_price)).setChecked(true);
-                    AppController.getInstance().addInBag(d);
-                    mainActivity.updateBagPrice();
+                    Log.d(TAG, "Добавил в корзину");
+                    setChecked(position, true);
+                    Dish result = getDish(position);
+                    result.setCountOrder(1);
+                    AppController.getInstance().addInBag(result);
                 }
-            */
+
+                notifyDataSetChanged();
+
             }
         });
         return view;

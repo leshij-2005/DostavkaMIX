@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Fragment OrderFragment;
     DialogFragment dlg1;
 
+
     public void updateBagPrice()
     {
         bag_price.setText(AppController.getInstance().addRuble(String.valueOf(AppController.getInstance().getBagPrice())));
@@ -148,6 +149,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         selectCategory(menuCategoryText.get(0));
         dlg1 = new InOrderDialog();
+
+        AppController.getInstance().setMainActivity(this);
 
 
     }

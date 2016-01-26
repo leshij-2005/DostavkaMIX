@@ -26,6 +26,9 @@ public class AppController extends Application {
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
     private ArrayList<Dish> inBag = new ArrayList<>();
+    private int sumOrder = 0;
+    private MainActivity mainActivity = null;
+
     Typeface fontRub = null;
     Typeface fontReg = null;
 
@@ -35,11 +38,31 @@ public class AppController extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+        Log.d(TAG, "Start AppController");
         fontRub = Typeface.createFromAsset(getAssets(), "fonts/RUBSN.otf");
         fontReg = Typeface.createFromAsset(getAssets(), "fonts/GothaProReg.otf");
-        Log.d("json", "Start AppController");
     }
 
+    public void setMainActivity(MainActivity mainActivity)
+    {
+        this.mainActivity = mainActivity;
+    }
+
+    public SpannableStringBuilder addRuble(String s)
+    {
+        if(s.length() < 4) {
+            SpannableStringBuilder result = new SpannableStringBuilder(s + " Я");
+            result.setSpan(new CustomTypefaceSpan("normal", fontReg), 0, s.length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+            result.setSpan(new CustomTypefaceSpan("sans", fontRub), s.length(), s.length() + 2, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+            return result;
+        } else {
+
+            SpannableStringBuilder result = new SpannableStringBuilder(s.substring(0, 1 + (s.length() - 4)) + " " + s.substring(1) + " Я");
+            result.setSpan(new CustomTypefaceSpan("normal", fontReg), 0, s.length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+            result.setSpan(new CustomTypefaceSpan("sans", fontRub), s.length() + 1 + (s.length() - 4), s.length() + 3 + (s.length() - 4), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+            return result;
+        }
+    }
     public static synchronized AppController getInstance() {
         return mInstance;
     }
@@ -95,49 +118,52 @@ public class AppController extends Application {
                 if(getInBag().get(i).getIdDish() == dish.getIdDish())
                 {
                     getInBag().remove(i);
+                    mainActivity.updateBagPrice();
                     Log.d(TAG, "удаление из корзины");
+                    Log.d(TAG, "в корзине " + getInBag().size() + " блюд");
                     return;
                 }
             }
-        } else Log.d(TAG, "блюда в корзине нет");
+        } else
+        {
+            Log.d(TAG, "блюда в корзине нет");
+            Log.d(TAG, "в корзине " + getInBag().size() + " блюд");
+        }
     }
 
     public void addInBag(Dish dish)
     {
-        for (int i = 0; i < inBag.size(); i++) {
-            if(inBag.get(i).getIdDish() == dish.getIdDish()) return;
+
+        for (int i = 0; i < getInBag().size(); i++) {
+            if(getInBag().get(i).getIdDish() == dish.getIdDish())
+            {
+                Log.d(TAG, "блюдо уже есть в корзине  " + getInBag().get(i).getIdDish() + " = " + dish.getIdDish());
+
+                    getInBag().get(i).setCountOrder(dish.getCountOrder());
+                    mainActivity.updateBagPrice();
+                    Log.d(TAG, "изменил порции на " + getInBag().get(i).getCountOrder());
+                    Log.d(TAG, "в корзине " + getInBag().size() + " блюд");
+                    return;
+            }
         }
-        this.inBag.add(dish);
-        Log.d(TAG, "добавил в карзину");
+
+            this.getInBag().add(dish);
+            mainActivity.updateBagPrice();
+            Log.d(TAG, "добавил в карзину");
+            Log.d(TAG, "в корзине " + getInBag().size() + " блюд");
+
     }
 
     public boolean onBag(Dish dish)
     {
             for (int i = 0; i < getInBag().size(); i++) {
-                if(getInBag().get(i).getIdDish() == dish.getIdDish() )
+                if(getInBag().get(i).getIdDish() == dish.getIdDish())
                 {
                     Log.d(TAG, "блюдо есть в корзине");
                     return true;
                 }
             }
-            Log.d(TAG, "блюда нет в корзине");
             return false;
-    }
-
-    public SpannableStringBuilder addRuble(String s)
-    {
-        if(s.length() < 4) {
-            SpannableStringBuilder result = new SpannableStringBuilder(s + " Я");
-            result.setSpan(new CustomTypefaceSpan("normal", fontReg), 0, s.length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-            result.setSpan(new CustomTypefaceSpan("sans", fontRub), s.length(), s.length() + 2, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-            return result;
-        } else {
-
-            SpannableStringBuilder result = new SpannableStringBuilder(s.substring(0, 1) + " " + s.substring(1) + " Я");
-            result.setSpan(new CustomTypefaceSpan("normal", fontReg), 0, s.length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-            result.setSpan(new CustomTypefaceSpan("sans", fontRub), s.length() + 1, s.length() + 3, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-            return result;
-        }
     }
 
     public int getBagPrice()
