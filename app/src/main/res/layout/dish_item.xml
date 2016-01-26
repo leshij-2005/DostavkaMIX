@@ -40,7 +40,7 @@
         android:orientation="vertical"
         android:layout_weight="1">
 
-        <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
             foo:customFont="fonts/GothaProReg.otf"
             android:textStyle="bold"
             android:textSize="17sp"
@@ -62,7 +62,7 @@
 
             android:layout_marginLeft="5sp">
 
-            <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+            <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
                 android:id="@+id/dish_descript"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
 
                 />
 
-            <ru.dostavkamix.denis.dostavkamix.priceButton
+            <ru.dostavkamix.denis.dostavkamix.CustomView.priceButton
                 android:id="@+id/dish_price"
                 android:layout_width="60sp"
                 android:layout_height="25sp"

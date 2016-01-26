@@ -6,7 +6,6 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -15,6 +14,8 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
+import ru.dostavkamix.denis.dostavkamix.CustomView.CustomTypefaceSpan;
+import ru.dostavkamix.denis.dostavkamix.CustomView.LruBitmapCache;
 import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
 
 /**

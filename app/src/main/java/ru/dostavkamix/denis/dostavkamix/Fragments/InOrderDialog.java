@@ -1,4 +1,4 @@
-package ru.dostavkamix.denis.dostavkamix;
+package ru.dostavkamix.denis.dostavkamix.Fragments;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+
+import ru.dostavkamix.denis.dostavkamix.R;
 
 /**
  * Created by den on 25.01.2016.

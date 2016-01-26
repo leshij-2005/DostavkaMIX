@@ -58,7 +58,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="5sp">
 
-                    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+                    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
                         foo:customFont="fonts/GothaProBol.otf"
                         android:id="@+id/toolbar_price"
                         android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
                         android:textSize="12sp"
                         android:textColor="@color/menu_catalog_color"
                         android:background="@color/toolbar_background_color"/>
-                    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+                    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
                         foo:customFont="fonts/GothaProBol.otf"
                         android:id="@+id/toolbar_text"
                         android:layout_width="wrap_content"

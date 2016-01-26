@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical">
-    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ЯПОНСКАЯ кухня"
@@ -22,7 +22,7 @@
         foo:customFont="fonts/GothaProBla.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:tag="537"
         android:id="@+id/category0_0"
         android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
         android:layout_marginLeft="@dimen/menu_category_margin_left"
         foo:customFont="fonts/GothaProReg.otf"
         />
-    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category0_1"
         android:tag="879"
         android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
         android:layout_marginLeft="@dimen/menu_category_margin_left"
         foo:customFont="fonts/GothaProReg.otf"
         />
-    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category0_2"
         android:tag="435"
         android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
         android:layout_marginLeft="@dimen/menu_category_margin_left"
         foo:customFont="fonts/GothaProReg.otf"
         />
-    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category0_3"
         android:tag="878"
         android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
         android:layout_marginLeft="@dimen/menu_category_margin_left"
         foo:customFont="fonts/GothaProReg.otf"
         />
-    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category0_4"
         android:tag="675"
         android:layout_width="wrap_content"
@@ -87,7 +87,7 @@
         android:layout_marginLeft="@dimen/menu_category_margin_left"
         foo:customFont="fonts/GothaProReg.otf"
         />
-    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category0_5"
         android:tag="665"
         android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
         android:layout_marginLeft="@dimen/menu_category_margin_left"
         foo:customFont="fonts/GothaProReg.otf"
         />
-    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category0_6"
         android:tag="688"
         android:layout_width="wrap_content"
@@ -113,7 +113,7 @@
         android:layout_marginLeft="@dimen/menu_category_margin_left"
         foo:customFont="fonts/GothaProReg.otf"
         />
-    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ВОСТОЧНАЯ кухня"
@@ -125,7 +125,7 @@
         foo:customFont="fonts/GothaProBla.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category1_0"
         android:tag="6"
         android:layout_width="wrap_content"
@@ -138,7 +138,7 @@
         android:layout_marginLeft="@dimen/menu_category_margin_left"
         foo:customFont="fonts/GothaProReg.otf"
         />
-    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category1_1"
         android:tag="7"
         android:layout_width="wrap_content"
@@ -151,7 +151,7 @@
         android:layout_marginLeft="@dimen/menu_category_margin_left"
         foo:customFont="fonts/GothaProReg.otf"
         />
-    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category1_2"
         android:tag="8"
         android:layout_width="wrap_content"
@@ -164,7 +164,7 @@
         android:layout_marginLeft="@dimen/menu_category_margin_left"
         foo:customFont="fonts/GothaProReg.otf"
         />
-    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category1_3"
         android:tag="53"
         android:layout_width="wrap_content"
@@ -177,7 +177,7 @@
         android:layout_marginLeft="@dimen/menu_category_margin_left"
         foo:customFont="fonts/GothaProReg.otf"
         />
-    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category1_4"
         android:tag="49"
         android:layout_width="wrap_content"
@@ -190,7 +190,7 @@
         android:layout_marginLeft="@dimen/menu_category_margin_left"
         foo:customFont="fonts/GothaProReg.otf"
         />
-    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category1_5"
         android:tag="52"
         android:layout_width="wrap_content"
@@ -203,7 +203,7 @@
         android:layout_marginLeft="@dimen/menu_category_margin_left"
         foo:customFont="fonts/GothaProReg.otf"
         />
-    <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category1_6"
         android:tag="50"
         android:layout_width="wrap_content"
@@ -216,7 +216,7 @@
         android:layout_marginLeft="@dimen/menu_category_margin_left"
         foo:customFont="fonts/GothaProReg.otf"
         />
-        <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
             android:id="@+id/category1_7"
             android:tag="51"
             android:layout_width="wrap_content"
@@ -229,7 +229,7 @@
             android:layout_marginLeft="@dimen/menu_category_margin_left"
             foo:customFont="fonts/GothaProReg.otf"
             />
-        <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
             android:id="@+id/category1_8"
             android:tag="67"
             android:layout_width="wrap_content"
@@ -242,7 +242,7 @@
             android:layout_marginLeft="@dimen/menu_category_margin_left"
             foo:customFont="fonts/GothaProReg.otf"
             />
-        <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Напитки"
@@ -253,7 +253,7 @@
             android:layout_marginLeft="@dimen/menu_catalog_margin_left"
             foo:customFont="fonts/GothaProBla.otf"
             />
-        <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
             android:id="@+id/category2_0"
             android:tag="1119"
             android:layout_width="wrap_content"
@@ -266,7 +266,7 @@
             android:layout_marginLeft="@dimen/menu_category_margin_left"
             foo:customFont="fonts/GothaProReg.otf"
             />
-        <ru.dostavkamix.denis.dostavkamix.TextViewPlus
+        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
             android:id="@+id/category2_1"
             android:tag="1120"
             android:layout_width="wrap_content"

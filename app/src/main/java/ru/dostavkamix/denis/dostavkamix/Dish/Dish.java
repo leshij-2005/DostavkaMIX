@@ -1,10 +1,6 @@
 package ru.dostavkamix.denis.dostavkamix.Dish;
 
 import android.graphics.Typeface;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-
-import ru.dostavkamix.denis.dostavkamix.CustomTypefaceSpan;
 
 /**
  * Created by den on 16.01.16.

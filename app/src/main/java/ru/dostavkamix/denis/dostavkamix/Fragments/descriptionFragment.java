@@ -2,14 +2,10 @@ package ru.dostavkamix.denis.dostavkamix.Fragments;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.TransitionDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
@@ -22,10 +18,9 @@ import com.android.volley.toolbox.NetworkImageView;
 
 import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
-import ru.dostavkamix.denis.dostavkamix.InOrderDialog;
 import ru.dostavkamix.denis.dostavkamix.MainActivity;
 import ru.dostavkamix.denis.dostavkamix.R;
-import ru.dostavkamix.denis.dostavkamix.TextViewPlus;
+import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
 
 /**
  * Created by den on 21.01.16.
@@ -136,13 +131,6 @@ public class descriptionFragment extends Fragment implements View.OnClickListene
 
     public void selectOnButton(Button button)
     {
-/*
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            button.setBackground(getResources().getDrawable(R.drawable.rounded_button_on_select));
-        }
-
-        button.setTextColor(getResources().getColor(R.color.md_black_1000));
-*/
         TransitionDrawable drawable = (TransitionDrawable) button.getBackground();
         drawable.startTransition(100);
 

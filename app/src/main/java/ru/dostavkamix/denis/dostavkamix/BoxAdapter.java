@@ -1,15 +1,9 @@
 package ru.dostavkamix.denis.dostavkamix;
 
-import android.animation.ArgbEvaluator;
-import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.TransitionDrawable;
-import android.os.Build;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.util.Log;
@@ -19,18 +13,19 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ru.dostavkamix.denis.dostavkamix.CustomView.CustomTypefaceSpan;
+import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
+import ru.dostavkamix.denis.dostavkamix.CustomView.priceButton;
 import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
 import ru.dostavkamix.denis.dostavkamix.Fragments.descriptionFragment;
 

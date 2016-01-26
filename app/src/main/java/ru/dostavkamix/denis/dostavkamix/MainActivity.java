@@ -1,25 +1,16 @@
 package ru.dostavkamix.denis.dostavkamix;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -34,10 +25,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.Dish.Catalog;
 import ru.dostavkamix.denis.dostavkamix.Dish.Category;
 import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
 import ru.dostavkamix.denis.dostavkamix.Fragments.FragmentOrder;
+import ru.dostavkamix.denis.dostavkamix.Fragments.InOrderDialog;
+import ru.dostavkamix.denis.dostavkamix.Fragments.TopMenu;
+import ru.dostavkamix.denis.dostavkamix.Fragments.dishListFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -54,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     AppCompatImageView icon_menu_down = null;
     TextViewPlus bag_price = null;
     ListFragment dishList = null;
+    Fragment topMenu = null;
     //ListView listMain = null;
 
     BoxAdapter boxAdapter = null;
@@ -102,11 +98,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         logo = (AppCompatImageView) findViewById(R.id.logo);
         bag_price = (TextViewPlus) findViewById(R.id.toolbar_price);
+        topMenu = new TopMenu();
 
         logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dlg1.show(getFragmentManager(), "dlg1");
+                Log.d("json", "topMenu show");
+                ft = getFragmentManager().beginTransaction();
+                ft.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
+                ft.show(topMenu);
+                ft.addToBackStack(null);
+                //setIsShowDescriptFrag(false);
+                ft.commit();
             }
         });
 
@@ -149,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         selectCategory(menuCategoryText.get(0));
         dlg1 = new InOrderDialog();
+
 
         AppController.getInstance().setMainActivity(this);
 

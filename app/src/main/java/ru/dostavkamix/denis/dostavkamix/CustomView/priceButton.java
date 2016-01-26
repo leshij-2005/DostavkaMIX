@@ -1,4 +1,4 @@
-package ru.dostavkamix.denis.dostavkamix;
+package ru.dostavkamix.denis.dostavkamix.CustomView;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
@@ -10,6 +10,9 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.animation.Animation;
 import android.widget.Button;
+
+import ru.dostavkamix.denis.dostavkamix.AppController;
+import ru.dostavkamix.denis.dostavkamix.R;
 
 /**
  * Created by den on 25.01.2016.

@@ -1,4 +1,4 @@
-package ru.dostavkamix.denis.dostavkamix;
+package ru.dostavkamix.denis.dostavkamix.Fragments;
 
 
 import android.app.ListFragment;

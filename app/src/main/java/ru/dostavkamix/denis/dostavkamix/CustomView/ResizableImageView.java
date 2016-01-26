@@ -1,4 +1,4 @@
-package ru.dostavkamix.denis.dostavkamix;
+package ru.dostavkamix.denis.dostavkamix.CustomView;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

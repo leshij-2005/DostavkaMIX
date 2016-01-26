@@ -1,4 +1,4 @@
-package ru.dostavkamix.denis.dostavkamix;
+package ru.dostavkamix.denis.dostavkamix.CustomView;
 
 import android.graphics.Bitmap;
 import android.util.LruCache;
