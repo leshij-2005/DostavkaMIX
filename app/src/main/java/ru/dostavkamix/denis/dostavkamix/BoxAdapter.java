@@ -14,12 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
-
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,9 +22,12 @@ import java.util.List;
 
 import ru.dostavkamix.denis.dostavkamix.CustomView.CustomTypefaceSpan;
 import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
+import ru.dostavkamix.denis.dostavkamix.CustomView.customNetworkImageView;
 import ru.dostavkamix.denis.dostavkamix.CustomView.priceButton;
 import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
 import ru.dostavkamix.denis.dostavkamix.Fragments.descriptionFragment;
+
+import static ru.dostavkamix.denis.dostavkamix.R.drawable.white_progress;
 
 /**
  * Created by den on 12.01.16.
@@ -141,8 +139,7 @@ public class BoxAdapter extends BaseAdapter {
 
         final Dish d = getDish(position);
 
-        final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.dish_progress);
-        final NetworkImageView dish_img = (NetworkImageView) view.findViewById(R.id.dish_img);
+        final customNetworkImageView dish_img = (customNetworkImageView) view.findViewById(R.id.dish_img);
         priceButton checkBut = (priceButton) view.findViewById(R.id.dish_price);
 
         ((TextViewPlus) view.findViewById(R.id.dish_name)).setText(d.getNameDish());
@@ -151,7 +148,7 @@ public class BoxAdapter extends BaseAdapter {
         checkBut.setText(addRuble(String.valueOf(d.getPriceDish())));
 
 
-        dish_img.setDefaultImageResId(R.drawable.white_progress);
+        dish_img.setDefaultImageResId(white_progress);
         dish_img.setImageUrl(d.getImjDish(), imageLoader);
 
         (view.findViewById(R.id.dish_item)).setOnClickListener(new View.OnClickListener() {

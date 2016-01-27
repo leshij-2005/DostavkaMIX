@@ -28,6 +28,7 @@ dependencies {
     compile 'com.makeramen:roundedimageview:2.2.1'
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'de.hdodenhof:circleimageview:2.0.0'
     compile('com.mikepenz:materialdrawer:3.0.5') {
         transitive = true
     }

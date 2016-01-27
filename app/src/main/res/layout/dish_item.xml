@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="120sp"
+    android:layout_height="110sp"
     android:layout_marginTop="10sp"
 
     android:id="@+id/dish_item"
@@ -16,22 +16,13 @@
         android:layout_marginBottom="8sp"
         android:layout_marginTop="8sp">
 
-        <com.android.volley.toolbox.NetworkImageView
+        <ru.dostavkamix.denis.dostavkamix.CustomView.customNetworkImageView
             android:id="@+id/dish_img"
             android:layout_width="90sp"
             android:layout_height="90sp"
             android:visibility="visible"
             android:scaleType="centerCrop"
-            />
 
-        <ProgressBar
-            android:layout_width="35sp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginBottom="15sp"
-            android:id="@+id/dish_progress"
-            android:indeterminateDrawable="@drawable/white_progress"
-            android:visibility="invisible"
             />
     </FrameLayout>
     
