@@ -27,7 +27,7 @@ public class customNetworkImageView extends NetworkImageView {
     @Override
     protected void onDraw(Canvas canvas) {
         Path clipPath = new Path();
-        float radius = 15.0f;
+        float radius = 10.0f;
         float padding = radius / 2;
         int w = this.getWidth();
         int h = this.getHeight();

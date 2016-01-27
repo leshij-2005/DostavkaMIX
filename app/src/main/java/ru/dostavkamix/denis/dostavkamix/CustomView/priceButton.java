@@ -45,6 +45,7 @@ public class priceButton extends Button {
 
     public priceButton(Context context, AttributeSet attrs) {
         super(context, attrs);
+
         textInAnim = ObjectAnimator.ofInt(
                 this,
                 "textColor",

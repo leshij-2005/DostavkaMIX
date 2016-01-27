@@ -8,4 +8,5 @@
     <color name="toolbar_background_color">#25282d</color>
     <color name="statusbar_color">#101215</color>
     <color name="dish_descript_color">#9b9b9d</color>
+    <color name="separator_color">#2f333b</color>
 </resources>
