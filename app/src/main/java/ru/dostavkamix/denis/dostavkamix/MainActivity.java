@@ -11,6 +11,8 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -37,7 +39,7 @@ import ru.dostavkamix.denis.dostavkamix.Fragments.dishListFragment;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     boolean isReadyDish = false;
-    boolean isShowDescriptFrag = false;
+
 
     ArrayList<Dish> dishs = new ArrayList<>();
     ArrayList<Category> categories = new ArrayList<>();
@@ -71,15 +73,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bag_price.setText(AppController.getInstance().addRuble(String.valueOf(AppController.getInstance().getBagPrice())));
     }
 
-    public void setIsShowDescriptFrag(boolean isShowDescriptFrag) {
-        this.isShowDescriptFrag = isShowDescriptFrag;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -90,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         OrderFragment = new FragmentOrder();
         ft = getFragmentManager().beginTransaction();
         //ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        ft.setCustomAnimations(R.animator.slide_in, R.animator.slide_out);
+        ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out);
 
         ft.replace(R.id.frame_fragment, MenuFragment);
         ft.addToBackStack(null);
@@ -105,9 +103,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 Log.d("json", "topMenu show");
                 ft = getFragmentManager().beginTransaction();
-                ft.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
-                ft.show(topMenu);
-                ft.addToBackStack(null);
+                ft.setCustomAnimations(R.animator.slide_in_top, R.animator.fade_out);
+                ft.add(R.id.frame_fragment, topMenu, "tag");
+                //ft.addToBackStack(null);
                 //setIsShowDescriptFrag(false);
                 ft.commit();
             }
@@ -153,9 +151,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         selectCategory(menuCategoryText.get(0));
         dlg1 = new InOrderDialog();
 
-
         AppController.getInstance().setMainActivity(this);
-
 
     }
 
@@ -166,13 +162,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (slideMuneDrawer != null && slideMuneDrawer.isDrawerOpen()) {
             slideMuneDrawer.closeDrawer();
         } else
-        if(isShowDescriptFrag) {
+        if(AppController.getInstance().isShowDescriptFrag()) {
             Log.d("json", "back to Menu");
             ft = getFragmentManager().beginTransaction();
-            ft.setCustomAnimations(R.animator.slide_in, R.animator.slide_out);
+            ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left);
             ft.replace(R.id.frame_fragment, MenuFragment);
+            AppController.getInstance().setIsShowMenuList(true);
             ft.addToBackStack(null);
-            setIsShowDescriptFrag(false);
+            AppController.getInstance().setIsShowDescriptFrag(false);
             ft.commit();
         }
         else
@@ -353,10 +350,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d("json", "Готовлю фрагмент для обновления...");
         boxAdapter = new BoxAdapter(this, aDish, ft);
         MenuFragment.setListAdapter(boxAdapter);
-        //ft.add(R.id.fragment_cont, dishList);
-        //ft.replace(R.id.frame_fragment, MenuFragment);
-        //ft.commit();
-        //listMain.setAdapter(boxAdapter);
+        if(!AppController.getInstance().isShowMenuList()) {
+            Log.d("json", "back to Menu");
+            ft = getFragmentManager().beginTransaction();
+            ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left);
+            ft.replace(R.id.frame_fragment, MenuFragment);
+            AppController.getInstance().setIsShowMenuList(true);
+            ft.addToBackStack(null);
+            AppController.getInstance().setIsShowDescriptFrag(false);
+            ft.commit();
+        }
         Log.d("json", "Фрагмент обновлен!");
     }
 

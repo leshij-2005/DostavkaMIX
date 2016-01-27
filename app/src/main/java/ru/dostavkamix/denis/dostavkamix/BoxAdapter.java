@@ -14,9 +14,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
@@ -149,8 +151,6 @@ public class BoxAdapter extends BaseAdapter {
         checkBut.setText(addRuble(String.valueOf(d.getPriceDish())));
 
 
-
-
         dish_img.setDefaultImageResId(R.drawable.white_progress);
         dish_img.setImageUrl(d.getImjDish(), imageLoader);
 
@@ -168,9 +168,10 @@ public class BoxAdapter extends BaseAdapter {
                 descriptFragment.setDish_price_frag(addRuble(String.valueOf(d.getPriceDish())));
 
                 ft = mainActivity.getFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.animator.slide_in, R.animator.slide_out);
+                ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out);
                 ft.replace(R.id.frame_fragment, descriptFragment);
-                mainActivity.setIsShowDescriptFrag(true);
+                AppController.getInstance().setIsShowDescriptFrag(true);
+                AppController.getInstance().setIsShowMenuList(false);
                 ft.commit();
             }
         });

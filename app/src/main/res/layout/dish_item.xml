@@ -21,6 +21,7 @@
             android:layout_width="90sp"
             android:layout_height="90sp"
             android:visibility="visible"
+            android:scaleType="centerCrop"
             />
 
         <ProgressBar

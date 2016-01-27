@@ -1,6 +1,8 @@
 package ru.dostavkamix.denis.dostavkamix;
 
 import android.app.Application;
+import android.app.Fragment;
+import android.app.ListFragment;
 import android.graphics.Typeface;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -29,9 +31,29 @@ public class AppController extends Application {
     private ArrayList<Dish> inBag = new ArrayList<>();
     private int sumOrder = 0;
     private MainActivity mainActivity = null;
+    private ListFragment MenuFragment;
 
     Typeface fontRub = null;
     Typeface fontReg = null;
+
+    boolean isShowDescriptFrag = false;
+    boolean isShowMenuList = true;
+
+    public boolean isShowDescriptFrag() {
+        return isShowDescriptFrag;
+    }
+
+    public boolean isShowMenuList() {
+        return isShowMenuList;
+    }
+
+    public void setIsShowDescriptFrag(boolean isShowDescriptFrag) {
+        this.isShowDescriptFrag = isShowDescriptFrag;
+    }
+
+    public void setIsShowMenuList(boolean isShowMenuList) {
+        this.isShowMenuList = isShowMenuList;
+    }
 
     private static AppController mInstance;
 
