@@ -199,7 +199,9 @@ public class BoxAdapter extends BaseAdapter {
                 {
                     Log.d(TAG, "Убираю из корзины");
                     setChecked(position, false);
+                    getDish(position).setCountOrder(0);
                     AppController.getInstance().removeInBad(getDish(position));
+                    notifyDataSetChanged();
                 } else {
                     Log.d(TAG, "Добавил в корзину");
                     setChecked(position, true);

@@ -77,7 +77,44 @@ public class descriptionFragment extends Fragment implements View.OnClickListene
         inBag.setOnClickListener(this);
         dialogInBag = new InOrderDialog();
 
-        selectOnButton((Button) rootView.findViewById(R.id.count_button1));
+
+            switch (onDish.getCountOrder())
+            {
+                case 0:
+                    selectOnButton((Button) rootView.findViewById(R.id.count_button1));
+                case 1:
+                    selectOnButton((Button) rootView.findViewById(R.id.count_button1));
+                    break;
+                case 2:
+                    selectOnButton((Button) rootView.findViewById(R.id.count_button2));
+                    break;
+                case 3:
+                    selectOnButton((Button) rootView.findViewById(R.id.count_button3));
+                    break;
+                case 4:
+                    selectOnButton((Button) rootView.findViewById(R.id.count_button4));
+                    break;
+                case 5:
+                    selectOnButton((Button) rootView.findViewById(R.id.count_button5));
+                    break;
+                case 6:
+                    selectOnButton((Button) rootView.findViewById(R.id.count_button6));
+                    break;
+                case 7:
+                    selectOnButton((Button) rootView.findViewById(R.id.count_button7));
+                    break;
+                case 8:
+                    selectOnButton((Button) rootView.findViewById(R.id.count_button8));
+                    break;
+                case 9:
+                    selectOnButton((Button) rootView.findViewById(R.id.count_button9));
+                    break;
+                default:
+                    selectOnButton((Button) rootView.findViewById(R.id.count_button10));
+                    break;
+            }
+
+        //selectOnButton((Button) rootView.findViewById(R.id.count_button1));
         return rootView;
     }
 
@@ -110,7 +147,7 @@ public class descriptionFragment extends Fragment implements View.OnClickListene
             }
         } else
         {
-            onDish.setCountOrder(Integer.valueOf(String.valueOf(selectDishCount.getText())));
+            onDish.setCountOrder(Integer.valueOf(String.valueOf(selectDishCount.getTag())));
             AppController.getInstance().addInBag(onDish);
             mainActivity.updateBagPrice();
 

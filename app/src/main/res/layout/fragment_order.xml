@@ -41,7 +41,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10sp"
+            android:layout_marginLeft="30sp"
             android:gravity="center_vertical"
             android:orientation="vertical"
             android:layout_weight="1"
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:layout_marginLeft="10sp"
+            android:layout_marginLeft="30sp"
             android:orientation="vertical"
             android:layout_weight="1"
             android:background="@color/toolbar_background_color">
@@ -96,12 +96,14 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="380sp">
+        android:layout_height="match_parent"
+        android:layout_weight="1">
     </ListView>
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="50sp"/>
+        android:layout_height="50sp"
+        android:background="@drawable/rounded_button_on_select"/>
 
 
 </LinearLayout>

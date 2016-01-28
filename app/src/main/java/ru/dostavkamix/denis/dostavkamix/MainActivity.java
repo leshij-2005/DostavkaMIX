@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     AppCompatImageView icon_menu_up = null;
     AppCompatImageView icon_menu_down = null;
     TextViewPlus bag_price = null;
-    ListFragment dishList = null;
-    Fragment topMenu = null;
+    //ListFragment dishList = null;
+    //Fragment topMenu = null;
     //ListView listMain = null;
 
     BoxAdapter boxAdapter = null;
@@ -99,20 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         logo = (AppCompatImageView) findViewById(R.id.logo);
         bag_price = (TextViewPlus) findViewById(R.id.toolbar_price);
-        topMenu = new TopMenu();
-
-        logo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("json", "topMenu show");
-                ft = getFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.animator.slide_in_top, R.animator.fade_out);
-                ft.add(R.id.frame_fragment, topMenu, "tag");
-                //ft.addToBackStack(null);
-                //setIsShowDescriptFrag(false);
-                ft.commit();
-            }
-        });
+        //topMenu = new TopMenu();
 
         new ParseTask().execute();
 
