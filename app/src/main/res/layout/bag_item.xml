@@ -50,7 +50,7 @@
 
     <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         foo:customFont="fonts/GothaProReg.otf"
-        android:id="@+id/dish_weight_frag"
+        android:id="@+id/dish_weight_bag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/dish_price_bag"
@@ -72,6 +72,7 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/button_diah_plus"
             android:layout_width="30sp"
             android:layout_height="30sp"
             android:layout_gravity="center"
@@ -83,6 +84,7 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/count_dish_bag"
             android:layout_width="wrap_content"
             android:layout_height="20sp"
             android:layout_gravity="center"
@@ -95,6 +97,7 @@
             />
 
         <Button
+            android:id="@+id/button_dish_minus"
             android:layout_width="30sp"
             android:layout_height="30sp"
             android:layout_gravity="center"

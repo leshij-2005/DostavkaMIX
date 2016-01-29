@@ -28,7 +28,7 @@ public class AppController extends Application {
 
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
-    private ArrayList<Dish> inBag = new ArrayList<>();
+    public ArrayList<Dish> inBag = new ArrayList<>();
     private int sumOrder = 0;
     private MainActivity mainActivity = null;
     private ListFragment MenuFragment;

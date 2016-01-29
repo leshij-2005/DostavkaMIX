@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ListView;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -33,6 +34,7 @@ import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.Dish.Catalog;
 import ru.dostavkamix.denis.dostavkamix.Dish.Category;
 import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
+import ru.dostavkamix.denis.dostavkamix.Fragments.BagFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.FragmentOrder;
 import ru.dostavkamix.denis.dostavkamix.Fragments.InOrderDialog;
 import ru.dostavkamix.denis.dostavkamix.Fragments.TopMenu;
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //ListView listMain = null;
 
     BoxAdapter boxAdapter = null;
+    BagAdapter bagAdapter = null;
 
     //Мне очень стыдно...
     ArrayList<TextViewPlus> menuCategoryText = new ArrayList<>();
@@ -65,9 +68,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextViewPlus selectText = null;
 
     private ListFragment MenuFragment;
+    private BagFragment bagFrag;
     private FragmentTransaction ft;
     private Fragment OrderFragment;
     DialogFragment dlg1;
+    MainActivity mAct;
 
 
     public void updateBagPrice()
@@ -88,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         MenuFragment = new dishListFragment();
         OrderFragment = new FragmentOrder();
+        bagFrag = new BagFragment();
 
         ft = getFragmentManager().beginTransaction();
         //ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -100,6 +106,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         logo = (AppCompatImageView) findViewById(R.id.logo);
         bag_price = (TextViewPlus) findViewById(R.id.toolbar_price);
         //topMenu = new TopMenu();
+        mAct = this;
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("json", "open bag");
+                ft = getFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left);
+                ft.replace(R.id.frame_fragment, bagFrag);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
 
         new ParseTask().execute();
 
