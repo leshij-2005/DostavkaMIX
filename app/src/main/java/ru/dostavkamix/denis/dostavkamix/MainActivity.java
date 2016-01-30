@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     TextViewPlus selectText = null;
 
-    private ListFragment MenuFragment;
+    public ListFragment MenuFragment;
     private BagFragment bagFrag;
     private FragmentTransaction ft;
     private Fragment OrderFragment;

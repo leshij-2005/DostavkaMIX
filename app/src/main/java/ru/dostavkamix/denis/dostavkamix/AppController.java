@@ -32,6 +32,7 @@ public class AppController extends Application {
     private int sumOrder = 0;
     private MainActivity mainActivity = null;
     private ListFragment MenuFragment;
+    
 
     Typeface fontRub = null;
     Typeface fontReg = null;

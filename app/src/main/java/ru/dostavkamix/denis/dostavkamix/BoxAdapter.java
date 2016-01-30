@@ -164,12 +164,15 @@ public class BoxAdapter extends BaseAdapter {
                 descriptFragment.setDish_weight_frag(d.getWeight());
                 descriptFragment.setDish_price_frag(addRuble(String.valueOf(d.getPriceDish())));
 
+
+                dish_img.invalidate();
                 ft = mainActivity.getFragmentManager().beginTransaction();
                 ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out);
                 ft.replace(R.id.frame_fragment, descriptFragment);
                 AppController.getInstance().setIsShowDescriptFrag(true);
                 AppController.getInstance().setIsShowMenuList(false);
                 ft.commit();
+                notifyDataSetChanged();
             }
         });
          //////////////////////
