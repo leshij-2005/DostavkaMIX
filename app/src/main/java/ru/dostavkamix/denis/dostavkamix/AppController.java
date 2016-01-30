@@ -32,7 +32,7 @@ public class AppController extends Application {
     private int sumOrder = 0;
     private MainActivity mainActivity = null;
     private ListFragment MenuFragment;
-    
+
 
     Typeface fontRub = null;
     Typeface fontReg = null;
@@ -176,6 +176,11 @@ public class AppController extends Application {
             Log.d(TAG, "добавил в карзину");
             Log.d(TAG, "в корзине " + getInBag().size() + " блюд");
 
+    }
+
+    public void updateBag()
+    {
+        mainActivity.updateBagPrice();
     }
 
     public boolean onBag(Dish dish)

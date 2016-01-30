@@ -3,11 +3,14 @@ package ru.dostavkamix.denis.dostavkamix;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
@@ -36,6 +39,7 @@ public class BagAdapter extends BaseAdapter {
     Typeface fontRub = null;
     Typeface fontReg = null;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+    Animation anim;
 
     public BagAdapter(Context ctx)
     {
@@ -45,6 +49,9 @@ public class BagAdapter extends BaseAdapter {
         this.frag = new BagFragment();
         fontRub = Typeface.createFromAsset(ctx.getAssets(), "fonts/RUBSN.otf");
         fontReg = Typeface.createFromAsset(ctx.getAssets(), "fonts/GothaProReg.otf");
+
+        anim = AnimationUtils.loadAnimation(ctx, android.R.anim.slide_out_right);
+        anim.setDuration(200);
     }
 
 
@@ -84,6 +91,7 @@ public class BagAdapter extends BaseAdapter {
         return ((Dish) getItem(position));
     }
 
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
@@ -111,18 +119,32 @@ public class BagAdapter extends BaseAdapter {
         button_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppController.getInstance().inBag.get(position).setCountOrder(AppController.getInstance().inBag.get(position).getCountOrder() - 1);
-                notifyDataSetChanged();
-            }
-        });
-
-        button_minus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 AppController.getInstance().inBag.get(position).setCountOrder(AppController.getInstance().inBag.get(position).getCountOrder() + 1);
                 notifyDataSetChanged();
             }
         });
+
+        final View finalView = view;
+        button_minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppController.getInstance().inBag.get(position).setCountOrder(AppController.getInstance().inBag.get(position).getCountOrder() - 1);
+                if(AppController.getInstance().inBag.get(position).getCountOrder() == 0) {
+                    finalView.startAnimation(anim);
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            AppController.getInstance().removeInBad(d);
+                            notifyDataSetChanged();
+                        }
+                    }, anim.getDuration());
+                }
+                notifyDataSetChanged();
+            }
+        });
+
+        AppController.getInstance().updateBag();
 
         return view;
 
