@@ -29,7 +29,11 @@ public class AppController extends Application {
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
     public ArrayList<Dish> inBag = new ArrayList<>();
-    private int sumOrder = 0;
+
+    private int sale = 0;
+    private int withoutSale = 0;
+    private int withSale = 0;
+
     private MainActivity mainActivity = null;
     private ListFragment MenuFragment;
 
@@ -39,6 +43,30 @@ public class AppController extends Application {
 
     boolean isShowDescriptFrag = false;
     boolean isShowMenuList = true;
+
+    public void setSale(int sale) {
+        this.sale = sale;
+    }
+
+    public void setWithoutSale(int withoutSale) {
+        this.withoutSale = withoutSale;
+    }
+
+    public void setWithSale(int withSale) {
+        this.withSale = withSale;
+    }
+
+    public int getSale() {
+        return sale;
+    }
+
+    public int getWithoutSale() {
+        return withoutSale;
+    }
+
+    public int getWithSale() {
+        return withSale;
+    }
 
     public boolean isShowDescriptFrag() {
         return isShowDescriptFrag;
@@ -180,6 +208,11 @@ public class AppController extends Application {
 
     public void updateBag()
     {
+        withoutSale = getBagPrice();
+        if(withoutSale > 500) sale = 5;
+        else if(withoutSale > 1500) sale = 10;
+        else if(withoutSale > 2500) sale = 15;
+        withSale = withoutSale - ((withoutSale / 100) * sale);
         mainActivity.updateBagPrice();
     }
 

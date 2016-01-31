@@ -20,6 +20,8 @@
             android:layout_weight="1"
             android:background="@color/toolbar_background_color">
             <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                android:id="@+id/without_sale"
+                android:background="@color/toolbar_background_color"
                 foo:customFont="fonts/GothaProBol.otf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -28,12 +30,14 @@
                 android:textColor="@color/md_white_1000"/>
 
             <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                android:background="@color/toolbar_background_color"
                 foo:customFont="fonts/GothaProReg.otf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5sp"
+                android:layout_marginTop="0sp"
 
-                android:text="bla bla bla"
+                android:text="Цена без скидки"
+                android:textSize="12sp"
                 android:textColor="@color/dish_descript_color"/>
 
         </LinearLayout>
@@ -47,6 +51,8 @@
             android:layout_weight="1"
             android:background="@color/toolbar_background_color">
             <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                android:id="@+id/sale"
+                android:background="@color/toolbar_background_color"
                 foo:customFont="fonts/GothaProBol.otf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,12 +61,14 @@
                 android:textColor="@color/md_white_1000"/>
 
             <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                android:background="@color/toolbar_background_color"
                 foo:customFont="fonts/GothaProReg.otf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5sp"
+                android:layout_marginTop="0sp"
 
-                android:text="bla bla bla"
+                android:text="Скидка"
+                android:textSize="12sp"
                 android:textColor="@color/dish_descript_color"/>
 
         </LinearLayout>
@@ -74,6 +82,8 @@
             android:layout_weight="1"
             android:background="@color/toolbar_background_color">
             <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                android:id="@+id/with_sale"
+                android:background="@color/toolbar_background_color"
                 foo:customFont="fonts/GothaProBol.otf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,12 +92,14 @@
                 android:textColor="@color/md_white_1000"/>
 
             <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                android:background="@color/toolbar_background_color"
                 foo:customFont="fonts/GothaProReg.otf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5sp"
+                android:layout_marginTop="0sp"
 
-                android:text="bla bla bla"
+                android:text="Итоговая сумма"
+                android:textSize="12sp"
                 android:textColor="@color/dish_descript_color"/>
 
         </LinearLayout>
@@ -101,10 +113,43 @@
         android:layout_weight="1">
     </ListView>
 
-    <Button
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50sp"
-        android:background="@drawable/rounded_button_on_select"/>
+        android:background="@drawable/rounded_button_on_select">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/menu_catalog_color"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:layout_width="20sp"
+                android:layout_height="25sp"
+                android:layout_marginRight="10sp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/bag_black"
+                android:background="@color/menu_catalog_color"
+                android:scaleType="fitXY"/>
+
+            <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                foo:customFont="fonts/GothaProReg.otf"
+                android:id="@+id/text_but_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:background="@color/menu_catalog_color"
+
+                android:text="Оформить за "
+                android:textSize="20sp"
+                android:textColor="@color/slide_background_color"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
 
 
 </LinearLayout>

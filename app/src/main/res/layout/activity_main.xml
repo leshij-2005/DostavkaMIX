@@ -41,12 +41,13 @@
                         android:background="@color/toolbar_background_color"/>
                 </LinearLayout>
                 <ImageView
-                    android:layout_width="20sp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="15sp"
+                    android:layout_height="20sp"
                     android:id="@+id/bag_logo"
                     android:src="@drawable/bag_logo"
                     android:layout_gravity="center_vertical"
                     android:background="@color/toolbar_background_color"
+                    android:scaleType="fitXY"
                     android:layout_marginRight="5sp"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -65,7 +66,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2sp"
                         android:text="0 P"
-                        android:textSize="12sp"
+                        android:textSize="11sp"
                         android:textColor="@color/menu_catalog_color"
                         android:background="@color/toolbar_background_color"/>
                     <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
@@ -74,7 +75,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Оформить"
-                        android:textSize="12sp"
+                        android:textSize="11sp"
                         android:textColor="@color/menu_catalog_color"
                         android:background="@color/toolbar_background_color"/>
                 </LinearLayout>

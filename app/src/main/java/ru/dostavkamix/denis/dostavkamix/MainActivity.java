@@ -77,7 +77,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void updateBagPrice()
     {
-        bag_price.setText(AppController.getInstance().addRuble(String.valueOf(AppController.getInstance().getBagPrice())));
+        AppController.getInstance().setWithoutSale(AppController.getInstance().getBagPrice());
+        double s = 0;
+        if(AppController.getInstance().getWithoutSale() >= 500 && AppController.getInstance().getWithoutSale() < 1500) {
+            AppController.getInstance().setSale(5);
+            s = 0.95;
+        }
+        else if(AppController.getInstance().getWithoutSale() >= 1500 && AppController.getInstance().getWithoutSale() < 2500) {
+            AppController.getInstance().setSale(10);
+            s = 0.90;
+        }
+        else if(AppController.getInstance().getWithoutSale() > 2500) {
+            AppController.getInstance().setSale(15);
+            s = 0.85;
+        }
+        else {
+            AppController.getInstance().setSale(0);
+            s = 1;
+
+        }
+
+        try {
+            AppController.getInstance().setWithSale((int) (AppController.getInstance().getWithoutSale() * s));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        bag_price.setText(AppController.getInstance().addRuble(String.valueOf(AppController.getInstance().getWithSale())));
+        try {
+            bagFrag.updateFragPrie();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

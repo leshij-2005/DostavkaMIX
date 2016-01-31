@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
@@ -44,7 +46,7 @@ public class descriptionFragment extends Fragment implements View.OnClickListene
     private TextViewPlus dish_descript;
     private TextViewPlus dish_price;
     private TextViewPlus dish_weight;
-    private Button inBag;
+    private RelativeLayout inBag;
     private DialogFragment dialogInBag;
 
     @Override
@@ -56,7 +58,7 @@ public class descriptionFragment extends Fragment implements View.OnClickListene
         dish_descript = (TextViewPlus) rootView.findViewById(R.id.dish_descript_frag);
         dish_price = (TextViewPlus) rootView.findViewById(R.id.dish_price_frag);
         dish_weight = (TextViewPlus) rootView.findViewById(R.id.dish_weight_frag);
-        inBag = (Button) rootView.findViewById(R.id.inBag);
+        inBag = (RelativeLayout) rootView.findViewById(R.id.inBag);
 
         dish_img.setImageUrl(dish_img_frag, imageLoader);
         dish_name.setText(dish_name_frag);
