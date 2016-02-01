@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".OrderActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_order"
+            android:layout_width="match_parent"
+            android:layout_height="56sp"
+            android:background="@color/toolbar_background_color"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:background="@color/toolbar_background_color"
+                xmlns:foo="http://schemas.android.com/apk/res-auto">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/toolbar_background_color"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/logo"
+                        android:layout_width="150sp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/mix_logo"
+                        android:background="@color/toolbar_background_color"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="15sp"
+                    android:layout_height="20sp"
+                    android:id="@+id/bag_logo"
+                    android:src="@drawable/bag_logo"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/toolbar_background_color"
+                    android:scaleType="fitXY"
+                    android:layout_marginRight="5sp"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/toolbar_lay_text"
+                    android:background="@color/toolbar_background_color"
+                    android:gravity="right"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="5sp">
+
+                    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                        foo:customFont="fonts/GothaProBol.otf"
+                        android:id="@+id/toolbar_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2sp"
+                        android:text="0 P"
+                        android:textSize="11sp"
+                        android:textColor="@color/menu_catalog_color"
+                        android:background="@color/toolbar_background_color"/>
+                    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                        foo:customFont="fonts/GothaProBol.otf"
+                        android:id="@+id/toolbar_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Оформить"
+                        android:textSize="11sp"
+                        android:textColor="@color/menu_catalog_color"
+                        android:background="@color/toolbar_background_color"/>
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_order"/>
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -167,10 +167,11 @@ public class BoxAdapter extends BaseAdapter {
 
                 dish_img.invalidate();
                 ft = mainActivity.getFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out);
-                ft.replace(R.id.frame_fragment, descriptFragment);
+                ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out, R.animator.fade_in, R.animator.slide_out_left);
+                ft.replace(R.id.frame_fragment, descriptFragment, "descript");
                 AppController.getInstance().setIsShowDescriptFrag(true);
                 AppController.getInstance().setIsShowMenuList(false);
+                ft.addToBackStack(null);
                 ft.commit();
                 notifyDataSetChanged();
             }

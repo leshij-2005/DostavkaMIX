@@ -4,6 +4,10 @@
         <attr name="customFont" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="Button">
+        <attr name="customFontButton" format="string" />
+    </declare-styleable>
+
     <declare-styleable name="customNetworkImageView">
         <attr name="radius" format="float" />
     </declare-styleable>

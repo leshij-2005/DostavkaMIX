@@ -37,12 +37,18 @@ public class AppController extends Application {
     private MainActivity mainActivity = null;
     private ListFragment MenuFragment;
 
+    private ArrayList<Fragment> stackFragment = new ArrayList<>();
+
 
     Typeface fontRub = null;
     Typeface fontReg = null;
 
     boolean isShowDescriptFrag = false;
     boolean isShowMenuList = true;
+
+    public MainActivity getMainActivity() {
+        return mainActivity;
+    }
 
     public void setSale(int sale) {
         this.sale = sale;

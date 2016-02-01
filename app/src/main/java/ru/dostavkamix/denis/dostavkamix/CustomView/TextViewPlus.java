@@ -15,16 +15,6 @@ import ru.dostavkamix.denis.dostavkamix.R;
 public class TextViewPlus extends TextView {
     private static final String TAG = "TextView";
 
-    public void setIsClick(int isClick) {
-        this.isClick = isClick;
-    }
-
-    private int isClick = -1;
-
-    public int getisClick() {
-        return isClick;
-    }
-
     public TextViewPlus(Context context) {
         super(context);
     }

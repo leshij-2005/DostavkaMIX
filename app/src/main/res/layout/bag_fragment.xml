@@ -114,6 +114,7 @@
     </ListView>
 
     <RelativeLayout
+        android:id="@+id/but_to_order"
         android:layout_width="match_parent"
         android:layout_height="50sp"
         android:background="@drawable/rounded_button_on_select">

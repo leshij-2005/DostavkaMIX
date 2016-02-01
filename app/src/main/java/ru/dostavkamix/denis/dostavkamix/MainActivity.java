@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ft = getFragmentManager().beginTransaction();
         //ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out);
+        ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out,  R.animator.fade_in, R.animator.slide_out_left);
 
         ft.replace(R.id.frame_fragment, MenuFragment);
         ft.addToBackStack(null);
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 Log.d("json", "open bag");
                 ft = getFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left);
+                ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left,  R.animator.fade_in, R.animator.slide_out_left);
                 ft.replace(R.id.frame_fragment, bagFrag);
                 ft.addToBackStack(null);
                 ft.commit();
@@ -198,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
         Log.d("json", "click Back");
+        /*
         if (slideMuneDrawer != null && slideMuneDrawer.isDrawerOpen()) {
             slideMuneDrawer.closeDrawer();
         } else
@@ -214,6 +215,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else
         {
             Log.d("json", "super back");
+            super.onBackPressed();
+        }
+        */
+        if(getFragmentManager().getBackStackEntryCount() > 0)
+        {
+            getFragmentManager().popBackStack();
+            Log.d("json", "В стеке что-то есть");
+        } else {
             super.onBackPressed();
         }
     }
