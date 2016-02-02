@@ -1,5 +1,7 @@
 package ru.dostavkamix.denis.dostavkamix;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.FragmentTransaction;
@@ -11,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
@@ -31,12 +35,12 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
 
-        final Toolbar toolbar_order = (Toolbar) findViewById(R.id.toolbar_order);
-        setSupportActionBar(toolbar_order);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //final Toolbar toolbar_order = (Toolbar) findViewById(R.id.toolbar_order);
+        //setSupportActionBar(toolbar_order);
+        //getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        getSupportActionBar().setHomeButtonEnabled(false);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setHomeButtonEnabled(true);
 
         select_left = (Button) findViewById(R.id.select_left);
         select_right = (Button) findViewById(R.id.select_right);
@@ -45,22 +49,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
         select_left.setOnClickListener(this);
         select_right.setOnClickListener(this);
-
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.container_order_edit, new DeliveryOrderFragment());
-        ft.addToBackStack(null);
-        ft.commit();
-
-        Calendar now = Calendar.getInstance();
-        TimePickerDialog tpd = TimePickerDialog.newInstance(new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
-                return;
-            }
-        }, now.get(Calendar.HOUR), now.get(Calendar.MINUTE) , true);
-
-        tpd.setThemeDark(true);
-        tpd.show(getFragmentManager(), "TimePicker");
     }
 
     public void selectOnButton(Button button)
@@ -100,6 +88,25 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         if (OnSelect != v) {
             selectOffButton(OnSelect);
             selectOnButton((Button) v);
+
+            if(v.getId() == R.id.select_right)
+            {
+                findViewById(R.id.address).setVisibility(View.GONE);
+                findViewById(R.id.view_street).setVisibility(View.GONE);
+                findViewById(R.id.house).setVisibility(View.GONE);
+                findViewById(R.id.apartament).setVisibility(View.GONE);
+                findViewById(R.id.scroll_l).requestLayout();
+
+            } else
+            {
+                findViewById(R.id.address).setVisibility(View.VISIBLE);
+                findViewById(R.id.view_street).setVisibility(View.VISIBLE);
+                findViewById(R.id.house).setVisibility(View.VISIBLE);
+                findViewById(R.id.apartament).setVisibility(View.VISIBLE);
+                findViewById(R.id.scroll_l).requestLayout();
+            }
         }
     }
+
+
 }
