@@ -4,8 +4,6 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,9 +11,6 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ListView;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -37,7 +32,6 @@ import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
 import ru.dostavkamix.denis.dostavkamix.Fragments.BagFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.FragmentOrder;
 import ru.dostavkamix.denis.dostavkamix.Fragments.InOrderDialog;
-import ru.dostavkamix.denis.dostavkamix.Fragments.TopMenu;
 import ru.dostavkamix.denis.dostavkamix.Fragments.dishListFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -158,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .withDisplayBelowToolbar(true)
                 .withActionBarDrawerToggleAnimated(true)
                 .withDisplayBelowToolbar(true)
-                .withSliderBackgroundColorRes(R.color.slide_background_color)
+                .withSliderBackgroundColorRes(R.color.base_color)
                 .withCustomView(View.inflate(this, R.layout.slide_menu, null))
                 .build();
 

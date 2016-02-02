@@ -134,7 +134,7 @@ public class BoxAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
         if(view == null) {
-            view = linflater.inflate(R.layout.dish_item, parent, false);
+            view = linflater.inflate(R.layout.item_catalog, parent, false);
         }
 
         final Dish d = getDish(position);

@@ -11,4 +11,7 @@
     <dimen name="menu_catalog_text_size">20sp</dimen>
     <dimen name="menu_catalog_padding_top">15sp</dimen>
     <dimen name="button_count_text_size">25sp</dimen>
+    <dimen name="size_order_text_item">18sp</dimen>
+    <dimen name="margin_order_text_item">20sp</dimen>
+    <dimen name="height_order_item_text">60sp</dimen>
 </resources>

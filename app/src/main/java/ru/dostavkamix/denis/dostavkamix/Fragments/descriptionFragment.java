@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -52,7 +51,7 @@ public class descriptionFragment extends Fragment implements View.OnClickListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.dish_descript_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_card, container, false);
         dish_img = (NetworkImageView) rootView.findViewById(R.id.dish_img_frag);
         dish_name = (TextViewPlus) rootView.findViewById(R.id.dish_name_frag);
         dish_descript = (TextViewPlus) rootView.findViewById(R.id.dish_descript_frag);

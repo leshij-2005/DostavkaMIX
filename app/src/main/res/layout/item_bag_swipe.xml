@@ -66,7 +66,7 @@
             android:textSize="16sp"
             android:gravity="right"
             android:layout_gravity="right"
-            android:textColor="@color/menu_catalog_color"/>
+            android:textColor="@color/accent_color"/>
 
         <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
             foo:customFont="fonts/GothaProReg.otf"

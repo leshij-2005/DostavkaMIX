@@ -67,7 +67,7 @@
                         android:layout_marginBottom="2sp"
                         android:text="0 P"
                         android:textSize="11sp"
-                        android:textColor="@color/menu_catalog_color"
+                        android:textColor="@color/accent_color"
                         android:background="@color/toolbar_background_color"/>
                     <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
                         foo:customFont="fonts/GothaProBol.otf"
@@ -76,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:text="Оформить"
                         android:textSize="11sp"
-                        android:textColor="@color/menu_catalog_color"
+                        android:textColor="@color/accent_color"
                         android:background="@color/toolbar_background_color"/>
                 </LinearLayout>
             </LinearLayout>

@@ -28,6 +28,7 @@ public class dishListFragment extends ListFragment {
 
         getListView().setDivider(new ColorDrawable(this.getResources().getColor(R.color.separator_color)));
         getListView().setDividerHeight(1);
+        getListView().setVerticalScrollBarEnabled(false);
 
     }
 }

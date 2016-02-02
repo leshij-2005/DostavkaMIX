@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:foo="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:scrollbars="none">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="ru.dostavkamix.denis.dostavkamix.Fragments.DeliveryOrderFragment"
+        android:background="@color/toolbar_background_color">
+
+        <!-- TODO: Update blank fragment layout -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_order_item_text"
+            android:orientation="horizontal"
+            android:background="@color/toolbar_background_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="@color/toolbar_background_color"
+
+                android:layout_margin="@dimen/margin_order_text_item"
+
+                android:text="Имя *"
+                android:textSize="@dimen/size_order_text_item"
+                android:textColor="@color/md_white_1000"/>
+
+            <EditText
+                android:id="@+id/order_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:background="@color/toolbar_background_color"
+
+                android:layout_margin="@dimen/margin_order_text_item"
+
+                android:inputType="textPersonName"
+                android:hint="Денис"
+                android:textSize="@dimen/size_order_text_item"
+                android:textColorHint="@color/hint_text_color"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1sp"
+                android:layout_alignParentBottom="true"
+
+                android:background="@color/base_color">
+
+            </View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_order_item_text"
+            android:orientation="horizontal"
+            android:background="@color/toolbar_background_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="@color/toolbar_background_color"
+
+                android:layout_margin="@dimen/margin_order_text_item"
+
+                android:text="Телефон *"
+                android:textSize="@dimen/size_order_text_item"
+                android:textColor="@color/md_white_1000"/>
+
+            <EditText
+                android:id="@+id/order_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:background="@color/toolbar_background_color"
+
+                android:layout_margin="@dimen/margin_order_text_item"
+
+                android:inputType="phone"
+                android:hint="+7 (987) 792 49 31"
+                android:textSize="@dimen/size_order_text_item"
+                android:textColorHint="@color/hint_text_color"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1sp"
+                android:layout_alignParentBottom="true"
+
+                android:background="@color/base_color">
+
+            </View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_order_item_text"
+            android:orientation="horizontal"
+            android:background="@color/toolbar_background_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="@color/toolbar_background_color"
+
+                android:layout_margin="@dimen/margin_order_text_item"
+
+                android:text="E-mail"
+                android:textSize="@dimen/size_order_text_item"
+                android:textColor="@color/md_white_1000"/>
+
+            <EditText
+                android:id="@+id/order_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:background="@color/toolbar_background_color"
+
+                android:layout_margin="@dimen/margin_order_text_item"
+
+                android:inputType="textEmailAddress"
+                android:hint="yakot93@gmail.com"
+                android:textSize="@dimen/size_order_text_item"
+                android:textColorHint="@color/hint_text_color"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1sp"
+                android:layout_alignParentBottom="true"
+
+                android:background="@color/base_color">
+
+            </View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55sp"
+            android:background="@color/base_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/margin_order_text_item"
+
+                android:text="Адрес доставки"
+                android:textColor="@color/accent_color"
+                android:textSize="20sp"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_order_item_text"
+            android:orientation="horizontal"
+            android:background="@color/toolbar_background_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="@color/toolbar_background_color"
+
+                android:layout_margin="@dimen/margin_order_text_item"
+
+                android:text="Улица *"
+                android:textSize="@dimen/size_order_text_item"
+                android:textColor="@color/md_white_1000"/>
+
+            <EditText
+                android:id="@+id/order_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:background="@color/toolbar_background_color"
+
+                android:layout_margin="@dimen/margin_order_text_item"
+
+                android:inputType="textPostalAddress"
+                android:hint="ул. Советская"
+                android:textSize="@dimen/size_order_text_item"
+                android:textColorHint="@color/hint_text_color"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1sp"
+                android:layout_alignParentBottom="true"
+
+                android:background="@color/base_color">
+
+            </View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_order_item_text"
+            android:orientation="horizontal"
+            android:background="@color/toolbar_background_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="@color/toolbar_background_color"
+
+                android:layout_margin="@dimen/margin_order_text_item"
+
+                android:text="Дом *"
+                android:textSize="@dimen/size_order_text_item"
+                android:textColor="@color/md_white_1000"/>
+
+            <EditText
+                android:id="@+id/order_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:background="@color/toolbar_background_color"
+
+                android:layout_margin="@dimen/margin_order_text_item"
+
+                android:inputType="textPostalAddress"
+                android:hint="10"
+                android:textSize="@dimen/size_order_text_item"
+                android:textColorHint="@color/hint_text_color"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1sp"
+                android:layout_alignParentBottom="true"
+
+                android:background="@color/base_color">
+
+            </View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_order_item_text"
+            android:orientation="horizontal"
+            android:background="@color/toolbar_background_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="@color/toolbar_background_color"
+
+                android:layout_margin="@dimen/margin_order_text_item"
+
+                android:text="Квартира"
+                android:textSize="@dimen/size_order_text_item"
+                android:textColor="@color/md_white_1000"/>
+
+            <EditText
+                android:id="@+id/order_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:background="@color/toolbar_background_color"
+
+                android:layout_margin="@dimen/margin_order_text_item"
+
+                android:inputType="textPostalAddress"
+                android:hint="1"
+                android:textSize="@dimen/size_order_text_item"
+                android:textColorHint="@color/hint_text_color"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1sp"
+                android:layout_alignParentBottom="true"
+
+                android:background="@color/base_color">
+
+            </View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/margin_order_text_item"
+
+                android:text="Время приготовления"
+                android:textColor="@color/accent_color"
+                android:textSize="20sp"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_order_item_text"
+            android:orientation="horizontal"
+            android:background="@color/toolbar_background_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="@color/toolbar_background_color"
+
+                android:layout_margin="@dimen/margin_order_text_item"
+
+                android:text="Как можно скорее"
+                android:textSize="@dimen/size_order_text_item"
+                android:textColor="@color/md_white_1000"/>
+
+            <ImageView
+                android:id="@+id/order_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:background="@color/toolbar_background_color"
+
+                android:layout_margin="@dimen/margin_order_text_item"
+                android:src="@drawable/checkmark"
+                />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1sp"
+                android:layout_alignParentBottom="true"
+
+                android:background="@color/base_color">
+
+            </View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_order_item_text"
+            android:orientation="horizontal"
+            android:background="@color/toolbar_background_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="@color/toolbar_background_color"
+
+                android:layout_margin="@dimen/margin_order_text_item"
+
+                android:text="Ко времени"
+                android:textSize="@dimen/size_order_text_item"
+                android:textColor="@color/md_white_1000"/>
+
+            <EditText
+                android:id="@+id/order_name"
+                android:layout_width="200sp"
+                android:layout_height="50sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:background="@color/toolbar_background_color"
+
+                android:layout_marginRight="@dimen/margin_order_text_item"
+
+                android:inputType="datetime"
+                android:hint=""
+                android:textSize="@dimen/size_order_text_item"
+                android:textColorHint="@color/hint_text_color"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1sp"
+                android:layout_alignParentBottom="true"
+
+                android:background="@color/base_color">
+
+            </View>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

@@ -17,8 +17,6 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 
-import java.util.ArrayList;
-
 import ru.dostavkamix.denis.dostavkamix.CustomView.CustomTypefaceSpan;
 import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.CustomView.customNetworkImageView;
@@ -96,7 +94,7 @@ public class BagAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
         if(view == null) {
-            view = inflater.inflate(R.layout.bag_item, parent, false);
+            view = inflater.inflate(R.layout.item_bag, parent, false);
         }
 
         final Dish d = getDish(position);

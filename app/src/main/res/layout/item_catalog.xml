@@ -83,7 +83,7 @@
 
                 android:textAllCaps="false"
 
-                android:textColor="@color/menu_catalog_color"
+                android:textColor="@color/accent_color"
                 />
 
         </LinearLayout>

@@ -14,7 +14,6 @@ import android.widget.RelativeLayout;
 import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.BagSwipeAdapter;
 import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
-import ru.dostavkamix.denis.dostavkamix.MainActivity;
 import ru.dostavkamix.denis.dostavkamix.OrderActivity;
 import ru.dostavkamix.denis.dostavkamix.R;
 
@@ -35,7 +34,7 @@ public class BagFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.bag_fragment, container, false);
+        View v = inflater.inflate(R.layout.fragment_bag, container, false);
 
         listView = (ListView) v.findViewById(R.id.list_bag);
         sale = (TextViewPlus) v.findViewById(R.id.sale);

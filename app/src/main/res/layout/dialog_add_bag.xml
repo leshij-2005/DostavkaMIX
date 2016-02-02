@@ -11,7 +11,7 @@
         android:layout_height="100sp"
         android:layout_marginBottom="25sp"
         android:src="@drawable/check_black"
-        android:background="@color/menu_catalog_color"
+        android:background="@color/accent_color"
         android:layout_gravity="center"/>
     <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         foo:customFont="fonts/GothaProReg.otf"
@@ -23,7 +23,7 @@
         android:textColor="@color/md_black_1000"
         android:layout_gravity="center_horizontal|bottom"
         android:gravity="center"
-        android:background="@color/menu_catalog_color"/>
+        android:background="@color/accent_color"/>
 
 
 </FrameLayout>

@@ -3,7 +3,8 @@
     xmlns:foo="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+              android:background="@color/base_color">
 
     <com.android.volley.toolbox.NetworkImageView
         android:layout_width="match_parent"
@@ -48,7 +49,7 @@
                 android:textSize="22sp"
                 android:gravity="right"
                 android:layout_gravity="right"
-                android:textColor="@color/menu_catalog_color"/>
+                android:textColor="@color/accent_color"/>
             <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
                 foo:customFont="fonts/GothaProReg.otf"
                 android:id="@+id/dish_weight_frag"
@@ -219,7 +220,7 @@
 
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/menu_catalog_color"
+            android:background="@color/accent_color"
             android:orientation="horizontal"
             android:layout_centerInParent="true">
 
@@ -229,7 +230,7 @@
                 android:layout_marginRight="10sp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/bag_black"
-                android:background="@color/menu_catalog_color"
+                android:background="@color/accent_color"
                 android:scaleType="fitXY"/>
 
             <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
@@ -239,11 +240,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
 
-                android:background="@color/menu_catalog_color"
+                android:background="@color/accent_color"
 
                 android:text="В корзину"
                 android:textSize="20sp"
-                android:textColor="@color/slide_background_color"
+                android:textColor="@color/base_color"
                 />
         </LinearLayout>
 

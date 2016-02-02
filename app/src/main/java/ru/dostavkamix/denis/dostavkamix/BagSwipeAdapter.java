@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
-import com.daimajia.swipe.SimpleSwipeListener;
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.BaseSwipeAdapter;
 
@@ -52,7 +51,7 @@ public class BagSwipeAdapter extends BaseSwipeAdapter {
 
     @Override
     public View generateView(final int position, ViewGroup parent) {
-        final View v = LayoutInflater.from(mContext).inflate(R.layout.bag_swipe_item, null);
+        final View v = LayoutInflater.from(mContext).inflate(R.layout.item_bag_swipe, null);
         final SwipeLayout swipeLayout = (SwipeLayout)v.findViewById(getSwipeLayoutResourceId(position));
 
         v.findViewById(R.id.trash).setOnClickListener(new View.OnClickListener() {

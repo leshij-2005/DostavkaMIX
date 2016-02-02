@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.view.animation.Animation;
 import android.widget.Button;
 
 import ru.dostavkamix.denis.dostavkamix.AppController;
@@ -29,14 +28,14 @@ public class priceButton extends Button {
                 this,
                 "textColor",
                 Color.TRANSPARENT,
-                AppController.getInstance().getResources().getColor(R.color.menu_catalog_color));
+                AppController.getInstance().getResources().getColor(R.color.accent_color));
         textInAnim.setDuration(100);
         textInAnim.setEvaluator(new ArgbEvaluator());
 
         textOutAnim = ObjectAnimator.ofInt(
                 this,
                 "textColor",
-                AppController.getInstance().getResources().getColor(R.color.menu_catalog_color),
+                AppController.getInstance().getResources().getColor(R.color.accent_color),
                 Color.TRANSPARENT);
         textOutAnim.setDuration(100);
         textOutAnim.setEvaluator(new ArgbEvaluator());
@@ -50,14 +49,14 @@ public class priceButton extends Button {
                 this,
                 "textColor",
                 Color.TRANSPARENT,
-                AppController.getInstance().getResources().getColor(R.color.menu_catalog_color));
+                AppController.getInstance().getResources().getColor(R.color.accent_color));
         textInAnim.setDuration(100);
         textInAnim.setEvaluator(new ArgbEvaluator());
 
         textOutAnim = ObjectAnimator.ofInt(
                 this,
                 "textColor",
-                AppController.getInstance().getResources().getColor(R.color.menu_catalog_color),
+                AppController.getInstance().getResources().getColor(R.color.accent_color),
                 Color.TRANSPARENT);
         textOutAnim.setDuration(100);
         textOutAnim.setEvaluator(new ArgbEvaluator());
@@ -70,14 +69,14 @@ public class priceButton extends Button {
                 this,
                 "textColor",
                 Color.TRANSPARENT,
-                AppController.getInstance().getResources().getColor(R.color.menu_catalog_color));
+                AppController.getInstance().getResources().getColor(R.color.accent_color));
         textInAnim.setDuration(100);
         textInAnim.setEvaluator(new ArgbEvaluator());
 
         textOutAnim = ObjectAnimator.ofInt(
                 this,
                 "textColor",
-                AppController.getInstance().getResources().getColor(R.color.menu_catalog_color),
+                AppController.getInstance().getResources().getColor(R.color.accent_color),
                 Color.TRANSPARENT);
         textOutAnim.setDuration(100);
         textOutAnim.setEvaluator(new ArgbEvaluator());
