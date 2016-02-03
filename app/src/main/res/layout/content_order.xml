@@ -482,8 +482,8 @@
 
                 <TextView
                     android:id="@+id/order_time"
-                    android:layout_width="200sp"
-                    android:layout_height="50sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:gravity="right"
@@ -492,6 +492,7 @@
                     android:layout_marginRight="@dimen/margin_order_text_item"
 
                     android:textSize="@dimen/size_order_text_item"
+                    android:textColor="@color/md_white_1000"
                     android:textColorHint="@color/hint_text_color"/>
                 <View
                     android:layout_width="wrap_content"
