@@ -56,7 +56,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
-
+                        return;
                     }
                 }, now.get(Calendar.HOUR), now.get(Calendar.MINUTE), true
         );
