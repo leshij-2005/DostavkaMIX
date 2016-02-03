@@ -12,6 +12,37 @@
     android:orientation="vertical"
     android:background="@color/toolbar_background_color">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56sp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/arrow_down"
+            android:layout_width="25sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15sp"
+            android:src="@drawable/arrow_down"/>
+
+        <ImageView
+            android:id="@+id/mix_logo"
+            android:layout_width="180sp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/mix_logo"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1sp"
+
+        android:background="@color/base_color">
+
+    </View>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,6 +101,14 @@
             android:background="@color/toolbar_background_color"
             android:animateLayoutChanges="true"
             android:isScrollContainer="true">
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="30sp"
+
+                android:background="@color/base_color">
+
+            </View>
 
             <!-- TODO: Update blank fragment layout -->
             <RelativeLayout
@@ -205,7 +244,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/address"
+                android:id="@+id/row_address"
                 android:layout_width="match_parent"
                 android:layout_height="55sp"
                 android:background="@color/base_color">
@@ -257,7 +296,7 @@
 
                     android:layout_margin="@dimen/margin_order_text_item"
 
-                    android:inputType="textPostalAddress"
+                    android:inputType="text"
                     android:hint="ул. Советская"
                     android:textSize="@dimen/size_order_text_item"
                     android:textColorHint="@color/hint_text_color"/>
@@ -272,7 +311,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/house"
+                android:id="@+id/view_house"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:orientation="horizontal"
@@ -302,7 +341,7 @@
 
                     android:layout_margin="@dimen/margin_order_text_item"
 
-                    android:inputType="textPostalAddress"
+                    android:inputType="number"
                     android:hint="10"
                     android:textSize="@dimen/size_order_text_item"
                     android:textColorHint="@color/hint_text_color"/>
@@ -317,7 +356,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/apartament"
+                android:id="@+id/view_apartament"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:orientation="horizontal"
@@ -347,7 +386,7 @@
 
                     android:layout_margin="@dimen/margin_order_text_item"
 
-                    android:inputType="textPostalAddress"
+                    android:inputType="number"
                     android:hint="1"
                     android:textSize="@dimen/size_order_text_item"
                     android:textColorHint="@color/hint_text_color"/>
@@ -380,6 +419,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/view_now"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:orientation="horizontal"
@@ -421,6 +461,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/view_time"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:orientation="horizontal"
@@ -450,7 +491,6 @@
 
                     android:layout_marginRight="@dimen/margin_order_text_item"
 
-                    android:hint=""
                     android:textSize="@dimen/size_order_text_item"
                     android:textColorHint="@color/hint_text_color"/>
                 <View
@@ -490,7 +530,7 @@
 
                 <ImageView
                     android:id="@+id/icon_wallet"
-                    android:layout_width="40sp"
+                    android:layout_width="30sp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
@@ -534,6 +574,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/view_renting"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:orientation="horizontal"
@@ -586,7 +627,7 @@
 
                 <ImageView
                     android:id="@+id/icon_card"
-                    android:layout_width="40sp"
+                    android:layout_width="30sp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
@@ -615,6 +656,7 @@
                     android:layout_alignParentRight="true"
                     android:gravity="right"
                     android:background="@color/toolbar_background_color"
+                    android:visibility="gone"
 
                     android:layout_margin="@dimen/margin_order_text_item"
                     android:src="@drawable/checkmark"

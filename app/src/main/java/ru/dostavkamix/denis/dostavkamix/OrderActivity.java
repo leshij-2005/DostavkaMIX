@@ -1,48 +1,108 @@
 package ru.dostavkamix.denis.dostavkamix;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
-import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.graphics.drawable.TransitionDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
 
-import ru.dostavkamix.denis.dostavkamix.Fragments.DeliveryOrderFragment;
-
 public class OrderActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button OnSelect = null;
-
+    // Toolbar
+    private ImageView arrow_down;
+    private ImageView mix_logo;
+    
+    // Select delivery method
     private Button select_left;
     private Button select_right;
+    private Button OnSelect;
+    
+    // Person
+    private EditText order_name;
+    private EditText order_phone;
+    private EditText order_email;
+
+    // Address
+    private RelativeLayout row_address;
+        private RelativeLayout view_street;
+            private EditText order_street;
+        private RelativeLayout view_house;
+            private EditText order_house;
+        private RelativeLayout view_apartament;
+            private EditText order_apartament;
+
+    // Time cooking
+    private RelativeLayout view_now;
+        private ImageView order_now;
+    private RelativeLayout view_time;
+        private EditText order_time;
+    
+    // Billing
+    private RelativeLayout billing_wallet;
+        private ImageView check_wallet;
+        private EditText order_renting;
+    private RelativeLayout billing_card;
+        private ImageView check_card;
+    private RelativeLayout view_renting;
+    
+    
 
     static Calendar now = Calendar.getInstance();
+
+    private void initialise()
+    {
+        // Toolbar
+        arrow_down = (ImageView) findViewById(R.id.arrow_down);
+        mix_logo = (ImageView) findViewById(R.id.mix_logo);
+        // Select delivery method
+        select_left = (Button) findViewById(R.id.select_left);
+        select_right = (Button) findViewById(R.id.select_right);
+        OnSelect = null;
+        // Person
+        order_name = (EditText) findViewById(R.id.order_name);
+        order_phone = (EditText) findViewById(R.id.order_phone);
+        order_email = (EditText) findViewById(R.id.order_email);
+        // Address
+        row_address = (RelativeLayout) findViewById(R.id.row_address);
+            view_street = (RelativeLayout) findViewById(R.id.view_street);
+                order_street = (EditText) findViewById(R.id.order_street);
+            view_house = (RelativeLayout) findViewById(R.id.view_house);
+                order_house = (EditText) findViewById(R.id.order_house);
+            view_apartament = (RelativeLayout) findViewById(R.id.view_apartament);
+                order_apartament = (EditText) findViewById(R.id.order_apartament);
+        // Time cooking
+        view_now = (RelativeLayout) findViewById(R.id.view_now);
+            order_now = (ImageView) findViewById(R.id.order_now);
+        view_time = (RelativeLayout) findViewById(R.id.view_time);
+            order_time = (EditText) findViewById(R.id.order_time);
+        // Billing
+        billing_wallet = (RelativeLayout) findViewById(R.id.billing_wallet);
+        check_wallet = (ImageView) findViewById(R.id.check_wallet);
+        billing_card = (RelativeLayout) findViewById(R.id.billing_card);
+        check_card = (ImageView) findViewById(R.id.check_card);
+    }
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.fade_in, R.anim.slide_out_bottom);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
-
-        //final Toolbar toolbar_order = (Toolbar) findViewById(R.id.toolbar_order);
-        //setSupportActionBar(toolbar_order);
-        //getSupportActionBar().setDisplayShowTitleEnabled(true);
-
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setHomeButtonEnabled(true);
 
         select_left = (Button) findViewById(R.id.select_left);
         select_right = (Button) findViewById(R.id.select_right);
@@ -60,7 +120,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                     }
                 }, now.get(Calendar.HOUR), now.get(Calendar.MINUTE), true
         );
-        tpd.show(getFragmentManager(), "TimeC");
+        //tpd.show(getFragmentManager(), "TimeC");
 
 
     }
@@ -105,18 +165,18 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
             if(v.getId() == R.id.select_right)
             {
-                findViewById(R.id.address).setVisibility(View.GONE);
+                findViewById(R.id.row_address).setVisibility(View.GONE);
                 findViewById(R.id.view_street).setVisibility(View.GONE);
-                findViewById(R.id.house).setVisibility(View.GONE);
-                findViewById(R.id.apartament).setVisibility(View.GONE);
+                findViewById(R.id.view_house).setVisibility(View.GONE);
+                findViewById(R.id.view_apartament).setVisibility(View.GONE);
                 findViewById(R.id.scroll_l).requestLayout();
 
             } else
             {
-                findViewById(R.id.address).setVisibility(View.VISIBLE);
+                findViewById(R.id.row_address).setVisibility(View.VISIBLE);
                 findViewById(R.id.view_street).setVisibility(View.VISIBLE);
-                findViewById(R.id.house).setVisibility(View.VISIBLE);
-                findViewById(R.id.apartament).setVisibility(View.VISIBLE);
+                findViewById(R.id.view_house).setVisibility(View.VISIBLE);
+                findViewById(R.id.view_apartament).setVisibility(View.VISIBLE);
                 findViewById(R.id.scroll_l).requestLayout();
             }
         }

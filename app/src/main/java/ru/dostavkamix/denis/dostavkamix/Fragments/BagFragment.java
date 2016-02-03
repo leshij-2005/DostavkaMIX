@@ -52,6 +52,7 @@ public class BagFragment extends Fragment {
                 Log.d("json", "new activity");
                 Intent intent = new Intent(AppController.getInstance().getMainActivity().getApplicationContext(), OrderActivity.class);
                 startActivity(intent);
+                AppController.getInstance().getMainActivity().overridePendingTransition(R.anim.slide_in_bottom ,android.R.anim.fade_out);
                 //AppController.getInstance().getMainActivity().overridePendingTransition();
             }
         });
