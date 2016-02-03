@@ -31,7 +31,7 @@
             android:layout_weight="1"
             android:text="Name Dish1Name Dish1Name Dish1"
             android:textColor="@color/md_white_1000"
-            android:textSize="23sp"
+            android:textSize="20sp"
             foo:customFont="fonts/GothaProReg.otf"/>
 
         <LinearLayout
@@ -50,7 +50,7 @@
                 android:gravity="right"
                 android:text="1024 P"
                 android:textColor="@color/accent_color"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 foo:customFont="fonts/GothaProReg.otf"/>
 
             <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
@@ -62,7 +62,7 @@
                 android:gravity="right"
                 android:text="1060 гр."
                 android:textColor="@color/md_white_1000"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 foo:customFont="fonts/GothaProReg.otf"/>
         </LinearLayout>
 

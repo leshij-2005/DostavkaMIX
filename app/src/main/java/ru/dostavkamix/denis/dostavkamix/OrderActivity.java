@@ -30,6 +30,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private Button select_left;
     private Button select_right;
 
+    static Calendar now = Calendar.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,18 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
         select_left.setOnClickListener(this);
         select_right.setOnClickListener(this);
+
+        TimePickerDialog tpd = TimePickerDialog.newInstance(
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
+
+                    }
+                }, now.get(Calendar.HOUR), now.get(Calendar.MINUTE), true
+        );
+        tpd.show(getFragmentManager(), "TimeC");
+
+
     }
 
     public void selectOnButton(Button button)
