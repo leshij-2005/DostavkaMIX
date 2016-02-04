@@ -27,7 +27,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15sp"
-            android:src="@drawable/arrow_down"/>
+            android:src="@drawable/arrow_down_toolbar"/>
 
         <ImageView
             android:id="@+id/mix_logo"

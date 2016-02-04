@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+
+        android:id="@+id/select_menu_text"
+        android:focusable="false"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
+        android:layout_marginLeft="@dimen/menu_category_margin_left"
+        android:clickable="true"
+
+        android:paddingTop="@dimen/menu_category_padding_top"
+        android:text="row"
+        android:textColor="@color/accent_color"
+        android:textSize="20sp"
+        foo:customFont="fonts/GothaProBol.otf">
+
+    </ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus>
+</LinearLayout>

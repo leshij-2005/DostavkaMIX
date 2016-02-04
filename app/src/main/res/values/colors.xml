@@ -8,6 +8,9 @@
     <color name="toolbar_background_color">#25282d</color>
     <color name="statusbar_color">#101215</color>
     <color name="dish_descript_color">#9b9b9d</color>
-    <color name="separator_color">#2f333b</color>
+    <color name="separator_color_1">#636b7c</color>
+    <color name="separator_color_2">#2b2e33</color>
     <color name="hint_text_color">#646464</color>
+    <color name="backgroud_about">#353940</color>
+
 </resources>

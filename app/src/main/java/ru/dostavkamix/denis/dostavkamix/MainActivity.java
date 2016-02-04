@@ -1,16 +1,28 @@
 package ru.dostavkamix.denis.dostavkamix;
 
+import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -40,9 +52,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean isReadyDish = false;
 
 
-    ArrayList<Dish> dishs = new ArrayList<Dish>();
-    ArrayList<Category> categories = new ArrayList<Category>();
-    ArrayList<Catalog> catalogs = new ArrayList<Catalog>();
+    public ArrayList<Dish> dishs = new ArrayList<Dish>();
+    public ArrayList<Category> categories = new ArrayList<Category>();
+    public ArrayList<Catalog> catalogs = new ArrayList<Catalog>();
 
     private Drawer slideMuneDrawer = null;
     AppCompatImageView logo = null;
@@ -63,11 +75,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextViewPlus selectText = null;
 
     public ListFragment MenuFragment;
-    private BagFragment bagFrag;
-    private FragmentTransaction ft;
+    public BagFragment bagFrag;
+    public FragmentTransaction ft;
     private Fragment OrderFragment;
     DialogFragment dlg1;
     MainActivity mAct;
+    Dialog menu_logo;
+    ImageView arrow_down_t;
+    ImageView arrow_up_t;
+
+    public SlideAdapter slideAdapter;
+
+    TextViewPlus menu_item_1;
+    TextViewPlus menu_item_2;
+    TextViewPlus menu_item_3;
+    TextViewPlus menu_item_4;
+    TextViewPlus menu_item_5;
+    TextViewPlus menu_item_6;
+    TextViewPlus menu_item_7;
+
+    LinearLayout frame;
 
 
     public void updateBagPrice()
@@ -106,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,17 +157,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ft.addToBackStack(null);
         ft.commit();
 
+
+
+
         logo = (AppCompatImageView) findViewById(R.id.logo);
         bag_price = (TextViewPlus) findViewById(R.id.toolbar_price);
+        arrow_down_t = (ImageView) findViewById(R.id.arrow_down_t);
+        arrow_up_t = (ImageView) findViewById(R.id.arrow_up_t);
+        frame = (LinearLayout) findViewById(R.id.arrow_cont);
         //topMenu = new TopMenu();
         mAct = this;
+
+
 
 
         findViewById(R.id.toolbar_lay_text).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(AppController.getInstance().getWithoutSale() > 0) {
+                if (AppController.getInstance().getWithoutSale() > 0) {
                     Log.d("json", String.valueOf(AppController.getInstance().getWithoutSale()));
                     ft = getFragmentManager().beginTransaction();
                     ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left, R.animator.fade_in, R.animator.slide_out_left);
@@ -152,6 +188,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         new ParseTask().execute();
 
+        //slideAdapter = new SlideAdapter(this);
         slideMuneDrawer = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(toolbar)
@@ -183,16 +220,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menuCategoryText.add((TextViewPlus) findViewById(R.id.category1_8));
         menuCategoryText.add((TextViewPlus) findViewById(R.id.category2_0));
         menuCategoryText.add((TextViewPlus) findViewById(R.id.category2_1));
+
+
         for (int i = 0; i < menuCategoryText.size(); i++) {
             menuCategoryText.get(i).setOnClickListener(this);
-        }
+    }
 
         selectCategory(menuCategoryText.get(0));
         dlg1 = new InOrderDialog();
 
+
         AppController.getInstance().setMainActivity(this);
+        AppController.getInstance().selectMenu(1);
 
     }
+
 
 
     @Override
@@ -237,6 +279,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         slideMuneDrawer.closeDrawer();
     }
 
+
     private void selectCategory(final TextViewPlus v)
     {
         new Thread(new Runnable() {
@@ -244,7 +287,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void run() {
                 while(!isReadyDish) {
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -378,6 +421,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             Log.d("json", "Stop Parse");
+
             isReadyDish = true;
 
         }

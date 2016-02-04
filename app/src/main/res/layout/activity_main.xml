@@ -27,11 +27,13 @@
                 xmlns:foo="http://schemas.android.com/apk/res-auto">
 
                 <LinearLayout
+                    android:id="@+id/arrow_cont"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:background="@color/toolbar_background_color"
                     android:gravity="center_horizontal|center_vertical"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/logo"
@@ -39,6 +41,28 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/mix_logo"
                         android:background="@color/toolbar_background_color"/>
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5sp">
+
+                        <ImageView
+                            android:id="@+id/arrow_down_t"
+                            android:layout_width="13sp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/arrow_down"
+                            android:background="@color/toolbar_background_color"
+                            android:visibility="visible"/>
+                        <ImageView
+                            android:id="@+id/arrow_up_t"
+                            android:layout_width="13sp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/arrow_up"
+                            android:background="@color/toolbar_background_color"
+                            android:visibility="invisible"/>
+                    </FrameLayout>
+
                 </LinearLayout>
                 <ImageView
                     android:layout_width="15sp"

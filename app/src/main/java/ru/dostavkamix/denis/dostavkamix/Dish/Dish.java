@@ -7,6 +7,8 @@ import android.graphics.Typeface;
  */
 public class Dish extends Category {
 
+    public static int TYPE = 1;
+
     private final String baseUrl = "http://chaihanamix.ru/";
 
     Typeface fontRub = null;

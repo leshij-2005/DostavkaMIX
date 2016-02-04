@@ -15,8 +15,6 @@ import ru.dostavkamix.denis.dostavkamix.R;
 
 public class DeliveryOrderFragment extends Fragment {
 
-    Calendar now = Calendar.getInstance();
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

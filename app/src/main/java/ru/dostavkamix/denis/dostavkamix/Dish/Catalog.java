@@ -5,6 +5,8 @@ package ru.dostavkamix.denis.dostavkamix.Dish;
  */
 public class Catalog {
 
+    public static int TYPE = 0;
+
     private int idCatalog = 0;
     private String nameCatalog = null;
     private String imjCatalog = null;

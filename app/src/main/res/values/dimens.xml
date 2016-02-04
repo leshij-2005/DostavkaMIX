@@ -14,4 +14,18 @@
     <dimen name="size_order_text_item">18sp</dimen>
     <dimen name="margin_order_text_item">20sp</dimen>
     <dimen name="height_order_item_text">60sp</dimen>
+
+    <!-- Slide Menu. -->
+    <dimen name="slide_menu_text_size">20sp</dimen>
+    <dimen name="slide_menu_margin">15sp</dimen>
+
+    <!-- Condition Fragment. -->
+    <dimen name="condition_text_size">20sp</dimen>
+    <dimen name="condition_margin_text">30sp</dimen>
+
+    <!-- Info Fragment. -->
+    <dimen name="icon_info_margin_left">10sp</dimen>
+    <dimen name="text_size_info">18sp</dimen>
+    <dimen name="text_info_margin_left">20sp</dimen>
+    <dimen name="separator_info_margin_top">30sp</dimen>
 </resources>

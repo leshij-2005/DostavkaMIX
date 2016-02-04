@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:foo="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/lay_select"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:orientation="horizontal"
+        android:layout_margin="10sp"
+        android:layout_below="@+id/lay_tool">
+
+        <Button
+            android:id="@+id/select_left"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:background="@drawable/transition_select_button_left"
+            android:textAllCaps="false"
+            android:text="Информация"
+            android:textColor="@color/md_black_1000"/>
+
+        <Button
+            android:id="@+id/select_right"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="-1sp"
+            android:background="@drawable/transition_select_button_right"
+            android:textAllCaps="false"
+
+            android:text="На карте"
+            android:textColor="@color/md_white_1000"/>
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager_view"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+
+        android:layout_weight="1"
+        android:layout_below="@+id/lay_select">
+
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:id="@+id/content_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/relative_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/icon_map_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/icon_info_margin_left"
+
+                android:src="@drawable/icon_map_tag"/>
+
+            <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                android:id="@+id/text_street"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/icon_map_tag"
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="20sp"
+                android:layout_marginLeft="@dimen/text_info_margin_left"
+
+                android:textColor="@color/md_white_1000"
+                android:textSize="@dimen/text_size_info"
+                android:text="ул. Ленинская , 47"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1sp"
+
+                android:layout_below="@+id/icon_map_tag"
+                android:layout_alignLeft="@+id/text_street"
+                android:layout_marginTop="@dimen/separator_info_margin_top"
+                android:background="@color/separator_color_2">
+
+            </View>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+        android:id="@+id/relative_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/icon_map_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/icon_info_margin_left"
+
+            android:src="@drawable/icon_map_tag"/>
+
+        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+            android:id="@+id/text_street"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/icon_map_tag"
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="20sp"
+            android:layout_marginLeft="@dimen/text_info_margin_left"
+
+            android:textColor="@color/md_white_1000"
+            android:textSize="@dimen/text_size_info"
+            android:text="ул. Ленинская , 47"/>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"
+
+            android:layout_below="@+id/icon_map_tag"
+            android:layout_alignLeft="@+id/text_street"
+            android:layout_marginTop="@dimen/separator_info_margin_top"
+            android:background="@color/separator_color_2">
+
+        </View>
+
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/icon_map_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/icon_info_margin_left"
+
+                android:src="@drawable/icon_map_tag"/>
+
+            <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                android:id="@+id/text_street"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/icon_map_tag"
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="20sp"
+                android:layout_marginLeft="@dimen/text_info_margin_left"
+
+                android:textColor="@color/md_white_1000"
+                android:textSize="@dimen/text_size_info"
+                android:text="ул. Ленинская , 47"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1sp"
+
+                android:layout_below="@+id/icon_map_tag"
+                android:layout_alignLeft="@+id/text_street"
+                android:layout_marginTop="@dimen/separator_info_margin_top"
+                android:background="@color/separator_color_2">
+
+            </View>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/icon_map_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/icon_info_margin_left"
+
+                android:src="@drawable/icon_map_tag"/>
+
+            <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                android:id="@+id/text_street"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/icon_map_tag"
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="20sp"
+                android:layout_marginLeft="@dimen/text_info_margin_left"
+
+                android:textColor="@color/md_white_1000"
+                android:textSize="@dimen/text_size_info"
+                android:text="ул. Ленинская , 47"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1sp"
+
+                android:layout_below="@+id/icon_map_tag"
+                android:layout_alignLeft="@+id/text_street"
+                android:layout_marginTop="@dimen/separator_info_margin_top"
+                android:background="@color/separator_color_2">
+
+            </View>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/but_to_order"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:background="@color/accent_color"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/accent_color"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:layout_width="20sp"
+                android:layout_height="25sp"
+                android:layout_marginRight="10sp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/bag_black"
+                android:background="@color/accent_color"
+                android:scaleType="fitXY"/>
+
+            <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                foo:customFont="fonts/GothaProReg.otf"
+                android:id="@+id/text_but_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:background="@color/accent_color"
+
+                android:text="Оформить за "
+                android:textSize="20sp"
+                android:textColor="@color/base_color"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

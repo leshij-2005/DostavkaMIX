@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroud_about"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroud_about"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"
+
+            android:layout_marginTop="20sp"
+
+            android:background="@color/separator_color_1">
+        </View>
+
+        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="@dimen/condition_margin_text"
+            android:gravity="center"
+
+            android:text="Минимальный заказ от 500 р."
+            android:textColor="@color/md_white_1000"
+            android:textSize="@dimen/condition_text_size"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"
+            android:layout_alignParentBottom="true"
+
+            android:background="@color/separator_color_1">
+        </View>
+
+        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="@dimen/condition_margin_text"
+            android:gravity="center"
+
+            android:text="Приём заказов с 11.00 до 00.00"
+            android:textColor="@color/md_white_1000"
+            android:textSize="@dimen/condition_text_size"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"
+            android:layout_alignParentBottom="true"
+
+            android:background="@color/separator_color_1">
+        </View>
+
+        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="@dimen/condition_margin_text"
+            android:gravity="center"
+
+            android:text="Самовывоз с дополнительной скидкой 10%"
+            android:textColor="@color/md_white_1000"
+            android:textSize="@dimen/condition_text_size"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"
+            android:layout_alignParentBottom="true"
+
+            android:background="@color/separator_color_1">
+        </View>
+
+        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="@dimen/condition_margin_text"
+            android:gravity="center"
+
+            android:text="Оплата наличными или картой"
+            android:textColor="@color/md_white_1000"
+            android:textSize="@dimen/condition_text_size"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"
+            android:layout_alignParentBottom="true"
+
+            android:background="@color/separator_color_1">
+        </View>
+
+        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="@dimen/condition_margin_text"
+            android:gravity="center"
+
+            android:text="Доставка в течении 1 часа в пределах г. Оренбург"
+            android:textColor="@color/md_white_1000"
+            android:textSize="@dimen/condition_text_size"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"
+            android:layout_alignParentBottom="true"
+
+            android:background="@color/separator_color_1">
+        </View>
+
+        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="@dimen/condition_margin_text"
+            android:gravity="center"
+
+            android:text="Бесплатная доставка в пределах г. Оренбург при заказе от 500 р. или за городом + 150 р."
+            android:textColor="@color/md_white_1000"
+            android:textSize="@dimen/condition_text_size"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"
+            android:layout_alignParentBottom="true"
+
+            android:background="@color/separator_color_1">
+        </View>
+
+    </LinearLayout>
+</ScrollView>
