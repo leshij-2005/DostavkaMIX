@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import me.drakeet.materialdialog.MaterialDialog;
 import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.BagSwipeAdapter;
 import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
@@ -30,10 +31,12 @@ public class BagFragment extends Fragment {
     TextViewPlus withSale;
     TextViewPlus text_but_order;
     RelativeLayout but_order;
+    MaterialDialog inposOrderDialog;
+    MaterialDialog iphoneDialog;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_bag, container, false);
 
         listView = (ListView) v.findViewById(R.id.list_bag);
@@ -46,14 +49,44 @@ public class BagFragment extends Fragment {
         //listView.setAdapter(new BagAdapter(AppController.getInstance().getApplicationContext()));
         listView.setAdapter(new BagSwipeAdapter(AppController.getInstance().getApplicationContext()));
 
+        inposOrderDialog = new MaterialDialog(AppController.getInstance().getMainActivity())
+                .setMessage("Извините, минимальный заказ от 500 рублей!")
+                .setPositiveButton("Закрыть", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        inposOrderDialog.dismiss();
+                    }
+                });
+        iphoneDialog = new MaterialDialog(AppController.getInstance().getMainActivity())
+                .setMessage("Сделай заказ от 1000 рублей и учавствуй в розыгрыше iPhone 6s. Чем больше заказов, тем ближе айфон!")
+                .setPositiveButton("Закрыть", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        iphoneDialog.dismiss();
+                        Log.d("json", "new activity");
+                        Intent intent = new Intent(AppController.getInstance().getMainActivity().getApplicationContext(), OrderActivity.class);
+                        startActivity(intent);
+                        AppController.getInstance().getMainActivity().overridePendingTransition(R.anim.slide_in_bottom, android.R.anim.fade_out);
+                    }
+                });
+
         but_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("json", "new activity");
-                Intent intent = new Intent(AppController.getInstance().getMainActivity().getApplicationContext(), OrderActivity.class);
-                startActivity(intent);
-                AppController.getInstance().getMainActivity().overridePendingTransition(R.anim.slide_in_bottom ,android.R.anim.fade_out);
-                //AppController.getInstance().getMainActivity().overridePendingTransition();
+                if(AppController.getInstance().getWithSale() < 500)
+                    inposOrderDialog.show();
+                else {
+                    if(AppController.getInstance().getWithSale() < 1000)
+                    {
+                        iphoneDialog.show();
+                        return;
+                    }
+                    Log.d("json", "new activity");
+                    Intent intent = new Intent(AppController.getInstance().getMainActivity().getApplicationContext(), OrderActivity.class);
+                    startActivity(intent);
+                    AppController.getInstance().getMainActivity().overridePendingTransition(R.anim.slide_in_bottom, android.R.anim.fade_out);
+                    //AppController.getInstance().getMainActivity().overridePendingTransition();
+                }
             }
         });
 

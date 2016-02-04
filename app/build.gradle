@@ -20,18 +20,14 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.github.aakira:expandable-layout:1.4.1@aar'
+    compile 'me.drakeet.materialdialog:library:1.2.8'
     compile 'com.wdullaer:materialdatetimepicker:2.1.1'
-    compile "com.daimajia.swipelayout:library:1.1.8@aar"
+    compile 'com.daimajia.swipelayout:library:1.1.8@aar'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
-    compile "com.andkulikov:transitionseverywhere:1.6.1"
-    compile 'com.makeramen:roundedimageview:2.2.1'
     compile 'com.mcxiaoke.volley:library:1.0.19'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'de.hdodenhof:circleimageview:2.0.0'
     compile('com.mikepenz:materialdrawer:3.0.5') {
         transitive = true
     }

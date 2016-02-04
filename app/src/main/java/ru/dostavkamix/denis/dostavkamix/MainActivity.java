@@ -25,6 +25,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import me.drakeet.materialdialog.MaterialDialog;
 import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.Dish.Catalog;
 import ru.dostavkamix.denis.dostavkamix.Dish.Category;
@@ -39,9 +40,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     boolean isReadyDish = false;
 
 
-    ArrayList<Dish> dishs = new ArrayList<>();
-    ArrayList<Category> categories = new ArrayList<>();
-    ArrayList<Catalog> catalogs = new ArrayList<>();
+    ArrayList<Dish> dishs = new ArrayList<Dish>();
+    ArrayList<Category> categories = new ArrayList<Category>();
+    ArrayList<Catalog> catalogs = new ArrayList<Catalog>();
 
     private Drawer slideMuneDrawer = null;
     AppCompatImageView logo = null;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     BagAdapter bagAdapter = null;
 
     //Мне очень стыдно...
-    ArrayList<TextViewPlus> menuCategoryText = new ArrayList<>();
+    ArrayList<TextViewPlus> menuCategoryText = new ArrayList<TextViewPlus>();
 
 
     TextViewPlus selectText = null;
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ft = getFragmentManager().beginTransaction();
         //ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out,  R.animator.fade_in, R.animator.slide_out_left);
+        ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out, R.animator.fade_in, R.animator.slide_out_left);
 
         ft.replace(R.id.frame_fragment, MenuFragment);
         ft.addToBackStack(null);
@@ -132,15 +133,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bag_price = (TextViewPlus) findViewById(R.id.toolbar_price);
         //topMenu = new TopMenu();
         mAct = this;
-        logo.setOnClickListener(new View.OnClickListener() {
+
+
+        findViewById(R.id.toolbar_lay_text).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("json", "open bag");
-                ft = getFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left,  R.animator.fade_in, R.animator.slide_out_left);
-                ft.replace(R.id.frame_fragment, bagFrag);
-                ft.addToBackStack(null);
-                ft.commit();
+
+                if(AppController.getInstance().getWithoutSale() > 0) {
+                    Log.d("json", String.valueOf(AppController.getInstance().getWithoutSale()));
+                    ft = getFragmentManager().beginTransaction();
+                    ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left, R.animator.fade_in, R.animator.slide_out_left);
+                    ft.replace(R.id.frame_fragment, bagFrag);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                }
             }
         });
 
@@ -381,7 +387,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d("json", "Начинаю сортировку...");
         Log.d("json", "Жду готовности списка...");
         Log.d("json", "Список готов! Сортирую...");
-        ArrayList<Dish> result = new ArrayList<>();
+        ArrayList<Dish> result = new ArrayList<Dish>();
         for (int i = 0; i < dishL.size(); i++) {
             if(dishL.get(i).getIdCategory() == category.getIdCategory()) result.add(dishL.get(i));
         }

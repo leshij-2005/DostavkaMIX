@@ -83,10 +83,7 @@ public class priceButton extends Button {
         trans = (TransitionDrawable) this.getBackground();
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public priceButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
+
 
     public void setChecked(boolean checked) {
         //

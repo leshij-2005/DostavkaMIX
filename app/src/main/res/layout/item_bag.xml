@@ -25,9 +25,11 @@
         android:layout_height="wrap_content"
 
         android:layout_marginLeft="15sp"
+        android:layout_marginRight="20sp"
 
         android:layout_marginTop="6sp"
         android:layout_toRightOf="@id/dish_img_bag"
+        android:layout_toLeftOf="@+id/lay_but"
         android:singleLine="true"
         android:text="text text"
         android:textColor="#ffff"
@@ -66,6 +68,7 @@
         android:textColor="@color/md_white_1000"/>
 
     <LinearLayout
+        android:id="@+id/lay_but"
         android:layout_width="50sp"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"

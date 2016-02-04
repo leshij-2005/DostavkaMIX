@@ -39,7 +39,7 @@
 
             android:layout_marginLeft="5sp"
 
-            android:layout_marginTop="6sp"
+            android:layout_marginTop="0sp"
             android:singleLine="true"
             android:text="text text"
             android:textColor="#ffff"
@@ -58,7 +58,7 @@
                 android:id="@+id/dish_descript"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-2sp"
+                android:layout_marginTop="-3sp"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:lineSpacingMultiplier="1.1"
@@ -83,8 +83,9 @@
                 android:background="@drawable/transition_check"
 
                 android:textAllCaps="false"
-
                 android:textColor="@color/accent_color"
+                android:text="price"
+                android:textSize="14sp"
                 />
 
         </LinearLayout>
@@ -93,10 +94,10 @@
 
     <ImageView
         android:layout_width="10sp"
-        android:layout_height="wrap_content"
+        android:layout_height="20sp"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="5sp"
-        android:layout_marginRight="8sp"
+        android:layout_marginRight="5sp"
         android:scaleType="fitCenter"
         android:src="@drawable/arrow_right"/>
 

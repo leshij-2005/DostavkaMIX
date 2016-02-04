@@ -8,6 +8,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,9 +17,11 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
+import me.drakeet.materialdialog.MaterialDialog;
 import ru.dostavkamix.denis.dostavkamix.CustomView.CustomTypefaceSpan;
 import ru.dostavkamix.denis.dostavkamix.CustomView.LruBitmapCache;
 import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
+
 
 /**
  * Created by den on 20.01.16.
@@ -28,7 +31,7 @@ public class AppController extends Application {
 
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
-    public ArrayList<Dish> inBag = new ArrayList<>();
+    public ArrayList<Dish> inBag = new ArrayList<Dish>();
 
     private int sale = 0;
     private int withoutSale = 0;
@@ -37,7 +40,7 @@ public class AppController extends Application {
     private MainActivity mainActivity = null;
     private ListFragment MenuFragment;
 
-    private ArrayList<Fragment> stackFragment = new ArrayList<>();
+    private ArrayList<Fragment> stackFragment = new ArrayList<Fragment>();
 
 
     Typeface fontRub = null;
@@ -45,6 +48,8 @@ public class AppController extends Application {
 
     boolean isShowDescriptFrag = false;
     boolean isShowMenuList = true;
+
+    public MaterialDialog inposOrder;
 
     public MainActivity getMainActivity() {
         return mainActivity;
@@ -99,6 +104,8 @@ public class AppController extends Application {
         Log.d(TAG, "Start AppController");
         fontRub = Typeface.createFromAsset(getAssets(), "fonts/RUBSN.otf");
         fontReg = Typeface.createFromAsset(getAssets(), "fonts/GothaProReg.otf");
+
+
     }
 
     public void setMainActivity(MainActivity mainActivity)

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="0dp"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
@@ -13,9 +14,11 @@
     android:background="@color/toolbar_background_color">
 
     <RelativeLayout
+        android:id="@+id/lay_tool"
         android:layout_width="match_parent"
         android:layout_height="56sp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true">
 
         <ImageView
             android:id="@+id/arrow_down"
@@ -32,23 +35,25 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:src="@drawable/mix_logo"/>
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"
+
+            android:background="@color/base_color">
+
+        </View>
 
     </RelativeLayout>
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="1sp"
-
-        android:background="@color/base_color">
-
-    </View>
-
 
     <LinearLayout
+        android:id="@+id/lay_select"
         android:layout_width="match_parent"
         android:layout_height="40sp"
         android:orientation="horizontal"
-        android:layout_margin="10sp">
+        android:layout_margin="10sp"
+        android:layout_below="@+id/lay_tool">
 
         <Button
             android:id="@+id/select_left"
@@ -81,11 +86,12 @@
         android:id="@+id/scroll_l"
         xmlns:foo="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:scrollbars="none"
         android:isScrollContainer="true"
         android:animateLayoutChanges="true"
+        android:layout_below="@+id/lay_select"
 
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".OrderActivity"
@@ -124,7 +130,7 @@
                     android:layout_alignParentLeft="true"
                     android:background="@color/toolbar_background_color"
 
-                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:layout_marginLeft="@dimen/margin_order_text_item"
 
                     android:text="Имя *"
                     android:textSize="@dimen/size_order_text_item"
@@ -142,7 +148,7 @@
                     android:layout_margin="@dimen/margin_order_text_item"
 
                     android:inputType="textPersonName"
-                    android:hint="Денис"
+                    android:hint="@string/order_name"
                     android:textSize="@dimen/size_order_text_item"
                     android:textColorHint="@color/hint_text_color"/>
                 <View
@@ -168,7 +174,7 @@
                     android:layout_alignParentLeft="true"
                     android:background="@color/toolbar_background_color"
 
-                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:layout_marginLeft="@dimen/margin_order_text_item"
 
                     android:text="Телефон *"
                     android:textSize="@dimen/size_order_text_item"
@@ -186,7 +192,7 @@
                     android:layout_margin="@dimen/margin_order_text_item"
 
                     android:inputType="phone"
-                    android:hint="+7 (987) 792 49 31"
+                    android:hint="@string/order_phone"
                     android:textSize="@dimen/size_order_text_item"
                     android:textColorHint="@color/hint_text_color"/>
                 <View
@@ -212,7 +218,7 @@
                     android:layout_alignParentLeft="true"
                     android:background="@color/toolbar_background_color"
 
-                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:layout_marginLeft="@dimen/margin_order_text_item"
 
                     android:text="E-mail"
                     android:textSize="@dimen/size_order_text_item"
@@ -230,7 +236,7 @@
                     android:layout_margin="@dimen/margin_order_text_item"
 
                     android:inputType="textEmailAddress"
-                    android:hint="yakot93@gmail.com"
+                    android:hint="@string/order_email"
                     android:textSize="@dimen/size_order_text_item"
                     android:textColorHint="@color/hint_text_color"/>
                 <View
@@ -281,7 +287,7 @@
 
                     android:layout_margin="@dimen/margin_order_text_item"
 
-                    android:text="Улица *"
+                    android:text="@string/order_street"
                     android:textSize="@dimen/size_order_text_item"
                     android:textColor="@color/md_white_1000"/>
 
@@ -324,9 +330,9 @@
                     android:layout_alignParentLeft="true"
                     android:background="@color/toolbar_background_color"
 
-                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:layout_marginLeft="@dimen/margin_order_text_item"
 
-                    android:text="Дом *"
+                    android:text="@string/order_house"
                     android:textSize="@dimen/size_order_text_item"
                     android:textColor="@color/md_white_1000"/>
 
@@ -369,7 +375,7 @@
                     android:layout_alignParentLeft="true"
                     android:background="@color/toolbar_background_color"
 
-                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:layout_marginLeft="@dimen/margin_order_text_item"
 
                     android:text="Квартира"
                     android:textSize="@dimen/size_order_text_item"
@@ -387,7 +393,7 @@
                     android:layout_margin="@dimen/margin_order_text_item"
 
                     android:inputType="number"
-                    android:hint="1"
+                    android:hint="@string/order_apartament"
                     android:textSize="@dimen/size_order_text_item"
                     android:textColorHint="@color/hint_text_color"/>
                 <View
@@ -432,7 +438,7 @@
                     android:layout_alignParentLeft="true"
                     android:background="@color/toolbar_background_color"
 
-                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:layout_marginLeft="@dimen/margin_order_text_item"
 
                     android:text="Как можно скорее"
                     android:textSize="@dimen/size_order_text_item"
@@ -474,7 +480,7 @@
                     android:layout_alignParentLeft="true"
                     android:background="@color/toolbar_background_color"
 
-                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:layout_marginLeft="@dimen/margin_order_text_item"
 
                     android:text="Ко времени"
                     android:textSize="@dimen/size_order_text_item"
@@ -588,7 +594,7 @@
                     android:layout_alignParentLeft="true"
                     android:background="@color/toolbar_background_color"
 
-                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:layout_marginLeft="@dimen/margin_order_text_item"
 
                     android:text="Сдача с"
                     android:textSize="@dimen/size_order_text_item"
@@ -677,4 +683,44 @@
 
     </ScrollView>
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/but_to_order"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:background="@color/accent_color"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/accent_color"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:layout_width="20sp"
+                android:layout_height="25sp"
+                android:layout_marginRight="10sp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/bag_black"
+                android:background="@color/accent_color"
+                android:scaleType="fitXY"/>
+
+            <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                foo:customFont="fonts/GothaProReg.otf"
+                android:id="@+id/text_but_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:background="@color/accent_color"
+
+                android:text="Оформить за "
+                android:textSize="20sp"
+                android:textColor="@color/base_color"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

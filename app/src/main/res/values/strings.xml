@@ -29,5 +29,11 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="order_name">Денис</string>
+    <string name="order_phone">+7 (987) 792 49 31</string>
+    <string name="order_email">yakot93@gmail.com</string>
+    <string name="order_street">Улица *</string>
+    <string name="order_house">Дом *</string>
+    <string name="order_apartament">1</string>
 
 </resources>

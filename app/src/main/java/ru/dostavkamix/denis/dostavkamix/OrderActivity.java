@@ -25,6 +25,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import me.drakeet.materialdialog.MaterialDialog;
+import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
+
 public class OrderActivity extends AppCompatActivity implements View.OnClickListener {
 
     // Toolbar
@@ -63,12 +66,13 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private RelativeLayout billing_card;
         private ImageView check_card;
     private RelativeLayout view_renting;
-    
-    
 
+    //Button order
+    RelativeLayout but_to_order;
+    TextViewPlus text_but_order;
+    
+    // Other
     static Calendar now = Calendar.getInstance();
-    String time = null;
-    String date = null;
 
 
     private void initialise()
@@ -103,6 +107,36 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             view_renting = (RelativeLayout) findViewById(R.id.view_renting);
         billing_card = (RelativeLayout) findViewById(R.id.billing_card);
             check_card = (ImageView) findViewById(R.id.check_card);
+
+        // Button order
+        but_to_order = (RelativeLayout) findViewById(R.id.but_to_order);
+        text_but_order = (TextViewPlus) findViewById(R.id.text_but_order);
+
+
+        selectOnButton(select_left);
+
+        text_but_order.setText("Оформить за " + addR(String.valueOf(AppController.getInstance().getWithSale())));
+        order_time.setHint("Сегодня" + " " + (String.valueOf(now.get(Calendar.HOUR)) + ":" + String.valueOf(now.get(Calendar.MINUTE))));
+
+
+
+        but_to_order.setOnClickListener(this);
+        arrow_down.setOnClickListener(this);
+        view_now.setOnClickListener(this);
+        view_time.setOnClickListener(this);
+        billing_card.setOnClickListener(this);
+        billing_wallet.setOnClickListener(this);
+        select_left.setOnClickListener(this);
+        select_right.setOnClickListener(this);
+    }
+
+    private String addR(String s)
+    {
+        String result = "";
+        if(s.length() < 4) result = s + " руб.";
+        else result = s.substring(0, 1 + (s.length() - 4)) + " " + s.substring(1 + (s.length() - 4)) + " руб.";
+
+        return result;
     }
     @Override
     public void finish() {
@@ -115,30 +149,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         initialise();
-
-        String stringDate = "Сегодня";
-        String stringTime = (String.valueOf(now.get(Calendar.HOUR)) + ":" + String.valueOf(now.get(Calendar.MINUTE)));
-        order_time.setHint(stringDate + " " + stringTime);
-        view_now.setOnClickListener(this);
-        view_time.setOnClickListener(this);
-        billing_card.setOnClickListener(this);
-        billing_wallet.setOnClickListener(this);
-
-
-        selectOnButton(select_left);
-
-        select_left.setOnClickListener(this);
-        select_right.setOnClickListener(this);
-
-        TimePickerDialog tpd = TimePickerDialog.newInstance(
-                new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
-                        return;
-                    }
-                }, now.get(Calendar.HOUR), now.get(Calendar.MINUTE), true
-        );
-        //tpd.show(getFragmentManager(), "TimeC");
 
 
     }
@@ -233,22 +243,10 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                     selectOffButton(OnSelect);
                     selectOnButton((Button) v);
 
-                    if(v.getId() == R.id.select_right)
-                    {
-                        findViewById(R.id.row_address).setVisibility(View.GONE);
-                        findViewById(R.id.view_street).setVisibility(View.GONE);
-                        findViewById(R.id.view_house).setVisibility(View.GONE);
-                        findViewById(R.id.view_apartament).setVisibility(View.GONE);
-                        findViewById(R.id.scroll_l).requestLayout();
-
-                    } else
-                    {
-                        findViewById(R.id.row_address).setVisibility(View.VISIBLE);
-                        findViewById(R.id.view_street).setVisibility(View.VISIBLE);
-                        findViewById(R.id.view_house).setVisibility(View.VISIBLE);
-                        findViewById(R.id.view_apartament).setVisibility(View.VISIBLE);
-                        findViewById(R.id.scroll_l).requestLayout();
-                    }
+                    row_address.setVisibility(View.VISIBLE);
+                    view_street.setVisibility(View.VISIBLE);
+                    view_house.setVisibility(View.VISIBLE);
+                    view_apartament.setVisibility(View.VISIBLE);
                 }
                 break;
             case R.id.select_right:
@@ -256,20 +254,10 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                     selectOffButton(OnSelect);
                     selectOnButton((Button) v);
 
-                    if(v.getId() == R.id.select_right)
-                    {
-                        findViewById(R.id.row_address).setVisibility(View.GONE);
-                        findViewById(R.id.view_street).setVisibility(View.GONE);
-                        findViewById(R.id.view_house).setVisibility(View.GONE);
-                        findViewById(R.id.view_apartament).setVisibility(View.GONE);
-
-                    } else
-                    {
-                        findViewById(R.id.row_address).setVisibility(View.VISIBLE);
-                        findViewById(R.id.view_street).setVisibility(View.VISIBLE);
-                        findViewById(R.id.view_house).setVisibility(View.VISIBLE);
-                        findViewById(R.id.view_apartament).setVisibility(View.VISIBLE);
-                    }
+                    row_address.setVisibility(View.GONE);
+                    view_street.setVisibility(View.GONE);
+                    view_house.setVisibility(View.GONE);
+                    view_apartament.setVisibility(View.GONE);
                 }
                 break;
             case R.id.view_time:
@@ -293,6 +281,9 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 view_renting.setVisibility(View.GONE);
                 check_card.setVisibility(View.VISIBLE);
                 check_wallet.setVisibility(View.GONE);
+                break;
+            case R.id.arrow_down:
+                finish();
                 break;
         }
 
