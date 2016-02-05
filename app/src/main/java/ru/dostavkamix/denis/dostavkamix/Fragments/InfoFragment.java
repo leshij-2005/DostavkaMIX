@@ -3,7 +3,11 @@ package ru.dostavkamix.denis.dostavkamix.Fragments;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.Fragment;
+import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,10 +17,23 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import org.osmdroid.DefaultResourceProxyImpl;
+import org.osmdroid.api.IMapController;
+import org.osmdroid.api.Marker;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.ItemizedIconOverlay;
+import org.osmdroid.views.overlay.Overlay;
+import org.osmdroid.views.overlay.OverlayItem;
+import org.osmdroid.views.overlay.PathOverlay;
 
 import java.util.ArrayList;
 
+import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.R;
 import ru.dostavkamix.denis.dostavkamix.SwipeImageAdapter;
 
@@ -28,6 +45,17 @@ public class InfoFragment extends Fragment implements OnClickListener {
     ViewPager pager_view;
     SwipeImageAdapter mAdapter;
     ArrayList<Integer> image_list = new ArrayList<>();
+
+    //Containers
+    private LinearLayout lay_info;
+    private MapView map_view;
+
+    //Map
+    private IMapController imap;
+    private final GeoPoint startPoint = new GeoPoint(51.761789, 55.10654);
+    private ArrayList<OverlayItem> overlays = new ArrayList<OverlayItem>();
+    private DefaultResourceProxyImpl resourceProxy = new DefaultResourceProxyImpl(AppController.getInstance().getApplicationContext());
+
 
     //Select button
     private Button select_left;
@@ -43,6 +71,29 @@ public class InfoFragment extends Fragment implements OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_info, container, false);
+
+        //Containers
+        lay_info = (LinearLayout) v.findViewById(R.id.lay_info);
+        map_view = (MapView) v.findViewById(R.id.map_view);
+
+        //Map
+
+        map_view.setTileSource(TileSourceFactory.MAPNIK);
+        map_view.setBuiltInZoomControls(true);
+        map_view.setMultiTouchControls(true);
+        imap = map_view.getController();
+        imap.setZoom(20);
+        imap.setCenter(startPoint);
+        ArrayList<OverlayItem> overlays = new ArrayList<OverlayItem>();
+        //overlays.add(new OverlayItem("New Overlay", "Overlay Description", startPoint));
+
+        OverlayItem olItem = new OverlayItem("Here", "SampleDescription", startPoint);
+        Drawable newMarker = this.getResources().getDrawable(R.drawable.map_marker_icon);
+        olItem.setMarker(newMarker);
+        overlays.add(olItem);
+        ItemizedIconOverlay<OverlayItem> iconOverlay = new ItemizedIconOverlay<OverlayItem>(overlays, null, resourceProxy);
+        map_view.getOverlays().add(iconOverlay);
+
 
         // Select button
         select_left = (Button) v.findViewById(R.id.select_left);
@@ -88,6 +139,8 @@ public class InfoFragment extends Fragment implements OnClickListener {
                 {
                     selectOffButton(OnSelect);
                     selectOnButton((Button) v);
+                    lay_info.setVisibility(View.VISIBLE);
+                    map_view.setVisibility(View.GONE);
                 }
                 break;
             case R.id.select_right:
@@ -95,6 +148,8 @@ public class InfoFragment extends Fragment implements OnClickListener {
                 {
                     selectOffButton(OnSelect);
                     selectOnButton((Button) v);
+                    map_view.setVisibility(View.VISIBLE);
+                    lay_info.setVisibility(View.GONE);
                 }
                 break;
             case R.id.relative_1:

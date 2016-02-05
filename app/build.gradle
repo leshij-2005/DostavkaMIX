@@ -22,6 +22,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+    compile 'org.osmdroid:osmdroid-android:5.1@aar'
     compile 'me.drakeet.materialdialog:library:1.2.8'
     compile 'com.wdullaer:materialdatetimepicker:2.1.1'
     compile 'com.daimajia.swipelayout:library:1.1.8@aar'
