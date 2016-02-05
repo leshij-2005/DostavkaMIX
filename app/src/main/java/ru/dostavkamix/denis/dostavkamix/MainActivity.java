@@ -29,6 +29,10 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -36,6 +40,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import me.drakeet.materialdialog.MaterialDialog;
 import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
@@ -51,7 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     boolean isReadyDish = false;
 
-
+    public ArrayList<Review> reviews = new ArrayList<>();
+    public ArrayList<Action> actions = new ArrayList<>();
     public ArrayList<Dish> dishs = new ArrayList<Dish>();
     public ArrayList<Category> categories = new ArrayList<Category>();
     public ArrayList<Catalog> catalogs = new ArrayList<Catalog>();
@@ -330,6 +338,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private class ParseTask extends AsyncTask<Void, Void, String>
     {
+        final String base_url_img = "http://chaihanamix.ru/ios_app/action_images/action_";
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String resultJson = "";
@@ -352,6 +361,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     buffer.append(line);
                 }
                 resultJson = buffer.toString();
+
+
+
+
+                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                Document docActions = dBuilder.parse("http://chaihanamix.ru/ios_app/actions.xml");
+                Document docReviews = dBuilder.parse("http://chaihanamix.ru/ios_app/reviews.xml");
+                docReviews.getDocumentElement().normalize();
+                docActions.getDocumentElement().normalize();
+
+                Log.d("parse", " Root element: " + docActions.getDocumentElement().getNodeName());
+
+                NodeList actionList = docActions.getElementsByTagName("action");
+                NodeList reviewsList = docReviews.getElementsByTagName("review");
+
+                for (int i = 0; i < reviewsList.getLength(); i++) {
+                    Node nNode = reviewsList.item(i);
+
+                    if(nNode.getNodeType() == Node.ELEMENT_NODE)
+                    {
+                        Element eElement = (Element) nNode;
+                        Log.d("parse", "title : " + eElement.getAttribute("title"));
+                        Log.d("parse", "subtitle : " + eElement.getAttribute("subtitle"));
+                        Log.d("parse", "content : " + eElement.getTextContent());
+
+                        reviews.add(new Review(eElement.getAttribute("title"), eElement.getAttribute("subtitle"), eElement.getTextContent()));
+                    }
+                }
+
+                for (int temp = 0; temp < actionList.getLength(); temp++) {
+                    Node nNode = actionList.item(temp);
+
+                    Log.d("parse", "Current Element : " + nNode.getNodeName());
+
+                    if(nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                        Element eElement = (Element) nNode;
+
+                        Log.d("parse", "title : " + eElement.getAttribute("title"));
+                        Log.d("parse", "img_id : " + eElement.getAttribute("img_id"));
+                        Log.d("parse", "img_id : " + eElement.getTextContent());
+
+                        actions.add(new Action(eElement.getAttribute("title"), base_url_img + eElement.getAttribute("img_id") + ".png", eElement.getTextContent()));
+                    }
+                }
             } catch (Exception e)
             {
                 e.printStackTrace();

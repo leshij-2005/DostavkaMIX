@@ -30,6 +30,7 @@ import ru.dostavkamix.denis.dostavkamix.CustomView.LruBitmapCache;
 import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
 import ru.dostavkamix.denis.dostavkamix.Fragments.AboutFragment;
+import ru.dostavkamix.denis.dostavkamix.Fragments.ActionsFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ConditionFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.InfoFragment;
 
@@ -75,6 +76,7 @@ public class AppController extends Application {
     Fragment aboutFragment;
     Fragment conditionFragment;
     Fragment infoFragment;
+    Fragment actionFragment;
 
     public MainActivity getMainActivity() {
         return mainActivity;
@@ -191,6 +193,7 @@ public class AppController extends Application {
         aboutFragment = new AboutFragment();
         conditionFragment = new ConditionFragment();
         infoFragment = new InfoFragment();
+        actionFragment = new ActionsFragment();
 
     }
 
@@ -386,6 +389,11 @@ public class AppController extends Application {
                 break;
             case 3:
                 selectMenu(menu_item_3);
+                mainActivity.ft = mainActivity.getFragmentManager().beginTransaction();
+                mainActivity.ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out, R.animator.fade_in, R.animator.slide_out_left);
+                mainActivity.ft.replace(R.id.frame_fragment, actionFragment);
+                mainActivity.ft.addToBackStack(null);
+                mainActivity.ft.commit();
                 break;
             case 4:
                 selectMenu(menu_item_4);
