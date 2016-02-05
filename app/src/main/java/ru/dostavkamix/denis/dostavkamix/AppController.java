@@ -168,6 +168,7 @@ public class AppController extends Application {
         menu_item_6.setOnClickListener(cm);
         menu_item_7.setOnClickListener(cm);
 
+
         mainActivity.frame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,6 +177,7 @@ public class AppController extends Application {
                 }
             }
         });
+
     }
 
     @Override

@@ -192,11 +192,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         slideMuneDrawer = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(toolbar)
-                .withDisplayBelowToolbar(true)
+                .withRootView(R.id.drawer_container)
                 .withActionBarDrawerToggleAnimated(true)
-                .withDisplayBelowToolbar(true)
                 .withSliderBackgroundColorRes(R.color.base_color)
                 .withCustomView(View.inflate(this, R.layout.slide_menu, null))
+                .withSavedInstance(savedInstanceState)
                 .build();
 
         //Очень очень стыдно...
@@ -236,6 +236,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState = slideMuneDrawer.saveInstanceState(outState);
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     public void onBackPressed() {

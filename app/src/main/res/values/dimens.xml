@@ -24,8 +24,9 @@
     <dimen name="condition_margin_text">30sp</dimen>
 
     <!-- Info Fragment. -->
-    <dimen name="icon_info_margin_left">10sp</dimen>
-    <dimen name="text_size_info">18sp</dimen>
+    <dimen name="icon_info_margin_left">15sp</dimen>
+    <dimen name="text_size_info">17sp</dimen>
     <dimen name="text_info_margin_left">20sp</dimen>
-    <dimen name="separator_info_margin_top">30sp</dimen>
+    <dimen name="separator_info_margin_top">4sp</dimen>
+    <dimen name="width_icon_info">20sp</dimen>
 </resources>

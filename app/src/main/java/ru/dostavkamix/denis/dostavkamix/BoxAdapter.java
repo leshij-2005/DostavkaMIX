@@ -147,7 +147,6 @@ public class BoxAdapter extends BaseAdapter {
 
         checkBut.setText(addRuble(String.valueOf(d.getPriceDish())));
 
-
         dish_img.setDefaultImageResId(white_progress);
         dish_img.setImageUrl(d.getImjDish(), imageLoader);
 

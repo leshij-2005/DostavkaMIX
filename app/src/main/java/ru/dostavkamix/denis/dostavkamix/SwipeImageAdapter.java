@@ -2,6 +2,7 @@ package ru.dostavkamix.denis.dostavkamix;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.PagerAdapter;
@@ -11,28 +12,25 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
  * Created by den on 04.02.2016.
  */
-public class SwipeAdapter extends PagerAdapter {
+public class SwipeImageAdapter extends PagerAdapter {
 
-    ArrayList<Drawable> image_list = new ArrayList<>();
+    ArrayList<Integer> image_list = new ArrayList<>();
     LayoutInflater mInflater;
+    int ItemLayout;
+    ImageLoader mLoader = AppController.getInstance().getImageLoader();
 
-    public SwipeAdapter() {
-        image_list.add(getImageFromAssets("slider/image1.jpg"));
-        image_list.add(getImageFromAssets("slider/image2.jpg"));
-        image_list.add(getImageFromAssets("slider/image3.jpg"));
-        image_list.add(getImageFromAssets("slider/image4.jpg"));
-        image_list.add(getImageFromAssets("slider/image5.jpg"));
-        image_list.add(getImageFromAssets("slider/image6.jpg"));
-        image_list.add(getImageFromAssets("slider/image7.jpg"));
-        image_list.add(getImageFromAssets("slider/image8.jpg"));
-        image_list.add(getImageFromAssets("slider/image9.jpg"));
-        image_list.add(getImageFromAssets("slider/image10.jpg"));
+    public SwipeImageAdapter(ArrayList<Integer> list, int item) {
+        this.image_list = list;
+        this.ItemLayout = item;
     }
 
     @Override
@@ -47,11 +45,17 @@ public class SwipeAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        mInflater = (LayoutInflater) AppController.getInstance().getMainActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View item_view = mInflater.inflate(R.layout.swipe_lay, container, false);
-        ImageView image_view = (ImageView) item_view.findViewById(R.id.image_view);
-        image_view.setImageDrawable(image_list.get(position));
-        container.addView(item_view);
+        View item_view = null;
+        try {
+            mInflater = (LayoutInflater) AppController.getInstance().getMainActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            item_view = mInflater.inflate(ItemLayout, container, false);
+            ImageView image_view = (ImageView) item_view.findViewById(R.id.image_view);
+            //image_view.setImageDrawable(image_list.get(position));
+            image_view.setImageResource(image_list.get(position));
+            container.addView(item_view);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return item_view;
     }
