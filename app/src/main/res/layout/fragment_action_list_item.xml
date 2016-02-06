@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:foo="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/action_item"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="120sp">
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/action_img"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+
+        android:scaleType="centerCrop"/>
+
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        android:id="@+id/action_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_toRightOf="@+id/action_img"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15sp"
+        android:layout_marginLeft="10sp"
+
+        android:text="text text"
+        android:textColor="#ffff"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        foo:customFont="fonts/GothaProReg.otf"/>
+
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        android:id="@+id/action_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/action_title"
+        android:layout_alignLeft="@+id/action_title"
+        android:layout_alignRight="@+id/arrow_right"
+        android:layout_marginRight="15sp"
+        android:layout_marginTop="15sp"
+
+        android:text="text texttext texttext texttext texttext texttext texttext texttext texttext text"
+        android:textColor="@color/dish_descript_color"
+        android:textSize="14sp"
+        foo:customFont="fonts/GothaProReg.otf"
+
+        />
+
+    <ImageView
+        android:id="@+id/arrow_right"
+        android:layout_width="10sp"
+        android:layout_height="20sp"
+
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10sp"
+
+        android:scaleType="fitCenter"
+        android:src="@drawable/arrow_right"/>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1sp"
+        android:layout_alignParentBottom="true"
+
+        android:background="@color/separator_color_1">
+    </View>
+
+</RelativeLayout>

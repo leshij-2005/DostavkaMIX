@@ -23,16 +23,15 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import ru.dostavkamix.denis.dostavkamix.ActionListAdapter;
+
 /**
  * Created by den on 06.02.2016.
  */
-public class ActionsFragment extends Fragment {
+public class ActionListFragment extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         return super.onCreateView(inflater, container, savedInstanceState);
     }
-
-
 }

@@ -9,7 +9,7 @@
     </declare-styleable>
 
     <declare-styleable name="customNetworkImageView">
-        <attr name="radius" format="float" />
+        <attr name="custom_radius" format="float" />
     </declare-styleable>
 
 </resources>

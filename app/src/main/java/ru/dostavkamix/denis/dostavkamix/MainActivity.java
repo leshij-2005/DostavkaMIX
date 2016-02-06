@@ -5,24 +5,15 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
-import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -44,11 +35,12 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import me.drakeet.materialdialog.MaterialDialog;
 import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.Dish.Catalog;
 import ru.dostavkamix.denis.dostavkamix.Dish.Category;
 import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
+import ru.dostavkamix.denis.dostavkamix.Fragments.ActionListFragment;
+import ru.dostavkamix.denis.dostavkamix.Fragments.ActionPagerFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.BagFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.FragmentOrder;
 import ru.dostavkamix.denis.dostavkamix.Fragments.InOrderDialog;
@@ -238,8 +230,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dlg1 = new InOrderDialog();
 
 
+
         AppController.getInstance().setMainActivity(this);
         AppController.getInstance().selectMenu(1);
+
 
     }
 
@@ -481,8 +475,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             Log.d("json", "Stop Parse");
+            Log.d("json", "Review : ");
+            Log.d("json", "     title : " + reviews.get(1).title);
+            Log.d("json", "     subtitle : " + reviews.get(1).subtitle);
+            Log.d("json", "     content : " + reviews.get(1).content);
+            Log.d("json", "Action : " + actions.get(1));
+            Log.d("json", "     title : " + actions.get(1).title);
+            Log.d("json", "     url : " + actions.get(1).url);
+            Log.d("json", "     content : " + actions.get(1).content);
 
             isReadyDish = true;
+            AppController.getInstance().actionListFragment.setListAdapter(new ActionListAdapter());
+            AppController.getInstance().reviewListFragment.setListAdapter(new ReviewListAdapter());
+            //AppController.getInstance().actionFragment.setPagerAdapter(new ActionAdapter());
 
         }
     }

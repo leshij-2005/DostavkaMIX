@@ -22,7 +22,7 @@
         android:layout_marginLeft="5sp"
         android:scaleType="centerCrop"
         android:visibility="visible"
-        app:radius="10"
+        app:custom_radius="10"
 
         />
 

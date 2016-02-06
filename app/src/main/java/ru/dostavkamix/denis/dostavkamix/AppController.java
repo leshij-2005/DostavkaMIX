@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v4.view.ViewPager;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -30,9 +31,11 @@ import ru.dostavkamix.denis.dostavkamix.CustomView.LruBitmapCache;
 import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
 import ru.dostavkamix.denis.dostavkamix.Fragments.AboutFragment;
-import ru.dostavkamix.denis.dostavkamix.Fragments.ActionsFragment;
+import ru.dostavkamix.denis.dostavkamix.Fragments.ActionListFragment;
+import ru.dostavkamix.denis.dostavkamix.Fragments.ActionPagerFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ConditionFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.InfoFragment;
+import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewListFragment;
 
 
 /**
@@ -76,7 +79,9 @@ public class AppController extends Application {
     Fragment aboutFragment;
     Fragment conditionFragment;
     Fragment infoFragment;
-    Fragment actionFragment;
+    ListFragment actionListFragment;
+    ListFragment reviewListFragment;
+    ActionPagerFragment actionFragment;
 
     public MainActivity getMainActivity() {
         return mainActivity;
@@ -193,7 +198,9 @@ public class AppController extends Application {
         aboutFragment = new AboutFragment();
         conditionFragment = new ConditionFragment();
         infoFragment = new InfoFragment();
-        actionFragment = new ActionsFragment();
+        actionListFragment = new ActionListFragment();
+        reviewListFragment = new ReviewListFragment();
+        actionFragment = new ActionPagerFragment();
 
     }
 
@@ -391,7 +398,7 @@ public class AppController extends Application {
                 selectMenu(menu_item_3);
                 mainActivity.ft = mainActivity.getFragmentManager().beginTransaction();
                 mainActivity.ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out, R.animator.fade_in, R.animator.slide_out_left);
-                mainActivity.ft.replace(R.id.frame_fragment, actionFragment);
+                mainActivity.ft.replace(R.id.frame_fragment, actionListFragment);
                 mainActivity.ft.addToBackStack(null);
                 mainActivity.ft.commit();
                 break;
@@ -405,6 +412,11 @@ public class AppController extends Application {
                 break;
             case 5:
                 selectMenu(menu_item_5);
+                mainActivity.ft = mainActivity.getFragmentManager().beginTransaction();
+                mainActivity.ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out, R.animator.fade_in, R.animator.slide_out_left);
+                mainActivity.ft.replace(R.id.frame_fragment, reviewListFragment);
+                mainActivity.ft.addToBackStack(null);
+                mainActivity.ft.commit();
                 break;
             case 6:
                 selectMenu(menu_item_6);

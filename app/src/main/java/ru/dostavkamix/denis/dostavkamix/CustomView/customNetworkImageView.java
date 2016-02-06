@@ -133,7 +133,7 @@ public class customNetworkImageView extends NetworkImageView {
     private void setRadius(Context ctx, AttributeSet attr)
     {
         TypedArray a = ctx.obtainStyledAttributes(attr, R.styleable.customNetworkImageView);
-        float radius = a.getFloat(R.styleable.customNetworkImageView_radius, 0.0f);
+        float radius = a.getFloat(R.styleable.customNetworkImageView_custom_radius, 0.0f);
         this.mRadius = radius;
         a.recycle();
     }

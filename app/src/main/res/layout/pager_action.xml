@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/action_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        android:id="@+id/action_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:layout_marginTop="10sp"
+
+        android:text="text text"
+        android:textColor="#ffff"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        foo:customFont="fonts/GothaProReg.otf"/>
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        android:id="@+id/action_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:layout_marginTop="10sp"
+
+        android:text="text texttext texttext texttext texttext texttext texttext texttext texttext text"
+        android:textColor="@color/dish_descript_color"
+        android:textSize="14sp"
+        foo:customFont="fonts/GothaProReg.otf"
+
+        />
+
+
+</LinearLayout>
