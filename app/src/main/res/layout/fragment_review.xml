@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:foo="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/review_pager"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="1">
+
+    </android.support.v4.view.ViewPager>
+
+    <ru.dostavkamix.denis.dostavkamix.viewpagerindicator.CirclePageIndicator
+        android:id="@+id/review_indicator"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="20sp"
+
+        app:fillColor="@color/accent_color"
+        app:pageColor="@color/md_white_1000"
+        app:strokeColor="@color/md_white_1000"
+        app:radius="5dp"
+        app:strokeWidth="0dp"
+        app:spacing="10sp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/but_write_review"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:background="@color/accent_color">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/accent_color"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+
+            <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                foo:customFont="fonts/GothaProReg.otf"
+                android:id="@+id/text_but_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:background="@color/accent_color"
+
+                android:text="Написать отзыв"
+                android:textSize="20sp"
+                android:textColor="@color/base_color"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

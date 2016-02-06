@@ -36,6 +36,10 @@
             android:label="Доставка MIX"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".ShapeActivity"
+                  android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name=".HelpActivity"
+                  android:theme="@android:style/Theme.NoTitleBar"/>
     </application>
 
 </manifest>

@@ -25,9 +25,7 @@
         app:pageColor="@color/md_white_1000"
         app:strokeColor="@color/md_white_1000"
         app:radius="5dp"
-        app:centered="true"
-        app:paddingEnd="4sp"
-        app:paddingStart="4sp"
+        app:strokeWidth="0dp"
         app:spacing="10sp"
         />
 

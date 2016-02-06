@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:id="@+id/arrow_left"
+        android:layout_width="wrap_content"
+        android:layout_height="80sp"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="47sp"
+        android:layout_marginLeft="15sp"
+
+        android:src="@drawable/arrow_help_left"/>
+
+    <ImageView
+        android:id="@+id/arrow_right"
+        android:layout_width="wrap_content"
+        android:layout_height="100sp"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="47sp"
+        android:layout_marginRight="60sp"
+
+        android:src="@drawable/arrow_help_right"/>
+
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        foo:customFont="fonts/GothaProReg.otf"
+        android:id="@+id/text_shape"
+        android:layout_width="110sp"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/arrow_left"
+        android:layout_alignLeft="@+id/arrow_left"
+        android:layout_marginTop="5sp"
+
+        android:text="Меню блюд ноходится теперь тут..."
+        android:textSize="17sp"
+        android:textColor="@color/md_white_1000"
+        />
+
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        foo:customFont="fonts/GothaProReg.otf"
+        android:id="@+id/text_shape"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/arrow_right"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5sp"
+        android:layout_marginRight="10sp"
+
+
+        android:text="...а тут основное меню приложения"
+        android:textSize="17sp"
+        android:textColor="@color/md_white_1000"
+        />
+</RelativeLayout>

@@ -5,10 +5,10 @@ import android.app.Dialog;
 import android.app.Fragment;
 import android.app.ListFragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v4.view.ViewPager;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -36,6 +36,9 @@ import ru.dostavkamix.denis.dostavkamix.Fragments.ActionPagerFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ConditionFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.InfoFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewListFragment;
+import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewPagerFragment;
+import ru.dostavkamix.denis.dostavkamix.blurbehind.BlurBehind;
+import ru.dostavkamix.denis.dostavkamix.blurbehind.OnBlurCompleteListener;
 
 
 /**
@@ -82,6 +85,7 @@ public class AppController extends Application {
     ListFragment actionListFragment;
     ListFragment reviewListFragment;
     ActionPagerFragment actionFragment;
+    ReviewPagerFragment reviewFragment;
 
     public MainActivity getMainActivity() {
         return mainActivity;
@@ -138,6 +142,7 @@ public class AppController extends Application {
 
         WindowManager.LayoutParams windowLay = menu_logo.getWindow().getAttributes();
         windowLay.gravity = Gravity.TOP;
+        windowLay.dimAmount = 0.0f;
         windowLay.width = WindowManager.LayoutParams.FILL_PARENT;
         menu_logo.getWindow().getAttributes().verticalMargin = 0.1F;
         menu_logo.getWindow().getAttributes().horizontalMargin = 0.02F;
@@ -156,6 +161,7 @@ public class AppController extends Application {
                 mainActivity.arrow_up_t.setVisibility(View.VISIBLE);
             }
         });
+
 
         menu_item_1 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_1);
         menu_item_2 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_2);
@@ -180,7 +186,17 @@ public class AppController extends Application {
             @Override
             public void onClick(View v) {
                 if (mainActivity.arrow_down_t.getVisibility() == View.VISIBLE) {
-                    menu_logo.show();
+                    //menu_logo.show();
+                    BlurBehind.getInstance().execute(mainActivity, new OnBlurCompleteListener() {
+                        @Override
+                        public void onBlurComplete() {
+                            Intent intent = new Intent(mainActivity, HelpActivity.class);
+                            //intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                            startActivity(intent);
+                        }
+                    }, 1);
                 }
             }
         });
@@ -201,6 +217,7 @@ public class AppController extends Application {
         actionListFragment = new ActionListFragment();
         reviewListFragment = new ReviewListFragment();
         actionFragment = new ActionPagerFragment();
+        reviewFragment = new ReviewPagerFragment();
 
     }
 

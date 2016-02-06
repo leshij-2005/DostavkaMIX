@@ -10,6 +10,8 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        renderscriptTargetApi 22
+        renderscriptSupportModeEnabled true
     }
     buildTypes {
         release {
@@ -22,6 +24,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+    compile 'fr.tvbarthel.blurdialogfragment:lib:2.1.5'
     compile 'org.osmdroid:osmdroid-android:5.1@aar'
     compile 'me.drakeet.materialdialog:library:1.2.8'
     compile 'com.wdullaer:materialdatetimepicker:2.1.1'

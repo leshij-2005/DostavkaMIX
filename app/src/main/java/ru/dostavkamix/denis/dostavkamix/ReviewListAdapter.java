@@ -12,7 +12,7 @@ import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
 /**
  * Created by den on 06.02.2016.
  */
-public class ReviewListAdapter extends BaseAdapter implements View.OnClickListener {
+public class ReviewListAdapter extends BaseAdapter {
 
     MainActivity mActivity = AppController.getInstance().getMainActivity();
     LayoutInflater mInflater = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -34,7 +34,7 @@ public class ReviewListAdapter extends BaseAdapter implements View.OnClickListen
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View v = convertView;
 
         if(v == null) v = mInflater.inflate(R.layout.fragment_review_list_item, parent, false);
@@ -46,13 +46,23 @@ public class ReviewListAdapter extends BaseAdapter implements View.OnClickListen
 
         review_title.setText(review.title);
         review_content.setText(review.content);
-        review_item.setOnClickListener(this);
+        review_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mActivity.ft = mActivity.getFragmentManager().beginTransaction();
+                mActivity.ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out, R.animator.fade_in, R.animator.slide_out_left);
+                mActivity.ft.replace(R.id.frame_fragment, AppController.getInstance().reviewFragment);
+                mActivity.ft.addToBackStack(null);
+                mActivity.ft.commit();
+
+                try {
+                    AppController.getInstance().reviewFragment.setCurrentItem(position);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         return v;
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 }
