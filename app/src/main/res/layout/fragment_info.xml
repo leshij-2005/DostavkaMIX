@@ -242,7 +242,7 @@
 
 
             <RelativeLayout
-                android:id="@+id/but_to_order"
+                android:id="@+id/but_to_call"
                 android:layout_width="match_parent"
                 android:layout_height="50sp"
                 android:background="@color/accent_color"

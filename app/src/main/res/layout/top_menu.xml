@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:foo="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@color/md_black_1000"
-              android:layout_gravity="center_horizontal">
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
-        android:tag="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/md_black_1000"
+    android:orientation="vertical">
 
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/menu_item_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
         android:layout_margin="@dimen/slide_menu_margin"
         android:gravity="center"
+        android:tag="1"
 
-        foo:customFont="fonts/GothaProReg.otf"
-        android:textColor="@color/md_white_1000"
         android:text="Меню доставки"
-        android:textSize="@dimen/slide_menu_text_size"/>
+        android:textColor="@color/md_white_1000"
+        android:textSize="@dimen/slide_menu_text_size"
+        foo:customFont="fonts/GothaProReg.otf"/>
+
     <View
         android:layout_width="wrap_content"
         android:layout_height="1sp"
@@ -26,19 +29,21 @@
         android:background="@color/separator_color_1">
 
     </View>
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
-        android:tag="2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/menu_item_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
         android:layout_margin="@dimen/slide_menu_margin"
         android:gravity="center"
+        android:tag="2"
 
-        foo:customFont="fonts/GothaProReg.otf"
-        android:textColor="@color/md_white_1000"
         android:text="Условия доставки"
-        android:textSize="@dimen/slide_menu_text_size"/>
+        android:textColor="@color/md_white_1000"
+        android:textSize="@dimen/slide_menu_text_size"
+        foo:customFont="fonts/GothaProReg.otf"/>
+
     <View
         android:layout_width="wrap_content"
         android:layout_height="1sp"
@@ -47,19 +52,21 @@
         android:background="@color/separator_color_1">
 
     </View>
+
     <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
-        android:tag="3"
+        android:id="@+id/menu_item_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:id="@+id/menu_item_3"
         android:layout_margin="@dimen/slide_menu_margin"
         android:gravity="center"
+        android:tag="3"
 
-        foo:customFont="fonts/GothaProReg.otf"
-        android:textColor="@color/md_white_1000"
         android:text="Акции и новости"
-        android:textSize="@dimen/slide_menu_text_size"/>
+        android:textColor="@color/md_white_1000"
+        android:textSize="@dimen/slide_menu_text_size"
+        foo:customFont="fonts/GothaProReg.otf"/>
+
     <View
         android:layout_width="wrap_content"
         android:layout_height="1sp"
@@ -68,19 +75,21 @@
         android:background="@color/separator_color_1">
 
     </View>
+
     <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        android:id="@+id/menu_item_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:layout_margin="@dimen/slide_menu_margin"
+        android:gravity="center"
         android:tag="4"
 
-        android:id="@+id/menu_item_4"
-        android:layout_margin="@dimen/slide_menu_margin"
-        android:gravity="center"
-
-        foo:customFont="fonts/GothaProReg.otf"
-        android:textColor="@color/md_white_1000"
         android:text="Чайхана MIX"
-        android:textSize="@dimen/slide_menu_text_size"/>
+        android:textColor="@color/md_white_1000"
+        android:textSize="@dimen/slide_menu_text_size"
+        foo:customFont="fonts/GothaProReg.otf"/>
+
     <View
         android:layout_width="wrap_content"
         android:layout_height="1sp"
@@ -89,19 +98,21 @@
         android:background="@color/separator_color_1">
 
     </View>
+
     <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        android:id="@+id/menu_item_5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:layout_margin="@dimen/slide_menu_margin"
+        android:gravity="center"
         android:tag="5"
 
-        android:id="@+id/menu_item_5"
-        android:layout_margin="@dimen/slide_menu_margin"
-        android:gravity="center"
-
-        foo:customFont="fonts/GothaProReg.otf"
-        android:textColor="@color/md_white_1000"
         android:text="Отзывы"
-        android:textSize="@dimen/slide_menu_text_size"/>
+        android:textColor="@color/md_white_1000"
+        android:textSize="@dimen/slide_menu_text_size"
+        foo:customFont="fonts/GothaProReg.otf"/>
+
     <View
         android:layout_width="wrap_content"
         android:layout_height="1sp"
@@ -110,19 +121,21 @@
         android:background="@color/separator_color_1">
 
     </View>
+
     <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        android:id="@+id/menu_item_6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:layout_margin="@dimen/slide_menu_margin"
+        android:gravity="center"
         android:tag="6"
 
-        android:id="@+id/menu_item_6"
-        android:layout_margin="@dimen/slide_menu_margin"
-        android:gravity="center"
-
-        foo:customFont="fonts/GothaProReg.otf"
-        android:textColor="@color/md_white_1000"
         android:text="О нас"
-        android:textSize="@dimen/slide_menu_text_size"/>
+        android:textColor="@color/md_white_1000"
+        android:textSize="@dimen/slide_menu_text_size"
+        foo:customFont="fonts/GothaProReg.otf"/>
+
     <View
         android:layout_width="wrap_content"
         android:layout_height="1sp"
@@ -131,19 +144,20 @@
         android:background="@color/separator_color_1">
 
     </View>
+
     <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        android:id="@+id/menu_item_7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:tag="7"
 
-        android:id="@+id/menu_item_7"
         android:layout_margin="@dimen/slide_menu_margin"
         android:gravity="center"
+        android:tag="7"
 
-        foo:customFont="fonts/GothaProReg.otf"
-        android:textColor="@color/md_white_1000"
         android:text="Корзина"
-        android:textSize="@dimen/slide_menu_text_size"/>
+        android:textColor="@color/md_white_1000"
+        android:textSize="@dimen/slide_menu_text_size"
+        foo:customFont="fonts/GothaProReg.otf"/>
 
 
 </LinearLayout>

@@ -12,6 +12,6 @@ public class Review {
     public Review(String title, String subtitle, String content) {
         this.title = title;
         this.subtitle = subtitle;
-        this.content = content;
+        this.content = content.trim();
     }
 }

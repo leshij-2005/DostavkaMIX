@@ -48,6 +48,7 @@ public class ActionListAdapter extends BaseAdapter {
         TextViewPlus action_content = (TextViewPlus) v.findViewById(R.id.action_content);
 
 
+        action_img.setDefaultImageResId(R.drawable.white_progress);
         action_img.setImageUrl(action.url, AppController.getInstance().getImageLoader());
         action_title.setText(action.title);
         action_content.setText(action.content);

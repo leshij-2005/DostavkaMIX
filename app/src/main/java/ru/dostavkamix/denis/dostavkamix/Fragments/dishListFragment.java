@@ -4,7 +4,9 @@ package ru.dostavkamix.denis.dostavkamix.Fragments;
 import android.app.ListFragment;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 
+import ru.dostavkamix.denis.dostavkamix.BoxAdapter;
 import ru.dostavkamix.denis.dostavkamix.R;
 
 /**
@@ -19,6 +21,10 @@ public class dishListFragment extends ListFragment {
         getListView().setDivider(new ColorDrawable(this.getResources().getColor(R.color.separator_color_2)));
         getListView().setDividerHeight(1);
         getListView().setVerticalScrollBarEnabled(false);
+
+        
+
+        Log.d("json", "Вот он.");
 
     }
 }

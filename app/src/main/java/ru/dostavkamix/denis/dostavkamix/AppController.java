@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.app.ListFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -17,6 +18,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -46,6 +48,9 @@ import ru.dostavkamix.denis.dostavkamix.blurbehind.OnBlurCompleteListener;
  */
 public class AppController extends Application {
     public static final String TAG = AppController.class.getSimpleName();
+    private static final String prefName = "pref";
+    public SharedPreferences preferences;
+    public SharedPreferences.Editor editPref;
 
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
@@ -162,7 +167,6 @@ public class AppController extends Application {
             }
         });
 
-
         menu_item_1 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_1);
         menu_item_2 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_2);
         menu_item_3 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_3);
@@ -186,20 +190,12 @@ public class AppController extends Application {
             @Override
             public void onClick(View v) {
                 if (mainActivity.arrow_down_t.getVisibility() == View.VISIBLE) {
-                    //menu_logo.show();
-                    BlurBehind.getInstance().execute(mainActivity, new OnBlurCompleteListener() {
-                        @Override
-                        public void onBlurComplete() {
-                            Intent intent = new Intent(mainActivity, HelpActivity.class);
-                            //intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                            startActivity(intent);
-                        }
-                    }, 1);
+                    menu_logo.show();
                 }
             }
         });
+
+
 
     }
 
@@ -210,6 +206,10 @@ public class AppController extends Application {
         Log.d(TAG, "Start AppController");
         fontRub = Typeface.createFromAsset(getAssets(), "fonts/RUBSN.otf");
         fontReg = Typeface.createFromAsset(getAssets(), "fonts/GothaProReg.otf");
+        preferences = getSharedPreferences(prefName, MODE_PRIVATE);
+        editPref = preferences.edit();
+
+
 
         aboutFragment = new AboutFragment();
         conditionFragment = new ConditionFragment();
@@ -225,6 +225,16 @@ public class AppController extends Application {
     {
         this.mainActivity = mainActivity;
         inicialiseMunu();
+
+        if(preferences.getString("f", "yes") == "yes")
+        {
+            mainActivity.showShapeActivity();
+        }
+
+        editPref.putString("f", "no");
+        editPref.commit();
+        // =)
+
     }
 
     public SpannableStringBuilder addRuble(String s)

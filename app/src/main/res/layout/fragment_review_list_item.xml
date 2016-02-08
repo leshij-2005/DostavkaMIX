@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     xmlns:foo="http://schemas.android.com/apk/res-auto"
     android:id="@+id/review_item"
-    android:layout_height="110sp"
+    android:layout_height="100sp"
     android:orientation="horizontal">
 
     <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
@@ -31,10 +31,14 @@
         android:layout_alignLeft="@+id/review_title"
         android:layout_alignRight="@+id/arrow_right"
         android:layout_marginRight="10sp"
+        android:layout_marginTop="10sp"
 
         android:text="text texttext texttext texttext texttext texttext texttext texttext texttext text"
         android:textColor="@color/dish_descript_color"
         android:textSize="14sp"
+        android:ellipsize="end"
+        android:lineSpacingMultiplier="1.1"
+        android:maxLines="2"
         foo:customFont="fonts/GothaProReg.otf"
 
         />

@@ -12,6 +12,6 @@ public class Action {
     public Action(String title, String url, String content) {
         this.title = title;
         this.url = url;
-        this.content = content;
+        this.content = content.trim();
     }
 }

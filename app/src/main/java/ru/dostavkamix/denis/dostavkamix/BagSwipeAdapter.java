@@ -57,7 +57,6 @@ public class BagSwipeAdapter extends BaseSwipeAdapter {
         v.findViewById(R.id.trash).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "click delete", Toast.LENGTH_SHORT).show();
                 swipeLayout.close();
                 v.startAnimation(anim);
 

@@ -51,11 +51,14 @@ public class BagFragment extends Fragment {
         listView.setAdapter(new BagSwipeAdapter(AppController.getInstance().getApplicationContext()));
 
         inposOrderDialog = new MaterialDialog(AppController.getInstance().getMainActivity())
-                .setMessage("Извините, минимальный заказ от 500 рублей!")
+                .setMessage("Обращаем Ваше внимание, что к сумме заказа будет прибавленно 150 руб. за доставку. Подробности уточняйте у оператора или в разделе \"Условия доставки\"")
                 .setPositiveButton("Закрыть", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         inposOrderDialog.dismiss();
+                        Intent intent = new Intent(AppController.getInstance().getMainActivity().getApplicationContext(), OrderActivity.class);
+                        startActivity(intent);
+                        AppController.getInstance().getMainActivity().overridePendingTransition(R.anim.slide_in_bottom, android.R.anim.fade_out);
                     }
                 });
         iphoneDialog = new MaterialDialog(AppController.getInstance().getMainActivity())
@@ -74,8 +77,11 @@ public class BagFragment extends Fragment {
         but_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(AppController.getInstance().getWithSale() < 500)
+                if(AppController.getInstance().getSale() == 0) {
                     inposOrderDialog.show();
+
+                }
+
                 else {
                     if(AppController.getInstance().getWithSale() < 1000)
                     {

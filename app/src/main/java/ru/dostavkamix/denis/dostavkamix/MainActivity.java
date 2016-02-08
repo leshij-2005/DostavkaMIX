@@ -3,8 +3,11 @@ package ru.dostavkamix.denis.dostavkamix;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -45,8 +48,10 @@ import ru.dostavkamix.denis.dostavkamix.Fragments.BagFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.FragmentOrder;
 import ru.dostavkamix.denis.dostavkamix.Fragments.InOrderDialog;
 import ru.dostavkamix.denis.dostavkamix.Fragments.dishListFragment;
+import ru.dostavkamix.denis.dostavkamix.blurbehind.BlurBehind;
+import ru.dostavkamix.denis.dostavkamix.blurbehind.OnBlurCompleteListener;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     boolean isReadyDish = false;
 
@@ -97,23 +102,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout frame;
 
 
-    public void updateBagPrice()
-    {
+    public void updateBagPrice() {
         AppController.getInstance().setWithoutSale(AppController.getInstance().getBagPrice());
         double s = 0;
-        if(AppController.getInstance().getWithoutSale() >= 500 && AppController.getInstance().getWithoutSale() < 1500) {
+        if (AppController.getInstance().getWithoutSale() >= 500 && AppController.getInstance().getWithoutSale() < 1500) {
             AppController.getInstance().setSale(5);
             s = 0.95;
-        }
-        else if(AppController.getInstance().getWithoutSale() >= 1500 && AppController.getInstance().getWithoutSale() < 2500) {
+        } else if (AppController.getInstance().getWithoutSale() >= 1500 && AppController.getInstance().getWithoutSale() < 2500) {
             AppController.getInstance().setSale(10);
             s = 0.90;
-        }
-        else if(AppController.getInstance().getWithoutSale() > 2500) {
+        } else if (AppController.getInstance().getWithoutSale() > 2500) {
             AppController.getInstance().setSale(15);
             s = 0.85;
-        }
-        else {
+        } else {
             AppController.getInstance().setSale(0);
             s = 1;
 
@@ -158,8 +159,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ft.commit();
 
 
-
-
         logo = (AppCompatImageView) findViewById(R.id.logo);
         bag_price = (TextViewPlus) findViewById(R.id.toolbar_price);
         arrow_down_t = (ImageView) findViewById(R.id.arrow_down_t);
@@ -169,8 +168,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAct = this;
 
 
-
-
         findViewById(R.id.toolbar_lay_text).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (AppController.getInstance().getWithoutSale() > 0) {
                     Log.d("json", String.valueOf(AppController.getInstance().getWithoutSale()));
                     ft = getFragmentManager().beginTransaction();
-                    ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left, R.animator.fade_in, R.animator.slide_out_left);
+                    ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out, R.animator.fade_in, R.animator.slide_out_left);
                     ft.replace(R.id.frame_fragment, bagFrag);
                     ft.addToBackStack(null);
                     ft.commit();
@@ -224,11 +221,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         for (int i = 0; i < menuCategoryText.size(); i++) {
             menuCategoryText.get(i).setOnClickListener(this);
-    }
+        }
 
         selectCategory(menuCategoryText.get(0));
         dlg1 = new InOrderDialog();
-
 
 
         AppController.getInstance().setMainActivity(this);
@@ -247,30 +243,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
         Log.d("json", "click Back");
-        /*
-        if (slideMuneDrawer != null && slideMuneDrawer.isDrawerOpen()) {
-            slideMuneDrawer.closeDrawer();
-        } else
-        if(AppController.getInstance().isShowDescriptFrag()) {
-            Log.d("json", "back to Menu");
-            ft = getFragmentManager().beginTransaction();
-            ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left);
-            ft.replace(R.id.frame_fragment, MenuFragment);
-            AppController.getInstance().setIsShowMenuList(true);
-            ft.addToBackStack(null);
-            AppController.getInstance().setIsShowDescriptFrag(false);
-            ft.commit();
-        }
-        else
-        {
-            Log.d("json", "super back");
-            super.onBackPressed();
-        }
-        */
-        if(getFragmentManager().getBackStackEntryCount() > 0)
-        {
+
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+
+
+            FragmentManager.BackStackEntry backEntry = getFragmentManager().getBackStackEntryAt(getFragmentManager().getBackStackEntryCount() - 1);
+            String str = backEntry.getName();
+            Fragment fragment = getFragmentManager().findFragmentByTag(str);
+
+
             getFragmentManager().popBackStack();
-            Log.d("json", "В стеке что-то есть");
+
+            FragmentManager.BackStackEntry backEntry1 = getFragmentManager().getBackStackEntryAt(getFragmentManager().getBackStackEntryCount() - 1);
+            String str1 = backEntry1.getName();
+            Fragment fragment1 = getFragmentManager().findFragmentByTag(str1);
+
+            if (fragment == fragment1) {
+                Log.d("json", "frag equel");
+                getFragmentManager().popBackStack();
+            }
+
+            Log.d("json", "В стеке что-то есть  " + getFragmentManager().getBackStackEntryCount());
         } else {
             super.onBackPressed();
         }
@@ -286,13 +279,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         slideMuneDrawer.closeDrawer();
     }
 
-
-    private void selectCategory(final TextViewPlus v)
-    {
+    public void showShapeActivity() {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while(!isReadyDish) {
+                while (!isReadyDish) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        BlurBehind.getInstance().execute(mAct, new OnBlurCompleteListener() {
+                            @Override
+                            public void onBlurComplete() {
+                                Intent intent = new Intent(mAct, ShapeActivity.class);
+                                //intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                                startActivity(intent);
+                            }
+                        }, 12);
+                    }
+                });
+            }
+        }).start();
+    }
+
+
+    private void selectCategory(final TextViewPlus v) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!isReadyDish) {
                     try {
                         Thread.sleep(100);
                     } catch (InterruptedException e) {
@@ -302,11 +329,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(selectText != v)
-                        {
+                        if (selectText != v) {
                             try {
                                 selectText.setCustomFont(getApplicationContext(), "fonts/GothaProReg.otf");
-
+                                selectText.setTextColor(getResources().getColor(R.color.menu_category_color));
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -314,9 +340,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                             selectText = (TextViewPlus) v;
                             selectText.setCustomFont(getApplicationContext(), "fonts/GothaProBol.otf");
+                            selectText.setTextColor(Color.WHITE);
                             Category categ = getCategoryIdOfTag(String.valueOf(selectText.getTag()));
-                            if(categ != null)
-                            {
+                            if (categ != null) {
                                 Log.d("json", "Category ID: " + categ.getIdCategory());
                             } else Log.d("json", "Not found category =(");
                             updateListDish(getDishOfCategory(categ, dishs));
@@ -330,8 +356,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private class ParseTask extends AsyncTask<Void, Void, String>
-    {
+    private class ParseTask extends AsyncTask<Void, Void, String> {
         final String base_url_img = "http://chaihanamix.ru/ios_app/action_images/action_";
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
@@ -350,13 +375,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 reader = new BufferedReader(new InputStreamReader(inputStream));
 
                 String line;
-                while ((line = reader.readLine()) != null)
-                {
+                while ((line = reader.readLine()) != null) {
                     buffer.append(line);
                 }
                 resultJson = buffer.toString();
-
-
 
 
                 DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -374,8 +396,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 for (int i = 0; i < reviewsList.getLength(); i++) {
                     Node nNode = reviewsList.item(i);
 
-                    if(nNode.getNodeType() == Node.ELEMENT_NODE)
-                    {
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                         Element eElement = (Element) nNode;
                         Log.d("parse", "title : " + eElement.getAttribute("title"));
                         Log.d("parse", "subtitle : " + eElement.getAttribute("subtitle"));
@@ -390,7 +411,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     Log.d("parse", "Current Element : " + nNode.getNodeName());
 
-                    if(nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                         Element eElement = (Element) nNode;
 
@@ -401,8 +422,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         actions.add(new Action(eElement.getAttribute("title"), base_url_img + eElement.getAttribute("img_id") + ".png", eElement.getTextContent()));
                     }
                 }
-            } catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return resultJson;
@@ -417,8 +437,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             JSONObject dataJsonObj = null;
 
 
-            try
-            {
+            try {
                 dataJsonObj = new JSONObject(strJson);
                 JSONArray catal = dataJsonObj.getJSONArray("catalogs");
 
@@ -468,8 +487,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
 
-            } catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
                 Log.d("json", "Exception Parse");
             }
@@ -498,7 +516,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d("json", "Список готов! Сортирую...");
         ArrayList<Dish> result = new ArrayList<Dish>();
         for (int i = 0; i < dishL.size(); i++) {
-            if(dishL.get(i).getIdCategory() == category.getIdCategory()) result.add(dishL.get(i));
+            if (dishL.get(i).getIdCategory() == category.getIdCategory()) result.add(dishL.get(i));
         }
         return result;
     }
@@ -507,24 +525,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d("json", "Готовлю фрагмент для обновления...");
         boxAdapter = new BoxAdapter(this, aDish, ft);
         MenuFragment.setListAdapter(boxAdapter);
-        if(!AppController.getInstance().isShowMenuList()) {
-            Log.d("json", "back to Menu");
-            ft = getFragmentManager().beginTransaction();
-            ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left);
-            ft.replace(R.id.frame_fragment, MenuFragment);
-            AppController.getInstance().setIsShowMenuList(true);
-            ft.addToBackStack(null);
-            AppController.getInstance().setIsShowDescriptFrag(false);
-            ft.commit();
-        }
+        Log.d("json", "back to Menu");
+        ft = getFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left);
+        ft.replace(R.id.frame_fragment, MenuFragment);
+        AppController.getInstance().setIsShowMenuList(true);
+        ft.addToBackStack(null);
+        AppController.getInstance().setIsShowDescriptFrag(false);
+        ft.commit();
         Log.d("json", "Фрагмент обновлен!");
     }
 
-    public Category getCategoryIdOfTag(String t)
-    {
+    public Category getCategoryIdOfTag(String t) {
         for (int i = 0; i < categories.size(); i++) {
-            if(categories.get(i).getIdCategory() == Integer.valueOf(t))
-            {
+            if (categories.get(i).getIdCategory() == Integer.valueOf(t)) {
                 return categories.get(i);
             }
         }

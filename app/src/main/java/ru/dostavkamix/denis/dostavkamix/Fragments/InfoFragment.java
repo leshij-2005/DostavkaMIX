@@ -4,11 +4,13 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -45,6 +47,7 @@ public class InfoFragment extends Fragment implements OnClickListener {
     ViewPager pager_view;
     SwipeImageAdapter mAdapter;
     ArrayList<Integer> image_list = new ArrayList<>();
+    private static final String url = "http://www.chaihanamix.ru";
 
     //Containers
     private LinearLayout lay_info;
@@ -65,6 +68,9 @@ public class InfoFragment extends Fragment implements OnClickListener {
     //Info
     private RelativeLayout lay_map;
     private RelativeLayout lay_web;
+
+    //Call button
+    private RelativeLayout but_to_call;
 
 
     @Nullable
@@ -108,6 +114,10 @@ public class InfoFragment extends Fragment implements OnClickListener {
         lay_web = (RelativeLayout) v.findViewById(R.id.relative_4);
         lay_map.setOnClickListener(this);
         lay_web.setOnClickListener(this);
+
+        //Cell button
+        but_to_call = (RelativeLayout) v.findViewById(R.id.but_to_call);
+        but_to_call.setOnClickListener(this);
 
         image_list.add(R.drawable.image1);
         image_list.add(R.drawable.image2);
@@ -153,10 +163,18 @@ public class InfoFragment extends Fragment implements OnClickListener {
                 }
                 break;
             case R.id.relative_1:
-
+                selectOffButton(select_left);
+                selectOnButton(select_right);
+                map_view.setVisibility(View.VISIBLE);
+                lay_info.setVisibility(View.GONE);
                 break;
             case R.id.relative_4:
-
+                Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browser);
+                break;
+            case R.id.but_to_call:
+                Intent call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "432222"));
+                startActivity(call);
                 break;
         }
     }

@@ -185,6 +185,15 @@ public class BoxAdapter extends BaseAdapter {
         {
             Log.d(TAG, "уже в корзине");
             checkBut.setChecked(true);
+            notifyDataSetChanged();
+        } else
+        {
+            Log.d("json", "не в корзине");
+            setChecked(position, false);
+            getDish(position).setCountOrder(0);
+            AppController.getInstance().removeInBad(getDish(position));
+            notifyDataSetChanged();
+
         }
 
         Boolean checked = myChecked.get(position);

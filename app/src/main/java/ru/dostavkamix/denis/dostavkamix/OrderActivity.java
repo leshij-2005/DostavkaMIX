@@ -2,12 +2,14 @@ package ru.dostavkamix.denis.dostavkamix;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.TransitionDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,6 +31,9 @@ import me.drakeet.materialdialog.MaterialDialog;
 import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
 
 public class OrderActivity extends AppCompatActivity implements View.OnClickListener {
+
+    //Dialogs
+    MaterialDialog invalidDialog;
 
     // Toolbar
     private ImageView arrow_down;
@@ -73,10 +78,16 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     
     // Other
     static Calendar now = Calendar.getInstance();
+    int sum_button = AppController.getInstance().getWithSale();
 
 
     private void initialise()
     {
+        //Root lay
+        //root_lay = (RelativeLayout) findViewById(R.id.root_lay);
+        //inputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        //softKeyboard = new SoftKeyboard(root_lay, inputManager);
+
         // Toolbar
         arrow_down = (ImageView) findViewById(R.id.arrow_down);
         mix_logo = (ImageView) findViewById(R.id.mix_logo);
@@ -105,6 +116,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         billing_wallet = (RelativeLayout) findViewById(R.id.billing_wallet);
             check_wallet = (ImageView) findViewById(R.id.check_wallet);
             view_renting = (RelativeLayout) findViewById(R.id.view_renting);
+            order_renting = (EditText) findViewById(R.id.order_renting);
         billing_card = (RelativeLayout) findViewById(R.id.billing_card);
             check_card = (ImageView) findViewById(R.id.check_card);
 
@@ -115,10 +127,13 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
         selectOnButton(select_left);
 
-        text_but_order.setText("Оформить за " + addR(String.valueOf(AppController.getInstance().getWithSale())));
+        if(AppController.getInstance().getSale() == 0)
+        {
+            sum_button = AppController.getInstance().getWithoutSale() + 150;
+        }
+
+        text_but_order.setText("Оформить за " + addR(String.valueOf(sum_button)));
         order_time.setHint("Сегодня" + " " + (String.valueOf(now.get(Calendar.HOUR)) + ":" + String.valueOf(now.get(Calendar.MINUTE))));
-
-
 
         but_to_order.setOnClickListener(this);
         arrow_down.setOnClickListener(this);
@@ -128,6 +143,13 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         billing_wallet.setOnClickListener(this);
         select_left.setOnClickListener(this);
         select_right.setOnClickListener(this);
+
+        order_name.setText(AppController.getInstance().preferences.getString("order_name", ""));
+        order_phone.setText(AppController.getInstance().preferences.getString("order_phone", ""));
+        order_email.setText(AppController.getInstance().preferences.getString("order_email", ""));
+        order_street.setText(AppController.getInstance().preferences.getString("order_street", ""));
+        order_house.setText(AppController.getInstance().preferences.getString("order_house", ""));
+        order_apartament.setText(AppController.getInstance().preferences.getString("order_apartament", ""));
     }
 
     private String addR(String s)
@@ -149,6 +171,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         initialise();
+        order_name.requestFocus();
 
 
     }
@@ -217,6 +240,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         colorAnim.start();
 
         OnSelect = button;
+        text_but_order.setText("Оформить за " + addR(String.valueOf(sum_button)));
     }
     public void selectOffButton(Button button)
     {
@@ -240,6 +264,11 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         {
             case R.id.select_left:
                 if (OnSelect != v) {
+                    if(AppController.getInstance().getSale() == 0)
+                    {
+                        sum_button = AppController.getInstance().getWithoutSale() + 150;
+                    } else sum_button = AppController.getInstance().getWithSale();
+
                     selectOffButton(OnSelect);
                     selectOnButton((Button) v);
 
@@ -251,6 +280,16 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.select_right:
                 if (OnSelect != v) {
+
+                    if(AppController.getInstance().getSale() != 0) {
+                        if (AppController.getInstance().getSale() != 10) {
+                            sum_button = (int) (AppController.getInstance().getWithoutSale() * 0.85);
+                        } else {
+                            sum_button = (int) (AppController.getInstance().getWithoutSale() * 0.90);
+                        }
+                    } else sum_button = (int) ((AppController.getInstance().getWithoutSale() + 150) * 0.90);
+
+
                     selectOffButton(OnSelect);
                     selectOnButton((Button) v);
 
@@ -285,9 +324,86 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             case R.id.arrow_down:
                 finish();
                 break;
+            case R.id.but_to_order:
+                if(validEditText()) {
+                    Log.d("json", "Заказываю...");
+                    Buy b = new Buy();
+                    b.execute(new Buyer(
+                            order_name.getText().toString(),
+                            order_phone.getText().toString(),
+                            order_street.getText().toString(),
+                            order_house.getText().toString(),
+                            order_apartament.getText().toString(),
+                            OnSelect.getId() == R.id.select_left ? "доставка" : "самовывоз",
+                            billing_wallet.getVisibility() == View.VISIBLE ? "наличка, сдача с " + order_renting.getText().toString() : "безнал",
+                            AppController.getInstance().getInBag()
+                    ));
+                    AppController.getInstance().editPref.putString("order_name", order_name.getText().toString());
+                    AppController.getInstance().editPref.putString("order_phone", order_phone.getText().toString());
+                    AppController.getInstance().editPref.putString("order_email", order_email.getText().toString());
+                    AppController.getInstance().editPref.putString("order_street", order_street.getText().toString());
+                    AppController.getInstance().editPref.putString("order_house", order_house.getText().toString());
+                    AppController.getInstance().editPref.putString("order_apartament", order_apartament.getText().toString());
+                    AppController.getInstance().editPref.commit();
+                } else Log.d("json", "invalid edittext");
         }
 
     }
 
-
+    private boolean validEditText()
+    {
+        if(order_name.getText().toString().matches(""))
+        {
+            invalidDialog = new MaterialDialog(this)
+                    .setMessage("Поле \"Имя \" - обязательно для заполнения")
+                    .setPositiveButton("Закрыть", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            invalidDialog.dismiss();
+                        }
+                    });
+            invalidDialog.show();
+            return false;
+        }
+        if(order_phone.getText().toString().matches(""))
+        {
+            invalidDialog = new MaterialDialog(this)
+                    .setMessage("Поле \"Телефон \" - обязательно для заполнения")
+                    .setPositiveButton("Закрыть", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            invalidDialog.dismiss();
+                        }
+                    });
+            invalidDialog.show();
+            return false;
+        }
+        if(OnSelect.getId() == R.id.select_left) {
+            if (order_street.getText().toString().matches("")) {
+                invalidDialog = new MaterialDialog(this)
+                        .setMessage("Поле \"Улица \" - обязательно для заполнения")
+                        .setPositiveButton("Закрыть", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                invalidDialog.dismiss();
+                            }
+                        });
+                invalidDialog.show();
+                return false;
+            }
+            if (order_house.getText().toString().matches("")) {
+                invalidDialog = new MaterialDialog(this)
+                        .setMessage("Поле \"Дом \" - обязательно для заполнения")
+                        .setPositiveButton("Закрыть", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                invalidDialog.dismiss();
+                            }
+                        });
+                invalidDialog.show();
+                return false;
+            }
+        }
+        return true;
+    }
 }
