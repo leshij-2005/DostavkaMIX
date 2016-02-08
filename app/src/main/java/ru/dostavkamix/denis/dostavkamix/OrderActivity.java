@@ -2,6 +2,7 @@ package ru.dostavkamix.denis.dostavkamix;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.TransitionDrawable;
@@ -29,11 +30,13 @@ import java.util.Locale;
 
 import me.drakeet.materialdialog.MaterialDialog;
 import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
+import ru.dostavkamix.denis.dostavkamix.Fragments.BuyDialog;
 
 public class OrderActivity extends AppCompatActivity implements View.OnClickListener {
 
     //Dialogs
     MaterialDialog invalidDialog;
+    DialogFragment buyDialog;
 
     // Toolbar
     private ImageView arrow_down;
@@ -87,6 +90,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         //root_lay = (RelativeLayout) findViewById(R.id.root_lay);
         //inputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         //softKeyboard = new SoftKeyboard(root_lay, inputManager);
+
+        buyDialog = new BuyDialog();
 
         // Toolbar
         arrow_down = (ImageView) findViewById(R.id.arrow_down);
@@ -328,6 +333,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 if(validEditText()) {
                     Log.d("json", "Заказываю...");
                     Buy b = new Buy();
+
                     b.execute(new Buyer(
                             order_name.getText().toString(),
                             order_phone.getText().toString(),
@@ -338,6 +344,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                             billing_wallet.getVisibility() == View.VISIBLE ? "наличка, сдача с " + order_renting.getText().toString() : "безнал",
                             AppController.getInstance().getInBag()
                     ));
+
                     AppController.getInstance().editPref.putString("order_name", order_name.getText().toString());
                     AppController.getInstance().editPref.putString("order_phone", order_phone.getText().toString());
                     AppController.getInstance().editPref.putString("order_email", order_email.getText().toString());
@@ -345,6 +352,19 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                     AppController.getInstance().editPref.putString("order_house", order_house.getText().toString());
                     AppController.getInstance().editPref.putString("order_apartament", order_apartament.getText().toString());
                     AppController.getInstance().editPref.commit();
+
+                    buyDialog.show(getFragmentManager(), "dialogInBag");
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            buyDialog.dismiss();
+                        }
+                    }).start();
                 } else Log.d("json", "invalid edittext");
         }
 

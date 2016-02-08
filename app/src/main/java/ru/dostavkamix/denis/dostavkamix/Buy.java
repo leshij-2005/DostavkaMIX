@@ -33,7 +33,7 @@ public class Buy extends AsyncTask<Buyer, Void, Void>{
             String json = temp.substring(1, temp.length() - 1);
             Log.d("json", json);
 
-            /*
+
             URL url = new URL(buyUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
@@ -55,7 +55,7 @@ public class Buy extends AsyncTask<Buyer, Void, Void>{
                 }
                 Log.d("json", "Response message: " + result);
             }
-            */
+
 
         } catch (JsonMappingException e) {
             e.printStackTrace();
