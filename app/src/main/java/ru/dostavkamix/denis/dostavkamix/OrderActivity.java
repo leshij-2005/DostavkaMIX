@@ -345,6 +345,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                             AppController.getInstance().getInBag()
                     ));
 
+
                     AppController.getInstance().editPref.putString("order_name", order_name.getText().toString());
                     AppController.getInstance().editPref.putString("order_phone", order_phone.getText().toString());
                     AppController.getInstance().editPref.putString("order_email", order_email.getText().toString());
@@ -363,6 +364,20 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                                 e.printStackTrace();
                             }
                             buyDialog.dismiss();
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    AppController.getInstance().inBag.clear();
+                                    AppController.getInstance().getMainActivity().updateBagPrice();
+                                    try {
+                                        Thread.sleep(1000);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    finish();
+                                }
+                            });
                         }
                     }).start();
                 } else Log.d("json", "invalid edittext");

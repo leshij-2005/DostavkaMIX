@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     TextViewPlus selectText = null;
 
-    public ListFragment MenuFragment;
+    public dishListFragment MenuFragment;
     public BagFragment bagFrag;
     public FragmentTransaction ft;
     private Fragment OrderFragment;
@@ -524,7 +525,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void updateListDish(ArrayList<Dish> aDish) {
         Log.d("json", "Готовлю фрагмент для обновления...");
         boxAdapter = new BoxAdapter(this, aDish, ft);
-        MenuFragment.setListAdapter(boxAdapter);
+        //MenuFragment.setListAdapter(boxAdapter);
+        MenuFragment.setAdapter(boxAdapter);
         Log.d("json", "back to Menu");
         ft = getFragmentManager().beginTransaction();
         ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left);

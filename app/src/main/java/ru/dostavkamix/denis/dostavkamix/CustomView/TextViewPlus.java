@@ -42,6 +42,7 @@ public class TextViewPlus extends TextView {
             tf = Typeface.createFromAsset(ctx.getAssets(), asset);
         } catch (Exception e) {
             Log.e(TAG, "Could not get typeface: " + e.getMessage());
+            Log.e(TAG, "Could not get typeface: " + getText().toString());
             return false;
         }
 

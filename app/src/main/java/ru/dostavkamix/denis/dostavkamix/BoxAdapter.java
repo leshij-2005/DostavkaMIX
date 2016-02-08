@@ -19,6 +19,7 @@ import com.android.volley.toolbox.ImageLoader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import ru.dostavkamix.denis.dostavkamix.CustomView.CustomTypefaceSpan;
 import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
@@ -47,6 +48,7 @@ public class BoxAdapter extends BaseAdapter {
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     Animation anim_emerging = null;
     private HashMap<Integer, Boolean> myChecked = new HashMap<Integer, Boolean>();
+    private ArrayList<Dish> arr;
 
     public BoxAdapter(MainActivity mainActivity, ArrayList<Dish> object, FragmentTransaction ft) {
         this.ctx = mainActivity.getApplicationContext();
@@ -58,6 +60,8 @@ public class BoxAdapter extends BaseAdapter {
         descriptFragment = new descriptionFragment();
         this.ft = ft;
         anim_emerging = AnimationUtils.loadAnimation(mainActivity, R.anim.emerging_view);
+        this.arr = new ArrayList<Dish>();
+        this.arr.addAll(object);
 
         for (int i = 0; i < object.size(); i++) {
             myChecked.put(i, false);
@@ -227,5 +231,23 @@ public class BoxAdapter extends BaseAdapter {
             }
         });
         return view;
+    }
+
+    public void filter(String charText)
+    {
+        charText = charText.toLowerCase();
+        object.clear();
+        if(charText.length() == 0)
+        {
+            object.addAll(arr);
+        } else {
+            for (Dish ds: arr) {
+                if(ds.getContent().toLowerCase().contains(charText) || ds.getNameDish().toLowerCase().contains(charText))
+                {
+                    object.add(ds);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 }
