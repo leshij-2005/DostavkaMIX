@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -49,12 +50,15 @@ import ru.dostavkamix.denis.dostavkamix.Fragments.BagFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.FragmentOrder;
 import ru.dostavkamix.denis.dostavkamix.Fragments.InOrderDialog;
 import ru.dostavkamix.denis.dostavkamix.Fragments.dishListFragment;
+import ru.dostavkamix.denis.dostavkamix.Fragments.progressDialog;
 import ru.dostavkamix.denis.dostavkamix.blurbehind.BlurBehind;
 import ru.dostavkamix.denis.dostavkamix.blurbehind.OnBlurCompleteListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     boolean isReadyDish = false;
+
+    public DialogFragment progressDialog;
 
     public ArrayList<Review> reviews = new ArrayList<>();
     public ArrayList<Action> actions = new ArrayList<>();
@@ -152,11 +156,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bagFrag = new BagFragment();
 
         ft = getFragmentManager().beginTransaction();
-        //ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out, R.animator.fade_in, R.animator.slide_out_left);
 
         ft.replace(R.id.frame_fragment, MenuFragment);
-        ft.addToBackStack(null);
         ft.commit();
 
 
@@ -245,26 +247,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onBackPressed() {
         Log.d("json", "click Back");
 
-        if (getFragmentManager().getBackStackEntryCount() > 0) {
+        if (getFragmentManager().getBackStackEntryCount() > 1) {
 
-
-            FragmentManager.BackStackEntry backEntry = getFragmentManager().getBackStackEntryAt(getFragmentManager().getBackStackEntryCount() - 1);
-            String str = backEntry.getName();
-            Fragment fragment = getFragmentManager().findFragmentByTag(str);
-
-
-            getFragmentManager().popBackStack();
-
-            FragmentManager.BackStackEntry backEntry1 = getFragmentManager().getBackStackEntryAt(getFragmentManager().getBackStackEntryCount() - 1);
-            String str1 = backEntry1.getName();
-            Fragment fragment1 = getFragmentManager().findFragmentByTag(str1);
-
-            if (fragment == fragment1) {
-                Log.d("json", "frag equel");
+            try {
                 getFragmentManager().popBackStack();
+                Log.d("json", "В стеке что-то есть  " + getFragmentManager().getBackStackEntryCount());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-            Log.d("json", "В стеке что-то есть  " + getFragmentManager().getBackStackEntryCount());
         } else {
             super.onBackPressed();
         }
@@ -362,6 +352,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String resultJson = "";
+
+        @Override
+        protected void onPreExecute() {
+        }
 
         @Override
         protected String doInBackground(Void... params) {
@@ -523,19 +517,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void updateListDish(ArrayList<Dish> aDish) {
-        Log.d("json", "Готовлю фрагмент для обновления...");
-        boxAdapter = new BoxAdapter(this, aDish, ft);
-        //MenuFragment.setListAdapter(boxAdapter);
-        MenuFragment.setAdapter(boxAdapter);
-        Log.d("json", "back to Menu");
-        ft = getFragmentManager().beginTransaction();
-        ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left);
-        ft.replace(R.id.frame_fragment, MenuFragment);
-        AppController.getInstance().setIsShowMenuList(true);
-        ft.addToBackStack(null);
-        AppController.getInstance().setIsShowDescriptFrag(false);
-        ft.commit();
-        Log.d("json", "Фрагмент обновлен!");
+        try {
+            Log.d("json", "Готовлю фрагмент для обновления...");
+            boxAdapter = new BoxAdapter(this, aDish, ft);
+            //MenuFragment.setListAdapter(boxAdapter);
+            MenuFragment.setAdapter(boxAdapter);
+            Log.d("json", "back to Menu");
+            ft = getFragmentManager().beginTransaction();
+            ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left);
+            ft.replace(R.id.frame_fragment, MenuFragment);
+            AppController.getInstance().setIsShowMenuList(true);
+            AppController.getInstance().setIsShowDescriptFrag(false);
+            AppController.getInstance().selectMenu(1, true);
+            ft.commit();
+            Log.d("json", "Фрагмент обновлен!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public Category getCategoryIdOfTag(String t) {

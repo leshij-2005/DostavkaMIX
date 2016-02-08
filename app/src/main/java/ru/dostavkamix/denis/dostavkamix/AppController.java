@@ -466,4 +466,35 @@ public class AppController extends Application {
 
         }
     }
+
+    public void selectMenu(int position, boolean is)
+    {
+        switch (position)
+        {
+            case 1:
+                selectMenu(menu_item_1);
+                break;
+            case 2:
+                selectMenu(menu_item_2);
+                break;
+            case 3:
+                selectMenu(menu_item_3);
+                break;
+            case 4:
+                selectMenu(menu_item_4);
+                break;
+            case 5:
+                selectMenu(menu_item_5);
+                break;
+            case 6:
+                selectMenu(menu_item_6);
+                break;
+            case 7:
+                selectMenu(menu_item_7);
+                break;
+            default:
+                break;
+
+        }
+    }
 }

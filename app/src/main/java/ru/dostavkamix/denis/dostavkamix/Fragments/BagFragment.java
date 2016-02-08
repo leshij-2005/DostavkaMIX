@@ -39,7 +39,7 @@ public class BagFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_bag, container, false);
 
-        AppController.getInstance().selectMenu(7);
+        AppController.getInstance().selectMenu(7, true);
         listView = (ListView) v.findViewById(R.id.list_bag);
         sale = (TextViewPlus) v.findViewById(R.id.sale);
         withoutSale = (TextViewPlus) v.findViewById(R.id.without_sale);

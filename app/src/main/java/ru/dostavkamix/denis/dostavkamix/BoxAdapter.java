@@ -19,14 +19,13 @@ import com.android.volley.toolbox.ImageLoader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import ru.dostavkamix.denis.dostavkamix.CustomView.CustomTypefaceSpan;
 import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.CustomView.customNetworkImageView;
 import ru.dostavkamix.denis.dostavkamix.CustomView.priceButton;
 import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
-import ru.dostavkamix.denis.dostavkamix.Fragments.descriptionFragment;
+import ru.dostavkamix.denis.dostavkamix.Fragments.CardFragment;
 
 import static ru.dostavkamix.denis.dostavkamix.R.drawable.white_progress;
 
@@ -36,15 +35,15 @@ import static ru.dostavkamix.denis.dostavkamix.R.drawable.white_progress;
 public class BoxAdapter extends BaseAdapter {
 
     private final String TAG = getClass().getSimpleName();
-    private descriptionFragment descriptFragment;
+    private CardFragment cardFragment;
     private Fragment firstFragment;
     private FragmentTransaction ft;
     Context ctx;
     MainActivity mainActivity;
     LayoutInflater linflater;
-    ArrayList<Dish> object;
-    Typeface fontRub = null;
-    Typeface fontReg = null;
+    public static ArrayList<Dish> object;
+    static Typeface fontRub = null;
+    static Typeface fontReg = null;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     Animation anim_emerging = null;
     private HashMap<Integer, Boolean> myChecked = new HashMap<Integer, Boolean>();
@@ -57,7 +56,7 @@ public class BoxAdapter extends BaseAdapter {
         this.linflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         fontRub = Typeface.createFromAsset(ctx.getAssets(), "fonts/RUBSN.otf");
         fontReg = Typeface.createFromAsset(ctx.getAssets(), "fonts/GothaProReg.otf");
-        descriptFragment = new descriptionFragment();
+        cardFragment = new CardFragment();
         this.ft = ft;
         anim_emerging = AnimationUtils.loadAnimation(mainActivity, R.anim.emerging_view);
         this.arr = new ArrayList<Dish>();
@@ -104,7 +103,7 @@ public class BoxAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Dish getItem(int position) {
         return object.get(position);
     }
 
@@ -115,10 +114,10 @@ public class BoxAdapter extends BaseAdapter {
 
     public Dish getDish(int position)
     {
-        return ((Dish) getItem(position));
+        return getItem(position);
     }
 
-    public SpannableStringBuilder addRuble(String s)
+    public static SpannableStringBuilder addRuble(String s)
     {
         if(s.length() < 4) {
             SpannableStringBuilder result = new SpannableStringBuilder(s + " Я");
@@ -159,23 +158,22 @@ public class BoxAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Log.d(TAG, "Click item");
 
-                descriptFragment.setMainActivity(mainActivity);
-                descriptFragment.setOnDish(d);
-                descriptFragment.setDish_img_frag(d.getImjDish());
-                descriptFragment.setDish_name_frag(d.getNameDish());
-                descriptFragment.setDish_descript_frag(d.getContent());
-                descriptFragment.setDish_weight_frag(d.getWeight());
-                descriptFragment.setDish_price_frag(addRuble(String.valueOf(d.getPriceDish())));
+                cardFragment.setMainActivity(mainActivity);
+                cardFragment.setOnDish(d);
 
 
-                dish_img.invalidate();
                 ft = mainActivity.getFragmentManager().beginTransaction();
                 ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out, R.animator.fade_in, R.animator.slide_out_left);
-                ft.replace(R.id.frame_fragment, descriptFragment, "descript");
+                ft.replace(R.id.frame_fragment, cardFragment, "descript");
                 AppController.getInstance().setIsShowDescriptFrag(true);
                 AppController.getInstance().setIsShowMenuList(false);
                 ft.addToBackStack(null);
                 ft.commit();
+                try {
+                    cardFragment.setCurrentItem(position);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 notifyDataSetChanged();
             }
         });
