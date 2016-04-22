@@ -4,11 +4,11 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="slidingmenu_behind_width">185dp</dimen>
 
-    <dimen name="menu_category_text_size">15sp</dimen>
+    <dimen name="menu_category_text_size">13sp</dimen>
     <dimen name="menu_category_margin_left">30sp</dimen>
     <dimen name="menu_category_padding_top">15sp</dimen>
     <dimen name="menu_catalog_margin_left">5sp</dimen>
-    <dimen name="menu_catalog_text_size">20sp</dimen>
+    <dimen name="menu_catalog_text_size">18sp</dimen>
     <dimen name="menu_catalog_padding_top">15sp</dimen>
     <dimen name="button_count_text_size">25sp</dimen>
     <dimen name="size_order_text_item">18sp</dimen>

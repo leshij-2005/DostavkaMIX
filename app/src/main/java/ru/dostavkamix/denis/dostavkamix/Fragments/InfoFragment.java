@@ -130,9 +130,6 @@ public class InfoFragment extends Fragment implements OnClickListener {
         image_list.add(R.drawable.image9);
         image_list.add(R.drawable.image10);
 
-
-
-
         pager_view = (ViewPager) v.findViewById(R.id.pager_view);
         mAdapter = new SwipeImageAdapter(image_list, R.layout.info_swipe_layout);
         pager_view.setAdapter(mAdapter);
@@ -173,7 +170,7 @@ public class InfoFragment extends Fragment implements OnClickListener {
                 startActivity(browser);
                 break;
             case R.id.but_to_call:
-                Intent call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "432222"));
+                Intent call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "468686"));
 
                 startActivity(call);
                 break;

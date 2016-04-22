@@ -86,7 +86,7 @@ public class AppController extends Application {
     TextViewPlus menu_item_5;
     TextViewPlus menu_item_6;
     TextViewPlus menu_item_7;
-    TextViewPlus menu_item_8;
+    RelativeLayout menu_item_8;
     TextViewPlus selectItem;
 
     Fragment aboutFragment;
@@ -178,7 +178,7 @@ public class AppController extends Application {
         menu_item_5 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_5);
         menu_item_6 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_6);
         menu_item_7 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_7);
-        menu_item_8 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_8);
+        menu_item_8 = (RelativeLayout) menu_logo.findViewById(R.id.menu_item_8);
 
         clickMenu cm = new clickMenu();
 

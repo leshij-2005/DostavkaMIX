@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<Catalog> catalogs = new ArrayList<Catalog>();
 
     public Drawer slideMuneDrawer = null;
-    AppCompatImageView logo = null;
+    ImageView logo = null;
     AppCompatImageView icon_menu_up = null;
     AppCompatImageView icon_menu_down = null;
     TextViewPlus bag_price = null;
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
 
 
-        logo = (AppCompatImageView) findViewById(R.id.logo);
+        logo = (ImageView) findViewById(R.id.logo);
         bag_price = (TextViewPlus) findViewById(R.id.toolbar_price);
         arrow_down_t = (ImageView) findViewById(R.id.arrow_down_t);
         arrow_up_t = (ImageView) findViewById(R.id.arrow_up_t);
@@ -413,6 +413,7 @@ public class MainActivity extends AppCompatActivity {
                                     dish.getString("content"),
                                     dish.getString("image"),
                                     k
+
 
                             ));
                         }

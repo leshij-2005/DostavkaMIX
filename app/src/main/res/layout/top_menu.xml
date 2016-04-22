@@ -168,18 +168,45 @@
 
     </View>
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <RelativeLayout
         android:id="@+id/menu_item_8"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_margin="@dimen/slide_menu_margin"
-        android:gravity="center"
+        android:layout_height="50sp"
+        android:background="@drawable/rounded_button_call"
         android:tag="8"
+        android:layout_margin="15sp"
+        android:layout_alignParentBottom="true">
 
-        android:text="Позвонте нам!"
-        android:textColor="@color/md_white_1000"
-        android:textSize="@dimen/slide_menu_text_size"
-        foo:customFont="fonts/GothaProReg.otf"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:layout_width="20sp"
+                android:layout_height="25sp"
+                android:layout_marginRight="10sp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_phone"
+                android:background="@color/accent_color"
+                android:scaleType="fitXY"/>
+
+            <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                foo:customFont="fonts/GothaProReg.otf"
+                android:id="@+id/text_but_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:background="@color/accent_color"
+
+                android:text="Позвоните нам"
+                android:textSize="20sp"
+                android:textColor="@color/base_color"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>
