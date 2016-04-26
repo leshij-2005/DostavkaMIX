@@ -1,5 +1,6 @@
 package ru.dostavkamix.denis.dostavkamix;
 
+import ru.dostavkamix.denis.dostavkamix.SlideMenu.SlideAdapter;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
@@ -16,9 +17,11 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -51,10 +54,16 @@ import ru.dostavkamix.denis.dostavkamix.Fragments.FragmentOrder;
 import ru.dostavkamix.denis.dostavkamix.Fragments.InOrderDialog;
 import ru.dostavkamix.denis.dostavkamix.Fragments.dishListFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.progressDialog;
+import ru.dostavkamix.denis.dostavkamix.SlideMenu.ListViewItem;
 import ru.dostavkamix.denis.dostavkamix.blurbehind.BlurBehind;
 import ru.dostavkamix.denis.dostavkamix.blurbehind.OnBlurCompleteListener;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
+
+    private ListView listView;
+    private ArrayList<ListViewItem> slide_data;
+    ListViewItem[] arr_slide_data;
+    public SlideAdapter slideAdapter;
 
     boolean isReadyDish = false;
 
@@ -66,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public ArrayList<Category> categories = new ArrayList<Category>();
     public ArrayList<Catalog> catalogs = new ArrayList<Catalog>();
 
-    private Drawer slideMuneDrawer = null;
+    public Drawer slideMuneDrawer = null;
     AppCompatImageView logo = null;
     AppCompatImageView icon_menu_up = null;
     AppCompatImageView icon_menu_down = null;
@@ -94,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView arrow_down_t;
     ImageView arrow_up_t;
 
-    public SlideAdapter slideAdapter;
+
 
     TextViewPlus menu_item_1;
     TextViewPlus menu_item_2;
@@ -188,6 +197,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         new ParseTask().execute();
 
+
+
         //slideAdapter = new SlideAdapter(this);
         slideMuneDrawer = new DrawerBuilder()
                 .withActivity(this)
@@ -195,38 +206,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .withRootView(R.id.drawer_container)
                 .withActionBarDrawerToggleAnimated(true)
                 .withSliderBackgroundColorRes(R.color.base_color)
-                .withCustomView(View.inflate(this, R.layout.slide_menu, null))
+                .withCustomView(View.inflate(this, R.layout.slide_root, null))
                 .withSavedInstance(savedInstanceState)
                 .build();
 
-        //Очень очень стыдно...
 
 
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category0_0));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category0_1));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category0_2));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category0_3));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category0_4));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category0_5));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category0_6));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category1_0));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category1_1));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category1_2));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category1_3));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category1_4));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category1_5));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category1_6));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category1_7));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category1_8));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category2_0));
-        menuCategoryText.add((TextViewPlus) findViewById(R.id.category2_1));
+        listView = (ListView) findViewById(R.id.slide_listview);
 
 
-        for (int i = 0; i < menuCategoryText.size(); i++) {
-            menuCategoryText.get(i).setOnClickListener(this);
-        }
-
-        selectCategory(menuCategoryText.get(0));
+        //selectCategory(menuCategoryText.get(0));
         dlg1 = new InOrderDialog();
 
 
@@ -260,15 +249,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @Override
-    public void onClick(View v) {
-
-
-        Log.d("json", "click in onClick");
-
-        selectCategory((TextViewPlus) v);
-        slideMuneDrawer.closeDrawer();
-    }
 
     public void showShapeActivity() {
         new Thread(new Runnable() {
@@ -304,49 +284,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }).start();
     }
-
-
-    private void selectCategory(final TextViewPlus v) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (!isReadyDish) {
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (selectText != v) {
-                            try {
-                                selectText.setCustomFont(getApplicationContext(), "fonts/GothaProReg.otf");
-                                selectText.setTextColor(getResources().getColor(R.color.menu_category_color));
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            Log.d("json", "Новая кнопка");
-
-                            selectText = (TextViewPlus) v;
-                            selectText.setCustomFont(getApplicationContext(), "fonts/GothaProBol.otf");
-                            selectText.setTextColor(Color.WHITE);
-                            Category categ = getCategoryIdOfTag(String.valueOf(selectText.getTag()));
-                            if (categ != null) {
-                                Log.d("json", "Category ID: " + categ.getIdCategory());
-                            } else Log.d("json", "Not found category =(");
-                            updateListDish(getDishOfCategory(categ, dishs));
-
-                        } else Log.d("json", "Та же кнопка");
-                    }
-                });
-            }
-        }).start();
-
-    }
-
-
     private class ParseTask extends AsyncTask<Void, Void, String> {
         final String base_url_img = "http://chaihanamix.ru/ios_app/action_images/action_";
         HttpURLConnection urlConnection = null;
@@ -502,6 +439,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             AppController.getInstance().reviewListFragment.setListAdapter(new ReviewListAdapter());
             //AppController.getInstance().actionFragment.setPagerAdapter(new ActionAdapter());
 
+            slide_data = new ArrayList<ListViewItem>();
+            for(int i = 0; i < catalogs.size(); i++) {
+                slide_data.add(new ListViewItem(catalogs.get(i).getNameCatalog(), ru.dostavkamix.denis.dostavkamix.SlideMenu.SlideAdapter.TYPE_CATALOG, 0));
+                for (int k = 0; k < categories.size(); k++) {
+                    if(categories.get(k).getIdCatalog() == catalogs.get(i).getIdCatalog()) {
+                        slide_data.add(new ListViewItem(categories.get(k).getNameCategory(), ru.dostavkamix.denis.dostavkamix.SlideMenu.SlideAdapter.TYPE_SUBCATALOG, categories.get(i).getIdCategory()));
+                    }
+                }
+            }
+            // Нежно пихаем его в слайд
+            arr_slide_data = slide_data.toArray(new ListViewItem[slide_data.size()]);
+            slideAdapter = new SlideAdapter(AppController.getInstance().getMainActivity(), R.id.slide_text, arr_slide_data);
+            listView.setAdapter(slideAdapter);
         }
     }
 
@@ -516,7 +466,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return result;
     }
 
-    private void updateListDish(ArrayList<Dish> aDish) {
+    public void updateListDish(ArrayList<Dish> aDish) {
         try {
             Log.d("json", "Готовлю фрагмент для обновления...");
             boxAdapter = new BoxAdapter(this, aDish, ft);
@@ -539,6 +489,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public Category getCategoryIdOfTag(String t) {
         for (int i = 0; i < categories.size(); i++) {
             if (categories.get(i).getIdCategory() == Integer.valueOf(t)) {
+                return categories.get(i);
+            }
+        }
+        return null;
+    }
+    public Category getCategoryIdOfName(String name) {
+        for (int i = 0; i < categories.size(); i++) {
+            if(categories.get(i).getNameCategory().equals(name)) {
                 return categories.get(i);
             }
         }

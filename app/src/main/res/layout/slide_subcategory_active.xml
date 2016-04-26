@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        android:id="@+id/slide_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/menu_category_margin_left"
+        android:paddingTop="@dimen/menu_category_padding_top"
+        android:text="Суши"
+        android:textColor="@color/md_white_1000"
+        android:textSize="@dimen/menu_catalog_text_size"
+        foo:customFont="fonts/GothaProBol.otf"
+        />
+
+</LinearLayout>
