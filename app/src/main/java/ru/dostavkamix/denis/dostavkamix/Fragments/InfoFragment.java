@@ -174,6 +174,7 @@ public class InfoFragment extends Fragment implements OnClickListener {
                 break;
             case R.id.but_to_call:
                 Intent call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "432222"));
+
                 startActivity(call);
                 break;
         }

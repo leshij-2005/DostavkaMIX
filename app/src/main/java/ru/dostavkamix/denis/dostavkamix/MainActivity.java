@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (AppController.getInstance().getWithoutSale() >= 1500 && AppController.getInstance().getWithoutSale() < 2500) {
             AppController.getInstance().setSale(10);
             s = 0.90;
-        } else if (AppController.getInstance().getWithoutSale() > 2500) {
+        } else if (AppController.getInstance().getWithoutSale() >= 2500) {
             AppController.getInstance().setSale(15);
             s = 0.85;
         } else {

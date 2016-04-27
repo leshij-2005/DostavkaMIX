@@ -45,7 +45,10 @@ public class CardAdapter extends PagerAdapter{
         dish_name_frag.setText(BoxAdapter.object.get(position).getNameDish());
         dish_descript_frag.setText(BoxAdapter.object.get(position).getContent());
         dish_price_frag.setText(BoxAdapter.addRuble(String.valueOf(BoxAdapter.object.get(position).getPriceDish())));
-        dish_weight_frag.setText(BoxAdapter.object.get(position).getWeight() + "гр.");
+        //dish_weight_frag.setText(BoxAdapter.object.get(position).getWeight() + "гр.");
+        if(BoxAdapter.object.get(position).getNameCatalog().equals("Напитки")) {
+            dish_weight_frag.setText(BoxAdapter.object.get(position).getWeight() + " мл.");
+        } else dish_weight_frag.setText(BoxAdapter.object.get(position).getWeight() + " гр.");
 
         container.addView(v);
         return v;

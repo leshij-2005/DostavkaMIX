@@ -1,5 +1,6 @@
 package ru.dostavkamix.denis.dostavkamix;
 
+import android.Manifest;
 import android.app.Application;
 import android.app.Dialog;
 import android.app.Fragment;
@@ -7,9 +8,12 @@ import android.app.ListFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -82,6 +86,7 @@ public class AppController extends Application {
     TextViewPlus menu_item_5;
     TextViewPlus menu_item_6;
     TextViewPlus menu_item_7;
+    TextViewPlus menu_item_8;
     TextViewPlus selectItem;
 
     Fragment aboutFragment;
@@ -138,8 +143,7 @@ public class AppController extends Application {
 
     private static AppController mInstance;
 
-    public void inicialiseMunu()
-    {
+    public void inicialiseMunu() {
         menu_logo = new Dialog(mainActivity);
         menu_logo.requestWindowFeature(Window.FEATURE_NO_TITLE);
         menu_logo.setContentView(R.layout.top_menu);
@@ -174,6 +178,7 @@ public class AppController extends Application {
         menu_item_5 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_5);
         menu_item_6 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_6);
         menu_item_7 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_7);
+        menu_item_8 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_8);
 
         clickMenu cm = new clickMenu();
 
@@ -184,6 +189,7 @@ public class AppController extends Application {
         menu_item_5.setOnClickListener(cm);
         menu_item_6.setOnClickListener(cm);
         menu_item_7.setOnClickListener(cm);
+        menu_item_8.setOnClickListener(cm);
 
 
         mainActivity.frame.setOnClickListener(new View.OnClickListener() {
@@ -194,7 +200,6 @@ public class AppController extends Application {
                 }
             }
         });
-
 
 
     }
@@ -210,7 +215,6 @@ public class AppController extends Application {
         editPref = preferences.edit();
 
 
-
         aboutFragment = new AboutFragment();
         conditionFragment = new ConditionFragment();
         infoFragment = new InfoFragment();
@@ -221,13 +225,11 @@ public class AppController extends Application {
 
     }
 
-    public void setMainActivity(MainActivity mainActivity)
-    {
+    public void setMainActivity(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
         inicialiseMunu();
 
-        if(preferences.getString("f", "yes") == "yes")
-        {
+        if (preferences.getString("f", "yes") == "yes") {
             mainActivity.showShapeActivity();
         }
 
@@ -237,9 +239,8 @@ public class AppController extends Application {
 
     }
 
-    public SpannableStringBuilder addRuble(String s)
-    {
-        if(s.length() < 4) {
+    public SpannableStringBuilder addRuble(String s) {
+        if (s.length() < 4) {
             SpannableStringBuilder result = new SpannableStringBuilder(s + " Я");
             result.setSpan(new CustomTypefaceSpan("normal", fontReg), 0, s.length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
             result.setSpan(new CustomTypefaceSpan("sans", fontRub), s.length(), s.length() + 2, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
@@ -252,6 +253,7 @@ public class AppController extends Application {
             return result;
         }
     }
+
     public static synchronized AppController getInstance() {
         return mInstance;
     }
@@ -299,13 +301,10 @@ public class AppController extends Application {
         this.inBag = inBag;
     }
 
-    public void removeInBad(Dish dish)
-    {
-        if(getInBag() != null)
-        {
+    public void removeInBad(Dish dish) {
+        if (getInBag() != null) {
             for (int i = 0; i < getInBag().size(); i++) {
-                if(getInBag().get(i).getIdDish() == dish.getIdDish())
-                {
+                if (getInBag().get(i).getIdDish() == dish.getIdDish()) {
                     getInBag().remove(i);
                     mainActivity.updateBagPrice();
                     Log.d(TAG, "удаление из корзины");
@@ -313,60 +312,53 @@ public class AppController extends Application {
                     return;
                 }
             }
-        } else
-        {
+        } else {
             Log.d(TAG, "блюда в корзине нет");
             Log.d(TAG, "в корзине " + getInBag().size() + " блюд");
         }
     }
 
-    public void addInBag(Dish dish)
-    {
+    public void addInBag(Dish dish) {
 
         for (int i = 0; i < getInBag().size(); i++) {
-            if(getInBag().get(i).getIdDish() == dish.getIdDish())
-            {
+            if (getInBag().get(i).getIdDish() == dish.getIdDish()) {
                 Log.d(TAG, "блюдо уже есть в корзине  " + getInBag().get(i).getIdDish() + " = " + dish.getIdDish());
 
-                    getInBag().get(i).setCountOrder(dish.getCountOrder());
-                    mainActivity.updateBagPrice();
-                    Log.d(TAG, "изменил порции на " + getInBag().get(i).getCountOrder());
-                    Log.d(TAG, "в корзине " + getInBag().size() + " блюд");
-                    return;
+                getInBag().get(i).setCountOrder(dish.getCountOrder());
+                mainActivity.updateBagPrice();
+                Log.d(TAG, "изменил порции на " + getInBag().get(i).getCountOrder());
+                Log.d(TAG, "в корзине " + getInBag().size() + " блюд");
+                return;
             }
         }
 
-            this.getInBag().add(dish);
-            mainActivity.updateBagPrice();
-            Log.d(TAG, "добавил в карзину");
-            Log.d(TAG, "в корзине " + getInBag().size() + " блюд");
+        this.getInBag().add(dish);
+        mainActivity.updateBagPrice();
+        Log.d(TAG, "добавил в карзину");
+        Log.d(TAG, "в корзине " + getInBag().size() + " блюд");
 
     }
 
-    public void updateBag()
-    {
+    public void updateBag() {
         withoutSale = getBagPrice();
-        if(withoutSale > 500) sale = 5;
-        else if(withoutSale > 1500) sale = 10;
-        else if(withoutSale > 2500) sale = 15;
+        if (withoutSale >= 500) sale = 5;
+        else if (withoutSale >= 1500) sale = 10;
+        else if (withoutSale >= 2500) sale = 15;
         withSale = withoutSale - ((withoutSale / 100) * sale);
         mainActivity.updateBagPrice();
     }
 
-    public boolean onBag(Dish dish)
-    {
-            for (int i = 0; i < getInBag().size(); i++) {
-                if(getInBag().get(i).getIdDish() == dish.getIdDish())
-                {
-                    Log.d(TAG, "блюдо есть в корзине");
-                    return true;
-                }
+    public boolean onBag(Dish dish) {
+        for (int i = 0; i < getInBag().size(); i++) {
+            if (getInBag().get(i).getIdDish() == dish.getIdDish()) {
+                Log.d(TAG, "блюдо есть в корзине");
+                return true;
             }
-            return false;
+        }
+        return false;
     }
 
-    public int getBagPrice()
-    {
+    public int getBagPrice() {
         int result = 0;
         for (int i = 0; i < inBag.size(); i++) {
             result += inBag.get(i).getPriceDish() * inBag.get(i).getCountOrder();
@@ -374,8 +366,7 @@ public class AppController extends Application {
         return result;
     }
 
-    public class clickMenu implements View.OnClickListener
-    {
+    public class clickMenu implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
@@ -384,10 +375,8 @@ public class AppController extends Application {
         }
     }
 
-    private void selectMenu(TextViewPlus v)
-    {
-        if(selectItem != v)
-        {
+    private void selectMenu(TextViewPlus v) {
+        if (selectItem != v) {
             try {
                 selectItem.setCustomFont(getApplicationContext(), "fonts/GothaProReg.otf");
 
@@ -401,10 +390,8 @@ public class AppController extends Application {
         }
     }
 
-    public void selectMenu(int position)
-    {
-        switch (position)
-        {
+    public void selectMenu(int position) {
+        switch (position) {
             case 1:
                 selectMenu(menu_item_1);
                 mainActivity.ft = mainActivity.getFragmentManager().beginTransaction();
@@ -460,6 +447,21 @@ public class AppController extends Application {
                 mainActivity.ft.replace(R.id.frame_fragment, mainActivity.bagFrag);
                 mainActivity.ft.addToBackStack(null);
                 mainActivity.ft.commit();
+                break;
+            case 8:
+                Intent call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "432222"));
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                call.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(call);
                 break;
             default:
                 break;

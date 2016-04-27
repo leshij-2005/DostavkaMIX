@@ -29,25 +29,6 @@
             android:layout_margin="@dimen/condition_margin_text"
             android:gravity="center"
 
-            android:text="Минимальный заказ от 500 р."
-            android:textColor="@color/md_white_1000"
-            android:textSize="@dimen/condition_text_size"/>
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1sp"
-            android:layout_alignParentBottom="true"
-
-            android:background="@color/separator_color_1">
-        </View>
-
-        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_margin="@dimen/condition_margin_text"
-            android:gravity="center"
-
             android:text="Приём заказов с 11.00 до 00.00"
             android:textColor="@color/md_white_1000"
             android:textSize="@dimen/condition_text_size"/>
@@ -124,7 +105,7 @@
             android:layout_margin="@dimen/condition_margin_text"
             android:gravity="center"
 
-            android:text="Бесплатная доставка в пределах г. Оренбург при заказе от 500 р. или за городом + 150 р."
+            android:text="Бесплатная доставка в пределах г. Оренбург при заказе от 500 р., при заказе менее 500 рублей, а так же доставка за город +150 р."
             android:textColor="@color/md_white_1000"
             android:textSize="@dimen/condition_text_size"/>
 

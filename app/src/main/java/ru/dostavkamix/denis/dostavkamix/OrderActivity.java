@@ -287,12 +287,14 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 if (OnSelect != v) {
 
                     if(AppController.getInstance().getSale() != 0) {
-                        if (AppController.getInstance().getSale() != 10) {
+                        if (AppController.getInstance().getSale() == 5) {
                             sum_button = (int) (AppController.getInstance().getWithoutSale() * 0.85);
-                        } else {
-                            sum_button = (int) (AppController.getInstance().getWithoutSale() * 0.90);
+                        } else if(AppController.getInstance().getSale() == 10){
+                            sum_button = (int) (AppController.getInstance().getWithoutSale() * 0.85);
+                        } else if(AppController.getInstance().getSale() == 15){
+                            sum_button = (int) (AppController.getInstance().getWithoutSale() * 0.8);
                         }
-                    } else sum_button = (int) ((AppController.getInstance().getWithoutSale() + 150) * 0.90);
+                    } else sum_button = (int) ((AppController.getInstance().getWithoutSale()) * 0.90);
 
 
                     selectOffButton(OnSelect);
