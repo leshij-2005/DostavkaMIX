@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "795256844466",
+    "project_id": "dostavkamix"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795256844466:android:5799e83378257561",
+        "android_client_info": {
+          "package_name": "ru.dostavkamix.denis.dostavkamix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD--6I4P9fzt_Oqr3ItRExt3PAqTiNUQQk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
