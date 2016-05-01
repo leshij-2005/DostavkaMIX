@@ -1,15 +1,12 @@
 package ru.dostavkamix.denis.dostavkamix;
 
+import ru.dostavkamix.denis.dostavkamix.Push.SendToken;
 import ru.dostavkamix.denis.dostavkamix.SlideMenu.SlideAdapter;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.app.ListFragment;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,11 +14,9 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -47,13 +42,10 @@ import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.Dish.Catalog;
 import ru.dostavkamix.denis.dostavkamix.Dish.Category;
 import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
-import ru.dostavkamix.denis.dostavkamix.Fragments.ActionListFragment;
-import ru.dostavkamix.denis.dostavkamix.Fragments.ActionPagerFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.BagFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.FragmentOrder;
 import ru.dostavkamix.denis.dostavkamix.Fragments.InOrderDialog;
 import ru.dostavkamix.denis.dostavkamix.Fragments.dishListFragment;
-import ru.dostavkamix.denis.dostavkamix.Fragments.progressDialog;
 import ru.dostavkamix.denis.dostavkamix.SlideMenu.ListViewItem;
 import ru.dostavkamix.denis.dostavkamix.blurbehind.BlurBehind;
 import ru.dostavkamix.denis.dostavkamix.blurbehind.OnBlurCompleteListener;
@@ -196,6 +188,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         new ParseTask().execute();
+        new SendToken().execute("");
+        new BuildActions().execute();
 
 
 
@@ -288,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
         final String base_url_img = "http://chaihanamix.ru/ios_app/action_images/action_";
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
-        String resultJson = "";
+        String jsonExport = "";
 
         @Override
         protected void onPreExecute() {
@@ -297,8 +291,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(Void... params) {
             try {
-                URL url = new URL("http://chaihanamix.ru/server/export.json");
-                urlConnection = (HttpURLConnection) url.openConnection();
+                URL url_export = new URL("http://chaihanamix.ru/server/export.json");
+
+                urlConnection = (HttpURLConnection) url_export.openConnection();
                 urlConnection.connect();
 
                 InputStream inputStream = urlConnection.getInputStream();
@@ -310,19 +305,19 @@ public class MainActivity extends AppCompatActivity {
                 while ((line = reader.readLine()) != null) {
                     buffer.append(line);
                 }
-                resultJson = buffer.toString();
+                jsonExport = buffer.toString();
 
 
                 DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-                Document docActions = dBuilder.parse("http://chaihanamix.ru/ios_app/actions.xml");
+                //Document docActions = dBuilder.parse("http://chaihanamix.ru/ios_app/actions.xml");
                 Document docReviews = dBuilder.parse("http://chaihanamix.ru/ios_app/reviews.xml");
                 docReviews.getDocumentElement().normalize();
-                docActions.getDocumentElement().normalize();
+                //docActions.getDocumentElement().normalize();
 
-                Log.d("parse", " Root element: " + docActions.getDocumentElement().getNodeName());
+                //Log.d("parse", " Root element: " + docActions.getDocumentElement().getNodeName());
 
-                NodeList actionList = docActions.getElementsByTagName("action");
+                //NodeList actionList = docActions.getElementsByTagName("action");
                 NodeList reviewsList = docReviews.getElementsByTagName("review");
 
                 for (int i = 0; i < reviewsList.getLength(); i++) {
@@ -337,7 +332,7 @@ public class MainActivity extends AppCompatActivity {
                         reviews.add(new Review(eElement.getAttribute("title"), eElement.getAttribute("subtitle"), eElement.getTextContent()));
                     }
                 }
-
+/*
                 for (int temp = 0; temp < actionList.getLength(); temp++) {
                     Node nNode = actionList.item(temp);
 
@@ -354,10 +349,11 @@ public class MainActivity extends AppCompatActivity {
                         actions.add(new Action(eElement.getAttribute("title"), base_url_img + eElement.getAttribute("img_id") + ".png", eElement.getTextContent()));
                     }
                 }
+                */
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return resultJson;
+            return jsonExport;
         }
 
         @Override
@@ -430,10 +426,10 @@ public class MainActivity extends AppCompatActivity {
             Log.d("json", "     title : " + reviews.get(1).title);
             Log.d("json", "     subtitle : " + reviews.get(1).subtitle);
             Log.d("json", "     content : " + reviews.get(1).content);
-            Log.d("json", "Action : " + actions.get(1));
-            Log.d("json", "     title : " + actions.get(1).title);
-            Log.d("json", "     url : " + actions.get(1).url);
-            Log.d("json", "     content : " + actions.get(1).content);
+            //Log.d("json", "Action : " + actions.get(1));
+            //Log.d("json", "     title : " + actions.get(1).title);
+            //Log.d("json", "     url : " + actions.get(1).url);
+            //Log.d("json", "     content : " + actions.get(1).content);
 
             isReadyDish = true;
             AppController.getInstance().actionListFragment.setListAdapter(new ActionListAdapter());
