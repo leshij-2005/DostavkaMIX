@@ -10,8 +10,8 @@ android {
         applicationId "ru.dostavkamix.denis.dostavkamix"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 6
+        versionName "1.2"
         renderscriptTargetApi 20
         renderscriptSupportModeEnabled true
     }

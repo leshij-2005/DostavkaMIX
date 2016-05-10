@@ -34,7 +34,7 @@
 
     <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         foo:customFont="fonts/GothaProReg.otf"
-        android:id="@+id/text_shape"
+        android:id="@+id/text_shape1"
         android:layout_width="110sp"
         android:layout_height="wrap_content"
 
@@ -49,7 +49,7 @@
 
     <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
         foo:customFont="fonts/GothaProReg.otf"
-        android:id="@+id/text_shape"
+        android:id="@+id/text_shape2"
         android:layout_width="200sp"
         android:layout_height="wrap_content"
 
