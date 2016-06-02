@@ -26,7 +26,7 @@ public class SlideAdapter extends ArrayAdapter {
     public static final int TYPE_SUBCATALOG_ACTIVE = 2;
 
     private ListViewItem[] objects;
-    private HashMap<Integer, Boolean> myChecked = new HashMap<Integer, Boolean>();
+    public HashMap<Integer, Boolean> myChecked = new HashMap<Integer, Boolean>();
 
     public void setChecked(int position, boolean b)
     {

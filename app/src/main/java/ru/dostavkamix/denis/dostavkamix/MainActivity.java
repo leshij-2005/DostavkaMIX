@@ -193,7 +193,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //slideAdapter = new SlideAdapter(this);
         slideMuneDrawer = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(toolbar)
@@ -215,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
 
         AppController.getInstance().setMainActivity(this);
         AppController.getInstance().selectMenu(1);
+
 
 
     }
@@ -449,6 +449,8 @@ public class MainActivity extends AppCompatActivity {
             arr_slide_data = slide_data.toArray(new ListViewItem[slide_data.size()]);
             slideAdapter = new SlideAdapter(AppController.getInstance().getMainActivity(), R.id.slide_text, arr_slide_data);
             listView.setAdapter(slideAdapter);
+
+            AppController.getInstance().getMainActivity().updateListDish(AppController.getInstance().getMainActivity().getDishOfCategory(AppController.getInstance().getMainActivity().getCategoryIdOfName("Суши"), AppController.getInstance().getMainActivity().dishs));
         }
     }
 
