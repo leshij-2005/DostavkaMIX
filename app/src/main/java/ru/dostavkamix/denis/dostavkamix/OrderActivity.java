@@ -189,7 +189,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         int minuteResult = now.get(Calendar.MINUTE);
 
 
-
         final TimePickerDialog timeDialog = TimePickerDialog.newInstance(
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
@@ -197,10 +196,10 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                         String oldText = (String) order_time.getText();
                         order_time.setText(oldText + " " + formatTime(String.valueOf(hourOfDay) + ":" + String.valueOf(minute)));
 
-                        if(hourOfDay < 11) {
+                        if (hourOfDay < 11) {
                             Log.d("time", "Invalid time");
                             invalidDialog = new MaterialDialog(OrderActivity.this)
-                                    .setMessage("Беда...")
+                                    .setMessage("Мы работаем с 11:00 до 00:00. Выберите рабочее время.")
                                     .setPositiveButton("Изменить", new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -208,14 +207,14 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                                             setDateTame();
                                         }
                                     })
-                            .setNegativeButton("Вернутся", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    invalidDialog.dismiss();
-                                    Intent intent = new Intent(OrderActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                }
-                            });
+                                    .setNegativeButton("Вернутся", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            invalidDialog.dismiss();
+                                            Intent intent = new Intent(OrderActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    });
                             invalidDialog.show();
                         }
                     }
@@ -426,17 +425,25 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private boolean validEditText() {
-        if(order_now.getVisibility() == View.VISIBLE) {
-            if (now.get(Calendar.HOUR_OF_DAY) < 11 || ((now.get(Calendar.HOUR_OF_DAY) == 23) && (now.get(Calendar.MINUTE) >= 55))) {
+        if (order_now.getVisibility() == View.VISIBLE) {
+            if (now.get(Calendar.HOUR_OF_DAY) < 11 || ((now.get(Calendar.HOUR_OF_DAY) == 0) && (now.get(Calendar.MINUTE) >= 5))) {
                 Log.d("time", "Invalid time");
                 invalidDialog = new MaterialDialog(this)
-                        .setMessage("Беда...")
-                        .setPositiveButton("Закрыть", new View.OnClickListener() {
+                        .setMessage("Извините, мы не можем принять заказ! Наш график работы с 11:00 до 00:00. Вы можете оформить заказ к определенному времени.")
+                        .setPositiveButton("Время", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 invalidDialog.dismiss();
                                 setDateTame();
                                 order_now.setVisibility(View.GONE);
+                            }
+                        })
+                        .setNegativeButton("Вернутся", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                invalidDialog.dismiss();
+                                Intent intent = new Intent(OrderActivity.this, MainActivity.class);
+                                startActivity(intent);
                             }
                         });
                 invalidDialog.show();
