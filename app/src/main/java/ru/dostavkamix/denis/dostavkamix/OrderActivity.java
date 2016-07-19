@@ -89,6 +89,9 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     int sum_button = AppController.getInstance().getWithSale();
     TimePickerDialog timeDialog;
 
+    int preHours;
+    int preMinute;
+
 
     private void initialise() {
         //Root lay
@@ -198,11 +201,10 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
                         String oldText = (String) order_time.getText();
                         order_time.setText(oldText + " " + formatTime(String.valueOf(hourOfDay) + ":" + String.valueOf(minute)));
-
-                        if (hourOfDay < 11) {
+                        if ((hourOfDay < 12 && ((hourOfDay == 0 && minute > 30) || hourOfDay > 0))) {
                             Log.d("time", "Invalid time");
                             invalidDialog = new MaterialDialog(OrderActivity.this)
-                                    .setMessage("Мы работаем с 11:00 до 00:00. Выберите рабочее время.")
+                                    .setMessage("Заказ к определенному времени действует с 12:00 до 00:00")
                                     .setPositiveButton("Изменить", new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -235,7 +237,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                                 monthOfYear == Calendar.getInstance().get(Calendar.MONTH) &&
                                 dayOfMonth == Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
                             timeDialog.setMinTime(
-                                    Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+                                    Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + 1,
                                     Calendar.getInstance().get(Calendar.MINUTE),
                                     Calendar.getInstance().get(Calendar.SECOND));
                         timeDialog.show(getFragmentManager(), "dateDialog");
@@ -491,7 +493,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             return false;
         } else if(order_phone.getText().toString().length() != 11) {
             invalidDialog = new MaterialDialog(this)
-                    .setMessage("Номер телефона должен состоять из 11 цифр")
+                    .setMessage("Номер телефона должен содержать 11 цифр! Например 83532432222")
                     .setPositiveButton("Закрыть", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
