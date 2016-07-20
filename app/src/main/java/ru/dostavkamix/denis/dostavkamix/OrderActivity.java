@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.TransitionDrawable;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.Timepoint;
 
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
@@ -36,6 +38,7 @@ import ru.dostavkamix.denis.dostavkamix.SlideMenu.SlideAdapter;
 
 public class OrderActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = "OrderActivity";
     //Dialogs
     MaterialDialog invalidDialog;
     DialogFragment buyDialog;
@@ -228,12 +231,20 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                         Log.d("json", "Month: " + monthOfYear);
                         Log.d("json", "Day: " + dayOfMonth);
                         order_time.setText(formatDate(String.valueOf(monthOfYear + 1) + String.valueOf(dayOfMonth)));
+                        if (year == Calendar.getInstance().get(Calendar.YEAR) &&
+                                monthOfYear == Calendar.getInstance().get(Calendar.MONTH) &&
+                                dayOfMonth == Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
+                            timeDialog.setMinTime(
+                                    Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+                                    Calendar.getInstance().get(Calendar.MINUTE),
+                                    Calendar.getInstance().get(Calendar.SECOND));
                         timeDialog.show(getFragmentManager(), "dateDialog");
 
                     }
                 }, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH)
         );
 
+        dateDialog.setMinDate(Calendar.getInstance());
         dateDialog.show(getFragmentManager(), "timeDialog");
         order_now.setVisibility(View.INVISIBLE);
     }
@@ -478,6 +489,17 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                     });
             invalidDialog.show();
             return false;
+        } else if(order_phone.getText().toString().length() != 11) {
+            invalidDialog = new MaterialDialog(this)
+                    .setMessage("Номер телефона должен состоять из 11 цифр")
+                    .setPositiveButton("Закрыть", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            invalidDialog.dismiss();
+                        }
+                    });
+            invalidDialog.show();
+            return false;
         }
         if (OnSelect.getId() == R.id.select_left) {
             if (order_street.getText().toString().matches("")) {
@@ -506,5 +528,18 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             }
         }
         return true;
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause: ");
+        
+        AppController.getInstance().editPref.putString("order_name", order_name.getText().toString());
+        AppController.getInstance().editPref.putString("order_phone", order_phone.getText().toString());
+        AppController.getInstance().editPref.putString("order_email", order_email.getText().toString());
+        AppController.getInstance().editPref.putString("order_street", order_street.getText().toString());
+        AppController.getInstance().editPref.putString("order_house", order_house.getText().toString());
+        AppController.getInstance().editPref.putString("order_apartament", order_apartament.getText().toString());
+        AppController.getInstance().editPref.commit();
     }
 }
