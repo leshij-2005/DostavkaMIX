@@ -52,6 +52,7 @@ import ru.dostavkamix.denis.dostavkamix.blurbehind.OnBlurCompleteListener;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
     private ListView listView;
     private ArrayList<ListViewItem> slide_data;
     ListViewItem[] arr_slide_data;
@@ -441,7 +442,8 @@ public class MainActivity extends AppCompatActivity {
                 slide_data.add(new ListViewItem(catalogs.get(i).getNameCatalog(), ru.dostavkamix.denis.dostavkamix.SlideMenu.SlideAdapter.TYPE_CATALOG, 0));
                 for (int k = 0; k < categories.size(); k++) {
                     if(categories.get(k).getIdCatalog() == catalogs.get(i).getIdCatalog()) {
-                        slide_data.add(new ListViewItem(categories.get(k).getNameCategory(), ru.dostavkamix.denis.dostavkamix.SlideMenu.SlideAdapter.TYPE_SUBCATALOG, categories.get(i).getIdCategory()));
+                        slide_data.add(new ListViewItem(categories.get(k).getNameCategory(), ru.dostavkamix.denis.dostavkamix.SlideMenu.SlideAdapter.TYPE_SUBCATALOG, categories.get(k).getIdCategory()));
+                        //Log.d(TAG, "onPostExecute: category id: " + categories.get(i).getIdCategory());
                     }
                 }
             }
@@ -450,7 +452,9 @@ public class MainActivity extends AppCompatActivity {
             slideAdapter = new SlideAdapter(AppController.getInstance().getMainActivity(), R.id.slide_text, arr_slide_data);
             listView.setAdapter(slideAdapter);
 
-            AppController.getInstance().getMainActivity().updateListDish(AppController.getInstance().getMainActivity().getDishOfCategory(AppController.getInstance().getMainActivity().getCategoryIdOfName("Суши"), AppController.getInstance().getMainActivity().dishs));
+            AppController.getInstance().getMainActivity()
+                    .updateListDish(
+                            AppController.getInstance().getMainActivity().getDishOfCategory(AppController.getInstance().getMainActivity().getCategoryOfName("Суши"), AppController.getInstance().getMainActivity().dishs));
         }
     }
 
@@ -493,11 +497,18 @@ public class MainActivity extends AppCompatActivity {
         }
         return null;
     }
-    public Category getCategoryIdOfName(String name) {
+    public Category getCategoryOfName(String name) {
         for (int i = 0; i < categories.size(); i++) {
             if(categories.get(i).getNameCategory().equals(name)) {
                 return categories.get(i);
             }
+        }
+        return null;
+    }
+
+    public Category getCategotyOfId(int id) {
+        for (int i = 0; i < categories.size(); i++) {
+            if(categories.get(i).getIdCategory() == id) return categories.get(i);
         }
         return null;
     }
