@@ -40,6 +40,14 @@
         \n  \t  \t   DOCTABKA MIX - это служба доставки, в основе которой заложены высокие стандарты качества приготовленных блюд и предоставление удобного сервиса каждому клиенту.\n
         \n  \t  \t   Благодоря усилиям профессиональный шеф поворов, качество наших блюд остаётся на самом высоком уровне. На кухне мы используем только свежие и качественные продукты, а все заказы достовляется в специальных серцифицированных пищевых контейнерах.
     </string>
+    <string name="button_signup">Зарегистрироваться</string>
+    <string name="label_signup">РЕГИСТРАЦИЯ</string>
+    <string name="font_GothaProReg">fonts/GothaProReg.otf</string>
+    <string name="hint_name">Имя</string>
+    <string name="hint_phone">Телефон</string>
+    <string name="font_GothaProLig">fonts/GothaProLig.otf</string>
+    <string name="button_signin">Войти в аккаунт</string>
+    <string name="font_GothaProMed">fonts/GothaProMed.otf</string>
 
 
 </resources>

@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"/>
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
         android:id="@+id/action_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
         android:textSize="17sp"
         android:textStyle="bold"
         foo:customFont="fonts/GothaProReg.otf"/>
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
         android:id="@+id/action_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

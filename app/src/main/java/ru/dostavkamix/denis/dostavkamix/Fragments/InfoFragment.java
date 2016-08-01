@@ -3,11 +3,8 @@ package ru.dostavkamix.denis.dostavkamix.Fragments;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.net.Uri;
@@ -24,20 +21,17 @@ import android.widget.RelativeLayout;
 
 import org.osmdroid.DefaultResourceProxyImpl;
 import org.osmdroid.api.IMapController;
-import org.osmdroid.api.Marker;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
-import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.OverlayItem;
-import org.osmdroid.views.overlay.PathOverlay;
 
 import java.util.ArrayList;
 
 import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.R;
-import ru.dostavkamix.denis.dostavkamix.SwipeImageAdapter;
+import ru.dostavkamix.denis.dostavkamix.Adapters.SwipeImageAdapter;
 
 /**
  * Created by den on 04.02.2016.

@@ -8,24 +8,19 @@ import android.graphics.Color;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
-
-import ru.dostavkamix.denis.dostavkamix.ActionAdapter;
 import ru.dostavkamix.denis.dostavkamix.AppController;
-import ru.dostavkamix.denis.dostavkamix.BoxAdapter;
-import ru.dostavkamix.denis.dostavkamix.CardAdapter;
-import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
-import ru.dostavkamix.denis.dostavkamix.MainActivity;
+import ru.dostavkamix.denis.dostavkamix.Adapters.BoxAdapter;
+import ru.dostavkamix.denis.dostavkamix.Adapters.CardAdapter;
+import ru.dostavkamix.denis.dostavkamix.Dialogs.InOrderDialog;
+import ru.dostavkamix.denis.dostavkamix.Objects.Dish;
+import ru.dostavkamix.denis.dostavkamix.Activitys.MainActivity;
 import ru.dostavkamix.denis.dostavkamix.R;
-import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
 
 /**
  * Created by den on 21.01.16.

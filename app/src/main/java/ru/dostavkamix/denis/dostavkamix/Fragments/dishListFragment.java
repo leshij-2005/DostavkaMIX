@@ -2,24 +2,17 @@ package ru.dostavkamix.denis.dostavkamix.Fragments;
 
 
 import android.app.Fragment;
-import android.app.ListFragment;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import java.util.Locale;
-
-import ru.dostavkamix.denis.dostavkamix.BoxAdapter;
+import ru.dostavkamix.denis.dostavkamix.Adapters.BoxAdapter;
 import ru.dostavkamix.denis.dostavkamix.R;
 
 /**

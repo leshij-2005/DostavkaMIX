@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import ru.dostavkamix.denis.dostavkamix.R;
-import ru.dostavkamix.denis.dostavkamix.SwipeImageAdapter;
+import ru.dostavkamix.denis.dostavkamix.Adapters.SwipeImageAdapter;
 
 /**
  * Created by den on 04.02.2016.

@@ -80,7 +80,7 @@
 
                         android:src="@drawable/icon_map_tag"/>
 
-                    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
                         android:id="@+id/text_street"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
 
                         android:src="@drawable/icon_watch"/>
 
-                    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
                         android:id="@+id/text_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
 
                         android:src="@drawable/icon_wallet_smill"/>
 
-                    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
                         android:id="@+id/text_wallet"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -209,7 +209,7 @@
 
                         android:src="@drawable/icon_calendar"/>
 
-                    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
                         android:id="@+id/text_web"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -265,7 +265,7 @@
                         android:background="@color/accent_color"
                         android:scaleType="fitXY"/>
 
-                    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+                    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
                         foo:customFont="fonts/GothaProReg.otf"
                         android:id="@+id/text_but_order"
                         android:layout_width="wrap_content"

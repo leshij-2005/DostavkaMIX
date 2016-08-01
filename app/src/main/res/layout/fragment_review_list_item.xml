@@ -7,7 +7,7 @@
     android:layout_height="100sp"
     android:orientation="horizontal">
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
         android:id="@+id/review_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         android:textStyle="bold"
         foo:customFont="fonts/GothaProReg.otf"/>
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
         android:id="@+id/review_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

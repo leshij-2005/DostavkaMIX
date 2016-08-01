@@ -3,17 +3,14 @@ package ru.dostavkamix.denis.dostavkamix.Fragments;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ru.dostavkamix.denis.dostavkamix.ActionAdapter;
-import ru.dostavkamix.denis.dostavkamix.AppController;
+import ru.dostavkamix.denis.dostavkamix.Adapters.ActionAdapter;
 import ru.dostavkamix.denis.dostavkamix.R;
-import ru.dostavkamix.denis.dostavkamix.viewpagerindicator.CirclePageIndicator;
+import ru.dostavkamix.denis.dostavkamix.Custom.viewpagerindicator.CirclePageIndicator;
 
 /**
  * Created by den on 06.02.2016.

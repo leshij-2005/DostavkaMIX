@@ -43,7 +43,7 @@
 
 
         <activity
-            android:name=".SplashActivity"
+            android:name=".Activitys.SplashActivity"
             android:label="Доставка MIX"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
@@ -53,20 +53,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Activitys.MainActivity"
             android:label="Доставка MIX"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".OrderActivity"
+            android:name=".Activitys.OrderActivity"
             android:windowSoftInputMode="adjustPan"
             android:label="Доставка MIX"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".ShapeActivity"
+        <activity android:name=".Activitys.HelpActivity"
                   android:theme="@android:style/Theme.NoTitleBar"/>
-        <activity android:name=".HelpActivity"
-                  android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name=".Activitys.IntroActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

@@ -10,11 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import ru.dostavkamix.denis.dostavkamix.ActionAdapter;
 import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.R;
-import ru.dostavkamix.denis.dostavkamix.ReviewAdapter;
-import ru.dostavkamix.denis.dostavkamix.viewpagerindicator.CirclePageIndicator;
+import ru.dostavkamix.denis.dostavkamix.Adapters.ReviewAdapter;
+import ru.dostavkamix.denis.dostavkamix.Custom.viewpagerindicator.CirclePageIndicator;
 
 /**
  * Created by den on 06.02.2016.

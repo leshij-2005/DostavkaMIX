@@ -13,4 +13,7 @@
     <color name="hint_text_color">#646464</color>
     <color name="backgroud_about">#353940</color>
 
+    <color name="color_border">#32ffffff</color>
+    <color name="color_hint">#80ffffff</color>
+
 </resources>

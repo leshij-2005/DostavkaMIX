@@ -7,7 +7,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="110sp">
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.customNetworkImageView
+    <ru.dostavkamix.denis.dostavkamix.Custom.customNetworkImageView
         android:id="@+id/action_img"
         android:layout_width="90sp"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:scaleType="center"
         app:custom_radius="10"/>
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
         android:id="@+id/action_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
         android:textStyle="bold"
         foo:customFont="fonts/GothaProReg.otf"/>
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
         android:id="@+id/action_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

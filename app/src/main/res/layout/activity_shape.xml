@@ -13,7 +13,7 @@
 
         android:layout_centerInParent="true"
         android:src="@drawable/icon_shape"/>
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
         foo:customFont="fonts/GothaProReg.otf"
         android:id="@+id/text_shape"
         android:layout_width="wrap_content"

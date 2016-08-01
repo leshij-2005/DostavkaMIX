@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<declare-styleable name="TextViewPlus">
-    <attr name="customFont" format="string" />
-</declare-styleable>
+    <declare-styleable name="TextViewPlus">
+        <attr name="customFont" format="string" />
+    </declare-styleable>
 
-<declare-styleable name="Button">
-    <attr name="customFontButton" format="string" />
-</declare-styleable>
 
-<declare-styleable name="customNetworkImageView">
-    <attr name="custom_radius" format="float" />
-</declare-styleable>
+    <declare-styleable name="Button">
+        <attr name="customFontButton" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="customNetworkImageView">
+        <attr name="custom_radius" format="float" />
+    </declare-styleable>
 
 </resources>

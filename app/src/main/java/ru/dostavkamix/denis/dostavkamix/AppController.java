@@ -16,7 +16,7 @@ import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
-import android.text.TextUtils;
+
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -24,18 +24,17 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
-import me.drakeet.materialdialog.MaterialDialog;
-import ru.dostavkamix.denis.dostavkamix.CustomView.CustomTypefaceSpan;
-import ru.dostavkamix.denis.dostavkamix.CustomView.LruBitmapCache;
-import ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus;
-import ru.dostavkamix.denis.dostavkamix.Dish.Dish;
+import ru.dostavkamix.denis.dostavkamix.Activitys.MainActivity;
+import ru.dostavkamix.denis.dostavkamix.Custom.CustomTypefaceSpan;
+import ru.dostavkamix.denis.dostavkamix.Custom.LruBitmapCache;
+import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
+import ru.dostavkamix.denis.dostavkamix.Objects.Dish;
 import ru.dostavkamix.denis.dostavkamix.Fragments.AboutFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ActionListFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ActionPagerFragment;
@@ -43,59 +42,49 @@ import ru.dostavkamix.denis.dostavkamix.Fragments.ConditionFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.InfoFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewListFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewPagerFragment;
-import ru.dostavkamix.denis.dostavkamix.blurbehind.BlurBehind;
-import ru.dostavkamix.denis.dostavkamix.blurbehind.OnBlurCompleteListener;
 
 
 /**
  * Created by den on 20.01.16.
+ *
  */
 public class AppController extends Application {
-    public static final String TAG = AppController.class.getSimpleName();
+    private static final String TAG = AppController.class.getSimpleName();
     private static final String prefName = "pref";
     public SharedPreferences preferences;
     public SharedPreferences.Editor editPref;
 
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
-    public ArrayList<Dish> inBag = new ArrayList<Dish>();
+    public ArrayList<Dish> inBag = new ArrayList<>();
 
     private int sale = 0;
     private int withoutSale = 0;
     private int withSale = 0;
 
     private MainActivity mainActivity = null;
-    private ListFragment MenuFragment;
-
-    private ArrayList<Fragment> stackFragment = new ArrayList<Fragment>();
 
 
-    Typeface fontRub = null;
-    Typeface fontReg = null;
+    private Typeface fontRub = null;
+    private Typeface fontReg = null;
 
-    boolean isShowDescriptFrag = false;
-    boolean isShowMenuList = true;
+    private Dialog menu_logo;
+    private TextViewPlus menu_item_1;
+    private TextViewPlus menu_item_2;
+    private TextViewPlus menu_item_3;
+    private TextViewPlus menu_item_4;
+    private TextViewPlus menu_item_5;
+    private TextViewPlus menu_item_6;
+    private TextViewPlus menu_item_7;
+    private TextViewPlus selectItem;
 
-    public MaterialDialog inposOrder;
-
-    Dialog menu_logo;
-    TextViewPlus menu_item_1;
-    TextViewPlus menu_item_2;
-    TextViewPlus menu_item_3;
-    TextViewPlus menu_item_4;
-    TextViewPlus menu_item_5;
-    TextViewPlus menu_item_6;
-    TextViewPlus menu_item_7;
-    RelativeLayout menu_item_8;
-    TextViewPlus selectItem;
-
-    Fragment aboutFragment;
-    Fragment conditionFragment;
-    Fragment infoFragment;
-    ListFragment actionListFragment;
-    ListFragment reviewListFragment;
-    ActionPagerFragment actionFragment;
-    ReviewPagerFragment reviewFragment;
+    private Fragment aboutFragment;
+    private Fragment conditionFragment;
+    private Fragment infoFragment;
+    public ListFragment actionListFragment;
+    public ListFragment reviewListFragment;
+    public ActionPagerFragment actionFragment;
+    public ReviewPagerFragment reviewFragment;
 
     public MainActivity getMainActivity() {
         return mainActivity;
@@ -125,25 +114,9 @@ public class AppController extends Application {
         return withSale;
     }
 
-    public boolean isShowDescriptFrag() {
-        return isShowDescriptFrag;
-    }
-
-    public boolean isShowMenuList() {
-        return isShowMenuList;
-    }
-
-    public void setIsShowDescriptFrag(boolean isShowDescriptFrag) {
-        this.isShowDescriptFrag = isShowDescriptFrag;
-    }
-
-    public void setIsShowMenuList(boolean isShowMenuList) {
-        this.isShowMenuList = isShowMenuList;
-    }
-
     private static AppController mInstance;
 
-    public void inicialiseMunu() {
+    private void inicializeMenu() {
         menu_logo = new Dialog(mainActivity);
         menu_logo.requestWindowFeature(Window.FEATURE_NO_TITLE);
         menu_logo.setContentView(R.layout.top_menu);
@@ -178,7 +151,7 @@ public class AppController extends Application {
         menu_item_5 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_5);
         menu_item_6 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_6);
         menu_item_7 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_7);
-        menu_item_8 = (RelativeLayout) menu_logo.findViewById(R.id.menu_item_8);
+        RelativeLayout menu_item_8 = (RelativeLayout) menu_logo.findViewById(R.id.menu_item_8);
 
         clickMenu cm = new clickMenu();
 
@@ -227,14 +200,14 @@ public class AppController extends Application {
 
     public void setMainActivity(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
-        inicialiseMunu();
+        inicializeMenu();
 
-        if (preferences.getString("f", "yes") == "yes") {
+        if (preferences.getString("f", "yes").equals("yes")) {
             mainActivity.showShapeActivity();
         }
 
-        editPref.putString("f", "no");
-        editPref.commit();
+        //editPref.putString("f", "no");
+        //editPref.commit();
         // =)
 
     }
@@ -258,7 +231,7 @@ public class AppController extends Application {
         return mInstance;
     }
 
-    public RequestQueue getRequestQueue() {
+    private RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         }
@@ -276,29 +249,8 @@ public class AppController extends Application {
         return this.mImageLoader;
     }
 
-    public <T> void addToRequestQueue(Request<T> req, String tag) {
-        // set the default tag if tag is empty
-        req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
-        getRequestQueue().add(req);
-    }
-
-    public <T> void addToRequestQueue(Request<T> req) {
-        req.setTag(TAG);
-        getRequestQueue().add(req);
-    }
-
-    public void cancelPendingRequests(Object tag) {
-        if (mRequestQueue != null) {
-            mRequestQueue.cancelAll(tag);
-        }
-    }
-
     public ArrayList<Dish> getInBag() {
         return inBag;
-    }
-
-    public void setInBag(ArrayList<Dish> inBag) {
-        this.inBag = inBag;
     }
 
     public void removeInBad(Dish dish) {
@@ -366,7 +318,7 @@ public class AppController extends Application {
         return result;
     }
 
-    public class clickMenu implements View.OnClickListener {
+    private class clickMenu implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
@@ -462,37 +414,6 @@ public class AppController extends Application {
                 }
                 call.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(call);
-                break;
-            default:
-                break;
-
-        }
-    }
-
-    public void selectMenu(int position, boolean is)
-    {
-        switch (position)
-        {
-            case 1:
-                selectMenu(menu_item_1);
-                break;
-            case 2:
-                selectMenu(menu_item_2);
-                break;
-            case 3:
-                selectMenu(menu_item_3);
-                break;
-            case 4:
-                selectMenu(menu_item_4);
-                break;
-            case 5:
-                selectMenu(menu_item_5);
-                break;
-            case 6:
-                selectMenu(menu_item_6);
-                break;
-            case 7:
-                selectMenu(menu_item_7);
                 break;
             default:
                 break;
