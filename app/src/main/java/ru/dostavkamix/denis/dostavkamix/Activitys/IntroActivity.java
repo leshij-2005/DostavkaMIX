@@ -1,5 +1,6 @@
 package ru.dostavkamix.denis.dostavkamix.Activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,25 +13,12 @@ import ru.dostavkamix.denis.dostavkamix.R;
  *
  */
 
-public class IntroActivity extends AppCompatActivity implements View.OnClickListener {
+public class IntroActivity extends AppCompatActivity {
 
-    private View icon;
-    private View info;
-
-    private View label;
-    private View fields;
 
     private View signup;
-    private View signin;
 
     private void inicializeUI() {
-        icon = findViewById(R.id.icon);
-        info = findViewById(R.id.info);
-
-        label = findViewById(R.id.signup_label);
-        fields = findViewById(R.id.signup_fields);
-        signin = findViewById(R.id.signin);
-
         signup = findViewById(R.id.signup);
 
     }
@@ -43,16 +31,12 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
         BlurBehind.getInstance().setBackground(this);
         inicializeUI();
 
-        signup.setOnClickListener(this);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(IntroActivity.this, SignUpActivity.class));
+            }
+        });
     }
 
-    @Override
-    public void onClick(View view) {
-        icon.setVisibility(View.GONE);
-        info.setVisibility(View.GONE);
-
-        label.setVisibility(View.VISIBLE);
-        fields.setVisibility(View.VISIBLE);
-        signin.setVisibility(View.VISIBLE);
-    }
 }

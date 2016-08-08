@@ -164,9 +164,28 @@
         android:layout_height="1sp"
         android:layout_alignParentBottom="true"
 
-        android:background="@color/separator_color_1">
+        android:background="@color/separator_color_1"/>
 
-    </View>
+    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+        android:id="@+id/menu_item_9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="@dimen/slide_menu_margin"
+        android:gravity="center"
+        android:tag="9"
+
+        android:text="@string/personal_area"
+        android:textColor="@color/md_white_1000"
+        android:textSize="@dimen/slide_menu_text_size"
+        foo:customFont="fonts/GothaProReg.otf"/>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1sp"
+        android:layout_alignParentBottom="true"
+
+        android:background="@color/separator_color_1"/>
 
     <RelativeLayout
         android:id="@+id/menu_item_8"

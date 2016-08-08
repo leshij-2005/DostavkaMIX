@@ -48,6 +48,29 @@
     <string name="font_GothaProLig">fonts/GothaProLig.otf</string>
     <string name="button_signin">Войти в аккаунт</string>
     <string name="font_GothaProMed">fonts/GothaProMed.otf</string>
+    <string name="personal_area">Личный кабинет</string>
+    <string name="personal_data">Персональные данные</string>
+    <string name="example_name">Денис</string>
+    <string name="hint_email">Email</string>
+    <string name="example_email">yakot93@gmail.com</string>
+    <string name="example_phone">+79877924931</string>
+    <string name="label_security">Безопасность и пароль</string>
+    <string name="old_pass">Старый пароль</string>
+    <string name="hint_new_pass">Новый пароль</string>
+    <string name="hint_repeet_pass">Повторите пароль</string>
+    <string name="label_street">Улица</string>
+    <string name="label_house">Дом</string>
+    <string name="label_apartment">Квартира</string>
+    <string name="but_save_change">Сохранить изменения</string>
+    <string name="label_added_points">Баллов начислено</string>
+    <string name="label_sum">Сумма заказа</string>
+    <string name="label_history_trasaction">История транзакций</string>
+    <string name="hint_birthday">День рождения</string>
+    <string name="label_signin">АВТОРИЗАЦИЯ</string>
+    <string name="hint_password">Пароль</string>
+    <string name="hint_password_new">Придумайте пароль</string>
+    <string name="msg_signin">Авторизация...</string>
+    <string name="msg_signup">Регистрация...</string>
 
 
 </resources>

@@ -38,66 +38,6 @@
             android:textSize="16sp" />
 
         <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-            android:id="@+id/signup_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_signup"
-            app:customFont="@string/font_GothaProLig"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@android:color/white"
-            android:textSize="36px"
-            android:visibility="gone"
-            />
-
-        <LinearLayout
-            android:id="@+id/signup_fields"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal"
-            android:visibility="gone">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50sp"
-                android:hint="@string/hint_name"
-                android:textSize="26px"
-                android:gravity="center"
-                android:textColor="@color/md_white_1000"
-                android:singleLine="true"
-                />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50sp"
-                android:hint="@string/hint_phone"
-                android:textSize="26px"
-                android:gravity="center"
-                android:textColor="@color/md_white_1000"
-                android:singleLine="true"
-                />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50sp"
-                android:hint="Придумайте пароль"
-                android:textSize="26px"
-                android:gravity="center"
-                android:textColor="@color/md_white_1000"
-                android:singleLine="true"
-                />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50sp"
-                android:hint="Повторите пароль"
-                android:textSize="26px"
-                android:gravity="center"
-                android:textColor="@color/md_white_1000"
-                android:singleLine="true"
-                />
-        </LinearLayout>
-
-        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
             android:id="@+id/signup"
             android:layout_width="match_parent"
             android:layout_height="40sp"
@@ -114,16 +54,6 @@
             app:customFont="@string/font_GothaProReg"
             />
 
-        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-            android:id="@+id/signin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_signin"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/margin_vertical"
-            android:textColor="@color/accent_color"
-            app:customFont="@string/font_GothaProMed"
-            android:visibility="gone"/>
     </LinearLayout>
 
 </RelativeLayout>

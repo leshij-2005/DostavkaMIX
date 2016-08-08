@@ -14,6 +14,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentTransaction;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 
@@ -34,6 +35,7 @@ import ru.dostavkamix.denis.dostavkamix.Activitys.MainActivity;
 import ru.dostavkamix.denis.dostavkamix.Custom.CustomTypefaceSpan;
 import ru.dostavkamix.denis.dostavkamix.Custom.LruBitmapCache;
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
+import ru.dostavkamix.denis.dostavkamix.Fragments.Profile.ProfileFragment;
 import ru.dostavkamix.denis.dostavkamix.Objects.Dish;
 import ru.dostavkamix.denis.dostavkamix.Fragments.AboutFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ActionListFragment;
@@ -50,6 +52,8 @@ import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewPagerFragment;
  */
 public class AppController extends Application {
     private static final String TAG = AppController.class.getSimpleName();
+    private static User user = null;
+
     private static final String prefName = "pref";
     public SharedPreferences preferences;
     public SharedPreferences.Editor editPref;
@@ -76,6 +80,7 @@ public class AppController extends Application {
     private TextViewPlus menu_item_5;
     private TextViewPlus menu_item_6;
     private TextViewPlus menu_item_7;
+    private TextViewPlus menu_item_9;
     private TextViewPlus selectItem;
 
     private Fragment aboutFragment;
@@ -85,6 +90,10 @@ public class AppController extends Application {
     public ListFragment reviewListFragment;
     public ActionPagerFragment actionFragment;
     public ReviewPagerFragment reviewFragment;
+
+    public static void setUser(User user) {
+        AppController.user = user;
+    }
 
     public MainActivity getMainActivity() {
         return mainActivity;
@@ -151,6 +160,7 @@ public class AppController extends Application {
         menu_item_5 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_5);
         menu_item_6 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_6);
         menu_item_7 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_7);
+        menu_item_9 = (TextViewPlus) menu_logo.findViewById(R.id.menu_item_9);
         RelativeLayout menu_item_8 = (RelativeLayout) menu_logo.findViewById(R.id.menu_item_8);
 
         clickMenu cm = new clickMenu();
@@ -163,6 +173,7 @@ public class AppController extends Application {
         menu_item_6.setOnClickListener(cm);
         menu_item_7.setOnClickListener(cm);
         menu_item_8.setOnClickListener(cm);
+        menu_item_9.setOnClickListener(cm);
 
 
         mainActivity.frame.setOnClickListener(new View.OnClickListener() {
@@ -415,9 +426,19 @@ public class AppController extends Application {
                 call.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(call);
                 break;
+            case 9:
+                selectMenu(menu_item_9);
+                mainActivity.ft = mainActivity.getFragmentManager().beginTransaction();
+                mainActivity.ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left, R.animator.fade_in, R.animator.slide_out_left);
+                mainActivity.ft.replace(R.id.frame_fragment, new ProfileFragment());
+                mainActivity.ft.addToBackStack(null);
+                mainActivity.ft.commit();
+                break;
             default:
                 break;
 
         }
     }
+
+
 }

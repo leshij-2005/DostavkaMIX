@@ -1,7 +1,6 @@
 package ru.dostavkamix.denis.dostavkamix.Activitys;
 
 import ru.dostavkamix.denis.dostavkamix.Adapters.ActionListAdapter;
-import ru.dostavkamix.denis.dostavkamix.Adapters.BagAdapter;
 import ru.dostavkamix.denis.dostavkamix.Adapters.BoxAdapter;
 import ru.dostavkamix.denis.dostavkamix.Adapters.ReviewListAdapter;
 import ru.dostavkamix.denis.dostavkamix.AppController;
@@ -17,8 +16,8 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -61,14 +60,13 @@ import ru.dostavkamix.denis.dostavkamix.Custom.blurbehind.OnBlurCompleteListener
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+
     private ListView listView;
     private ArrayList<ListViewItem> slide_data;
     ListViewItem[] arr_slide_data;
     public SlideAdapter slideAdapter;
 
     boolean isReadyDish = false;
-
-    public DialogFragment progressDialog;
 
     public ArrayList<Review> reviews = new ArrayList<>();
     public ArrayList<Action> actions = new ArrayList<>();
@@ -78,21 +76,10 @@ public class MainActivity extends AppCompatActivity {
 
     public Drawer slideMuneDrawer = null;
     ImageView logo = null;
-    AppCompatImageView icon_menu_up = null;
-    AppCompatImageView icon_menu_down = null;
     TextViewPlus bag_price = null;
-    //ListFragment dishList = null;
-    //Fragment topMenu = null;
-    //ListView listMain = null;
+
 
     BoxAdapter boxAdapter = null;
-    BagAdapter bagAdapter = null;
-
-    //Мне очень стыдно...
-    ArrayList<TextViewPlus> menuCategoryText = new ArrayList<TextViewPlus>();
-
-
-    TextViewPlus selectText = null;
 
     public dishListFragment MenuFragment;
     public BagFragment bagFrag;
@@ -100,19 +87,8 @@ public class MainActivity extends AppCompatActivity {
     private Fragment OrderFragment;
     DialogFragment dlg1;
     MainActivity mAct;
-    Dialog menu_logo;
     public ImageView arrow_down_t;
     public ImageView arrow_up_t;
-
-
-
-    TextViewPlus menu_item_1;
-    TextViewPlus menu_item_2;
-    TextViewPlus menu_item_3;
-    TextViewPlus menu_item_4;
-    TextViewPlus menu_item_5;
-    TextViewPlus menu_item_6;
-    TextViewPlus menu_item_7;
 
     public LinearLayout frame;
 

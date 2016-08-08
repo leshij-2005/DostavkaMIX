@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background_signup"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="25sp"
+        android:paddingRight="25dp"
+        android:gravity="center_vertical"
+        android:animateLayoutChanges="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="170sp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logo_signup"
+            android:layout_marginBottom="20sp"/>
+
+        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+            android:id="@+id/label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_signup"
+            app:customFont="@string/font_GothaProReg"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:textSize="40px"
+            />
+
+        <LinearLayout
+            android:id="@+id/signup_fields"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:animateLayoutChanges="true">
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:hint="@string/hint_name"
+                android:textSize="26px"
+                android:gravity="center"
+                android:textColor="@color/md_white_1000"
+                android:singleLine="true"
+                />
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:hint="@string/hint_email"
+                android:textSize="26px"
+                android:gravity="center"
+                android:textColor="@color/md_white_1000"
+                android:singleLine="true"
+                />
+
+            <EditText
+                android:id="@+id/birthday"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:hint="@string/hint_birthday"
+                android:textSize="26px"
+                android:gravity="center"
+                android:textColor="@color/md_white_1000"
+                android:inputType="date"
+                android:singleLine="true"
+                />
+
+            <EditText
+                android:id="@+id/pass"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:hint="@string/hint_password_new"
+                android:textSize="26px"
+                android:gravity="center"
+                android:textColor="@color/md_white_1000"
+                android:singleLine="true"
+                />
+
+            <EditText
+                android:id="@+id/pass_r"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:hint="Повторите пароль"
+                android:textSize="26px"
+                android:gravity="center"
+                android:textColor="@color/md_white_1000"
+                android:singleLine="true"
+                />
+        </LinearLayout>
+
+        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+            android:id="@+id/signup"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_button_call"
+            android:gravity="center"
+
+            android:layout_marginTop="@dimen/margin_vertical"
+            android:text="@string/button_signup"
+
+            android:textColor="@color/base_color"
+            android:textSize="36px"
+
+            app:customFont="@string/font_GothaProReg"
+            />
+
+        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+            android:id="@+id/signin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_signin"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_vertical"
+            android:textColor="@color/accent_color"
+            app:customFont="@string/font_GothaProMed"
+            />
+
+
+    </LinearLayout>
+
+</FrameLayout>

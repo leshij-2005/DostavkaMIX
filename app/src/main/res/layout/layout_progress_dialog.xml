@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20sp"
+        />
+
+    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+        android:id="@+id/msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/progress"
+        android:text="Регистрация..."
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20sp"
+        android:textColor="@color/toolbar_background_color"/>
+
+</RelativeLayout>
