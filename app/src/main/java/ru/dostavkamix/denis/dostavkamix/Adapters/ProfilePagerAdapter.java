@@ -10,11 +10,15 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.Fragments.Profile.OrdersFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.Profile.PointsFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.Profile.ProfileEditFragment;
+import ru.dostavkamix.denis.dostavkamix.Objects.User;
 import ru.dostavkamix.denis.dostavkamix.R;
+import ru.dostavkamix.denis.dostavkamix.UserCallback;
+import ru.dostavkamix.denis.dostavkamix.UserHelper;
 
 /**
  * Created by Денис on 02.08.2016.
@@ -60,7 +64,18 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
     public View getTabView(int position, boolean selected) {
         View v = LayoutInflater.from(ctx).inflate(R.layout.tab_view, null);
         TextViewPlus title = (TextViewPlus) v.findViewById(R.id.title);
-        TextViewPlus points = (TextViewPlus) v.findViewById(R.id.points);
+        final TextViewPlus points = (TextViewPlus) v.findViewById(R.id.points);
+        UserHelper.getUser(AppController.getInstance().getUserToken(), AppController.getInstance(), new UserCallback() {
+            @Override
+            public void onSuccess(User user) {
+                points.setText(String.valueOf(user.getPoints()));
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
 
         switch (position) {
             case 1:

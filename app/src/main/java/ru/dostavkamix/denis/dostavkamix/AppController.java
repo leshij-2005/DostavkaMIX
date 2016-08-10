@@ -14,7 +14,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentTransaction;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 
@@ -32,6 +31,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.ArrayList;
 
 import ru.dostavkamix.denis.dostavkamix.Activitys.MainActivity;
+import ru.dostavkamix.denis.dostavkamix.Activitys.SignUpActivity;
 import ru.dostavkamix.denis.dostavkamix.Custom.CustomTypefaceSpan;
 import ru.dostavkamix.denis.dostavkamix.Custom.LruBitmapCache;
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
@@ -44,6 +44,7 @@ import ru.dostavkamix.denis.dostavkamix.Fragments.ConditionFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.InfoFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewListFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewPagerFragment;
+import ru.dostavkamix.denis.dostavkamix.Objects.User;
 
 
 /**
@@ -52,7 +53,9 @@ import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewPagerFragment;
  */
 public class AppController extends Application {
     private static final String TAG = AppController.class.getSimpleName();
+
     private static User user = null;
+    private static final String  TAG_USER_TOKEN = "user";
 
     private static final String prefName = "pref";
     public SharedPreferences preferences;
@@ -91,8 +94,27 @@ public class AppController extends Application {
     public ActionPagerFragment actionFragment;
     public ReviewPagerFragment reviewFragment;
 
-    public static void setUser(User user) {
+    public void setUser(User user) {
         AppController.user = user;
+
+        UserHelper.getUser(user.getToken(), this, new UserCallback() {
+            @Override
+            public void onSuccess(User result) {
+                AppController.user = result;
+            }
+
+            @Override
+            public void onError(String error) {
+                Log.e(TAG, "onError: " + error);
+            }
+        });
+
+        editPref.putString(TAG_USER_TOKEN, user.getToken());
+        editPref.commit();
+    }
+
+    public String getUserToken() {
+        return preferences.getString(TAG_USER_TOKEN, null);
     }
 
     public MainActivity getMainActivity() {
@@ -427,12 +449,17 @@ public class AppController extends Application {
                 startActivity(call);
                 break;
             case 9:
-                selectMenu(menu_item_9);
-                mainActivity.ft = mainActivity.getFragmentManager().beginTransaction();
-                mainActivity.ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left, R.animator.fade_in, R.animator.slide_out_left);
-                mainActivity.ft.replace(R.id.frame_fragment, new ProfileFragment());
-                mainActivity.ft.addToBackStack(null);
-                mainActivity.ft.commit();
+                if(preferences.getString(TAG_USER_TOKEN, null) != null) {
+                    selectMenu(menu_item_9);
+                    mainActivity.ft = mainActivity.getFragmentManager().beginTransaction();
+                    mainActivity.ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left, R.animator.fade_in, R.animator.slide_out_left);
+                    mainActivity.ft.replace(R.id.frame_fragment, new ProfileFragment());
+                    mainActivity.ft.addToBackStack(null);
+                    mainActivity.ft.commit();
+                } else {
+                    startActivity(new Intent(mainActivity, SignUpActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                }
+
                 break;
             default:
                 break;

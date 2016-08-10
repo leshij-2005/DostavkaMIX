@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -16,14 +17,14 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOError;
 import java.util.HashMap;
 import java.util.Map;
 
 import me.drakeet.materialdialog.MaterialDialog;
-import ru.dostavkamix.denis.dostavkamix.AppController;
-import ru.dostavkamix.denis.dostavkamix.R;
-import ru.dostavkamix.denis.dostavkamix.SignCallback;
-import ru.dostavkamix.denis.dostavkamix.User;
+import ru.dostavkamix.denis.dostavkamix.Objects.User;
+
+import static com.android.volley.Request.Method.GET;
 
 /**
  * Created by Денис on 08.08.2016.
@@ -43,6 +44,7 @@ public class UserHelper {
 
     private static final String TAG_USER_ID = "user_id";
     private static final String TAG_TOKEN = "access_token";
+    private static final String TAG_AUTH = "Authorization";
     private static final String TAG_STATUS = "status";
     private static final String TAG_ERRORS = "errors";
     private static final String TAG_MSG = "msg";
@@ -52,6 +54,10 @@ public class UserHelper {
     private static final String TAG_BIRTHDAY = "birthday";
     private static final String TAG_PASS = "password";
     private static final String TAG_APP_KEY = "app_key";
+    private static final String TAG_POINTS = "points";
+    private static final String TAG_ADDRESSES = "addresses";
+    private static final String TAG_CRE_AT = "created_at";
+    private static final String TAG_UPD_AT = "updated_at";
 
     static MaterialDialog progressDialog;
     static MaterialDialog msgDialog;
@@ -150,7 +156,7 @@ public class UserHelper {
                     }
                 }, 300);
                 try {
-                    AppController.setUser(new User(response.getInt(TAG_USER_ID), response.getString(TAG_TOKEN)));
+                    AppController.getInstance().setUser(new User(response.getString(TAG_TOKEN)));
                     callback.onSuccess();
                     Log.d(TAG, "onResponse: signin ok");
 
@@ -178,6 +184,55 @@ public class UserHelper {
                 Log.e(TAG, "onErrorResponse: " + error.getMessage());
             }
         });
+
+        Volley.newRequestQueue(ctx).add(request);
+    }
+
+    public static void getUser(final String token, Context ctx, final UserCallback callback) {
+
+        JsonObjectRequest request = new JsonObjectRequest(
+                GET,
+                base_url + _USER,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response1) {
+                        Log.d(TAG, "onResponse: response: " + response1);
+                        User result = new User(token);
+                        try {
+                            JSONObject response = response1.getJSONObject("user");
+                            result.setName(response.getString(TAG_NAME));
+                            Log.d(TAG, "onResponse: user: " + result.getName());
+                            result.setEmail(response.getString(TAG_EMAIL));
+                            result.setPhone(response.getString(TAG_PHONE));
+                            result.setBirthday(response.getString(TAG_BIRTHDAY));
+                            result.setCreated_at(response.getString(TAG_CRE_AT));
+                            result.setUpdate_at(response.getString(TAG_UPD_AT));
+                            result.setPoints(response.getInt(TAG_POINTS));
+                            result.setAddresses(response.getString(TAG_ADDRESSES));
+                            callback.onSuccess(result);
+                            Log.d(TAG, "onResponse: success parse json");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            callback.onError(e.getMessage());
+                            Log.e(TAG, "onResponse: error parse json");
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        callback.onError(error.getMessage());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                headers.put(TAG_AUTH, token);
+                return headers;
+            }
+        };
 
         Volley.newRequestQueue(ctx).add(request);
     }

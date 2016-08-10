@@ -1,5 +1,6 @@
 package ru.dostavkamix.denis.dostavkamix.Activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -81,7 +82,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     UserHelper.signIn(email.getText().toString(), pass.getText().toString(), this, new SignCallback() {
                         @Override
                         public void onSuccess() {
-
+                            startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                         }
 
                         @Override
