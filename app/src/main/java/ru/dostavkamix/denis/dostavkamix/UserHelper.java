@@ -266,7 +266,7 @@ public class UserHelper {
         msgDialog = new MaterialDialog(ctx);
 
         View viewProgress = LayoutInflater.from(ctx).inflate(R.layout.layout_progress_dialog, null);
-        ((TextView) (viewProgress.findViewById(R.id.msg))).setText(R.string.msg_update);
+        //((TextView) (viewProgress.findViewById(R.id.msg))).setText(R.string.msg_update);
         progressDialog.setContentView(viewProgress);
         progressDialog.show();
 
@@ -340,7 +340,7 @@ public class UserHelper {
         msgDialog = new MaterialDialog(ctx);
 
         View viewProgress = LayoutInflater.from(ctx).inflate(R.layout.layout_progress_dialog, null);
-        ((TextView) (viewProgress.findViewById(R.id.msg))).setText(R.string.msg_update);
+        //((TextView) (viewProgress.findViewById(R.id.msg))).setText(R.string.msg_update);
         progressDialog.setContentView(viewProgress);
         progressDialog.show();
 
