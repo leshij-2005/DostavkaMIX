@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'android-apt'
+
+apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
@@ -39,6 +40,11 @@ android {
     }
 }
 
+repositories {
+    maven { url "https://clojars.org/repo/" }
+    maven { url "http://dl.bintray.com/jjhesk/maven" }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
@@ -55,16 +61,28 @@ dependencies {
     compile('com.mikepenz:materialdrawer:4.6.4@aar') {
         transitive = true
     }
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
 
-    compile 'com.jakewharton:butterknife:8.4.0'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.hannesdorfmann.mosby:mvp:2.0.1'
+    compile 'com.hannesdorfmann.mosby:viewstate:2.0.1'
+
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
 
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
 
-    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:+'
+    compile 'com.squareup.dagger:dagger:1.2.2'
+    provided 'com.squareup.dagger:dagger-compiler:1.2.2'
+    apt 'com.squareup.dagger:dagger-compiler:1.2.2'
+
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    compile 'frankiesardo:icepick:3.2.0'
+    provided 'frankiesardo:icepick-processor:3.2.0'
+
+    compile 'javax.annotation:javax.annotation-api:1.2'
 
 }
