@@ -71,6 +71,8 @@
     <string name="hint_password_new">Придумайте пароль</string>
     <string name="msg_signin">Авторизация...</string>
     <string name="msg_signup">Регистрация...</string>
+    <string name="label_address">Адрес доставки</string>
+    <string name="msg_update">Обновление профиля</string>
 
 
 </resources>

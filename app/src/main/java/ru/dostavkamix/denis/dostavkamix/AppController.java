@@ -30,8 +30,8 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
+import ru.dostavkamix.denis.dostavkamix.Activitys.IntroActivity;
 import ru.dostavkamix.denis.dostavkamix.Activitys.MainActivity;
-import ru.dostavkamix.denis.dostavkamix.Activitys.SignUpActivity;
 import ru.dostavkamix.denis.dostavkamix.Custom.CustomTypefaceSpan;
 import ru.dostavkamix.denis.dostavkamix.Custom.LruBitmapCache;
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
@@ -94,13 +94,16 @@ public class AppController extends Application {
     public ActionPagerFragment actionFragment;
     public ReviewPagerFragment reviewFragment;
 
-    public void setUser(User user) {
+    public void setUser(final User user) {
         AppController.user = user;
 
         UserHelper.getUser(user.getToken(), this, new UserCallback() {
             @Override
             public void onSuccess(User result) {
+
                 AppController.user = result;
+                editPref.putString(TAG_USER_TOKEN, user.getToken());
+                editPref.commit();
             }
 
             @Override
@@ -109,8 +112,10 @@ public class AppController extends Application {
             }
         });
 
-        editPref.putString(TAG_USER_TOKEN, user.getToken());
-        editPref.commit();
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public String getUserToken() {
@@ -228,6 +233,21 @@ public class AppController extends Application {
         reviewListFragment = new ReviewListFragment();
         actionFragment = new ActionPagerFragment();
         reviewFragment = new ReviewPagerFragment();
+
+        if(preferences.getString(TAG_USER_TOKEN, null) != null) {
+            UserHelper.getUser(preferences.getString(TAG_USER_TOKEN, null), this, new UserCallback() {
+                @Override
+                public void onSuccess(User user) {
+                    setUser(user);
+                    Log.d(TAG, "onSuccess: Авторизация пройдена!");
+                }
+
+                @Override
+                public void onError(String error) {
+
+                }
+            });
+        }
 
     }
 
@@ -457,7 +477,7 @@ public class AppController extends Application {
                     mainActivity.ft.addToBackStack(null);
                     mainActivity.ft.commit();
                 } else {
-                    startActivity(new Intent(mainActivity, SignUpActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                    startActivity(new Intent(mainActivity, IntroActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 }
 
                 break;

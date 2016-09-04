@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'android-apt'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     signingConfigs {
@@ -10,7 +12,7 @@ android {
         applicationId "ru.dostavkamix.denis.dostavkamix"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 6
+        versionCode 9
         versionName "1.2"
         renderscriptTargetApi 20
         renderscriptSupportModeEnabled true
@@ -30,12 +32,17 @@ android {
         exclude 'META-INF/NOTICE.txt'
         exclude 'META-INF/ASL2.0'
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile "com.google.android.gms:play-services-gcm:8.3.0"
+    compile 'com.google.android.gms:play-services-gcm:8.3.0'
     compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
     compile 'fr.tvbarthel.blurdialogfragment:lib:2.1.5'
     compile 'org.osmdroid:osmdroid-android:5.1@aar'
@@ -48,4 +55,16 @@ dependencies {
     compile('com.mikepenz:materialdrawer:4.6.4@aar') {
         transitive = true
     }
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
+
+    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:+'
+
 }

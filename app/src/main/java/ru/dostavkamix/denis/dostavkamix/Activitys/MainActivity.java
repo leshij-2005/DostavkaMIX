@@ -9,14 +9,13 @@ import ru.dostavkamix.denis.dostavkamix.Objects.Action;
 import ru.dostavkamix.denis.dostavkamix.Objects.Review;
 import ru.dostavkamix.denis.dostavkamix.Push.SendToken;
 import ru.dostavkamix.denis.dostavkamix.Adapters.SlideAdapter;
-import android.app.Dialog;
+
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -50,7 +49,7 @@ import ru.dostavkamix.denis.dostavkamix.Objects.Catalog;
 import ru.dostavkamix.denis.dostavkamix.Objects.Category;
 import ru.dostavkamix.denis.dostavkamix.Objects.Dish;
 import ru.dostavkamix.denis.dostavkamix.Fragments.BagFragment;
-import ru.dostavkamix.denis.dostavkamix.Fragments.FragmentOrder;
+import ru.dostavkamix.denis.dostavkamix.Fragments.OrderFragment;
 import ru.dostavkamix.denis.dostavkamix.Dialogs.InOrderDialog;
 import ru.dostavkamix.denis.dostavkamix.Fragments.dishListFragment;
 import ru.dostavkamix.denis.dostavkamix.R;
@@ -91,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
     public ImageView arrow_up_t;
 
     public LinearLayout frame;
+
 
 
     public void updateBagPrice() {
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(false);
 
         MenuFragment = new dishListFragment();
-        OrderFragment = new FragmentOrder();
+        OrderFragment = new OrderFragment();
         bagFrag = new BagFragment();
 
         ft = getFragmentManager().beginTransaction();

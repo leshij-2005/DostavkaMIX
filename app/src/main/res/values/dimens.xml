@@ -34,4 +34,5 @@
     <dimen name="size_title_card">17sp</dimen>
     <dimen name="margin_right_content_card">10sp</dimen>
     <dimen name="height_content_card">40sp</dimen>
+    <dimen name="minWidth_edit">10sp</dimen>
 </resources>

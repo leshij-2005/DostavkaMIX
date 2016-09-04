@@ -67,8 +67,6 @@
                   android:theme="@android:style/Theme.NoTitleBar"/>
         <activity android:name=".Activitys.IntroActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Activitys.SignUpActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

@@ -11,7 +11,7 @@ import ru.dostavkamix.denis.dostavkamix.R;
 /**
  * Created by den on 23.01.16.
  */
-public class FragmentOrder extends Fragment {
+public class OrderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_bag, container, false);

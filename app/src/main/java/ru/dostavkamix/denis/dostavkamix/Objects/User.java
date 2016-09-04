@@ -1,5 +1,14 @@
 package ru.dostavkamix.denis.dostavkamix.Objects;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import ru.dostavkamix.denis.dostavkamix.UserHelper;
+
 /**
  * Created by Денис on 02.08.2016.
  */
@@ -14,8 +23,7 @@ public class User {
     private String birthday;
     private String phone;
     private int points;
-    private String addresses;
-    private String pass;
+    private List<Address> addresses = new ArrayList<>();
 
     public User(String token) {
         this.token = token;
@@ -53,15 +61,9 @@ public class User {
         return points;
     }
 
-    public String getAddresses() {
+    public List<Address> getAddresses() {
         return addresses;
     }
-
-    public String getPass() {
-        return pass;
-    }
-
-
 
     public void setName(String name) {
         this.name = name;
@@ -91,12 +93,29 @@ public class User {
         this.points = points;
     }
 
-    public void setAddresses(String addresses) {
+    public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
     }
+    
+    public void setAddresses(JSONArray addresses) {
+        try {
+            for (int i = 0; i < addresses.length(); i++) {
+                Address address = new Address();
+                address.setStreet(addresses.getJSONObject(i).getString(UserHelper.TAG_STREET));
+                address.setNumber(addresses.getJSONObject(i).getString(UserHelper.TAG_NUMBER));
+                address.setPorch(addresses.getJSONObject(i).getString(UserHelper.TAG_PORCH));
+                address.setFloor(addresses.getJSONObject(i).getString(UserHelper.TAG_FLOOR));
+                address.setApartment(addresses.getJSONObject(i).getString(UserHelper.TAG_APARTMENT));
 
-    public void setPass(String pass) {
-        this.pass = pass;
+                this.addresses.add(address);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addAddress(Address address) {
+        this.addresses.add(address);
     }
 
 }

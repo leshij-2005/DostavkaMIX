@@ -1,0 +1,6 @@
+<shape android:shape="rectangle" xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners
+        android:topLeftRadius="18dp"
+        android:topRightRadius="18dp" />
+    <solid android:color="@color/toolbar_background_color" />
+</shape>
