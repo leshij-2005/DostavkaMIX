@@ -11,7 +11,7 @@ android {
     buildToolsVersion '23.0.3'
     defaultConfig {
         applicationId "ru.dostavkamix.denis.dostavkamix"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 9
         versionName "1.2"
@@ -58,6 +58,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.android.support:design:23.2.0'
     compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile 'com.github.jjhesk:hkm-progress-button:0.15'
     compile('com.mikepenz:materialdrawer:4.6.4@aar') {
         transitive = true
     }

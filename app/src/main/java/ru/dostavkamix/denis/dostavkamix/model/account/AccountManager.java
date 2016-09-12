@@ -9,11 +9,23 @@ import rx.Observable;
 
 public interface AccountManager {
 
-    Observable<Credentials> doSignUp(AuthCredentials authCredentials);
+    Observable<Credentials> doSignUp(AuthCredentials authCredentials, Account account);
 
     Observable<Credentials> doSignIn(AuthCredentials authCredentials);
 
     Observable<Account> getAccount(Credentials credentials);
 
-    Observable<Account> updateAccount(Account account);
+    Observable<Account> updateAccount(Credentials credentials, Account account);
+
+    Credentials getCurrentAuth();
+
+    Account getCurrentAccount();
+
+    boolean isUserAuthenticated();
+
+    boolean isUserGetted();
+
+    void setCurrentCredentials(Credentials credentials);
+
+    void doLogout();
 }

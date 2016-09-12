@@ -20,6 +20,7 @@
         android:layout_centerInParent="true"
         android:orientation="vertical"
         android:background="@android:color/transparent"
+        android:visibility="gone"
         >
 
         <ImageView
@@ -51,7 +52,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_vertical"
-        android:visibility="gone"
+
         >
 
         <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
@@ -142,33 +143,60 @@
 
     </LinearLayout>
 
-    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+    <com.hkm.ui.processbutton.iml.ActionProcessButton
         android:id="@+id/signup"
         android:layout_width="match_parent"
-        android:layout_height="40sp"
-        android:layout_gravity="center"
-        android:background="@drawable/rounded_button_call"
-        android:gravity="center"
-
-        android:layout_marginTop="@dimen/margin_vertical"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
         android:text="@string/button_signup"
-
-        android:textColor="@color/base_color"
-        android:textSize="36px"
-
-        app:customFont="@string/font_GothaProReg"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        app:pb_colorComplete="@color/green_complete"
+        app:pb_colorNormal="@color/accent_color"
+        app:pb_colorPressed="@color/accent_dark_color"
+        app:pb_textComplete="Готово!"
+        app:pb_textProgress="Регистрация"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+    <com.hkm.ui.processbutton.iml.ActionProcessButton
         android:id="@+id/signin"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/button_signin"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        app:pb_colorComplete="@color/green_complete"
+        app:pb_colorNormal="@color/accent_color"
+        app:pb_colorPressed="@color/accent_dark_color"
+        app:pb_textComplete="Готово!"
+        app:pb_textProgress="Авторизация"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/errorView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_signin"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/margin_vertical"
-        android:textColor="@color/accent_color"
-        app:customFont="@string/font_GothaProMed"
+        android:textColor="@color/red"
+        android:textSize="14sp"
+        android:text="@string/msg_auth_bed"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
         android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/signSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="italic"
+        android:textSize="14sp"
+        android:layout_marginTop="15dp"
+        android:text="@string/button_signin"
+        android:layout_gravity="center"
         />
 
 </LinearLayout>

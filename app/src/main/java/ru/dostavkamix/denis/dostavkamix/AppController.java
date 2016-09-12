@@ -30,11 +30,14 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
+import dagger.ObjectGraph;
 import ru.dostavkamix.denis.dostavkamix.Activitys.IntroActivity;
 import ru.dostavkamix.denis.dostavkamix.Activitys.MainActivity;
 import ru.dostavkamix.denis.dostavkamix.Custom.CustomTypefaceSpan;
 import ru.dostavkamix.denis.dostavkamix.Custom.LruBitmapCache;
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
+import ru.dostavkamix.denis.dostavkamix.Custom.blurbehind.BlurBehind;
+import ru.dostavkamix.denis.dostavkamix.Custom.blurbehind.OnBlurCompleteListener;
 import ru.dostavkamix.denis.dostavkamix.Fragments.Profile.ProfileFragment;
 import ru.dostavkamix.denis.dostavkamix.Objects.Dish;
 import ru.dostavkamix.denis.dostavkamix.Fragments.AboutFragment;
@@ -45,6 +48,9 @@ import ru.dostavkamix.denis.dostavkamix.Fragments.InfoFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewListFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewPagerFragment;
 import ru.dostavkamix.denis.dostavkamix.Objects.User;
+import ru.dostavkamix.denis.dostavkamix.login.LoginActivity;
+import ru.dostavkamix.denis.dostavkamix.login.LoginModule;
+import ru.dostavkamix.denis.dostavkamix.model.ModelModule;
 
 
 /**
@@ -52,6 +58,9 @@ import ru.dostavkamix.denis.dostavkamix.Objects.User;
  *
  */
 public class AppController extends Application {
+
+    private static ObjectGraph objectGraph;
+
     private static final String TAG = AppController.class.getSimpleName();
 
     private static User user = null;
@@ -249,6 +258,7 @@ public class AppController extends Application {
             });
         }
 
+        init(new LoginModule(), new ModelModule());
     }
 
     public void setMainActivity(MainActivity mainActivity) {
@@ -477,7 +487,17 @@ public class AppController extends Application {
                     mainActivity.ft.addToBackStack(null);
                     mainActivity.ft.commit();
                 } else {
-                    startActivity(new Intent(mainActivity, IntroActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                    BlurBehind.getInstance().execute(mainActivity, new OnBlurCompleteListener() {
+                        @Override
+                        public void onBlurComplete() {
+                            Intent intent = new Intent(mainActivity, LoginActivity.class);
+                            //intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                            startActivity(intent);
+                        }
+                    }, 12);
+                    //startActivity(new Intent(mainActivity, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 }
 
                 break;
@@ -487,5 +507,14 @@ public class AppController extends Application {
         }
     }
 
+    public static void init(Object... modules)
+    {
+        objectGraph = ObjectGraph.create(modules);
+    }
+
+    public static void inject(Object target)
+    {
+        objectGraph.inject(target);
+    }
 
 }

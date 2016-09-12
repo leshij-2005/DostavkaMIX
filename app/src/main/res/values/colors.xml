@@ -3,6 +3,7 @@
     <color name="menu_focused_pressed_gray_color">#404040</color>
     <color name="blue_dark_color">#3280b8</color>
     <color name="accent_color">#ffcb05</color>
+    <color name="accent_dark_color">#ffbc05</color>
     <color name="menu_category_color">#acacac</color>
     <color name="base_color">#1e2126</color>
     <color name="toolbar_background_color">#25282d</color>
@@ -16,4 +17,6 @@
     <color name="color_border">#32ffffff</color>
     <color name="color_hint">#80ffffff</color>
     <color name="color_border_white">#0affffff</color>
+
+    <color name="red">#F44336</color>
 </resources>

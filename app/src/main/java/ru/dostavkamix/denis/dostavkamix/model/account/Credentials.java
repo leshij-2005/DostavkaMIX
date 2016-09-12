@@ -5,4 +5,10 @@ package ru.dostavkamix.denis.dostavkamix.model.account;
  */
 
 public class Credentials {
+
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
 }

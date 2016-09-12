@@ -15,12 +15,7 @@ import javax.annotation.Generated;
 public class UserResponse extends BaseResponse {
 
     @SerializedName("response")
-    @Expose
     private Response response;
-    @SerializedName("errors")
-    @Expose
-    private Errors errors;
-
 
     public Response getResponse() {
         return response;
@@ -30,134 +25,6 @@ public class UserResponse extends BaseResponse {
         this.response = response;
     }
 
-    /**
-     *
-     * @return
-     * The errors
-     */
-    public Errors getErrors() {
-        return errors;
-    }
-
-    /**
-     *
-     * @param errors
-     * The errors
-     */
-    public void setErrors(Errors errors) {
-        this.errors = errors;
-    }
-
-    @Generated("org.jsonschema2pojo")
-    public class Errors {
-
-        @SerializedName("name")
-        @Expose
-        private List<String> name = new ArrayList<String>();
-        @SerializedName("phone")
-        @Expose
-        private List<String> phone = new ArrayList<String>();
-        @SerializedName("birthday")
-        @Expose
-        private List<String> birthday = new ArrayList<String>();
-        @SerializedName("email")
-        @Expose
-        private List<String> email = new ArrayList<String>();
-        @SerializedName("password")
-        @Expose
-        private List<String> password = new ArrayList<String>();
-
-        /**
-         *
-         * @return
-         * The name
-         */
-        public List<String> getName() {
-            return name;
-        }
-
-        /**
-         *
-         * @param name
-         * The name
-         */
-        public void setName(List<String> name) {
-            this.name = name;
-        }
-
-        /**
-         *
-         * @return
-         * The phone
-         */
-        public List<String> getPhone() {
-            return phone;
-        }
-
-        /**
-         *
-         * @param phone
-         * The phone
-         */
-        public void setPhone(List<String> phone) {
-            this.phone = phone;
-        }
-
-        /**
-         *
-         * @return
-         * The birthday
-         */
-        public List<String> getBirthday() {
-            return birthday;
-        }
-
-        /**
-         *
-         * @param birthday
-         * The birthday
-         */
-        public void setBirthday(List<String> birthday) {
-            this.birthday = birthday;
-        }
-
-        /**
-         *
-         * @return
-         * The email
-         */
-        public List<String> getEmail() {
-            return email;
-        }
-
-        /**
-         *
-         * @param email
-         * The email
-         */
-        public void setEmail(List<String> email) {
-            this.email = email;
-        }
-
-        /**
-         *
-         * @return
-         * The password
-         */
-        public List<String> getPassword() {
-            return password;
-        }
-
-        /**
-         *
-         * @param password
-         * The password
-         */
-        public void setPassword(List<String> password) {
-            this.password = password;
-        }
-
-    }
 
     @Generated("org.jsonschema2pojo")
     public class Response {

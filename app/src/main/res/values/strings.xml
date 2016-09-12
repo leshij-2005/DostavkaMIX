@@ -73,6 +73,7 @@
     <string name="msg_signup">Регистрация...</string>
     <string name="label_address">Адрес доставки</string>
     <string name="msg_update">Обновление профиля</string>
+    <string name="msg_auth_bed">Неверный email или пароль</string>
 
 
 </resources>
