@@ -33,7 +33,7 @@ public class AccountManagerTest {
 
         AccountAPIService service = retrofit.create(AccountAPIService.class);
 
-        service.createUser(new User("test", getRandomEmail(), "12345", "23.09.1996", "TermometR123123"))
+        service.createUser(new User_("test", getRandomEmail(), "12345", "23.09.1996", "TermometR123123"))
                 .subscribe(new Subscriber<UserResponse>() {
                     @Override
                     public void onCompleted() {
@@ -137,7 +137,7 @@ public class AccountManagerTest {
                             System.out.println("token: access_token: " + token.getAccess_token());
 
                             service.getUser(token.getAccess_token())
-                                    .subscribe(new Subscriber<User>() {
+                                    .subscribe(new Subscriber<User_>() {
                                         @Override
                                         public void onCompleted() {
                                             System.out.println("Receipt user completed");
@@ -149,7 +149,7 @@ public class AccountManagerTest {
                                         }
 
                                         @Override
-                                        public void onNext(User user) {
+                                        public void onNext(User_ user) {
                                             System.out.println("user: name: " + user.getUser().getName());
                                         }
                                     });
@@ -192,7 +192,7 @@ public class AccountManagerTest {
                             System.out.println("token: access_token: " + token.getAccess_token());
 
                             service.getUser(token.getAccess_token())
-                                    .subscribe(new Subscriber<User>() {
+                                    .subscribe(new Subscriber<User_>() {
                                         @Override
                                         public void onCompleted() {
                                             System.out.println("Receipt user completed");
@@ -204,7 +204,7 @@ public class AccountManagerTest {
                                         }
 
                                         @Override
-                                        public void onNext(User user) {
+                                        public void onNext(User_ user) {
                                             System.out.println("user: name: " + user.getUser().getName());
                                             service.updateUser(token.getAccess_token(), user.getUser())
                                                     .subscribe(new Subscriber<UserResponse>() {

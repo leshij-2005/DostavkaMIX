@@ -50,6 +50,7 @@ public class LoginPresenter extends MvpBasePresenter<LoginView> {
         }
 
         Log.d(TAG, "error: " + throwable);
+        throwable.printStackTrace();
     };
 
     private Action1<Object> nextAction = object -> Log.d(TAG, "next: ");
@@ -69,6 +70,7 @@ public class LoginPresenter extends MvpBasePresenter<LoginView> {
         cancelSubscription();
 
         subscription = accountManager.doSignIn(authCredentials)
+                .doOnNext(credentials -> Log.d(TAG, "doSignin: token: " + credentials.getToken()))
                 .flatMap(credentials -> accountManager.getAccount(credentials))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

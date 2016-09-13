@@ -6,6 +6,10 @@ package ru.dostavkamix.denis.dostavkamix.model.account;
 
 public class Credentials {
 
+    public Credentials(String token) {
+        this.token = token;
+    }
+
     private String token;
 
     public String getToken() {

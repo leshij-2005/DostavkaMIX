@@ -1,38 +1,47 @@
-package ru.dostavkamix.denis.dostavkamix.model.account.api.pojo;
 
-import com.google.gson.annotations.SerializedName;
+package ru.dostavkamix.denis.dostavkamix.model.account.api.pojo;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by Денис on 04.09.2016.
- */
-
+@Generated("org.jsonschema2pojo")
 public class User {
 
     @SerializedName("id")
-    int id;
+    @Expose
+    private Integer id;
     @SerializedName("name")
-    String name;
+    @Expose
+    private String name;
     @SerializedName("email")
-    String email;
+    @Expose
+    private String email;
     @SerializedName("created_at")
-    String created_at;
+    @Expose
+    private String createdAt;
     @SerializedName("updated_at")
-    String updated_at;
-    @SerializedName("phone")
-    String phone;
+    @Expose
+    private String updatedAt;
     @SerializedName("birthday")
-    String birthday;
+    @Expose
+    private String birthday;
+    @SerializedName("phone")
+    @Expose
+    private String phone;
     @SerializedName("points")
-    int points;
+    @Expose
+    private Integer points;
     @SerializedName("addresses")
-    List<Address> addresses = new ArrayList<>();
-    @SerializedName("password")
-    String password;
-    @SerializedName("user")
-    User user;
+    @Expose
+    private List<Address> addresses = new ArrayList<Address>();
+    @SerializedName("role")
+    @Expose
+    private Integer role;
+
+    private String password;
 
     public User(String name, String email, String phone, String birthday, String password) {
         this.name = name;
@@ -42,156 +51,184 @@ public class User {
         this.password = password;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public int getId() {
+    /**
+     * 
+     * @return
+     *     The id
+     */
+    public Integer getId() {
         return id;
     }
 
+    /**
+     * 
+     * @param id
+     *     The id
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * 
+     * @return
+     *     The name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * 
+     * @param name
+     *     The name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * 
+     * @return
+     *     The email
+     */
     public String getEmail() {
         return email;
     }
 
-    public String getCreated_at() {
-        return created_at;
+    /**
+     * 
+     * @param email
+     *     The email
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getUpdated_at() {
-        return updated_at;
+    /**
+     * 
+     * @return
+     *     The createdAt
+     */
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public String getPhone() {
-        return phone;
+    /**
+     * 
+     * @param createdAt
+     *     The created_at
+     */
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
+    /**
+     * 
+     * @return
+     *     The updatedAt
+     */
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    /**
+     * 
+     * @param updatedAt
+     *     The updated_at
+     */
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    /**
+     * 
+     * @return
+     *     The birthday
+     */
     public String getBirthday() {
         return birthday;
     }
 
-    public int getPoints() {
+    /**
+     * 
+     * @param birthday
+     *     The birthday
+     */
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    /**
+     * 
+     * @return
+     *     The phone
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * 
+     * @param phone
+     *     The phone
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    /**
+     * 
+     * @return
+     *     The points
+     */
+    public Integer getPoints() {
         return points;
     }
 
+    /**
+     * 
+     * @param points
+     *     The points
+     */
+    public void setPoints(Integer points) {
+        this.points = points;
+    }
+
+    /**
+     * 
+     * @return
+     *     The addresses
+     */
     public List<Address> getAddresses() {
         return addresses;
     }
 
-    public String getPassword() {
-        return password;
+    /**
+     * 
+     * @param addresses
+     *     The addresses
+     */
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 
-    public class Addresses {
-
+    /**
+     * 
+     * @return
+     *     The role
+     */
+    public Integer getRole() {
+        return role;
     }
 
-    public class Address {
-
-        @SerializedName("street")
-        private String street;
-        @SerializedName("number")
-        private String number;
-        @SerializedName("porch")
-        private String porch;
-        @SerializedName("floor")
-        private String floor;
-        @SerializedName("apartment")
-        private String apartment;
-
-        /**
-         *
-         * @return
-         * The street
-         */
-        public String getStreet() {
-            return street;
-        }
-
-        /**
-         *
-         * @param street
-         * The street
-         */
-        public void setStreet(String street) {
-            this.street = street;
-        }
-
-        /**
-         *
-         * @return
-         * The number
-         */
-        public String getNumber() {
-            return number;
-        }
-
-        /**
-         *
-         * @param number
-         * The number
-         */
-        public void setNumber(String number) {
-            this.number = number;
-        }
-
-        /**
-         *
-         * @return
-         * The porch
-         */
-        public String getPorch() {
-            return porch;
-        }
-
-        /**
-         *
-         * @param porch
-         * The porch
-         */
-        public void setPorch(String porch) {
-            this.porch = porch;
-        }
-
-        /**
-         *
-         * @return
-         * The floor
-         */
-        public String getFloor() {
-            return floor;
-        }
-
-        /**
-         *
-         * @param floor
-         * The floor
-         */
-        public void setFloor(String floor) {
-            this.floor = floor;
-        }
-
-        /**
-         *
-         * @return
-         * The apartment
-         */
-        public String getApartment() {
-            return apartment;
-        }
-
-        /**
-         *
-         * @param apartment
-         * The apartment
-         */
-        public void setApartment(String apartment) {
-            this.apartment = apartment;
-        }
-
+    /**
+     * 
+     * @param role
+     *     The role
+     */
+    public void setRole(Integer role) {
+        this.role = role;
     }
+
 }
