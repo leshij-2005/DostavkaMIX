@@ -1,5 +1,7 @@
 package ru.dostavkamix.denis.dostavkamix.login;
 
+import android.util.Log;
+
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 
 import java.util.regex.Matcher;
@@ -25,6 +27,8 @@ import rx.schedulers.Schedulers;
 
 public class LoginPresenter extends MvpBasePresenter<LoginView> {
 
+    private static String TAG = "LoginPreseter";
+
     @Inject
     AccountManager accountManager;
 
@@ -36,17 +40,19 @@ public class LoginPresenter extends MvpBasePresenter<LoginView> {
         if (isViewAttached()) {
             getView().loginSuccessful();
         }
+
+        Log.d(TAG, "complete: ");
     };
 
     private Action1<Throwable> errorAction = throwable -> {
         if (isViewAttached()) {
             getView().showError(throwable);
         }
+
+        Log.d(TAG, "error: " + throwable);
     };
 
-    private Action1<Object> nextAction = object -> {
-
-    };
+    private Action1<Object> nextAction = object -> Log.d(TAG, "next: ");
 
     private static final String EMAIL_PATTERN =
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +

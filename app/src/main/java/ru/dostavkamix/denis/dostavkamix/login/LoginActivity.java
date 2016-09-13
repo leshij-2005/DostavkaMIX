@@ -17,6 +17,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import retrofit2.adapter.rxjava.HttpException;
 import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.Custom.blurbehind.BlurBehind;
@@ -24,6 +25,7 @@ import ru.dostavkamix.denis.dostavkamix.R;
 import ru.dostavkamix.denis.dostavkamix.base.BaseViewStateActivity;
 import ru.dostavkamix.denis.dostavkamix.model.account.Account;
 import ru.dostavkamix.denis.dostavkamix.model.account.AuthCredentials;
+import ru.dostavkamix.denis.dostavkamix.utils.ExceptionUtuls;
 import ru.dostavkamix.denis.dostavkamix.utils.KeyboardUtils;
 
 /**
@@ -33,6 +35,8 @@ import ru.dostavkamix.denis.dostavkamix.utils.KeyboardUtils;
  */
 
 public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresenter> implements LoginView {
+
+    @BindView(android.R.id.content) View content;
 
     @BindView(R.id.intro) View intro;
     @BindView(R.id.sign) View sign;
@@ -48,7 +52,7 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
 
     @BindView(R.id.signup) ActionProcessButton signup;
     @BindView(R.id.signin) ActionProcessButton signin;
-    @BindView(R.id.errorView) View errorView;
+    @BindView(R.id.errorView) TextView errorView;
     @BindView(R.id.signSelect) TextView signSelect;
 
     @Inject LoginPresenter loginPresenter;
@@ -65,34 +69,9 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
         AuthCredentials auth = new AuthCredentials(email.getText().toString(), pass.getText().toString());
         Account account = new Account(name.getText().toString(), phone.getText().toString(), email.getText().toString(), birthday.getText().toString());
 
-        if(TextUtils.isEmpty(account.getName())) {
-            shakeView(name);
-            return;
-        }
-
-        if(TextUtils.isEmpty(account.getPhone())) {
-            shakeView(phone);
-            return;
-        }
-
-        if(TextUtils.isEmpty(auth.getEmail()) || !presenter.validateEmail(auth.getEmail())) {
-            shakeView(email);
-            return;
-        }
-
-        if(TextUtils.isEmpty(auth.getPassword())) {
-            shakeView(pass);
-            return;
-        }
-
         if(!auth.getPassword().equals(pass_r.getText().toString())) {
-            shakeView(pass_r);
             showError(new PassNotMatch());
             return;
-        }
-
-        if (!KeyboardUtils.hideKeyboard(email)) {
-            KeyboardUtils.hideKeyboard(pass);
         }
 
         presenter.doSignup(auth, account);
@@ -101,20 +80,6 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
     @OnClick(R.id.signin)
     void onSigninClick() {
         AuthCredentials auth = new AuthCredentials(email.getText().toString(), pass.getText().toString());
-
-        if(TextUtils.isEmpty(auth.getEmail()) || !presenter.validateEmail(auth.getEmail())) {
-            shakeView(email);
-            return;
-        }
-
-        if(TextUtils.isEmpty(auth.getPassword())) {
-            shakeView(pass);
-            return;
-        }
-
-        if (!KeyboardUtils.hideKeyboard(email)) {
-            KeyboardUtils.hideKeyboard(pass);
-        }
 
         presenter.doSignin(auth);
     }
@@ -209,6 +174,25 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
 
     @Override
     public void showError(@Nullable Throwable throwable) {
+        try {
+            signin.setProgress(0);
+            signup.setProgress(0);
+
+            ExceptionUtuls.ErrorType errorType = ExceptionUtuls.getErrorType(throwable);
+            if(errorType == ExceptionUtuls.ErrorType.NAME) shakeView(name);
+            if(errorType == ExceptionUtuls.ErrorType.PHONE) shakeView(phone);
+            if(errorType == ExceptionUtuls.ErrorType.EMAIL) shakeView(email);
+            if(errorType == ExceptionUtuls.ErrorType.BIRTHDAY) shakeView(birthday);
+            if(errorType == ExceptionUtuls.ErrorType.PASSWORD) shakeView(pass);
+            if(errorType == ExceptionUtuls.ErrorType.PASSWORD_R) shakeView(pass_r);
+
+
+            errorView.setText(ExceptionUtuls.getMsg(throwable));
+            errorView.setVisibility(View.VISIBLE);
+            setFormEnabled(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

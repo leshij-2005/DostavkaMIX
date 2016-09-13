@@ -74,6 +74,7 @@
     <string name="label_address">Адрес доставки</string>
     <string name="msg_update">Обновление профиля</string>
     <string name="msg_auth_bed">Неверный email или пароль</string>
+    <string name="msg_login_fail">Email или пароль не верны</string>
 
 
 </resources>

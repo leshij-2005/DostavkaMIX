@@ -1,49 +1,65 @@
-package ru.dostavkamix.denis.dostavkamix.Fragments.Profile;
+package ru.dostavkamix.denis.dostavkamix.content.profile;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import ru.dostavkamix.denis.dostavkamix.content.profile.ProfilePagerAdapter;
-import ru.dostavkamix.denis.dostavkamix.AppController;
+import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
+
+import butterknife.BindView;
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.R;
+import ru.dostavkamix.denis.dostavkamix.content.BaseContentFragment;
 
 /**
- * Created by Денис on 02.08.2016.
+ * Created by den on 13.09.16.
+ *
+ * @author Denis Tkachenko
  */
 
-public class ProfileFragment extends Fragment implements TabLayout.OnTabSelectedListener {
+public class ProfileFragment extends BaseContentFragment<ProfileView, ProfilePresetner>
+        implements ProfileView, TabLayout.OnTabSelectedListener {
 
-    private TabLayout tab;
-    private ViewPager pager;
+    @BindView(R.id.tab) TabLayout tab;
+    @BindView(R.id.pager) ViewPager pager;
+
     private ProfilePagerAdapter adapter;
 
-    private void inicializeUI(View view) {
-        tab = (TabLayout) (view.findViewById(R.id.tab));
-        pager = (ViewPager) (view.findViewById(R.id.pager));
-    }
-
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_profile, container, false);
-        inicializeUI(v);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        adapter = new ProfilePagerAdapter(AppController.getInstance().getMainActivity().getSupportFragmentManager(), getActivity());
+        adapter = new ProfilePagerAdapter(getFragmentManager(), getContext());
         pager.setAdapter(adapter);
         tab.setupWithViewPager(pager);
         adapter.setupTab(tab);
         tab.setOnTabSelectedListener(this);
-
-        return v;
     }
 
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_profile;
+    }
+
+    @NonNull
+    @Override
+    public ViewState createViewState() {
+        return new ProfileViewState();
+    }
+
+    @Override
+    public void onNewViewStateInstance() {
+
+    }
+
+    @NonNull
+    @Override
+    public ProfilePresetner createPresenter() {
+        return new ProfilePresetner();
+    }
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {

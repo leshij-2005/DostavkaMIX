@@ -53,6 +53,7 @@ public class ChaihanaAccountManager implements AccountManager {
     @Override
     public Observable<Credentials> doSignIn(AuthCredentials authCredentials) {
         return service.getToken(new ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.AuthCredentials(authCredentials.getEmail(), authCredentials.getPassword(), "123456"))
+                .compose(new ResponseTransformer<>())
                 .map(token -> new Credentials());
     }
 

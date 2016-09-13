@@ -481,21 +481,25 @@ public class AppController extends Application {
             case 9:
                 if(preferences.getString(TAG_USER_TOKEN, null) != null) {
                     selectMenu(menu_item_9);
+                    /*
                     mainActivity.ft = mainActivity.getFragmentManager().beginTransaction();
                     mainActivity.ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left, R.animator.fade_in, R.animator.slide_out_left);
                     mainActivity.ft.replace(R.id.frame_fragment, new ProfileFragment());
                     mainActivity.ft.addToBackStack(null);
                     mainActivity.ft.commit();
+                    */
+                    mainActivity.getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.frame_fragment, new ru.dostavkamix.denis.dostavkamix.content.profile.ProfileFragment())
+                            .addToBackStack(null)
+                            .commit();
                 } else {
-                    BlurBehind.getInstance().execute(mainActivity, new OnBlurCompleteListener() {
-                        @Override
-                        public void onBlurComplete() {
-                            Intent intent = new Intent(mainActivity, LoginActivity.class);
-                            //intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                            startActivity(intent);
-                        }
+                    BlurBehind.getInstance().execute(mainActivity, () -> {
+                        Intent intent = new Intent(mainActivity, LoginActivity.class);
+                        //intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        startActivity(intent);
                     }, 12);
                     //startActivity(new Intent(mainActivity, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 }

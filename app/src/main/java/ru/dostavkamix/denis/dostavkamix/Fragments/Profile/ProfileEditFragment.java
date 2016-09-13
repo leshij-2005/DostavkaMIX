@@ -13,13 +13,11 @@ import android.widget.EditText;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.drakeet.materialdialog.MaterialDialog;
-import ru.dostavkamix.denis.dostavkamix.Adapters.AddressesAdapter;
+import ru.dostavkamix.denis.dostavkamix.content.profile.edit.AddressesAdapter;
 import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.Objects.Address;
 import ru.dostavkamix.denis.dostavkamix.Objects.User;
 import ru.dostavkamix.denis.dostavkamix.R;
-import ru.dostavkamix.denis.dostavkamix.SignCallback;
 import ru.dostavkamix.denis.dostavkamix.UserCallback;
 import ru.dostavkamix.denis.dostavkamix.UserHelper;
 
@@ -163,7 +161,7 @@ public class ProfileEditFragment extends android.support.v4.app.Fragment impleme
 
 
         if(tempUser.getAddresses().size() == 0) tempUser.getAddresses().add(new Address());
-        adapter = new AddressesAdapter(tempUser.getAddresses());
+        //adapter = new AddressesAdapter(tempUser.getAddresses());
         addresses.setAdapter(adapter);
         addresses.setLayoutManager(new LinearLayoutManager(getContext()));
     }
@@ -175,15 +173,13 @@ public class ProfileEditFragment extends android.support.v4.app.Fragment impleme
 
         List<Address> tempAddresses = new ArrayList<>();
         for (int i = 0; i < adapter.getItemCount(); i++) {
-            tempAddresses.add(((AddressesAdapter.ViewHolder) addresses.findViewHolderForAdapterPosition(i)).getAddress());
+            //tempAddresses.add(((AddressesAdapter.ViewHolder) addresses.findViewHolderForAdapterPosition(i)).getAddress());
         }
-        adapter.updateAddresses(tempAddresses);
+        //adapter.updateAddresses(tempAddresses);
         tempUser.setAddresses(tempAddresses);
 
         if(old_pass.getText().length() > 0 && new_pass.getText().length() > 0) {
             UserHelper.updateUser(tempUser, new_pass.getText().toString(), old_pass.getText().toString(), getActivity(), null);
         } else UserHelper.updateUser(tempUser, null, null, getActivity(), null);
-
-
     }
 }

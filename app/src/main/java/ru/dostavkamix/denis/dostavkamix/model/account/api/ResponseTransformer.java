@@ -13,7 +13,7 @@ public class ResponseTransformer<T extends BaseResponse> implements Observable.T
     @Override
     public Observable<T> call(Observable<T> observable) {
         return observable.flatMap(response -> {
-            if(!response.isStatus()) return Observable.error(new AccountException(response.getErrors()));
+            if(!response.isStatus()) return Observable.error(new AccountException(response));
 
             return Observable.just(response);
         });

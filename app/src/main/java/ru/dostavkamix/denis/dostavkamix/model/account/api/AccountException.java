@@ -10,13 +10,17 @@ import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.BaseResponse;
 
 public class AccountException extends Exception {
 
-    BaseResponse.Errors errors;
+    BaseResponse response;
 
-    public AccountException(BaseResponse.Errors errors) {
-        this.errors = errors;
+    public AccountException(BaseResponse response) {
+        this.response = response;
     }
 
     public BaseResponse.Errors getErrors() {
-        return errors;
+        return response.getErrors();
+    }
+
+    public String getMsg() {
+        return response.getMsg();
     }
 }

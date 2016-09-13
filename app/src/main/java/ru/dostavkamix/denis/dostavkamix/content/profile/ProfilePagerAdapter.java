@@ -1,4 +1,4 @@
-package ru.dostavkamix.denis.dostavkamix.Adapters;
+package ru.dostavkamix.denis.dostavkamix.content.profile;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -19,6 +19,7 @@ import ru.dostavkamix.denis.dostavkamix.Objects.User;
 import ru.dostavkamix.denis.dostavkamix.R;
 import ru.dostavkamix.denis.dostavkamix.UserCallback;
 import ru.dostavkamix.denis.dostavkamix.UserHelper;
+import ru.dostavkamix.denis.dostavkamix.content.profile.edit.EditFragment;
 
 /**
  * Created by Денис on 02.08.2016.
@@ -45,7 +46,7 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return new OrdersFragment();
             case 2:
-                return new ProfileEditFragment();
+                return new EditFragment();
             default:
                 return null;
         }
