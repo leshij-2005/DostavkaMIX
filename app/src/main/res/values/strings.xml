@@ -75,6 +75,8 @@
     <string name="msg_update">Обновление профиля</string>
     <string name="msg_auth_bed">Неверный email или пароль</string>
     <string name="msg_login_fail">Email или пароль не верны</string>
+    <string name="preference_file_name">preference</string>
+    <string name="token_key">token_key</string>
 
 
 </resources>

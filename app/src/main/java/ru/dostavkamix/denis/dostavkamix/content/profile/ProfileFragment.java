@@ -29,6 +29,11 @@ public class ProfileFragment extends BaseContentFragment<ProfileView, ProfilePre
     private ProfilePagerAdapter adapter;
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 

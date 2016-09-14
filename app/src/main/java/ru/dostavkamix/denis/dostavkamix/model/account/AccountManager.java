@@ -15,7 +15,11 @@ public interface AccountManager {
 
     Observable<Account> getAccount(Credentials credentials);
 
+    Observable<Account> getAccount();
+
     Observable<Account> updateAccount(Credentials credentials, Account account);
+
+    Observable<Account> updateAccount(Account account);
 
     Credentials getCurrentAuth();
 
@@ -26,6 +30,8 @@ public interface AccountManager {
     boolean isUserGetted();
 
     void setCurrentCredentials(Credentials credentials);
+
+    void setCurrentAccount(Account account);
 
     void doLogout();
 }

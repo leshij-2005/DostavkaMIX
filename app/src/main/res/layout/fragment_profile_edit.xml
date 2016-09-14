@@ -1,305 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:layout_above="@+id/save"
-        android:scrollbars="none"
-        android:animateLayoutChanges="true">
+    <include layout="@layout/view_loading"/>
+    <include layout="@layout/view_error"/>
 
-        <LinearLayout
+    <RelativeLayout
+        android:id="@+id/contentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:layout_above="@+id/save"
+            android:scrollbars="none"
             android:animateLayoutChanges="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:animateLayoutChanges="true">
 
-                <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10sp"
-                    android:layout_marginLeft="@dimen/margin_left_title_card"
-                    android:layout_marginTop="15sp"
-                    android:text="@string/personal_data"
-                    android:textColor="@color/accent_color"
-                    android:textSize="@dimen/size_title_card"
-                    app:customFont="@string/font_GothaProReg" />
-
-                <RelativeLayout
-                    android:id="@+id/name_frame"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/height_content_card"
-                    android:background="@color/toolbar_background_color"
-                    android:orientation="vertical">
-
-                    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/margin_left_title_card"
-                        android:text="@string/hint_name"
-                        android:textColor="@color/md_white_1000"
-                        android:textSize="@dimen/size_title_card"
-                        app:customFont="@string/font_GothaProReg" />
-
-                    <EditText
-                        android:id="@+id/name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/margin_right_content_card"
-                        android:background="@android:color/transparent"
-                        android:gravity="right"
-                        android:inputType="textPersonName"
-                        android:minWidth="@dimen/minWidth_edit"
-                        android:text="@string/example_name"
-                        android:textColor="@color/color_hint"
-                        android:textSize="14sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:layout_marginLeft="@dimen/margin_left_title_card"
-                        android:background="@color/base_color" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/email_frame"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/height_content_card"
-                    android:background="@color/toolbar_background_color"
-                    android:orientation="vertical">
-
-                    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/margin_left_title_card"
-                        android:text="@string/hint_email"
-                        android:textColor="@color/md_white_1000"
-                        android:textSize="@dimen/size_title_card"
-                        app:customFont="@string/font_GothaProReg" />
-
-                    <EditText
-                        android:id="@+id/email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/margin_right_content_card"
-                        android:background="@android:color/transparent"
-                        android:gravity="right"
-                        android:inputType="textEmailAddress"
-                        android:minWidth="@dimen/minWidth_edit"
-
-                        android:text="@string/example_email"
-                        android:textColor="@color/color_hint"
-                        android:textSize="14sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:layout_marginLeft="@dimen/margin_left_title_card"
-                        android:background="@color/base_color" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/phone_frame"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/height_content_card"
-                    android:background="@color/toolbar_background_color"
-                    android:orientation="vertical">
-
-                    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/margin_left_title_card"
-                        android:text="@string/hint_phone"
-                        android:textColor="@color/md_white_1000"
-                        android:textSize="@dimen/size_title_card"
-                        app:customFont="@string/font_GothaProReg" />
-
-                    <EditText
-                        android:id="@+id/phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/margin_right_content_card"
-                        android:background="@android:color/transparent"
-                        android:gravity="right"
-                        android:inputType="phone"
-                        android:text="@string/example_phone"
-                        android:textColor="@color/color_hint"
-                        android:textSize="14sp"
-                        android:minWidth="@dimen/minWidth_edit"
-                        />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:layout_marginLeft="@dimen/margin_left_title_card"
-                        android:background="@color/base_color" />
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10sp"
-                    android:layout_marginLeft="@dimen/margin_left_title_card"
-                    android:layout_marginTop="15sp"
-                    android:text="@string/label_security"
-                    android:textColor="@color/accent_color"
-                    android:textSize="@dimen/size_title_card"
-                    app:customFont="@string/font_GothaProReg" />
-
-                <RelativeLayout
-                    android:id="@+id/old_pass_frame"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/height_content_card"
-                    android:background="@color/toolbar_background_color"
-                    android:orientation="vertical">
-
-                    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/margin_left_title_card"
-                        android:text="@string/old_pass"
-                        android:textColor="@color/md_white_1000"
-                        android:textSize="@dimen/size_title_card"
-                        app:customFont="@string/font_GothaProReg" />
-
-                    <EditText
-                        android:id="@+id/old_pass"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/margin_right_content_card"
-                        android:background="@android:color/transparent"
-                        android:gravity="right"
-                        android:minWidth="@dimen/minWidth_edit"
-                        android:inputType="textPassword"
-                        android:textColor="@color/color_hint"
-                        android:textSize="14sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:layout_marginLeft="@dimen/margin_left_title_card"
-                        android:background="@color/base_color" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/new_pass_frame"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/height_content_card"
-                    android:background="@color/toolbar_background_color"
-                    android:orientation="vertical">
-
-                    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/margin_left_title_card"
-                        android:text="@string/hint_new_pass"
-                        android:textColor="@color/md_white_1000"
-                        android:textSize="@dimen/size_title_card"
-                        app:customFont="@string/font_GothaProReg" />
-
-                    <EditText
-                        android:id="@+id/new_pass"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/margin_right_content_card"
-                        android:background="@android:color/transparent"
-                        android:gravity="right"
-                        android:minWidth="@dimen/minWidth_edit"
-                        android:inputType="textPassword"
-                        android:textColor="@color/color_hint"
-                        android:textSize="14sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:layout_marginLeft="@dimen/margin_left_title_card"
-                        android:background="@color/base_color" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/new_pass_r_frame"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/height_content_card"
-                    android:background="@color/toolbar_background_color"
-                    android:orientation="vertical">
-
-                    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/margin_left_title_card"
-                        android:text="@string/hint_repeet_pass"
-                        android:textColor="@color/md_white_1000"
-                        android:textSize="@dimen/size_title_card"
-                        app:customFont="@string/font_GothaProReg" />
-
-                    <EditText
-                        android:id="@+id/new_pass_r"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:minWidth="@dimen/minWidth_edit"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/margin_right_content_card"
-                        android:background="@android:color/transparent"
-                        android:gravity="right"
-                        android:inputType="textPassword"
-                        android:textColor="@color/color_hint"
-                        android:textSize="14sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:layout_marginLeft="@dimen/margin_left_title_card"
-                        android:background="@color/base_color" />
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
                         android:layout_width="wrap_content"
@@ -307,48 +37,326 @@
                         android:layout_marginBottom="10sp"
                         android:layout_marginLeft="@dimen/margin_left_title_card"
                         android:layout_marginTop="15sp"
-                        android:text="@string/label_address"
-                        android:layout_centerVertical="true"
+                        android:text="@string/personal_data"
                         android:textColor="@color/accent_color"
                         android:textSize="@dimen/size_title_card"
                         app:customFont="@string/font_GothaProReg" />
 
-                    <ImageView
-                        android:id="@+id/add"
-                        android:layout_width="50sp"
-                        android:layout_height="match_parent"
-                        app:srcCompat="@drawable/ic_add"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
+                    <RelativeLayout
+                        android:id="@+id/name_frame"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_content_card"
+                        android:background="@color/toolbar_background_color"
+                        android:orientation="vertical">
 
-                        />
+                        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_left_title_card"
+                            android:text="@string/hint_name"
+                            android:textColor="@color/md_white_1000"
+                            android:textSize="@dimen/size_title_card"
+                            app:customFont="@string/font_GothaProReg" />
 
+                        <EditText
+                            android:id="@+id/name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/margin_right_content_card"
+                            android:background="@android:color/transparent"
+                            android:gravity="right"
+                            android:inputType="textPersonName"
+                            android:minWidth="@dimen/minWidth_edit"
+                            android:text="@string/example_name"
+                            android:textColor="@color/color_hint"
+                            android:textSize="14sp" />
 
-                </RelativeLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginLeft="@dimen/margin_left_title_card"
+                            android:background="@color/base_color" />
+                    </RelativeLayout>
 
+                    <RelativeLayout
+                        android:id="@+id/email_frame"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_content_card"
+                        android:background="@color/toolbar_background_color"
+                        android:orientation="vertical">
 
+                        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_left_title_card"
+                            android:text="@string/hint_email"
+                            android:textColor="@color/md_white_1000"
+                            android:textSize="@dimen/size_title_card"
+                            app:customFont="@string/font_GothaProReg" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/addresses"
+                        <EditText
+                            android:id="@+id/email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/margin_right_content_card"
+                            android:background="@android:color/transparent"
+                            android:gravity="right"
+                            android:inputType="textEmailAddress"
+                            android:minWidth="@dimen/minWidth_edit"
+
+                            android:text="@string/example_email"
+                            android:textColor="@color/color_hint"
+                            android:textSize="14sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginLeft="@dimen/margin_left_title_card"
+                            android:background="@color/base_color" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/phone_frame"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_content_card"
+                        android:background="@color/toolbar_background_color"
+                        android:orientation="vertical">
+
+                        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_left_title_card"
+                            android:text="@string/hint_phone"
+                            android:textColor="@color/md_white_1000"
+                            android:textSize="@dimen/size_title_card"
+                            app:customFont="@string/font_GothaProReg" />
+
+                        <EditText
+                            android:id="@+id/phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/margin_right_content_card"
+                            android:background="@android:color/transparent"
+                            android:gravity="right"
+                            android:inputType="phone"
+                            android:text="@string/example_phone"
+                            android:textColor="@color/color_hint"
+                            android:textSize="14sp"
+                            android:minWidth="@dimen/minWidth_edit"
+                            />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginLeft="@dimen/margin_left_title_card"
+                            android:background="@color/base_color" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10sp"
+                        android:layout_marginLeft="@dimen/margin_left_title_card"
+                        android:layout_marginTop="15sp"
+                        android:text="@string/label_security"
+                        android:textColor="@color/accent_color"
+                        android:textSize="@dimen/size_title_card"
+                        app:customFont="@string/font_GothaProReg" />
+
+                    <RelativeLayout
+                        android:id="@+id/old_pass_frame"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_content_card"
+                        android:background="@color/toolbar_background_color"
+                        android:orientation="vertical">
+
+                        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_left_title_card"
+                            android:text="@string/old_pass"
+                            android:textColor="@color/md_white_1000"
+                            android:textSize="@dimen/size_title_card"
+                            app:customFont="@string/font_GothaProReg" />
+
+                        <EditText
+                            android:id="@+id/old_pass"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/margin_right_content_card"
+                            android:background="@android:color/transparent"
+                            android:gravity="right"
+                            android:minWidth="@dimen/minWidth_edit"
+                            android:inputType="textPassword"
+                            android:textColor="@color/color_hint"
+                            android:textSize="14sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginLeft="@dimen/margin_left_title_card"
+                            android:background="@color/base_color" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/new_pass_frame"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_content_card"
+                        android:background="@color/toolbar_background_color"
+                        android:orientation="vertical">
+
+                        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_left_title_card"
+                            android:text="@string/hint_new_pass"
+                            android:textColor="@color/md_white_1000"
+                            android:textSize="@dimen/size_title_card"
+                            app:customFont="@string/font_GothaProReg" />
+
+                        <EditText
+                            android:id="@+id/new_pass"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/margin_right_content_card"
+                            android:background="@android:color/transparent"
+                            android:gravity="right"
+                            android:minWidth="@dimen/minWidth_edit"
+                            android:inputType="textPassword"
+                            android:textColor="@color/color_hint"
+                            android:textSize="14sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginLeft="@dimen/margin_left_title_card"
+                            android:background="@color/base_color" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/new_pass_r_frame"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_content_card"
+                        android:background="@color/toolbar_background_color"
+                        android:orientation="vertical">
+
+                        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_left_title_card"
+                            android:text="@string/hint_repeet_pass"
+                            android:textColor="@color/md_white_1000"
+                            android:textSize="@dimen/size_title_card"
+                            app:customFont="@string/font_GothaProReg" />
+
+                        <EditText
+                            android:id="@+id/new_pass_r"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="@dimen/minWidth_edit"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/margin_right_content_card"
+                            android:background="@android:color/transparent"
+                            android:gravity="right"
+                            android:inputType="textPassword"
+                            android:textColor="@color/color_hint"
+                            android:textSize="14sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_marginLeft="@dimen/margin_left_title_card"
+                            android:background="@color/base_color" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10sp"
+                            android:layout_marginLeft="@dimen/margin_left_title_card"
+                            android:layout_marginTop="15sp"
+                            android:text="@string/label_address"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/accent_color"
+                            android:textSize="@dimen/size_title_card"
+                            app:customFont="@string/font_GothaProReg" />
+
+                        <ImageView
+                            android:id="@+id/add"
+                            android:layout_width="50sp"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/ic_add"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+
+                            />
+
+
+                    </RelativeLayout>
+
+
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/addresses"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
             </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
 
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+            android:id="@+id/save"
+            android:layout_width="match_parent"
+            android:layout_height="45sp"
+            android:background="@color/accent_color"
+            android:text="@string/but_save_change"
+            android:textColor="@color/base_color"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            app:customFont="@string/font_GothaProReg"
+            android:textSize="18sp"
+            />
+    </RelativeLayout>
 
-    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-        android:id="@+id/save"
-        android:layout_width="match_parent"
-        android:layout_height="45sp"
-        android:background="@color/accent_color"
-        android:text="@string/but_save_change"
-        android:textColor="@color/base_color"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        app:customFont="@string/font_GothaProReg"
-        android:textSize="18sp"
-        />
-
-
-</RelativeLayout>
+</FrameLayout>

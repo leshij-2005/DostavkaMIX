@@ -11,7 +11,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.AccountAPIService;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.*;
-import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.AuthCredentials;
+import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Login;
 import rx.Subscriber;
 
 /**
@@ -33,7 +33,7 @@ public class AccountManagerTest {
 
         AccountAPIService service = retrofit.create(AccountAPIService.class);
 
-        service.createUser(new User_("test", getRandomEmail(), "12345", "23.09.1996", "TermometR123123"))
+        service.createUser(new User("test", getRandomEmail(), "12345", "23.09.1996", "TermometR123123"))
                 .subscribe(new Subscriber<UserResponse>() {
                     @Override
                     public void onCompleted() {
@@ -49,13 +49,13 @@ public class AccountManagerTest {
                     public void onNext(UserResponse userResponse) {
                         System.out.println("status: " + userResponse.isStatus());
                         if(userResponse.isStatus()) {
-                            System.out.println("response: name: " + userResponse.getResponse().getName());
-                            System.out.println("response: phone: " + userResponse.getResponse().getPhone());
-                            System.out.println("response: birthday: " + userResponse.getResponse().getBirthday());
-                            System.out.println("response: email: " + userResponse.getResponse().getEmail());
-                            System.out.println("response: updated_at: " + userResponse.getResponse().getUpdatedAt());
-                            System.out.println("response: created_at: " + userResponse.getResponse().getCreatedAt());
-                            System.out.println("response: id: " + userResponse.getResponse().getId());
+                            System.out.println("response: name: " + userResponse.getUser().getName());
+                            System.out.println("response: phone: " + userResponse.getUser().getPhone());
+                            System.out.println("response: birthday: " + userResponse.getUser().getBirthday());
+                            System.out.println("response: email: " + userResponse.getUser().getEmail());
+                            System.out.println("response: updated_at: " + userResponse.getUser().getUpdatedAt());
+                            System.out.println("response: created_at: " + userResponse.getUser().getCreatedAt());
+                            System.out.println("response: id: " + userResponse.getUser().getId());
                         } else {
                             System.out.println("msg: " + userResponse.getMsg());
                             System.out.println("error: name: " + userResponse.getErrors().getName());
@@ -79,7 +79,7 @@ public class AccountManagerTest {
 
         AccountAPIService service = retrofit.create(AccountAPIService.class);
 
-        service.getToken(new AuthCredentials("test1@test.com", "TermometR123123", "123456"))
+        service.getToken(new Login("test1@test.com", "TermometR123123", "123456"))
                 .subscribe(new Subscriber<Token>() {
                     @Override
                     public void onCompleted() {
@@ -116,7 +116,7 @@ public class AccountManagerTest {
 
         AccountAPIService service = retrofit.create(AccountAPIService.class);
 
-        service.getToken(new AuthCredentials("test1@test.com", "TermometR123123", "123456"))
+        service.getToken(new Login("test1@test.com", "TermometR123123", "123456"))
                 .subscribe(new Subscriber<Token>() {
                     @Override
                     public void onCompleted() {
@@ -137,7 +137,7 @@ public class AccountManagerTest {
                             System.out.println("token: access_token: " + token.getAccess_token());
 
                             service.getUser(token.getAccess_token())
-                                    .subscribe(new Subscriber<User_>() {
+                                    .subscribe(new Subscriber<User>() {
                                         @Override
                                         public void onCompleted() {
                                             System.out.println("Receipt user completed");
@@ -149,7 +149,7 @@ public class AccountManagerTest {
                                         }
 
                                         @Override
-                                        public void onNext(User_ user) {
+                                        public void onNext(User user) {
                                             System.out.println("user: name: " + user.getUser().getName());
                                         }
                                     });
@@ -171,7 +171,7 @@ public class AccountManagerTest {
 
         AccountAPIService service = retrofit.create(AccountAPIService.class);
 
-        service.getToken(new AuthCredentials("test1@test.com", "TermometR123123", "123456"))
+        service.getToken(new Login("test1@test.com", "TermometR123123", "123456"))
                 .subscribe(new Subscriber<Token>() {
                     @Override
                     public void onCompleted() {
@@ -192,7 +192,7 @@ public class AccountManagerTest {
                             System.out.println("token: access_token: " + token.getAccess_token());
 
                             service.getUser(token.getAccess_token())
-                                    .subscribe(new Subscriber<User_>() {
+                                    .subscribe(new Subscriber<User>() {
                                         @Override
                                         public void onCompleted() {
                                             System.out.println("Receipt user completed");
@@ -204,7 +204,7 @@ public class AccountManagerTest {
                                         }
 
                                         @Override
-                                        public void onNext(User_ user) {
+                                        public void onNext(User user) {
                                             System.out.println("user: name: " + user.getUser().getName());
                                             service.updateUser(token.getAccess_token(), user.getUser())
                                                     .subscribe(new Subscriber<UserResponse>() {

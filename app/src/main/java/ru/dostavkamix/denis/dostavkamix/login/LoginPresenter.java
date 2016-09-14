@@ -4,9 +4,6 @@ import android.util.Log;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import javax.inject.Inject;
 
 import ru.dostavkamix.denis.dostavkamix.AppController;
@@ -32,8 +29,6 @@ public class LoginPresenter extends MvpBasePresenter<LoginView> {
     @Inject
     AccountManager accountManager;
 
-    private Pattern pattern;
-
     private Subscription subscription;
 
     private Action0 completedAction = () -> {
@@ -55,13 +50,8 @@ public class LoginPresenter extends MvpBasePresenter<LoginView> {
 
     private Action1<Object> nextAction = object -> Log.d(TAG, "next: ");
 
-    private static final String EMAIL_PATTERN =
-            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
-                    "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
     public LoginPresenter() {
         AppController.inject(this);
-        pattern = Pattern.compile(EMAIL_PATTERN);
     }
 
     public void doSignin(AuthCredentials authCredentials) {
@@ -97,9 +87,7 @@ public class LoginPresenter extends MvpBasePresenter<LoginView> {
         }
     }
 
-    boolean validateEmail(String email) {
-        Matcher matcher = pattern.matcher(email);
-
-        return matcher.matches();
+    String getToken() {
+        return accountManager.getCurrentAuth().getToken();
     }
 }

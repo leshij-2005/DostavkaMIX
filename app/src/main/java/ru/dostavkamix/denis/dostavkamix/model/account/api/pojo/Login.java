@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Денис on 04.09.2016.
  */
 
-public class AuthCredentials {
+public class Login {
 
     @SerializedName("email")
     String email;
@@ -15,7 +15,7 @@ public class AuthCredentials {
     @SerializedName("app_key")
     String app_key;
 
-    public AuthCredentials(String email, String password, String app_key) {
+    public Login(String email, String password, String app_key) {
         this.email = email;
         this.password = password;
         this.app_key = app_key;

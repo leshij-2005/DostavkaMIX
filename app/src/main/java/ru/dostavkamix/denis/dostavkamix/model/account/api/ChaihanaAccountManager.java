@@ -1,8 +1,5 @@
 package ru.dostavkamix.denis.dostavkamix.model.account.api;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -10,8 +7,9 @@ import ru.dostavkamix.denis.dostavkamix.model.account.Account;
 import ru.dostavkamix.denis.dostavkamix.model.account.AccountManager;
 import ru.dostavkamix.denis.dostavkamix.model.account.AuthCredentials;
 import ru.dostavkamix.denis.dostavkamix.model.account.Credentials;
+import ru.dostavkamix.denis.dostavkamix.model.account.NotAuthenticatedException;
+import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Login;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.User;
-import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.User_;
 import rx.Observable;
 
 /**
@@ -48,30 +46,56 @@ public class ChaihanaAccountManager implements AccountManager {
                 authCredentials.getPassword()))
                 .compose(new ResponseTransformer<>())
                 .doOnNext(userResponse ->
-                        currentAccount = Utils.UserResponse2Account(userResponse))
-                .flatMap(userResponse -> service.getToken(new ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.AuthCredentials(authCredentials.getEmail(), authCredentials.getPassword(), "123456")))
+                        currentAccount = Utils.User2Account(userResponse.getUser()))
+                .flatMap(userResponse -> service.getToken(new Login(authCredentials.getEmail(), authCredentials.getPassword(), "123456")))
                 .map(token -> new Credentials(token.getAccess_token()))
-                .doOnNext(credentials -> currentAuth = credentials);
+                .doOnNext(this::setCurrentCredentials);
     }
 
     @Override
     public Observable<Credentials> doSignIn(AuthCredentials authCredentials) {
-        return service.getToken(new ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.AuthCredentials(authCredentials.getEmail(), authCredentials.getPassword(), "123456"))
+        return service.getToken(new Login(authCredentials.getEmail(), authCredentials.getPassword(), "123456"))
                 .compose(new ResponseTransformer<>())
-                .map(token -> new Credentials(token.getAccess_token()));
+                .map(token -> new Credentials(token.getAccess_token()))
+                .doOnNext(this::setCurrentCredentials);
     }
 
     @Override
     public Observable<Account> getAccount(Credentials credentials) {
+        if(!isUserAuthenticated()) {
+            return Observable.error(new NotAuthenticatedException());
+        }
+
         return service.getUser(credentials.getToken())
-                .map(User_::getUser)
-                .map(Utils::User2Account);
+                .map(User::getUser)
+                .map(Utils::User2Account)
+                .doOnNext(this::setCurrentAccount);
+    }
+
+    @Override
+    public Observable<Account> getAccount() {
+        return service.getUser(currentAuth.getToken())
+                .map(User::getUser)
+                .map(Utils::User2Account)
+                .doOnNext(this::setCurrentAccount);
     }
 
     @Override
     public Observable<Account> updateAccount(Credentials credentials, Account account) {
         return service.updateUser(credentials.getToken(), Utils.Account2User(account))
-                .map(Utils::UserResponse2Account);
+                .map(userResponse -> Utils.User2Account(userResponse.getUser()))
+                .doOnNext(this::setCurrentAccount);
+    }
+
+    @Override
+    public Observable<Account> updateAccount(Account account) {
+        if(!isUserAuthenticated()) {
+            return Observable.error(new NotAuthenticatedException());
+        }
+
+        return service.updateUser(currentAuth.getToken(), Utils.Account2User(account))
+                .map(userResponse -> Utils.User2Account(userResponse.getUser()))
+                .doOnNext(this::setCurrentAccount);
     }
 
     @Override
@@ -96,7 +120,12 @@ public class ChaihanaAccountManager implements AccountManager {
 
     @Override
     public void setCurrentCredentials(Credentials credentials) {
-        currentAuth = credentials;
+        this.currentAuth = credentials;
+    }
+
+    @Override
+    public void setCurrentAccount(Account account) {
+        this.currentAccount = account;
     }
 
     @Override

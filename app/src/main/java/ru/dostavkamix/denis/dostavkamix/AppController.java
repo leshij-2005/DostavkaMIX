@@ -479,7 +479,7 @@ public class AppController extends Application {
                 startActivity(call);
                 break;
             case 9:
-                if(preferences.getString(TAG_USER_TOKEN, null) != null) {
+                if(getSharedPreferences(getString(R.string.preference_file_name), MODE_PRIVATE).getString(getString(R.string.token_key), null) != null) {
                     selectMenu(menu_item_9);
                     /*
                     mainActivity.ft = mainActivity.getFragmentManager().beginTransaction();
@@ -488,6 +488,7 @@ public class AppController extends Application {
                     mainActivity.ft.addToBackStack(null);
                     mainActivity.ft.commit();
                     */
+                    mainActivity.getFragmentManager().beginTransaction().remove(mainActivity.getFragmentManager().findFragmentById(R.id.frame_fragment)).commit();
                     mainActivity.getSupportFragmentManager().beginTransaction()
                             .replace(R.id.frame_fragment, new ru.dostavkamix.denis.dostavkamix.content.profile.ProfileFragment())
                             .addToBackStack(null)

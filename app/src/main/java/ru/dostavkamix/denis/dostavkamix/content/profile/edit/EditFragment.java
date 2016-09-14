@@ -1,19 +1,27 @@
 package ru.dostavkamix.denis.dostavkamix.content.profile.edit;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
+import com.hannesdorfmann.mosby.mvp.viewstate.lce.LceViewState;
+import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import ru.dostavkamix.denis.dostavkamix.R;
+import ru.dostavkamix.denis.dostavkamix.base.BaseLceFragment;
 import ru.dostavkamix.denis.dostavkamix.base.BaseViewStateFragment;
 import ru.dostavkamix.denis.dostavkamix.model.account.Account;
 
+import static android.content.Context.MODE_PRIVATE;
 import static ru.dostavkamix.denis.dostavkamix.utils.ViewUtils.focus;
 
 /**
@@ -22,8 +30,9 @@ import static ru.dostavkamix.denis.dostavkamix.utils.ViewUtils.focus;
  * @author Denis Tkachenko
  */
 
-public class EditFragment extends BaseViewStateFragment<EditView, EditPresenter> implements EditView {
+public class EditFragment extends BaseLceFragment<LinearLayout, Account, EditView, EditPresenter> implements EditView {
 
+    private Account currentAccount;
     private AddressesAdapter adapter;
 
     @OnClick(R.id.name_frame) void name_frame_click() { focus(name);}
@@ -45,11 +54,11 @@ public class EditFragment extends BaseViewStateFragment<EditView, EditPresenter>
     @BindView(R.id.addresses) RecyclerView addresses;
 
     @OnClick(R.id.add) void add_click() {
-        presenter.addAddress(new Account.Address());
+       // presenter.addAddress(new Account.Address());
     }
 
     @OnClick(R.id.save) void save_click() {
-        presenter.updateUser(new Account(
+        presenter.updateAccount(new Account(
                 name.getText().toString(),
                 phone.getText().toString(),
                 email.getText().toString(),
@@ -59,9 +68,12 @@ public class EditFragment extends BaseViewStateFragment<EditView, EditPresenter>
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getToken();
+    }
 
-        adapter = new AddressesAdapter(presenter.getUser().getAddresses());
-        addresses.setAdapter(adapter);
+    @Override
+    protected String getErrorMessage(Throwable e, boolean pullToRefresh) {
+        return null;
     }
 
     @Override
@@ -69,18 +81,39 @@ public class EditFragment extends BaseViewStateFragment<EditView, EditPresenter>
         return R.layout.fragment_profile_edit;
     }
 
+    @NonNull
     @Override
-    public ViewState createViewState() {
-        return new EditViewState();
+    public LceViewState<Account, EditView> createViewState() {
+        return new RetainingLceViewState<>();
     }
 
     @Override
-    public void onNewViewStateInstance() {
-
+    public Account getData() {
+        return currentAccount;
     }
 
+    @NonNull
     @Override
     public EditPresenter createPresenter() {
         return new EditPresenter();
+    }
+
+    @Override
+    public void setData(Account data) {
+        adapter = new AddressesAdapter(getData().getAddresses());
+        addresses.setAdapter(adapter);
+    }
+
+    @Override
+    public void loadData(boolean pullToRefresh) {
+        presenter.loadAccount();
+    }
+
+    private void getToken() {
+        String token = getActivity().getSharedPreferences(getString(R.string.preference_file_name), MODE_PRIVATE)
+                .getString(getString(R.string.token_key), null);
+
+        if(token != null) presenter.setCurrentToken(token);
+        Log.d("ContentActivity", "getToken: " + token);
     }
 }

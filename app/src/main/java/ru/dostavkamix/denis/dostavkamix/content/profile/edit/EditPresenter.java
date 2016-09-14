@@ -1,13 +1,14 @@
 package ru.dostavkamix.denis.dostavkamix.content.profile.edit;
 
-import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
-
 import javax.inject.Inject;
 
 import ru.dostavkamix.denis.dostavkamix.AppController;
+import ru.dostavkamix.denis.dostavkamix.base.BaseRxLcePresenter;
 import ru.dostavkamix.denis.dostavkamix.model.account.Account;
-import ru.dostavkamix.denis.dostavkamix.model.account.Account.Address;
 import ru.dostavkamix.denis.dostavkamix.model.account.AccountManager;
+import ru.dostavkamix.denis.dostavkamix.model.account.Credentials;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by den on 13.09.16.
@@ -15,24 +16,28 @@ import ru.dostavkamix.denis.dostavkamix.model.account.AccountManager;
  * @author Denis Tkachenko
  */
 
-class EditPresenter extends MvpBasePresenter<EditView> {
+public class EditPresenter extends BaseRxLcePresenter<EditView, Account> {
 
     @Inject
     AccountManager accountManager;
-    Account account;
 
     EditPresenter() {
         AppController.inject(this);
-        account = new Account(accountManager.getCurrentAccount());
     }
 
-    Account getUser() {return account;}
-
-    void updateUser(Account account) {
-        accountManager.updateAccount(accountManager.getCurrentAuth(), this.account);
+    void updateAccount(Account account) {
+        subscribe(accountManager.updateAccount(account)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()), true);
     }
 
-    void addAddress(Address address) {
-        accountManager.getCurrentAccount().getAddresses().add(address);
+    void loadAccount() {
+        subscribe(accountManager.getAccount()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()), false);
+    }
+
+    void setCurrentToken(String token) {
+        accountManager.setCurrentCredentials(new Credentials(token));
     }
 }

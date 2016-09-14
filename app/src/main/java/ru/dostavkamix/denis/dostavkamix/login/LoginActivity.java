@@ -3,7 +3,6 @@ package ru.dostavkamix.denis.dostavkamix.login;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -17,7 +16,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import retrofit2.adapter.rxjava.HttpException;
 import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.Custom.blurbehind.BlurBehind;
@@ -26,7 +24,6 @@ import ru.dostavkamix.denis.dostavkamix.base.BaseViewStateActivity;
 import ru.dostavkamix.denis.dostavkamix.model.account.Account;
 import ru.dostavkamix.denis.dostavkamix.model.account.AuthCredentials;
 import ru.dostavkamix.denis.dostavkamix.utils.ExceptionUtuls;
-import ru.dostavkamix.denis.dostavkamix.utils.KeyboardUtils;
 
 /**
  * Created by Денис on 06.09.2016.
@@ -186,7 +183,6 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
             if(errorType == ExceptionUtuls.ErrorType.PASSWORD) shakeView(pass);
             if(errorType == ExceptionUtuls.ErrorType.PASSWORD_R) shakeView(pass_r);
 
-
             errorView.setText(ExceptionUtuls.getMsg(throwable));
             errorView.setVisibility(View.VISIBLE);
             setFormEnabled(true);
@@ -198,6 +194,8 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
 
     @Override
     public void loginSuccessful() {
+        saveToken(presenter.getToken());
+
         signin.setProgress(100);
         signup.setProgress(100);
         finish();
@@ -221,5 +219,11 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
         birthday.setEnabled(b);
         pass.setEnabled(b);
         pass_r.setEnabled(b);
+    }
+
+    private void saveToken(String token) {
+        getSharedPreferences(getString(R.string.preference_file_name), MODE_PRIVATE).edit()
+                .putString(getString(R.string.token_key), token)
+                .commit();
     }
 }

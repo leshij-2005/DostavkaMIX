@@ -10,6 +10,10 @@ import com.google.gson.annotations.SerializedName;
 @Generated("org.jsonschema2pojo")
 public class User {
 
+    @SerializedName("user")
+    @Expose
+    private User user;
+
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -49,6 +53,24 @@ public class User {
         this.phone = phone;
         this.birthday = birthday;
         this.password = password;
+    }
+
+    /**
+     *
+     * @return
+     *     The user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     *
+     * @param user
+     *     The user
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 
     /**

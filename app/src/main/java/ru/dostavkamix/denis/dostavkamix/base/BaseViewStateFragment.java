@@ -43,7 +43,6 @@ public abstract class BaseViewStateFragment<V extends MvpView, P extends MvpPres
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    AppController.inject(this);
   }
 
   @LayoutRes protected abstract int getLayoutRes();
