@@ -10,19 +10,27 @@ public class Address {
 
     @SerializedName("street")
     @Expose
-    private String street;
+    private String street = "";
     @SerializedName("number")
     @Expose
-    private String number;
+    private String number = "";
     @SerializedName("porch")
     @Expose
-    private String porch;
+    private String porch = "";
     @SerializedName("floor")
     @Expose
-    private String floor;
+    private String floor = "";
     @SerializedName("apartment")
     @Expose
-    private String apartment;
+    private String apartment = "";
+
+    public Address(String street, String number, String porch, String floor, String apartment) {
+        this.street = street;
+        this.number = number;
+        this.porch = porch;
+        this.floor = floor;
+        this.apartment = apartment;
+    }
 
     /**
      * 

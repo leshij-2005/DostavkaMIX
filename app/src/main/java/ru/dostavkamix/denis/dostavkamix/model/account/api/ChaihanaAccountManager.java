@@ -1,5 +1,9 @@
 package ru.dostavkamix.denis.dostavkamix.model.account.api;
 
+import java.util.ArrayList;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -8,6 +12,7 @@ import ru.dostavkamix.denis.dostavkamix.model.account.AccountManager;
 import ru.dostavkamix.denis.dostavkamix.model.account.AuthCredentials;
 import ru.dostavkamix.denis.dostavkamix.model.account.Credentials;
 import ru.dostavkamix.denis.dostavkamix.model.account.NotAuthenticatedException;
+import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Address;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Login;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.User;
 import rx.Observable;
@@ -27,10 +32,21 @@ public class ChaihanaAccountManager implements AccountManager {
     private Credentials currentAuth;
 
     public ChaihanaAccountManager() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        // set your desired log level
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        // add your other interceptors …
+
+        // add logging as last interceptor
+        httpClient.addInterceptor(logging);  // <-- this is the important line!
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient.build())
                 .build();
 
         service = retrofit.create(AccountAPIService.class);
@@ -43,7 +59,8 @@ public class ChaihanaAccountManager implements AccountManager {
                 authCredentials.getEmail(),
                 account.getPhone(),
                 account.getBirthday(),
-                authCredentials.getPassword()))
+                authCredentials.getPassword(),
+                new ArrayList<>()))
                 .compose(new ResponseTransformer<>())
                 .doOnNext(userResponse ->
                         currentAccount = Utils.User2Account(userResponse.getUser()))

@@ -47,12 +47,13 @@ public class User {
 
     private String password;
 
-    public User(String name, String email, String phone, String birthday, String password) {
+    public User(String name, String email, String phone, String birthday, String password, List<Address> addresses) {
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.birthday = birthday;
         this.password = password;
+        this.addresses = addresses;
     }
 
     /**

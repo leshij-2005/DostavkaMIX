@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
+import com.hkm.ui.processbutton.iml.ActionProcessButton;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -32,6 +34,7 @@ import static ru.dostavkamix.denis.dostavkamix.utils.ViewUtils.focus;
 
 public class EditFragment extends BaseLceFragment<LinearLayout, Account, EditView, EditPresenter> implements EditView {
 
+    private static final String TAG = "EditFragment";
     private Account currentAccount;
     private AddressesAdapter adapter;
 
@@ -55,14 +58,13 @@ public class EditFragment extends BaseLceFragment<LinearLayout, Account, EditVie
 
     @OnClick(R.id.add) void add_click() {
        // presenter.addAddress(new Account.Address());
+        currentAccount.getAddresses().add(new Account.Address("", "", ""));
+        adapter.notifyDataSetChanged();
     }
 
+    @BindView(R.id.save) ActionProcessButton save;
     @OnClick(R.id.save) void save_click() {
-        presenter.updateAccount(new Account(
-                name.getText().toString(),
-                phone.getText().toString(),
-                email.getText().toString(),
-                null));
+        presenter.updateAccount(currentAccount);
     }
 
     @Override
@@ -73,6 +75,7 @@ public class EditFragment extends BaseLceFragment<LinearLayout, Account, EditVie
 
     @Override
     protected String getErrorMessage(Throwable e, boolean pullToRefresh) {
+        e.printStackTrace();
         return null;
     }
 
@@ -100,8 +103,18 @@ public class EditFragment extends BaseLceFragment<LinearLayout, Account, EditVie
 
     @Override
     public void setData(Account data) {
-        adapter = new AddressesAdapter(getData().getAddresses());
+        Log.d(TAG, "setData: addresses count: " + data.getAddresses().size());
+        for (Account.Address address :
+                data.getAddresses()) {
+            Log.d(TAG, "setData: street: " + address.getStreet());
+        }
+
+        adapter = new AddressesAdapter(data.getAddresses());
         addresses.setAdapter(adapter);
+        addresses.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        currentAccount = data;
+        if(save.getProgress() != 0) save.setProgress(100);
     }
 
     @Override
@@ -115,5 +128,21 @@ public class EditFragment extends BaseLceFragment<LinearLayout, Account, EditVie
 
         if(token != null) presenter.setCurrentToken(token);
         Log.d("ContentActivity", "getToken: " + token);
+    }
+
+    @Override
+    public void showError(Throwable e, boolean pullToRefresh) {
+        super.showError(e, pullToRefresh);
+        Log.d(TAG, "getErrorMessage: ");
+        e.printStackTrace();
+    }
+
+    @Override
+    public void showLoading(boolean pullToRefresh) {
+        super.showLoading(pullToRefresh);
+
+        if(pullToRefresh) {
+            save.setProgress(30);
+        }
     }
 }

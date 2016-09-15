@@ -18,16 +18,24 @@ public class Utils {
     static Account User2Account(User user) {
         List<Account.Address> addresses = new ArrayList<>();
 
-        for (Address address:
-             user.getAddresses()) {
-            addresses.add(new Account.Address(address.getStreet(), address.getNumber(), address.getApartment()));
+        if(user.getAddresses() != null) {
+            for (Address address:
+                    user.getAddresses()) {
+                addresses.add(new Account.Address(address.getStreet(), address.getNumber(), address.getApartment()));
+            }
         }
 
         return new Account(user.getName(), user.getPhone(), user.getEmail(), user.getBirthday(), addresses);
     }
 
     static User Account2User(Account account) {
-        return new User(account.getName(), account.getEmail(), account.getPhone(), account.getBirthday(), account.getPassword());
+        List<Address> addresses = new ArrayList<>();
+        if(account.getAddresses() != null) {
+            for (Account.Address address : account.getAddresses()) {
+                addresses.add(new Address(address.getStreet(), address.getNumber(), "", "", address.getApartment()));
+            }
+        }
+        return new User(account.getName(), account.getEmail(), account.getPhone(), account.getBirthday(), account.getPassword(), addresses);
     }
 
 

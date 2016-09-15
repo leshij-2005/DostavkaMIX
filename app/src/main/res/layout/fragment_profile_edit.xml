@@ -324,7 +324,7 @@
                         <ImageView
                             android:id="@+id/add"
                             android:layout_width="50sp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             app:srcCompat="@drawable/ic_add"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
@@ -345,7 +345,7 @@
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 
-        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
+        <com.hkm.ui.processbutton.iml.ActionProcessButton
             android:id="@+id/save"
             android:layout_width="match_parent"
             android:layout_height="45sp"
@@ -354,8 +354,13 @@
             android:textColor="@color/base_color"
             android:gravity="center"
             android:layout_alignParentBottom="true"
-            app:customFont="@string/font_GothaProReg"
             android:textSize="18sp"
+            android:textAllCaps="false"
+            app:pb_colorComplete="@color/green_complete"
+            app:pb_colorNormal="@color/accent_color"
+            app:pb_colorPressed="@color/accent_dark_color"
+            app:pb_textComplete="Готово!"
+            app:pb_textProgress="Обновление профиля..."
             />
     </RelativeLayout>
 
