@@ -2,6 +2,7 @@ package ru.dostavkamix.denis.dostavkamix.model.account;
 
 
 import rx.Observable;
+import rx.subjects.PublishSubject;
 
 /**
  * Created by Денис on 04.09.2016.
@@ -34,4 +35,8 @@ public interface AccountManager {
     void setCurrentAccount(Account account);
 
     void doLogout();
+
+    PublishSubject<Account> getSubjectAccount();
+
+    PublishSubject<Credentials> getSubjectCredentials();
 }

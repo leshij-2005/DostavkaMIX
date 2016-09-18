@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10sp">
+
+    <FrameLayout
+        android:id="@+id/img_frame"
+        android:layout_width="90sp"
+        android:layout_height="90sp">
+
+        <ru.dostavkamix.denis.dostavkamix.Custom.CircularNetworkImageView
+            android:id="@+id/img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_toEndOf="@id/img_frame"
+        android:text="Плов Чайханский" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/name"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="4sp"
+        android:layout_toStartOf="@+id/price_frame"
+        android:text="Фирменный плов с добавлением чеснока, зиры и барбариса" />
+
+    <FrameLayout
+        android:id="@+id/price_frame"
+        android:layout_width="60sp"
+        android:layout_height="25sp"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/chevron"
+        android:background="@drawable/rounded_stroke">
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="100р" />
+
+        <ImageView
+            android:id="@+id/check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_check_accent_24dp" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/chevron"
+        android:layout_width="20sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        app:srcCompat="@drawable/ic_chevron_right_black_24dp" />
+
+</RelativeLayout>

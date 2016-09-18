@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 
 import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +24,6 @@ import java.util.List;
 import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.Custom.CustomTypefaceSpan;
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
-import ru.dostavkamix.denis.dostavkamix.Custom.customNetworkImageView;
 import ru.dostavkamix.denis.dostavkamix.Custom.priceButton;
 import ru.dostavkamix.denis.dostavkamix.Objects.Dish;
 import ru.dostavkamix.denis.dostavkamix.Fragments.CardFragment;
@@ -145,7 +145,7 @@ public class BoxAdapter extends BaseAdapter {
 
         final Dish d = getDish(position);
 
-        final customNetworkImageView dish_img = (customNetworkImageView) view.findViewById(R.id.dish_img);
+        final NetworkImageView dish_img = (NetworkImageView) view.findViewById(R.id.dish_img);
         priceButton checkBut = (priceButton) view.findViewById(R.id.dish_price);
 
         ((TextViewPlus) view.findViewById(R.id.dish_name)).setText(d.getNameDish());

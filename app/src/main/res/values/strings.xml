@@ -77,6 +77,24 @@
     <string name="msg_login_fail">Email или пароль не верны</string>
     <string name="preference_file_name">preference</string>
     <string name="token_key">token_key</string>
+    <string name="hint_search">Поиск...</string>
+    <string name="title_delivery">Доставка</string>
+    <string name="title_pickup">Самовывоз</string>
+    <string name="desc_logo">logo</string>
+    <string name="desc_back">desc_back</string>
+    <string name="button_buy">Оформить за</string>
+    <string name="label_order_name">Имя *</string>
+    <string name="label_delivery_address">Адрес доставки</string>
+    <string name="label_time">Время приготовления</string>
+    <string name="label_now">Как можно скорее</string>
+    <string name="label_at_time">Ко времени</string>
+    <string name="label_payment">Способ оплаты</string>
+    <string name="label_cash">Наличный рассчет</string>
+    <string name="label_card">Безналичный рассчет</string>
+    <string name="label_points">Баллами</string>
+    <string name="label_enter_points">Введите баллы для оплаты</string>
+    <string name="example_points_min">0</string>
+    <string name="example_points_max">1850</string>
 
 
 </resources>

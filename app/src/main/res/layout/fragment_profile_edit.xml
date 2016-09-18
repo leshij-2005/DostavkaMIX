@@ -46,7 +46,7 @@
                         android:id="@+id/name_frame"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/height_content_card"
-                        android:background="@color/toolbar_background_color"
+                        android:background="@color/background_color"
                         android:orientation="vertical">
 
                         <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
@@ -86,7 +86,7 @@
                         android:id="@+id/email_frame"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/height_content_card"
-                        android:background="@color/toolbar_background_color"
+                        android:background="@color/background_color"
                         android:orientation="vertical">
 
                         <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
@@ -127,7 +127,7 @@
                         android:id="@+id/phone_frame"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/height_content_card"
-                        android:background="@color/toolbar_background_color"
+                        android:background="@color/background_color"
                         android:orientation="vertical">
 
                         <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
@@ -185,7 +185,7 @@
                         android:id="@+id/old_pass_frame"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/height_content_card"
-                        android:background="@color/toolbar_background_color"
+                        android:background="@color/background_color"
                         android:orientation="vertical">
 
                         <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
@@ -224,7 +224,7 @@
                         android:id="@+id/new_pass_frame"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/height_content_card"
-                        android:background="@color/toolbar_background_color"
+                        android:background="@color/background_color"
                         android:orientation="vertical">
 
                         <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
@@ -263,7 +263,7 @@
                         android:id="@+id/new_pass_r_frame"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/height_content_card"
-                        android:background="@color/toolbar_background_color"
+                        android:background="@color/background_color"
                         android:orientation="vertical">
 
                         <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus

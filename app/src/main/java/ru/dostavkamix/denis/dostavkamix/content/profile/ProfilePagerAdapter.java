@@ -9,7 +9,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.Fragments.Profile.OrdersFragment;
@@ -26,6 +29,8 @@ import ru.dostavkamix.denis.dostavkamix.content.profile.edit.EditFragment;
  */
 
 public class ProfilePagerAdapter extends FragmentPagerAdapter {
+
+    TextView points;
 
     private final int PAGE_COUNT = 3;
     private String tabTitles[] = new String[] {"ЗАКАЗЫ", "БАЛЛЫ", "ПРОФИЛЬ"};
@@ -65,21 +70,11 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
     public View getTabView(int position, boolean selected) {
         View v = LayoutInflater.from(ctx).inflate(R.layout.tab_view, null);
         TextViewPlus title = (TextViewPlus) v.findViewById(R.id.title);
-        final TextViewPlus points = (TextViewPlus) v.findViewById(R.id.points);
-        UserHelper.getUser(AppController.getInstance().getUserToken(), AppController.getInstance(), new UserCallback() {
-            @Override
-            public void onSuccess(User user) {
-                points.setText(String.valueOf(user.getPoints()));
-            }
-
-            @Override
-            public void onError(String error) {
-
-            }
-        });
+        TextViewPlus points = (TextViewPlus) v.findViewById(R.id.points);
 
         switch (position) {
             case 1:
+                this.points = points;
                 points.setVisibility(View.VISIBLE);
                 break;
             default:
@@ -94,5 +89,9 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
         for (int i = 0; i < PAGE_COUNT; i++) {
             tabLayout.getTabAt(i).setCustomView(getTabView(i, false));
         }
+    }
+
+    void setPointsCount(int pointsCount) {
+        if(points != null) points.setText(String.valueOf(pointsCount));
     }
 }

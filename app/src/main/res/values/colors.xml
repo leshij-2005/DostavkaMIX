@@ -6,7 +6,7 @@
     <color name="accent_dark_color">#ffbc05</color>
     <color name="menu_category_color">#acacac</color>
     <color name="base_color">#1e2126</color>
-    <color name="toolbar_background_color">#25282d</color>
+    <color name="background_color">#25282d</color>
     <color name="statusbar_color">#101215</color>
     <color name="dish_descript_color">#9b9b9d</color>
     <color name="separator_color_1">#636b7c</color>

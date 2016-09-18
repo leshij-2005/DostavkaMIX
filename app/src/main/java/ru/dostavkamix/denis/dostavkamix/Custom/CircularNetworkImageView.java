@@ -24,19 +24,19 @@ import ru.dostavkamix.denis.dostavkamix.R;
 /**
  * Created by den on 27.01.16.
  */
-public class customNetworkImageView extends NetworkImageView {
+public class CircularNetworkImageView extends NetworkImageView {
 
     private float mRadius = 0.0f;
 
-    public customNetworkImageView(Context context) {
+    public CircularNetworkImageView(Context context) {
         super(context);
     }
 
-    public customNetworkImageView(Context context, AttributeSet attrs) {
+    public CircularNetworkImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public customNetworkImageView(Context context, AttributeSet attrs, int defStyle) {
+    public CircularNetworkImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

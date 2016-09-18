@@ -9,7 +9,7 @@
         android:id="@+id/tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/toolbar_background_color"
+        android:background="@color/background_color"
         app:tabPaddingStart="-1dp"
         app:tabPaddingEnd="-1dp"/>
 

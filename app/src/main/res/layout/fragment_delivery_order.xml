@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:context="ru.dostavkamix.denis.dostavkamix.Fragments.DeliveryOrderFragment"
-        android:background="@color/toolbar_background_color"
+        android:background="@color/background_color"
         android:animateLayoutChanges="true"
         android:isScrollContainer="true">
 
@@ -32,14 +32,14 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_order_item_text"
             android:orientation="horizontal"
-            android:background="@color/toolbar_background_color">
+            android:background="@color/background_color">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -54,7 +54,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:gravity="right"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -76,14 +76,14 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_order_item_text"
             android:orientation="horizontal"
-            android:background="@color/toolbar_background_color">
+            android:background="@color/background_color">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -98,7 +98,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:gravity="right"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -120,14 +120,14 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_order_item_text"
             android:orientation="horizontal"
-            android:background="@color/toolbar_background_color">
+            android:background="@color/background_color">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -142,7 +142,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:gravity="right"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -185,7 +185,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_order_item_text"
             android:orientation="horizontal"
-            android:background="@color/toolbar_background_color"
+            android:background="@color/background_color"
             android:isScrollContainer="true">
 
             <TextView
@@ -193,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -208,7 +208,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:gravity="right"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -230,14 +230,14 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_order_item_text"
             android:orientation="horizontal"
-            android:background="@color/toolbar_background_color">
+            android:background="@color/background_color">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -252,7 +252,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:gravity="right"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -274,14 +274,14 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_order_item_text"
             android:orientation="horizontal"
-            android:background="@color/toolbar_background_color">
+            android:background="@color/background_color">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -296,7 +296,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:gravity="right"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -336,14 +336,14 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_order_item_text"
             android:orientation="horizontal"
-            android:background="@color/toolbar_background_color">
+            android:background="@color/background_color">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -358,7 +358,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:gravity="right"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
                 android:src="@drawable/checkmark"
@@ -377,14 +377,14 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_order_item_text"
             android:orientation="horizontal"
-            android:background="@color/toolbar_background_color">
+            android:background="@color/background_color">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -399,7 +399,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:gravity="right"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_marginRight="@dimen/margin_order_text_item"
 
@@ -439,7 +439,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_order_item_text"
             android:orientation="horizontal"
-            android:background="@color/toolbar_background_color">
+            android:background="@color/background_color">
 
             <ImageView
                 android:id="@+id/icon_wallet"
@@ -456,7 +456,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/icon_wallet"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -471,7 +471,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:gravity="right"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
                 android:src="@drawable/checkmark"
@@ -490,14 +490,14 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_order_item_text"
             android:orientation="horizontal"
-            android:background="@color/toolbar_background_color">
+            android:background="@color/background_color">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -512,7 +512,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:gravity="right"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_marginRight="@dimen/margin_order_text_item"
 
@@ -535,7 +535,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_order_item_text"
             android:orientation="horizontal"
-            android:background="@color/toolbar_background_color">
+            android:background="@color/background_color">
 
             <ImageView
                 android:id="@+id/icon_card"
@@ -552,7 +552,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/icon_card"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
 
@@ -567,7 +567,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:gravity="right"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
 
                 android:layout_margin="@dimen/margin_order_text_item"
                 android:src="@drawable/checkmark"

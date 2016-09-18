@@ -15,6 +15,11 @@
         android:protectionLevel="signature" />
     <uses-permission android:name="ru.dostavkamix.denis.dostavkamix.permission.C2D_MESSAGE" />
 
+    <meta-data android:name="DATABASE" android:value="mix.db" />
+    <meta-data android:name="VERSION" android:value="1" />
+    <meta-data android:name="QUERY_LOG" android:value="true" />
+    <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="ru.dostavkamix.denis" />
+
     <application
         android:name=".AppController"
         android:allowBackup="true"

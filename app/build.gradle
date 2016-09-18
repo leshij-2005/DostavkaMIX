@@ -59,6 +59,7 @@ dependencies {
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.github.jjhesk:hkm-progress-button:0.15'
     compile 'com.github.castorflex.smoothprogressbar:library-circular:1.1.0'
+    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile('com.mikepenz:materialdrawer:4.6.4@aar') {
         transitive = true
     }
@@ -87,6 +88,7 @@ dependencies {
 
     compile 'javax.annotation:javax.annotation-api:1.2'
 
+    compile 'com.github.satyan:sugar:1.4'
 }
 
 apply plugin: 'com.google.gms.google-services'

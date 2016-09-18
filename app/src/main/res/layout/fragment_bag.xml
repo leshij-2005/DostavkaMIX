@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/toolbar_background_color">
+        android:background="@color/background_color">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,10 +21,10 @@
             android:gravity="center_vertical|top"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:background="@color/toolbar_background_color">
+            android:background="@color/background_color">
             <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
                 android:id="@+id/without_sale"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
                 foo:customFont="fonts/GothaProBol.otf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                 android:textColor="@color/md_white_1000"/>
 
             <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
                 foo:customFont="fonts/GothaProReg.otf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,10 +54,10 @@
             android:gravity="center_vertical|top"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:background="@color/toolbar_background_color">
+            android:background="@color/background_color">
             <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
                 android:id="@+id/sale"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
                 foo:customFont="fonts/GothaProBol.otf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
                 android:textColor="@color/md_white_1000"/>
 
             <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
                 foo:customFont="fonts/GothaProReg.otf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -87,10 +87,10 @@
             android:layout_marginLeft="30sp"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:background="@color/toolbar_background_color">
+            android:background="@color/background_color">
             <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
                 android:id="@+id/with_sale"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
                 foo:customFont="fonts/GothaProBol.otf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                 android:textColor="@color/md_white_1000"/>
 
             <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
                 foo:customFont="fonts/GothaProReg.otf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

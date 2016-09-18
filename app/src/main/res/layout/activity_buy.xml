@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_color"
+    android:fitsSystemWindows="true"
+    tools:context=".Activitys.OrderActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_color">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize">
+
+                    <ImageView
+                        android:id="@+id/arrow_down"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/desc_back"
+                        app:srcCompat="@drawable/ic_arrow_downward_black_24dp" />
+
+                    <ImageView
+                        android:id="@+id/mix_logo"
+                        android:layout_width="180sp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:contentDescription="@string/desc_logo"
+                        android:src="@drawable/mix_logo" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1sp"
+                    android:layout_alignParentBottom="true"
+
+                    android:background="@color/base_color" />
+
+                <LinearLayout
+                    android:id="@+id/lay_select"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_margin="10sp"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/delivery"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+
+                        android:background="@drawable/transition_select_button_left"
+                        android:text="@string/title_delivery"
+                        android:textAllCaps="false"
+                        android:textColor="@color/md_black_1000" />
+
+                    <View
+                        android:id="@+id/pickup"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="-1sp"
+                        android:layout_weight="1"
+                        android:background="@drawable/transition_select_button_right"
+                        android:text="@string/title_pickup"
+
+                        android:textAllCaps="false"
+                        android:textColor="@color/md_white_1000" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_gravity="bottom"
+        android:background="@color/accent_color"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/bug"
+            android:layout_width="20sp"
+            android:layout_height="25sp"
+            android:layout_marginEnd="10sp"
+            android:scaleType="fitXY"
+            android:src="@drawable/bag_black" />
+
+        <TextView
+            android:id="@+id/buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/bug"
+            android:text="@string/button_buy"
+            android:textColor="@color/base_color"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="20sp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_order_item_text"
+                android:layout_marginTop="1dp"
+                android:background="@color/background_color">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_order_text_item"
+                    android:text="@string/hint_name"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="@dimen/size_order_text_item" />
+
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:gravity="end"
+
+                    android:hint="@string/order_name"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/md_white_1000"
+                    android:textColorHint="@color/hint_text_color"
+                    android:textSize="@dimen/size_order_text_item" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_order_item_text"
+                android:layout_marginTop="1dp"
+                android:background="@color/background_color">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_order_text_item"
+                    android:text="@string/hint_phone"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="@dimen/size_order_text_item" />
+
+                <EditText
+                    android:id="@+id/phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:gravity="end"
+                    android:hint="@string/order_name"
+                    android:inputType="phone"
+                    android:textColor="@color/md_white_1000"
+                    android:textColorHint="@color/hint_text_color"
+                    android:textSize="@dimen/size_order_text_item" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_order_item_text"
+                android:layout_marginTop="1dp"
+                android:background="@color/background_color">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_order_text_item"
+                    android:text="@string/hint_email"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="@dimen/size_order_text_item" />
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:gravity="end"
+                    android:hint="@string/order_name"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/md_white_1000"
+                    android:textColorHint="@color/hint_text_color"
+                    android:textSize="@dimen/size_order_text_item" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15sp"
+                android:text="@string/label_delivery_address"
+                android:textColor="@color/accent_color"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_order_item_text"
+                android:layout_marginTop="1dp"
+                android:background="@color/background_color">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_order_text_item"
+                    android:text="@string/label_street"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="@dimen/size_order_text_item" />
+
+                <EditText
+                    android:id="@+id/street"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:gravity="end"
+
+                    android:inputType="text"
+                    android:textColor="@color/md_white_1000"
+                    android:textColorHint="@color/hint_text_color"
+                    android:textSize="@dimen/size_order_text_item" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_order_item_text"
+                android:layout_marginTop="1dp"
+                android:background="@color/background_color">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_order_text_item"
+                    android:text="@string/label_house"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="@dimen/size_order_text_item" />
+
+                <EditText
+                    android:id="@+id/number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:gravity="end"
+
+                    android:inputType="number"
+                    android:textColor="@color/md_white_1000"
+                    android:textColorHint="@color/hint_text_color"
+                    android:textSize="@dimen/size_order_text_item" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_order_item_text"
+                android:layout_marginTop="1dp"
+                android:background="@color/background_color">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_order_text_item"
+                    android:text="@string/label_apartment"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="@dimen/size_order_text_item" />
+
+                <EditText
+                    android:id="@+id/apartment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:gravity="end"
+
+                    android:inputType="number"
+                    android:textColor="@color/md_white_1000"
+                    android:textColorHint="@color/hint_text_color"
+                    android:textSize="@dimen/size_order_text_item" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15sp"
+                android:text="@string/label_time"
+                android:textColor="@color/accent_color"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_order_item_text"
+                android:layout_marginTop="1dp"
+                android:background="@color/background_color">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_order_text_item"
+                    android:text="@string/label_now"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="@dimen/size_order_text_item" />
+
+                <ImageView
+                    android:id="@+id/now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:gravity="end"
+                    app:srcCompat="@drawable/ic_check_accent_24dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_order_item_text"
+                android:layout_marginTop="1dp"
+                android:background="@color/background_color">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_order_text_item"
+                    android:text="@string/label_at_time"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="@dimen/size_order_text_item" />
+
+                <TextView
+                    android:id="@+id/at_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:gravity="end"
+
+                    android:textColor="@color/md_white_1000"
+                    android:textColorHint="@color/hint_text_color"
+                    android:textSize="@dimen/size_order_text_item" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15sp"
+                android:text="@string/label_payment"
+                android:textColor="@color/accent_color"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_order_item_text"
+                android:layout_marginTop="1dp"
+                android:background="@color/background_color">
+
+                <ImageView
+                    android:id="@+id/wallet"
+                    android:layout_width="25sp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_order_text_item"
+                    app:srcCompat="@drawable/ic_wallet" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_order_text_item"
+                    android:layout_toEndOf="@id/wallet"
+                    android:text="@string/label_cash"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="@dimen/size_order_text_item" />
+
+                <ImageView
+                    android:id="@+id/cash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:gravity="end"
+                    app:srcCompat="@drawable/ic_check_accent_24dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_order_item_text"
+                android:layout_marginTop="1dp"
+                android:background="@color/background_color">
+
+                <ImageView
+                    android:id="@+id/ic_card"
+                    android:layout_width="25sp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_order_text_item"
+                    app:srcCompat="@drawable/ic_card" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_order_text_item"
+                    android:layout_toEndOf="@id/ic_card"
+                    android:text="@string/label_card"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="@dimen/size_order_text_item" />
+
+                <ImageView
+                    android:id="@+id/card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:gravity="end"
+                    app:srcCompat="@drawable/ic_check_accent_24dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_order_item_text"
+                android:layout_marginTop="1dp"
+                android:background="@color/background_color">
+
+                <ImageView
+                    android:id="@+id/ic_points"
+                    android:layout_width="25sp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_order_text_item"
+                    app:srcCompat="@drawable/ic_points" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_order_text_item"
+                    android:layout_toEndOf="@id/ic_points"
+                    android:text="@string/label_points"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="@dimen/size_order_text_item" />
+
+                <ImageView
+                    android:id="@+id/points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:gravity="end"
+                    app:srcCompat="@drawable/ic_check_accent_24dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp">
+
+                <TextView
+                    android:id="@+id/points_min"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/example_points_min"
+                    android:layout_alignStart="@id/seekbar_pints"
+                    android:layout_marginStart="16dp"
+                    android:textColor="@color/md_white_1000"/>
+
+                <TextView
+                    android:id="@+id/points_max"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/md_white_1000"
+                    android:layout_marginEnd="16dp"
+                    android:layout_alignEnd="@id/seekbar_pints"
+                    android:text="@string/example_points_max"/>
+
+                <android.support.v7.widget.AppCompatSeekBar
+                    android:id="@+id/seekbar_pints"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:progress="20"
+                    android:secondaryProgress="20"
+                    android:progressDrawable="@drawable/seekbar_points"
+                    android:layout_below="@id/points_max"
+                    android:layout_marginTop="10dp"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_order_item_text"
+                android:layout_marginTop="1dp"
+                android:background="@color/background_color">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_order_text_item"
+                    android:text="@string/label_enter_points"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="@dimen/size_order_text_item" />
+
+                <TextView
+                    android:id="@+id/points_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_order_text_item"
+                    android:gravity="end"
+
+                    android:textColor="@color/md_white_1000"
+                    android:textColorHint="@color/hint_text_color"
+                    android:textSize="@dimen/size_order_text_item" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

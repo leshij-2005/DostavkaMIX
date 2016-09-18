@@ -2,5 +2,5 @@
     <corners
         android:topLeftRadius="18dp"
         android:topRightRadius="18dp" />
-    <solid android:color="@color/toolbar_background_color" />
+    <solid android:color="@color/background_color" />
 </shape>

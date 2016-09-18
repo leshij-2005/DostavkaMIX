@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="100sp"
         android:layout_height="100sp"
-        android:background="@color/toolbar_background_color"
+        android:background="@color/background_color"
         android:tag="Bottom3">
 
         <RelativeLayout

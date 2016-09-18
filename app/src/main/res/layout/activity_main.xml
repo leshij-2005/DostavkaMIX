@@ -24,14 +24,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="horizontal"
-                android:background="@color/toolbar_background_color"
+                android:background="@color/background_color"
                 xmlns:foo="http://schemas.android.com/apk/res-auto">
 
                 <LinearLayout
                     android:id="@+id/arrow_cont"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:background="@color/toolbar_background_color"
+                    android:background="@color/background_color"
                     android:gravity="center_horizontal|center_vertical"
                     android:layout_weight="1"
                     android:orientation="horizontal">
@@ -41,7 +41,7 @@
                         android:layout_width="150sp"
                         android:layout_height="wrap_content"
                         android:src="@drawable/mix_logo"
-                        android:background="@color/toolbar_background_color"/>
+                        android:background="@color/background_color"/>
 
                     <FrameLayout
                         android:layout_width="wrap_content"
@@ -53,14 +53,14 @@
                             android:layout_width="13sp"
                             android:layout_height="wrap_content"
                             android:src="@drawable/arrow_down"
-                            android:background="@color/toolbar_background_color"
+                            android:background="@color/background_color"
                             android:visibility="visible"/>
                         <ImageView
                             android:id="@+id/arrow_up_t"
                             android:layout_width="13sp"
                             android:layout_height="wrap_content"
                             android:src="@drawable/arrow_up"
-                            android:background="@color/toolbar_background_color"
+                            android:background="@color/background_color"
                             android:visibility="invisible"/>
                     </FrameLayout>
 
@@ -71,7 +71,7 @@
                     android:id="@+id/bag_logo"
                     android:src="@drawable/bag_logo"
                     android:layout_gravity="center_vertical"
-                    android:background="@color/toolbar_background_color"
+                    android:background="@color/background_color"
                     android:scaleType="fitXY"
                     android:layout_marginRight="5sp"/>
                 <LinearLayout
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:id="@+id/toolbar_lay_text"
-                    android:background="@color/toolbar_background_color"
+                    android:background="@color/background_color"
                     android:gravity="right"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="5sp">
@@ -93,7 +93,7 @@
                         android:text="0 P"
                         android:textSize="11sp"
                         android:textColor="@color/accent_color"
-                        android:background="@color/toolbar_background_color"/>
+                        android:background="@color/background_color"/>
                     <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
                         foo:customFont="fonts/GothaProBol.otf"
                         android:id="@+id/toolbar_text"
@@ -102,7 +102,7 @@
                         android:text="Оформить"
                         android:textSize="11sp"
                         android:textColor="@color/accent_color"
-                        android:background="@color/toolbar_background_color"/>
+                        android:background="@color/background_color"/>
                 </LinearLayout>
             </LinearLayout>
 

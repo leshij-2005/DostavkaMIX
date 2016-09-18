@@ -14,13 +14,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.BaseSwipeAdapter;
 
 import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.Custom.CustomTypefaceSpan;
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
-import ru.dostavkamix.denis.dostavkamix.Custom.customNetworkImageView;
 import ru.dostavkamix.denis.dostavkamix.Objects.Dish;
 import ru.dostavkamix.denis.dostavkamix.R;
 
@@ -81,7 +81,7 @@ public class BagSwipeAdapter extends BaseSwipeAdapter {
     public void fillValues(final int position, View convertView) {
         final Dish d = getDish(position);
 
-        customNetworkImageView dish_img_bag = (customNetworkImageView) convertView.findViewById(R.id.dish_img_bag);
+        NetworkImageView dish_img_bag = (NetworkImageView) convertView.findViewById(R.id.dish_img_bag);
         TextViewPlus dish_name_bag = (TextViewPlus) convertView.findViewById(R.id.dish_name_bag);
         TextViewPlus dish_weight_bag = (TextViewPlus) convertView.findViewById(R.id.dish_weight_bag);
         TextViewPlus dish_price_bag = (TextViewPlus) convertView.findViewById(R.id.dish_price_bag);

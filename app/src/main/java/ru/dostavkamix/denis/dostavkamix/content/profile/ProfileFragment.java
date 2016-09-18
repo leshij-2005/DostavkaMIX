@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
@@ -20,7 +21,7 @@ import ru.dostavkamix.denis.dostavkamix.content.BaseContentFragment;
  * @author Denis Tkachenko
  */
 
-public class ProfileFragment extends BaseContentFragment<ProfileView, ProfilePresetner>
+public class ProfileFragment extends BaseContentFragment<ProfileView, ProfilePresenter>
         implements ProfileView, TabLayout.OnTabSelectedListener {
 
     @BindView(R.id.tab) TabLayout tab;
@@ -62,8 +63,8 @@ public class ProfileFragment extends BaseContentFragment<ProfileView, ProfilePre
 
     @NonNull
     @Override
-    public ProfilePresetner createPresenter() {
-        return new ProfilePresetner();
+    public ProfilePresenter createPresenter() {
+        return new ProfilePresenter();
     }
 
     @Override
@@ -85,5 +86,11 @@ public class ProfileFragment extends BaseContentFragment<ProfileView, ProfilePre
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+    @Override
+    public void updatePointsCount(int pointsCount) {
+        Log.d("ProfileFragment", "updatePointsCount: " + pointsCount);
+        adapter.setPointsCount(pointsCount);
     }
 }

@@ -20,6 +20,6 @@
         android:text="Регистрация..."
         android:layout_centerVertical="true"
         android:layout_marginLeft="20sp"
-        android:textColor="@color/toolbar_background_color"/>
+        android:textColor="@color/background_color"/>
 
 </RelativeLayout>

@@ -16,6 +16,7 @@ import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Address;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Login;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.User;
 import rx.Observable;
+import rx.subjects.PublishSubject;
 
 /**
  * Created by Денис on 12.09.2016.
@@ -30,6 +31,9 @@ public class ChaihanaAccountManager implements AccountManager {
 
     private Account currentAccount;
     private Credentials currentAuth;
+
+    PublishSubject<Account> subjectAccount = PublishSubject.create();
+    PublishSubject<Credentials> subjectCredentials = PublishSubject.create();
 
     public ChaihanaAccountManager() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -50,6 +54,9 @@ public class ChaihanaAccountManager implements AccountManager {
                 .build();
 
         service = retrofit.create(AccountAPIService.class);
+
+        subjectAccount.subscribe(this::setCurrentAccount);
+        subjectCredentials.subscribe(this::setCurrentCredentials);
     }
 
     @Override
@@ -66,7 +73,7 @@ public class ChaihanaAccountManager implements AccountManager {
                         currentAccount = Utils.User2Account(userResponse.getUser()))
                 .flatMap(userResponse -> service.getToken(new Login(authCredentials.getEmail(), authCredentials.getPassword(), "123456")))
                 .map(token -> new Credentials(token.getAccess_token()))
-                .doOnNext(this::setCurrentCredentials);
+                .doOnNext(subjectCredentials::onNext);
     }
 
     @Override
@@ -74,7 +81,7 @@ public class ChaihanaAccountManager implements AccountManager {
         return service.getToken(new Login(authCredentials.getEmail(), authCredentials.getPassword(), "123456"))
                 .compose(new ResponseTransformer<>())
                 .map(token -> new Credentials(token.getAccess_token()))
-                .doOnNext(this::setCurrentCredentials);
+                .doOnNext(subjectCredentials::onNext);
     }
 
     @Override
@@ -86,7 +93,7 @@ public class ChaihanaAccountManager implements AccountManager {
         return service.getUser(credentials.getToken())
                 .map(User::getUser)
                 .map(Utils::User2Account)
-                .doOnNext(this::setCurrentAccount);
+                .doOnNext(subjectAccount::onNext);
     }
 
     @Override
@@ -94,14 +101,14 @@ public class ChaihanaAccountManager implements AccountManager {
         return service.getUser(currentAuth.getToken())
                 .map(User::getUser)
                 .map(Utils::User2Account)
-                .doOnNext(this::setCurrentAccount);
+                .doOnNext(subjectAccount::onNext);
     }
 
     @Override
     public Observable<Account> updateAccount(Credentials credentials, Account account) {
         return service.updateUser(credentials.getToken(), Utils.Account2User(account))
                 .map(userResponse -> Utils.User2Account(userResponse.getUser()))
-                .doOnNext(this::setCurrentAccount);
+                .doOnNext(subjectAccount::onNext);
     }
 
     @Override
@@ -112,7 +119,7 @@ public class ChaihanaAccountManager implements AccountManager {
 
         return service.updateUser(currentAuth.getToken(), Utils.Account2User(account))
                 .map(userResponse -> Utils.User2Account(userResponse.getUser()))
-                .doOnNext(this::setCurrentAccount);
+                .doOnNext(subjectAccount::onNext);
     }
 
     @Override
@@ -151,4 +158,13 @@ public class ChaihanaAccountManager implements AccountManager {
         currentAuth = null;
     }
 
+    @Override
+    public PublishSubject<Account> getSubjectAccount() {
+        return subjectAccount;
+    }
+
+    @Override
+    public PublishSubject<Credentials> getSubjectCredentials() {
+        return subjectCredentials;
+    }
 }

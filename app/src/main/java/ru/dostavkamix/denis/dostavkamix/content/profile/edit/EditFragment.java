@@ -64,6 +64,10 @@ public class EditFragment extends BaseLceFragment<LinearLayout, Account, EditVie
 
     @BindView(R.id.save) ActionProcessButton save;
     @OnClick(R.id.save) void save_click() {
+        currentAccount.setName(name.getText().toString());
+        currentAccount.setEmail(email.getText().toString());
+        currentAccount.setPhone(phone.getText().toString());
+        
         presenter.updateAccount(currentAccount);
     }
 
@@ -75,7 +79,6 @@ public class EditFragment extends BaseLceFragment<LinearLayout, Account, EditVie
 
     @Override
     protected String getErrorMessage(Throwable e, boolean pullToRefresh) {
-        e.printStackTrace();
         return null;
     }
 
@@ -113,6 +116,10 @@ public class EditFragment extends BaseLceFragment<LinearLayout, Account, EditVie
         addresses.setAdapter(adapter);
         addresses.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        name.setText(data.getName());
+        email.setText(data.getEmail());
+        phone.setText(data.getPhone());
+
         currentAccount = data;
         if(save.getProgress() != 0) save.setProgress(100);
     }
@@ -135,6 +142,7 @@ public class EditFragment extends BaseLceFragment<LinearLayout, Account, EditVie
         super.showError(e, pullToRefresh);
         Log.d(TAG, "getErrorMessage: ");
         e.printStackTrace();
+        if(pullToRefresh) save.setProgress(0);
     }
 
     @Override
