@@ -47,7 +47,7 @@
                     android:orientation="horizontal">
 
 
-        <ru.dostavkamix.denis.dostavkamix.Custom.customNetworkImageView
+        <ru.dostavkamix.denis.dostavkamix.Custom.CircularNetworkImageView
             android:id="@+id/dish_img_bag"
             android:layout_width="90sp"
             android:layout_height="90sp"

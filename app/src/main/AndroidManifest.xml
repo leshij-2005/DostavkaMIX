@@ -77,6 +77,8 @@
         <activity android:name=".login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity android:name=".buy.BuyActivity" android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 </manifest>

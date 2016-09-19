@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.support.multidex.MultiDexApplication;
 import android.support.v4.app.ActivityCompat;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -57,7 +58,7 @@ import ru.dostavkamix.denis.dostavkamix.model.ModelModule;
  * Created by den on 20.01.16.
  *
  */
-public class AppController extends Application {
+public class AppController extends MultiDexApplication {
 
     private static ObjectGraph objectGraph;
 

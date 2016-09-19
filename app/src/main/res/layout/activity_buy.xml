@@ -87,31 +87,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:layout_gravity="bottom"
-        android:background="@color/accent_color"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/bug"
-            android:layout_width="20sp"
-            android:layout_height="25sp"
-            android:layout_marginEnd="10sp"
-            android:scaleType="fitXY"
-            android:src="@drawable/bag_black" />
-
-        <TextView
-            android:id="@+id/buy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/bug"
-            android:text="@string/button_buy"
-            android:textColor="@color/base_color"
-            android:textSize="20sp" />
-    </RelativeLayout>
-
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -124,17 +99,19 @@
             android:paddingTop="20sp">
 
             <RelativeLayout
+                android:id="@+id/name_frame"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:layout_marginTop="1dp"
-                android:background="@color/background_color">
+                android:background="@color/background_color"
+                android:paddingStart="@dimen/margin_order_text_item"
+                android:paddingEnd="@dimen/margin_order_text_item">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_order_text_item"
                     android:text="@string/hint_name"
                     android:textColor="@color/md_white_1000"
                     android:textSize="@dimen/size_order_text_item" />
@@ -145,9 +122,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/margin_order_text_item"
-                    android:gravity="end"
-
+                    android:background="@android:color/transparent"
                     android:hint="@string/order_name"
                     android:inputType="textPersonName"
                     android:textColor="@color/md_white_1000"
@@ -157,17 +132,19 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/phone_frame"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:layout_marginTop="1dp"
-                android:background="@color/background_color">
+                android:background="@color/background_color"
+                android:paddingStart="@dimen/margin_order_text_item"
+                android:paddingEnd="@dimen/margin_order_text_item">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_order_text_item"
                     android:text="@string/hint_phone"
                     android:textColor="@color/md_white_1000"
                     android:textSize="@dimen/size_order_text_item" />
@@ -178,8 +155,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/margin_order_text_item"
-                    android:gravity="end"
+                    android:background="@android:color/transparent"
                     android:hint="@string/order_name"
                     android:inputType="phone"
                     android:textColor="@color/md_white_1000"
@@ -189,17 +165,19 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/email_frame"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:layout_marginTop="1dp"
-                android:background="@color/background_color">
+                android:background="@color/background_color"
+                android:paddingStart="@dimen/margin_order_text_item"
+                android:paddingEnd="@dimen/margin_order_text_item">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_order_text_item"
                     android:text="@string/hint_email"
                     android:textColor="@color/md_white_1000"
                     android:textSize="@dimen/size_order_text_item" />
@@ -210,8 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/margin_order_text_item"
-                    android:gravity="end"
+                    android:background="@android:color/transparent"
                     android:hint="@string/order_name"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/md_white_1000"
@@ -229,17 +206,19 @@
                 android:textSize="20sp" />
 
             <RelativeLayout
+                android:id="@+id/street_frame"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:layout_marginTop="1dp"
-                android:background="@color/background_color">
+                android:background="@color/background_color"
+                android:paddingStart="@dimen/margin_order_text_item"
+                android:paddingEnd="@dimen/margin_order_text_item">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_order_text_item"
                     android:text="@string/label_street"
                     android:textColor="@color/md_white_1000"
                     android:textSize="@dimen/size_order_text_item" />
@@ -250,28 +229,29 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/margin_order_text_item"
-                    android:gravity="end"
-
+                    android:background="@android:color/transparent"
                     android:inputType="text"
                     android:textColor="@color/md_white_1000"
                     android:textColorHint="@color/hint_text_color"
-                    android:textSize="@dimen/size_order_text_item" />
+                    android:textSize="@dimen/size_order_text_item"
+                    android:minWidth="@dimen/minWidth_edit"/>
 
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/number_frame"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:layout_marginTop="1dp"
-                android:background="@color/background_color">
+                android:background="@color/background_color"
+                android:paddingStart="@dimen/margin_order_text_item"
+                android:paddingEnd="@dimen/margin_order_text_item">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_order_text_item"
                     android:text="@string/label_house"
                     android:textColor="@color/md_white_1000"
                     android:textSize="@dimen/size_order_text_item" />
@@ -282,28 +262,29 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/margin_order_text_item"
-                    android:gravity="end"
-
+                    android:background="@android:color/transparent"
                     android:inputType="number"
                     android:textColor="@color/md_white_1000"
                     android:textColorHint="@color/hint_text_color"
-                    android:textSize="@dimen/size_order_text_item" />
+                    android:textSize="@dimen/size_order_text_item"
+                    android:minWidth="@dimen/minWidth_edit"/>
 
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/apartment_frame"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:layout_marginTop="1dp"
-                android:background="@color/background_color">
+                android:background="@color/background_color"
+                android:paddingStart="@dimen/margin_order_text_item"
+                android:paddingEnd="@dimen/margin_order_text_item">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_order_text_item"
                     android:text="@string/label_apartment"
                     android:textColor="@color/md_white_1000"
                     android:textSize="@dimen/size_order_text_item" />
@@ -314,13 +295,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/margin_order_text_item"
-                    android:gravity="end"
-
+                    android:background="@android:color/transparent"
                     android:inputType="number"
                     android:textColor="@color/md_white_1000"
                     android:textColorHint="@color/hint_text_color"
-                    android:textSize="@dimen/size_order_text_item" />
+                    android:textSize="@dimen/size_order_text_item"
+                    android:minWidth="@dimen/minWidth_edit"/>
 
             </RelativeLayout>
 
@@ -333,6 +313,7 @@
                 android:textSize="20sp" />
 
             <RelativeLayout
+                android:id="@+id/now_frame"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:layout_marginTop="1dp"
@@ -361,6 +342,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/at_time_frame"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:layout_marginTop="1dp"
@@ -399,6 +381,7 @@
                 android:textSize="20sp" />
 
             <RelativeLayout
+                android:id="@+id/cash_frame"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:layout_marginTop="1dp"
@@ -436,6 +419,37 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/cash_count_frame"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_order_item_text"
+                android:layout_marginTop="1dp"
+                android:background="@color/background_color"
+                android:paddingStart="@dimen/margin_order_text_item"
+                android:paddingEnd="@dimen/margin_order_text_item">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/label_enter_cash"
+                    android:textColor="@color/md_white_1000"
+                    android:textSize="@dimen/size_order_text_item" />
+
+                <EditText
+                    android:id="@+id/cash_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/md_white_1000"
+                    android:textColorHint="@color/hint_text_color"
+                    android:textSize="@dimen/size_order_text_item" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/card_frame"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:layout_marginTop="1dp"
@@ -473,6 +487,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/points_frame"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:layout_marginTop="1dp"
@@ -510,6 +525,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/points_seekbar_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="15dp"
@@ -520,7 +536,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/example_points_min"
-                    android:layout_alignStart="@id/seekbar_pints"
+                    android:layout_alignStart="@+id/points_seekbar"
                     android:layout_marginStart="16dp"
                     android:textColor="@color/md_white_1000"/>
 
@@ -530,11 +546,11 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/md_white_1000"
                     android:layout_marginEnd="16dp"
-                    android:layout_alignEnd="@id/seekbar_pints"
+                    android:layout_alignEnd="@+id/points_seekbar"
                     android:text="@string/example_points_max"/>
 
                 <android.support.v7.widget.AppCompatSeekBar
-                    android:id="@+id/seekbar_pints"
+                    android:id="@+id/points_seekbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:progress="20"
@@ -546,30 +562,30 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/points_count_frame"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_order_item_text"
                 android:layout_marginTop="1dp"
-                android:background="@color/background_color">
+                android:background="@color/background_color"
+                android:paddingStart="@dimen/margin_order_text_item"
+                android:paddingEnd="@dimen/margin_order_text_item">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_order_text_item"
                     android:text="@string/label_enter_points"
                     android:textColor="@color/md_white_1000"
                     android:textSize="@dimen/size_order_text_item" />
 
-                <TextView
+                <EditText
                     android:id="@+id/points_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/margin_order_text_item"
-                    android:gravity="end"
-
+                    android:background="@android:color/transparent"
                     android:textColor="@color/md_white_1000"
                     android:textColorHint="@color/hint_text_color"
                     android:textSize="@dimen/size_order_text_item" />
@@ -577,7 +593,32 @@
 
         </LinearLayout>
 
-
     </android.support.v4.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:id="@+id/buy_frame"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_gravity="bottom"
+        android:background="@color/accent_color"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/bug"
+            android:layout_width="20sp"
+            android:layout_height="25sp"
+            android:layout_marginEnd="10sp"
+            android:scaleType="fitXY"
+            android:src="@drawable/bag_black" />
+
+        <TextView
+            android:id="@+id/buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/bug"
+            android:text="@string/button_buy"
+            android:textColor="@color/base_color"
+            android:textSize="20sp" />
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

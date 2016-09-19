@@ -10,8 +10,8 @@ import android.widget.EditText;
 
 public class ViewUtils {
 
-    public static void focus(EditText editText) {
-        editText.requestFocus();
-        editText.setSelection(editText.getText().length());
+    public static void focus(EditText View) {
+        View.requestFocus();
+        View.setSelection(View.getText().length());
     }
 }

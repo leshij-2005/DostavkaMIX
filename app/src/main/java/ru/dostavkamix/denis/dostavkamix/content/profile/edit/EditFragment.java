@@ -1,6 +1,5 @@
 package ru.dostavkamix.denis.dostavkamix.content.profile.edit;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.hkm.ui.processbutton.iml.ActionProcessButton;
@@ -20,7 +18,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import ru.dostavkamix.denis.dostavkamix.R;
 import ru.dostavkamix.denis.dostavkamix.base.BaseLceFragment;
-import ru.dostavkamix.denis.dostavkamix.base.BaseViewStateFragment;
 import ru.dostavkamix.denis.dostavkamix.model.account.Account;
 
 import static android.content.Context.MODE_PRIVATE;

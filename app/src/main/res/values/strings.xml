@@ -95,6 +95,7 @@
     <string name="label_enter_points">Введите баллы для оплаты</string>
     <string name="example_points_min">0</string>
     <string name="example_points_max">1850</string>
+    <string name="label_enter_cash">Сдача с</string>
 
 
 </resources>

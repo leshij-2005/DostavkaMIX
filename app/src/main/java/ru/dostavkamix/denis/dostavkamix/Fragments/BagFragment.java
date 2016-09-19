@@ -17,6 +17,7 @@ import ru.dostavkamix.denis.dostavkamix.Adapters.BagSwipeAdapter;
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.Activitys.OrderActivity;
 import ru.dostavkamix.denis.dostavkamix.R;
+import ru.dostavkamix.denis.dostavkamix.buy.BuyActivity;
 
 
 /**
@@ -56,7 +57,8 @@ public class BagFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         inposOrderDialog.dismiss();
-                        Intent intent = new Intent(AppController.getInstance().getMainActivity().getApplicationContext(), OrderActivity.class);
+                        //Intent intent = new Intent(AppController.getInstance().getMainActivity().getApplicationContext(), OrderActivity.class);
+                        Intent intent = new Intent(AppController.getInstance().getMainActivity().getApplicationContext(), BuyActivity.class);
                         startActivity(intent);
                         AppController.getInstance().getMainActivity().overridePendingTransition(R.anim.slide_in_bottom, android.R.anim.fade_out);
                     }

@@ -17,6 +17,7 @@ android {
         renderscriptTargetApi 24
         renderscriptSupportModeEnabled true
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -36,6 +37,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g" //specify the heap size for the dex process
     }
 }
 
@@ -89,6 +94,8 @@ dependencies {
     compile 'javax.annotation:javax.annotation-api:1.2'
 
     compile 'com.github.satyan:sugar:1.4'
+
+    compile 'com.android.support:multidex:1.0.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

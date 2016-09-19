@@ -13,7 +13,7 @@
     xmlns:foo="http://schemas.android.com/tools">
 
 
-    <ru.dostavkamix.denis.dostavkamix.Custom.customNetworkImageView
+    <ru.dostavkamix.denis.dostavkamix.Custom.CircularNetworkImageView
         android:id="@+id/dish_img"
         android:layout_width="90sp"
         android:layout_height="90sp"

@@ -33,7 +33,7 @@ public class AccountManagerTest {
 
         AccountAPIService service = retrofit.create(AccountAPIService.class);
 
-        service.createUser(new User("test", getRandomEmail(), "12345", "23.09.1996", "TermometR123123"))
+        service.createUser(new User("test", getRandomEmail(), "12345", "23.09.1996", "TermometR123123", null))
                 .subscribe(new Subscriber<UserResponse>() {
                     @Override
                     public void onCompleted() {

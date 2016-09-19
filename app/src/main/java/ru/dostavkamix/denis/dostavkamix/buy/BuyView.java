@@ -9,4 +9,16 @@ import com.hannesdorfmann.mosby.mvp.MvpView;
  */
 
 public interface BuyView extends MvpView {
+
+    void showDeliveryForm();
+
+    void showPickupForm();
+
+    void showCashCountForm();
+
+    void showPointsCountForm();
+
+    void showSelectTimeDialog();
+
+    void showError();
 }
