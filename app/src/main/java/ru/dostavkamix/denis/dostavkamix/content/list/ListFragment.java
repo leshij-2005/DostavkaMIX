@@ -31,17 +31,6 @@ public class ListFragment extends BaseLceFragment<RecyclerView, List<Item>, List
     }
 
 
-    @NonNull
-    @Override
-    public LceViewState<List<Item>, ListView> createViewState() {
-        return new RetainingLceViewState<>();
-    }
-
-    @Override
-    public List<Item> getData() {
-        return null;
-    }
-
     @Override
     protected String getErrorMessage(Throwable e, boolean pullToRefresh) {
         return null;

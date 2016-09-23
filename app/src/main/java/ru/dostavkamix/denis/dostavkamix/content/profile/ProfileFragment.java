@@ -8,12 +8,10 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 
-import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
-
 import butterknife.BindView;
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.R;
-import ru.dostavkamix.denis.dostavkamix.content.BaseContentFragment;
+import ru.dostavkamix.denis.dostavkamix.base.BaseMvpFragment;
 
 /**
  * Created by den on 13.09.16.
@@ -21,7 +19,7 @@ import ru.dostavkamix.denis.dostavkamix.content.BaseContentFragment;
  * @author Denis Tkachenko
  */
 
-public class ProfileFragment extends BaseContentFragment<ProfileView, ProfilePresenter>
+public class ProfileFragment extends BaseMvpFragment<ProfileView, ProfilePresenter>
         implements ProfileView, TabLayout.OnTabSelectedListener {
 
     @BindView(R.id.tab) TabLayout tab;
@@ -48,17 +46,6 @@ public class ProfileFragment extends BaseContentFragment<ProfileView, ProfilePre
     @Override
     protected int getLayoutRes() {
         return R.layout.fragment_profile;
-    }
-
-    @NonNull
-    @Override
-    public ViewState createViewState() {
-        return new ProfileViewState();
-    }
-
-    @Override
-    public void onNewViewStateInstance() {
-
     }
 
     @NonNull

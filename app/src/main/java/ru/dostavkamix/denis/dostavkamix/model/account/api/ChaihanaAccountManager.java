@@ -117,9 +117,16 @@ public class ChaihanaAccountManager implements AccountManager {
             return Observable.error(new NotAuthenticatedException());
         }
 
+        /*
         return service.updateUser(currentAuth.getToken(), Utils.Account2User(account))
                 .map(userResponse -> Utils.User2Account(userResponse.getUser()))
                 .doOnNext(subjectAccount::onNext);
+                */
+        return service.updateUser(currentAuth.getToken(), Utils.Account2User(account))
+                .flatMap(userResponse -> {
+                    if(!userResponse.isStatus()) return Observable.error(new AccountException(userResponse));
+                    else return Observable.just(Utils.User2Account(userResponse.getUser()));
+                });
     }
 
     @Override

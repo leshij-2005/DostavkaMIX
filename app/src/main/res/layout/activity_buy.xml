@@ -57,18 +57,18 @@
                     android:layout_margin="10sp"
                     android:orientation="horizontal">
 
-                    <View
+                    <TextView
                         android:id="@+id/delivery"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-
+                        android:gravity="center"
                         android:background="@drawable/transition_select_button_left"
                         android:text="@string/title_delivery"
                         android:textAllCaps="false"
                         android:textColor="@color/md_black_1000" />
 
-                    <View
+                    <TextView
                         android:id="@+id/pickup"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -76,7 +76,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/transition_select_button_right"
                         android:text="@string/title_pickup"
-
+                        android:gravity="center"
                         android:textAllCaps="false"
                         android:textColor="@color/md_white_1000" />
                 </LinearLayout>
@@ -87,538 +87,562 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingTop="20sp">
+            android:layout_weight="1">
 
-            <RelativeLayout
-                android:id="@+id/name_frame"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/height_order_item_text"
-                android:layout_marginTop="1dp"
-                android:background="@color/background_color"
-                android:paddingStart="@dimen/margin_order_text_item"
-                android:paddingEnd="@dimen/margin_order_text_item">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="20sp"
+                android:animateLayoutChanges="true">
+
+                <RelativeLayout
+                    android:id="@+id/name_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_order_item_text"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/background_color"
+                    android:paddingStart="@dimen/margin_order_text_item"
+                    android:paddingEnd="@dimen/margin_order_text_item">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/hint_name"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/size_order_text_item" />
+
+                    <EditText
+                        android:gravity="end"
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/order_name"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/md_white_1000"
+                        android:textColorHint="@color/hint_text_color"
+                        android:textSize="@dimen/size_order_text_item" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/phone_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_order_item_text"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/background_color"
+                    android:paddingStart="@dimen/margin_order_text_item"
+                    android:paddingEnd="@dimen/margin_order_text_item">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/hint_phone"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/size_order_text_item" />
+
+                    <EditText
+                        android:gravity="end"
+                        android:id="@+id/phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/order_phone"
+                        android:inputType="phone"
+                        android:textColor="@color/md_white_1000"
+                        android:textColorHint="@color/hint_text_color"
+                        android:textSize="@dimen/size_order_text_item" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/email_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_order_item_text"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/background_color"
+                    android:paddingStart="@dimen/margin_order_text_item"
+                    android:paddingEnd="@dimen/margin_order_text_item">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/hint_email"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/size_order_text_item" />
+
+                    <EditText
+                        android:gravity="end"
+                        android:id="@+id/email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/order_email"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/md_white_1000"
+                        android:textColorHint="@color/hint_text_color"
+                        android:textSize="@dimen/size_order_text_item" />
+
+                </RelativeLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/hint_name"
-                    android:textColor="@color/md_white_1000"
-                    android:textSize="@dimen/size_order_text_item" />
-
-                <EditText
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/order_name"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/md_white_1000"
-                    android:textColorHint="@color/hint_text_color"
-                    android:textSize="@dimen/size_order_text_item" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/phone_frame"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_order_item_text"
-                android:layout_marginTop="1dp"
-                android:background="@color/background_color"
-                android:paddingStart="@dimen/margin_order_text_item"
-                android:paddingEnd="@dimen/margin_order_text_item">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/hint_phone"
-                    android:textColor="@color/md_white_1000"
-                    android:textSize="@dimen/size_order_text_item" />
-
-                <EditText
-                    android:id="@+id/phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/order_name"
-                    android:inputType="phone"
-                    android:textColor="@color/md_white_1000"
-                    android:textColorHint="@color/hint_text_color"
-                    android:textSize="@dimen/size_order_text_item" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/email_frame"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_order_item_text"
-                android:layout_marginTop="1dp"
-                android:background="@color/background_color"
-                android:paddingStart="@dimen/margin_order_text_item"
-                android:paddingEnd="@dimen/margin_order_text_item">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/hint_email"
-                    android:textColor="@color/md_white_1000"
-                    android:textSize="@dimen/size_order_text_item" />
-
-                <EditText
-                    android:id="@+id/email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/order_name"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/md_white_1000"
-                    android:textColorHint="@color/hint_text_color"
-                    android:textSize="@dimen/size_order_text_item" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15sp"
-                android:text="@string/label_delivery_address"
-                android:textColor="@color/accent_color"
-                android:textSize="20sp" />
-
-            <RelativeLayout
-                android:id="@+id/street_frame"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_order_item_text"
-                android:layout_marginTop="1dp"
-                android:background="@color/background_color"
-                android:paddingStart="@dimen/margin_order_text_item"
-                android:paddingEnd="@dimen/margin_order_text_item">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/label_street"
-                    android:textColor="@color/md_white_1000"
-                    android:textSize="@dimen/size_order_text_item" />
-
-                <EditText
-                    android:id="@+id/street"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:inputType="text"
-                    android:textColor="@color/md_white_1000"
-                    android:textColorHint="@color/hint_text_color"
-                    android:textSize="@dimen/size_order_text_item"
-                    android:minWidth="@dimen/minWidth_edit"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/number_frame"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_order_item_text"
-                android:layout_marginTop="1dp"
-                android:background="@color/background_color"
-                android:paddingStart="@dimen/margin_order_text_item"
-                android:paddingEnd="@dimen/margin_order_text_item">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/label_house"
-                    android:textColor="@color/md_white_1000"
-                    android:textSize="@dimen/size_order_text_item" />
-
-                <EditText
-                    android:id="@+id/number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:inputType="number"
-                    android:textColor="@color/md_white_1000"
-                    android:textColorHint="@color/hint_text_color"
-                    android:textSize="@dimen/size_order_text_item"
-                    android:minWidth="@dimen/minWidth_edit"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/apartment_frame"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_order_item_text"
-                android:layout_marginTop="1dp"
-                android:background="@color/background_color"
-                android:paddingStart="@dimen/margin_order_text_item"
-                android:paddingEnd="@dimen/margin_order_text_item">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/label_apartment"
-                    android:textColor="@color/md_white_1000"
-                    android:textSize="@dimen/size_order_text_item" />
-
-                <EditText
-                    android:id="@+id/apartment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:inputType="number"
-                    android:textColor="@color/md_white_1000"
-                    android:textColorHint="@color/hint_text_color"
-                    android:textSize="@dimen/size_order_text_item"
-                    android:minWidth="@dimen/minWidth_edit"/>
-
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15sp"
-                android:text="@string/label_time"
-                android:textColor="@color/accent_color"
-                android:textSize="20sp" />
-
-            <RelativeLayout
-                android:id="@+id/now_frame"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_order_item_text"
-                android:layout_marginTop="1dp"
-                android:background="@color/background_color">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_order_text_item"
-                    android:text="@string/label_now"
-                    android:textColor="@color/md_white_1000"
-                    android:textSize="@dimen/size_order_text_item" />
-
-                <ImageView
-                    android:id="@+id/now"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/margin_order_text_item"
-                    android:gravity="end"
-                    app:srcCompat="@drawable/ic_check_accent_24dp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/at_time_frame"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_order_item_text"
-                android:layout_marginTop="1dp"
-                android:background="@color/background_color">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_order_text_item"
-                    android:text="@string/label_at_time"
-                    android:textColor="@color/md_white_1000"
-                    android:textSize="@dimen/size_order_text_item" />
-
-                <TextView
-                    android:id="@+id/at_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/margin_order_text_item"
-                    android:gravity="end"
-
-                    android:textColor="@color/md_white_1000"
-                    android:textColorHint="@color/hint_text_color"
-                    android:textSize="@dimen/size_order_text_item" />
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15sp"
-                android:text="@string/label_payment"
-                android:textColor="@color/accent_color"
-                android:textSize="20sp" />
-
-            <RelativeLayout
-                android:id="@+id/cash_frame"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_order_item_text"
-                android:layout_marginTop="1dp"
-                android:background="@color/background_color">
-
-                <ImageView
-                    android:id="@+id/wallet"
-                    android:layout_width="25sp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_order_text_item"
-                    app:srcCompat="@drawable/ic_wallet" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_order_text_item"
-                    android:layout_toEndOf="@id/wallet"
-                    android:text="@string/label_cash"
-                    android:textColor="@color/md_white_1000"
-                    android:textSize="@dimen/size_order_text_item" />
-
-                <ImageView
-                    android:id="@+id/cash"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/margin_order_text_item"
-                    android:gravity="end"
-                    app:srcCompat="@drawable/ic_check_accent_24dp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/cash_count_frame"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_order_item_text"
-                android:layout_marginTop="1dp"
-                android:background="@color/background_color"
-                android:paddingStart="@dimen/margin_order_text_item"
-                android:paddingEnd="@dimen/margin_order_text_item">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/label_enter_cash"
-                    android:textColor="@color/md_white_1000"
-                    android:textSize="@dimen/size_order_text_item" />
-
-                <EditText
-                    android:id="@+id/cash_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:textColor="@color/md_white_1000"
-                    android:textColorHint="@color/hint_text_color"
-                    android:textSize="@dimen/size_order_text_item" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/card_frame"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_order_item_text"
-                android:layout_marginTop="1dp"
-                android:background="@color/background_color">
-
-                <ImageView
-                    android:id="@+id/ic_card"
-                    android:layout_width="25sp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_order_text_item"
-                    app:srcCompat="@drawable/ic_card" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_order_text_item"
-                    android:layout_toEndOf="@id/ic_card"
-                    android:text="@string/label_card"
-                    android:textColor="@color/md_white_1000"
-                    android:textSize="@dimen/size_order_text_item" />
-
-                <ImageView
-                    android:id="@+id/card"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/margin_order_text_item"
-                    android:gravity="end"
-                    app:srcCompat="@drawable/ic_check_accent_24dp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/points_frame"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_order_item_text"
-                android:layout_marginTop="1dp"
-                android:background="@color/background_color">
-
-                <ImageView
-                    android:id="@+id/ic_points"
-                    android:layout_width="25sp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_order_text_item"
-                    app:srcCompat="@drawable/ic_points" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_order_text_item"
-                    android:layout_toEndOf="@id/ic_points"
-                    android:text="@string/label_points"
-                    android:textColor="@color/md_white_1000"
-                    android:textSize="@dimen/size_order_text_item" />
-
-                <ImageView
-                    android:id="@+id/points"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/margin_order_text_item"
-                    android:gravity="end"
-                    app:srcCompat="@drawable/ic_check_accent_24dp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/points_seekbar_frame"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp">
-
-                <TextView
-                    android:id="@+id/points_min"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/example_points_min"
-                    android:layout_alignStart="@+id/points_seekbar"
-                    android:layout_marginStart="16dp"
-                    android:textColor="@color/md_white_1000"/>
-
-                <TextView
-                    android:id="@+id/points_max"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/md_white_1000"
-                    android:layout_marginEnd="16dp"
-                    android:layout_alignEnd="@+id/points_seekbar"
-                    android:text="@string/example_points_max"/>
-
-                <android.support.v7.widget.AppCompatSeekBar
-                    android:id="@+id/points_seekbar"
+                    android:id="@+id/label_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:progress="20"
-                    android:secondaryProgress="20"
-                    android:progressDrawable="@drawable/seekbar_points"
-                    android:layout_below="@id/points_max"
-                    android:layout_marginTop="10dp"
-                    />
-            </RelativeLayout>
+                    android:padding="15sp"
+                    android:text="@string/label_delivery_address"
+                    android:textColor="@color/accent_color"
+                    android:textSize="20sp" />
 
-            <RelativeLayout
-                android:id="@+id/points_count_frame"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_order_item_text"
-                android:layout_marginTop="1dp"
-                android:background="@color/background_color"
-                android:paddingStart="@dimen/margin_order_text_item"
-                android:paddingEnd="@dimen/margin_order_text_item">
+                <RelativeLayout
+                    android:id="@+id/street_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_order_item_text"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/background_color"
+                    android:paddingStart="@dimen/margin_order_text_item"
+                    android:paddingEnd="@dimen/margin_order_text_item">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/label_street"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/size_order_text_item" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/street"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:inputType="text"
+                        android:gravity="end"
+                        android:textColor="@color/md_white_1000"
+                        android:textColorHint="@color/hint_text_color"
+                        android:textSize="@dimen/size_order_text_item"
+                        android:minWidth="@dimen/minWidth_edit"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/number_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_order_item_text"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/background_color"
+                    android:paddingStart="@dimen/margin_order_text_item"
+                    android:paddingEnd="@dimen/margin_order_text_item">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/label_house"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/size_order_text_item" />
+
+                    <EditText
+                        android:id="@+id/number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:inputType="number"
+                        android:gravity="end"
+                        android:textColor="@color/md_white_1000"
+                        android:textColorHint="@color/hint_text_color"
+                        android:textSize="@dimen/size_order_text_item"
+                        android:minWidth="@dimen/minWidth_edit"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/apartment_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_order_item_text"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/background_color"
+                    android:paddingStart="@dimen/margin_order_text_item"
+                    android:paddingEnd="@dimen/margin_order_text_item">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/label_apartment"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/size_order_text_item" />
+
+                    <EditText
+                        android:id="@+id/apartment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:inputType="number"
+                        android:gravity="end"
+                        android:textColor="@color/md_white_1000"
+                        android:textColorHint="@color/hint_text_color"
+                        android:textSize="@dimen/size_order_text_item"
+                        android:minWidth="@dimen/minWidth_edit"/>
+
+                </RelativeLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/label_enter_points"
-                    android:textColor="@color/md_white_1000"
-                    android:textSize="@dimen/size_order_text_item" />
+                    android:padding="15sp"
+                    android:text="@string/label_time"
+                    android:textColor="@color/accent_color"
+                    android:textSize="20sp" />
 
-                <EditText
-                    android:id="@+id/points_count"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/now_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_order_item_text"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/background_color">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_order_text_item"
+                        android:text="@string/label_now"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/size_order_text_item" />
+
+                    <ImageView
+                        android:id="@+id/now"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/margin_order_text_item"
+                        android:gravity="end"
+                        app:srcCompat="@drawable/ic_check_accent_24dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/at_time_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_order_item_text"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/background_color">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_order_text_item"
+                        android:text="@string/label_at_time"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/size_order_text_item" />
+
+                    <TextView
+                        android:id="@+id/at_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/margin_order_text_item"
+                        android:gravity="end"
+
+                        android:textColor="@color/md_white_1000"
+                        android:textColorHint="@color/hint_text_color"
+                        android:textSize="@dimen/size_order_text_item" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:textColor="@color/md_white_1000"
-                    android:textColorHint="@color/hint_text_color"
-                    android:textSize="@dimen/size_order_text_item" />
-            </RelativeLayout>
+                    android:padding="15sp"
+                    android:text="@string/label_payment"
+                    android:textColor="@color/accent_color"
+                    android:textSize="20sp" />
 
-        </LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/cash_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_order_item_text"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/background_color">
 
-    </android.support.v4.widget.NestedScrollView>
+                    <ImageView
+                        android:id="@+id/wallet"
+                        android:layout_width="25sp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_order_text_item"
+                        app:srcCompat="@drawable/ic_wallet" />
 
-    <RelativeLayout
-        android:id="@+id/buy_frame"
-        android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:layout_gravity="bottom"
-        android:background="@color/accent_color"
-        android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_order_text_item"
+                        android:layout_toEndOf="@id/wallet"
+                        android:text="@string/label_cash"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/size_order_text_item" />
 
-        <ImageView
-            android:id="@+id/bug"
-            android:layout_width="20sp"
-            android:layout_height="25sp"
-            android:layout_marginEnd="10sp"
-            android:scaleType="fitXY"
-            android:src="@drawable/bag_black" />
+                    <ImageView
+                        android:id="@+id/cash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/margin_order_text_item"
+                        android:gravity="end"
+                        app:srcCompat="@drawable/ic_check_accent_24dp"
+                        android:visibility="gone"/>
 
-        <TextView
-            android:id="@+id/buy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/bug"
-            android:text="@string/button_buy"
-            android:textColor="@color/base_color"
-            android:textSize="20sp" />
-    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/cash_count_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_order_item_text"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/background_color"
+                    android:paddingStart="@dimen/margin_order_text_item"
+                    android:paddingEnd="@dimen/margin_order_text_item"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/label_enter_cash"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/size_order_text_item" />
+
+                    <EditText
+                        android:id="@+id/cash_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:textColor="@color/md_white_1000"
+                        android:textColorHint="@color/hint_text_color"
+                        android:textSize="@dimen/size_order_text_item" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/card_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_order_item_text"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/background_color">
+
+                    <ImageView
+                        android:id="@+id/ic_card"
+                        android:layout_width="25sp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_order_text_item"
+                        app:srcCompat="@drawable/ic_card" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_order_text_item"
+                        android:layout_toEndOf="@id/ic_card"
+                        android:text="@string/label_card"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/size_order_text_item" />
+
+                    <ImageView
+                        android:id="@+id/card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/margin_order_text_item"
+                        android:gravity="end"
+                        app:srcCompat="@drawable/ic_check_accent_24dp"
+                        android:visibility="gone"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/points_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_order_item_text"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/background_color">
+
+                    <ImageView
+                        android:id="@+id/ic_points"
+                        android:layout_width="25sp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_order_text_item"
+                        app:srcCompat="@drawable/ic_points" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_order_text_item"
+                        android:layout_toEndOf="@id/ic_points"
+                        android:text="@string/label_points"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/size_order_text_item" />
+
+                    <ImageView
+                        android:id="@+id/points"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/margin_order_text_item"
+                        android:gravity="end"
+                        app:srcCompat="@drawable/ic_check_accent_24dp"
+                        android:visibility="gone"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/points_seekbar_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/points_min"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/example_points_min"
+                        android:layout_alignStart="@+id/points_seekbar"
+                        android:layout_marginStart="16dp"
+                        android:textColor="@color/md_white_1000"/>
+
+                    <TextView
+                        android:id="@+id/points_max"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/md_white_1000"
+                        android:layout_marginEnd="16dp"
+                        android:layout_alignEnd="@+id/points_seekbar"
+                        android:text="@string/example_points_max"/>
+
+                    <android.support.v7.widget.AppCompatSeekBar
+                        android:id="@+id/points_seekbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:progress="20"
+                        android:secondaryProgress="20"
+                        android:progressDrawable="@drawable/seekbar_points"
+                        android:layout_below="@id/points_max"
+                        android:layout_marginTop="10dp"
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/points_count_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_order_item_text"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/background_color"
+                    android:paddingStart="@dimen/margin_order_text_item"
+                    android:paddingEnd="@dimen/margin_order_text_item"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/label_enter_points"
+                        android:textColor="@color/md_white_1000"
+                        android:textSize="@dimen/size_order_text_item" />
+
+                    <EditText
+                        android:id="@+id/points_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:textColor="@color/md_white_1000"
+                        android:textColorHint="@color/hint_text_color"
+                        android:textSize="@dimen/size_order_text_item"
+                        android:minWidth="@dimen/minWidth_edit"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <RelativeLayout
+            android:id="@+id/buy_frame"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_gravity="bottom"
+            android:background="@color/accent_color"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/bug"
+                android:layout_width="20sp"
+                android:layout_height="25sp"
+                android:layout_marginEnd="10sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/bag_black" />
+
+            <TextView
+                android:id="@+id/buy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/bug"
+                android:text="@string/button_buy"
+                android:textColor="@color/base_color"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
 
 </android.support.design.widget.CoordinatorLayout>

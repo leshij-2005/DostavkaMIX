@@ -1,29 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:foo="http://schemas.android.com/apk/res-auto"
-             android:orientation="vertical"
-             android:layout_width="140sp"
-             android:layout_height="120sp"
-             android:background="@drawable/background_dialog">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="140sp"
+    android:layout_height="120sp"
+    android:background="@drawable/background_dialog"
+    android:gravity="center">
 
-    <ImageView
+    <FrameLayout
+        android:id="@+id/status"
         android:layout_width="35sp"
-        android:layout_height="100sp"
-        android:layout_marginBottom="25sp"
-        android:src="@drawable/check_black"
-        android:background="@color/accent_color"
-        android:layout_gravity="center"/>
-    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-        foo:customFont="fonts/GothaProReg.otf"
-        android:layout_width="150sp"
+        android:layout_height="50sp"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/status_success"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic_done_all_black_24dp"
+            android:visibility="gone"
+            />
+
+        <ImageView
+            android:id="@+id/status_error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic_clear_black_24dp"
+            />
+
+        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+            android:id="@+id/status_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/status_msg"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20sp"
         android:textSize="20sp"
         android:text="Заказ отправлен"
         android:textColor="@color/md_black_1000"
-        android:layout_gravity="center_horizontal|bottom"
         android:gravity="center"
+        android:layout_below="@+id/status"
         android:background="@color/accent_color"/>
 
-
-</FrameLayout>
+</RelativeLayout>

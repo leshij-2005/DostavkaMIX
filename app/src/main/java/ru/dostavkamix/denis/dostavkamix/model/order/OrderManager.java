@@ -16,7 +16,7 @@ import rx.Observable;
 
 public class OrderManager {
 
-    OrderService orderService;
+    private OrderService orderService;
 
     public OrderManager() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -41,5 +41,9 @@ public class OrderManager {
 
     public Observable sendOrder(Buyer buyer) {
         return orderService.sendOrder(buyer);
+    }
+
+    public Observable sendOrder(Buyer buyer, String token) {
+        return orderService.sendOrder(buyer, token);
     }
 }

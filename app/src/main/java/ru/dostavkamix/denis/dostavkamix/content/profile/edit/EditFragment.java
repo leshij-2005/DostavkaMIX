@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ import butterknife.OnClick;
 import ru.dostavkamix.denis.dostavkamix.R;
 import ru.dostavkamix.denis.dostavkamix.base.BaseLceFragment;
 import ru.dostavkamix.denis.dostavkamix.model.account.Account;
+import ru.dostavkamix.denis.dostavkamix.model.account.api.AccountException;
 
 import static android.content.Context.MODE_PRIVATE;
 import static ru.dostavkamix.denis.dostavkamix.utils.ViewUtils.focus;
@@ -53,17 +55,21 @@ public class EditFragment extends BaseLceFragment<LinearLayout, Account, EditVie
 
     @BindView(R.id.addresses) RecyclerView addresses;
 
+    @BindView(R.id.save) ActionProcessButton save;
+
     @OnClick(R.id.add) void add_click() {
        // presenter.addAddress(new Account.Address());
         currentAccount.getAddresses().add(new Account.Address("", "", ""));
         adapter.notifyDataSetChanged();
     }
-
-    @BindView(R.id.save) ActionProcessButton save;
     @OnClick(R.id.save) void save_click() {
         currentAccount.setName(name.getText().toString());
         currentAccount.setEmail(email.getText().toString());
         currentAccount.setPhone(phone.getText().toString());
+
+        for (int i = 0; i < currentAccount.getAddresses().size(); i++) {
+            currentAccount.getAddresses().set(i, ((AddressesAdapter.ViewHolder) addresses.findViewHolderForAdapterPosition(i)).getAddress());
+        }
         
         presenter.updateAccount(currentAccount);
     }
@@ -72,27 +78,18 @@ public class EditFragment extends BaseLceFragment<LinearLayout, Account, EditVie
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getToken();
+        loadData(false);
     }
 
     @Override
     protected String getErrorMessage(Throwable e, boolean pullToRefresh) {
+        if(e instanceof AccountException) return ((AccountException) e).getMsg();
         return null;
     }
 
     @Override
     protected int getLayoutRes() {
         return R.layout.fragment_profile_edit;
-    }
-
-    @NonNull
-    @Override
-    public LceViewState<Account, EditView> createViewState() {
-        return new RetainingLceViewState<>();
-    }
-
-    @Override
-    public Account getData() {
-        return currentAccount;
     }
 
     @NonNull

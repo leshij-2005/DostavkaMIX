@@ -2,6 +2,8 @@ package ru.dostavkamix.denis.dostavkamix.buy;
 
 import com.hannesdorfmann.mosby.mvp.MvpView;
 
+import ru.dostavkamix.denis.dostavkamix.model.account.Account;
+
 /**
  * Created by Денис on 17.09.2016.
  *
@@ -10,15 +12,11 @@ import com.hannesdorfmann.mosby.mvp.MvpView;
 
 public interface BuyView extends MvpView {
 
-    void showDeliveryForm();
+    void showAccount(Account account);
 
-    void showPickupForm();
+    void showSuccess();
 
-    void showCashCountForm();
-
-    void showPointsCountForm();
-
-    void showSelectTimeDialog();
+    void showBuying();
 
     void showError();
 }

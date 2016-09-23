@@ -7,23 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hannesdorfmann.mosby.mvp.MvpFragment;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceFragment;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateFragment;
+import com.hannesdorfmann.mosby.mvp.MvpView;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import icepick.Icepick;
 
 /**
- * Created by Денис on 15.09.2016.
- *
- * @author Denis Tkachenko
+ * Created by den on 23.09.16.
  */
 
-public abstract class BaseLceFragment<CV extends View, M, V extends MvpLceView<M>, P extends MvpPresenter<V>>
-        extends MvpLceFragment<CV, M, V, P> {
+public abstract class BaseMvpFragment<V extends MvpView, P extends MvpPresenter<V>> extends MvpFragment<V, P> {
 
     private Unbinder unbinder;
 
@@ -39,14 +34,7 @@ public abstract class BaseLceFragment<CV extends View, M, V extends MvpLceView<M
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        Icepick.restoreInstanceState(this, savedInstanceState);
         return inflater.inflate(getLayoutRes(), container, false);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Icepick.saveInstanceState(this, outState);
     }
 
     @Override
