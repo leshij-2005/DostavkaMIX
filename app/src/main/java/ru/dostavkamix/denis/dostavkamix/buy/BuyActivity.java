@@ -165,7 +165,6 @@ public class BuyActivity extends BaseMvpActivity<BuyView, BuyPresenter> implemen
     @Override
     public void showBuying() {
         dialog.show(getSupportFragmentManager(), "");
-        dialog.showBuying();
     }
 
     @Override
@@ -195,7 +194,7 @@ public class BuyActivity extends BaseMvpActivity<BuyView, BuyPresenter> implemen
         return buyer;
     }
 
-    void startup() {
+    private void startup() {
         select_method(delivery);
         click_cash_frame();
         presenter.loadAccount();

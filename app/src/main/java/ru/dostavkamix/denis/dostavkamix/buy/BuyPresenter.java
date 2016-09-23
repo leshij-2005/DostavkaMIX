@@ -36,7 +36,9 @@ public class BuyPresenter extends MvpBasePresenter<BuyView> {
     };
 
     private Observable test = Observable.just("")
-            .delay(1, TimeUnit.SECONDS);
+            .delay(1, TimeUnit.SECONDS)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread());
 
     public BuyPresenter() {
         AppController.inject(this);

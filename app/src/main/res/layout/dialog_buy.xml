@@ -5,7 +5,8 @@
     android:layout_width="140sp"
     android:layout_height="120sp"
     android:background="@drawable/background_dialog"
-    android:gravity="center">
+    android:paddingBottom="8sp"
+    android:paddingTop="8sp">
 
     <FrameLayout
         android:id="@+id/status"
@@ -28,7 +29,7 @@
             app:srcCompat="@drawable/ic_clear_black_24dp"
             />
 
-        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+        <ProgressBar
             android:id="@+id/status_loading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,6 +48,7 @@
         android:textColor="@color/md_black_1000"
         android:gravity="center"
         android:layout_below="@+id/status"
+        android:layout_centerHorizontal="true"
         android:background="@color/accent_color"/>
 
 </RelativeLayout>

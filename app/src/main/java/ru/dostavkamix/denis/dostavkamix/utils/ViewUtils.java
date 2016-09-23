@@ -26,9 +26,9 @@ public class ViewUtils {
     private static final Animation animationFadeIn = AnimationUtils.loadAnimation(AppController.getInstance(), R.anim.fadein);
     private static final Animation animationFadeOut = AnimationUtils.loadAnimation(AppController.getInstance(), R.anim.fadeout);
 
-    public static void focus(EditText View) {
-        View.requestFocus();
-        View.setSelection(View.getText().length());
+    public static void focus(EditText editText) {
+        editText.requestFocus();
+        editText.setSelection(editText.getText().length());
     }
 
     public static void fade(View view, boolean enabled) {
