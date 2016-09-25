@@ -17,6 +17,6 @@ public interface OrderService {
     @POST("server/order/")
     Observable sendOrder(@Body Buyer buyer);
 
-    @POST("server/order/")
+    @POST("server/order/test")
     Observable sendOrder(@Body Buyer buyer, @Header("Authorization") String access_token);
 }

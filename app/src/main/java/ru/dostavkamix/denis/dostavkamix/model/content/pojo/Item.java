@@ -31,6 +31,18 @@ public class Item implements Parcelable{
     @SerializedName("content")
     @Expose
     private String content;
+    @SerializedName("count")
+    @Expose
+    private Integer count;
+
+    public Item() {
+    }
+
+    public Item(String title, Integer id, Integer count) {
+        this.title = title;
+        this.id = id;
+        this.count = count;
+    }
 
     /**
      * 
@@ -138,6 +150,14 @@ public class Item implements Parcelable{
      */
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public Item(String title, Integer id, String image, Integer price, String weight, String content) {

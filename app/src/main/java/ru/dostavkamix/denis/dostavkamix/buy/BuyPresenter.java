@@ -46,7 +46,12 @@ public class BuyPresenter extends MvpBasePresenter<BuyView> {
 
     void buying(Buyer buyer) {
         if(isViewAttached()) getView().showBuying();
-        test.subscribe(success, error);
+        if(accountManager.isUserAuthenticated()) {
+            orderManager.sendOrder(buyer, accountManager.getCurrentAuth().getToken())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(success, error);
+        }
     }
 
     void loadAccount() {

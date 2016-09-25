@@ -14,11 +14,17 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
+import ru.dostavkamix.denis.dostavkamix.AppController;
+import ru.dostavkamix.denis.dostavkamix.Objects.Dish;
 import ru.dostavkamix.denis.dostavkamix.R;
 import ru.dostavkamix.denis.dostavkamix.base.BaseMvpActivity;
 import ru.dostavkamix.denis.dostavkamix.model.account.Account;
+import ru.dostavkamix.denis.dostavkamix.model.content.pojo.Item;
 import ru.dostavkamix.denis.dostavkamix.model.order.pojo.Buyer;
 
 import static ru.dostavkamix.denis.dostavkamix.utils.ViewUtils.fade;
@@ -190,6 +196,12 @@ public class BuyActivity extends BaseMvpActivity<BuyView, BuyPresenter> implemen
                 ? "безнал"
                 : "баллами, их аж: " + points_count.getText().toString());
         //buyer.setItems(getIntent().getExtras().getParcelableArrayList(""));
+        List<Item> items = new ArrayList<>();
+        for (Dish dish :
+                AppController.getInstance().getInBag()) {
+            items.add(new Item(dish.getNameDish(), dish.getIdDish(), dish.getCountOrder()));
+        }
+        buyer.setItems(items);
 
         return buyer;
     }
