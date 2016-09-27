@@ -1,76 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="24.04.2016, 14:38"
-        android:textColor="@color/md_white_1000"
-        android:layout_marginLeft="@dimen/margin_left_title_card"
-        android:layout_marginBottom="5sp"
-        android:layout_marginTop="15sp"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="@color/accent_color"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="10sp"
-        android:paddingTop="10sp"/>
+    android:layout_height="wrap_content"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:paddingEnd="20sp"
+        android:paddingStart="10sp"
         android:paddingTop="10sp"
         android:paddingBottom="10sp">
 
-        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-            android:id="@+id/added_points"
+        <ru.dostavkamix.denis.dostavkamix.Custom.CircularNetworkImageView
+            android:id="@+id/image"
+            android:layout_width="90sp"
+            android:layout_height="90sp"/>
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="8 563 руб."
-            android:textColor="@color/accent_color"/>
+            android:layout_toEndOf="@+id/image"
+            android:layout_centerVertical="true"
+            android:paddingStart="10sp">
 
-        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-            android:id="@+id/label_added_points"
+            <TextView
+                android:id="@+id/caption"
+                android:layout_width="170sp"
+                android:layout_height="wrap_content"
+                android:text="Название блюда может быть в 2 строки"
+                android:textColor="@color/md_white_1000"
+                />
+
+            <TextView
+                android:id="@+id/sumTotal"
+                android:layout_below="@+id/caption"
+                android:layout_alignStart="@+id/caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1 250 P"
+                android:textColor="@color/accent_color"
+                android:layout_marginTop="10sp"/>
+
+            <TextView
+                android:id="@+id/weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="250 гр."
+                android:layout_toEndOf="@+id/sumTotal"
+                android:layout_alignTop="@+id/sumTotal"
+                android:textColor="@color/color_hint"
+                android:layout_marginStart="20sp"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_added_points"
-            android:layout_below="@+id/added_points"
-            android:layout_alignLeft="@+id/added_points"
-            android:textColor="@color/color_hint"
-            android:textSize="13sp"/>
-
-        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-            android:id="@+id/sum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="20 450 руб."
-            android:textColor="@color/accent_color"
-            android:layout_toRightOf="@+id/label_added_points"
-            android:layout_marginLeft="30sp"/>
-
-        <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_sum"
-            android:layout_below="@+id/sum"
-            android:layout_alignLeft="@+id/sum"
-            android:textColor="@color/color_hint"
-            android:textSize="13sp"/>
-
-
+            android:text="13"
+            android:textColor="@color/md_white_1000"
+            android:textSize="17sp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="@color/accent_color"/>
+        android:layout_height="1px"
+        android:background="@color/color_border_white"/>
 
 </LinearLayout>

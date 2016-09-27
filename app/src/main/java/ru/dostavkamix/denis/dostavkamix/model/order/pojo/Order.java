@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
 import ru.dostavkamix.denis.dostavkamix.model.content.pojo.Item;
 
 @Generated("org.jsonschema2pojo")
-public class Buyer {
+public class Order {
 
     @SerializedName("phone")
     @Expose
@@ -36,6 +36,35 @@ public class Buyer {
     @SerializedName("name")
     @Expose
     private String name;
+
+    @SerializedName("address")
+    private String address;
+    @SerializedName("delivery")
+    private String delivery;
+    @SerializedName("payment")
+    private String payment;
+    @SerializedName("ball")
+    private String ball;
+    @SerializedName("sumTotal")
+    private int sumTotal;
+    @SerializedName("sum")
+    private String sum;
+    @SerializedName("time")
+    private String time;
+    @SerializedName("person")
+    private int person;
+    @SerializedName("createDate")
+    private String createDate;
+    @SerializedName("user_id")
+    private String user_id;
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
 
     /**
      * 
@@ -181,4 +210,75 @@ public class Buyer {
         this.name = name;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(String delivery) {
+        this.delivery = delivery;
+    }
+
+    public String getPayment() {
+        return payment;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public String getBall() {
+        return ball;
+    }
+
+    public void setBall(String ball) {
+        this.ball = ball;
+    }
+
+    public int getSumTotal() {
+        return sumTotal;
+    }
+
+    public void setSumTotal(int sumTotal) {
+        this.sumTotal = sumTotal;
+    }
+
+    public String getSum() {
+        return sum;
+    }
+
+    public void setSum(String sum) {
+        this.sum = sum;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public int getPerson() {
+        return person;
+    }
+
+    public void setPerson(int person) {
+        this.person = person;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
 }

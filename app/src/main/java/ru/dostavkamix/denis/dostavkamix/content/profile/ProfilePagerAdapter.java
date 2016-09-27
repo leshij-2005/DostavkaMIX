@@ -1,28 +1,19 @@
 package ru.dostavkamix.denis.dostavkamix.content.profile;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
-import ru.dostavkamix.denis.dostavkamix.Fragments.Profile.OrdersFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.Profile.PointsFragment;
-import ru.dostavkamix.denis.dostavkamix.Fragments.Profile.ProfileEditFragment;
-import ru.dostavkamix.denis.dostavkamix.Objects.User;
 import ru.dostavkamix.denis.dostavkamix.R;
-import ru.dostavkamix.denis.dostavkamix.UserCallback;
-import ru.dostavkamix.denis.dostavkamix.UserHelper;
 import ru.dostavkamix.denis.dostavkamix.content.profile.edit.EditFragment;
+import ru.dostavkamix.denis.dostavkamix.content.profile.orders.OrdersFragment;
 
 /**
  * Created by Денис on 02.08.2016.
@@ -47,9 +38,9 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new PointsFragment();
-            case 1:
                 return new OrdersFragment();
+            case 1:
+                return new PointsFragment();
             case 2:
                 return new EditFragment();
             default:

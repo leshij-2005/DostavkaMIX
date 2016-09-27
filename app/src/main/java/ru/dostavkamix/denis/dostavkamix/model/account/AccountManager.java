@@ -1,11 +1,16 @@
 package ru.dostavkamix.denis.dostavkamix.model.account;
 
 
+import java.util.List;
+
+import ru.dostavkamix.denis.dostavkamix.model.order.pojo.Order;
 import rx.Observable;
 import rx.subjects.PublishSubject;
 
 /**
  * Created by Денис on 04.09.2016.
+ *
+ * @author Denis Tkachenko
  */
 
 public interface AccountManager {
@@ -17,6 +22,10 @@ public interface AccountManager {
     Observable<Account> getAccount(Credentials credentials);
 
     Observable<Account> getAccount();
+
+    Observable<List<Order>> getOrders(Credentials credentials);
+
+    Observable<List<Order>> getOrders();
 
     Observable<Account> updateAccount(Credentials credentials, Account account);
 

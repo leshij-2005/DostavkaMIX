@@ -99,6 +99,9 @@
     <string name="msg_order_send">Заказ отправлен!</string>
     <string name="msg_order_sending">Отправка заказа...</string>
     <string name="msg_order_error">Ошибка!!!</string>
+    <string name="msg_invalid_time">Заказ к определенному времени действует с 12:00 до 00:00</string>
+    <string name="int_null">0</string>
+    <string name="user_id_key">user_id_key</string>
 
 
 </resources>

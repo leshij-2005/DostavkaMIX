@@ -10,6 +10,7 @@ import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.model.account.Account;
 import ru.dostavkamix.denis.dostavkamix.model.account.AccountManager;
 import ru.dostavkamix.denis.dostavkamix.model.account.AuthCredentials;
+import ru.dostavkamix.denis.dostavkamix.model.account.Credentials;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
@@ -51,7 +52,7 @@ public class LoginPresenter extends MvpBasePresenter<LoginView> {
     private Action1<Object> nextAction = object -> Log.d(TAG, "next: ");
 
     public LoginPresenter() {
-        AppController.inject(this);
+        AppController.getComponent().inject(this);
     }
 
     public void doSignin(AuthCredentials authCredentials) {
@@ -87,7 +88,7 @@ public class LoginPresenter extends MvpBasePresenter<LoginView> {
         }
     }
 
-    String getToken() {
-        return accountManager.getCurrentAuth().getToken();
+    Credentials getToken() {
+        return accountManager.getCurrentAuth();
     }
 }

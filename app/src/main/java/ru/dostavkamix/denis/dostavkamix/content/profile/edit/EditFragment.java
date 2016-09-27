@@ -5,14 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.LceViewState;
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
 import com.hkm.ui.processbutton.iml.ActionProcessButton;
 
 import butterknife.BindView;
@@ -58,7 +55,6 @@ public class EditFragment extends BaseLceFragment<LinearLayout, Account, EditVie
     @BindView(R.id.save) ActionProcessButton save;
 
     @OnClick(R.id.add) void add_click() {
-       // presenter.addAddress(new Account.Address());
         currentAccount.getAddresses().add(new Account.Address("", "", ""));
         adapter.notifyDataSetChanged();
     }
@@ -126,8 +122,10 @@ public class EditFragment extends BaseLceFragment<LinearLayout, Account, EditVie
     private void getToken() {
         String token = getActivity().getSharedPreferences(getString(R.string.preference_file_name), MODE_PRIVATE)
                 .getString(getString(R.string.token_key), null);
+        String user_id = getActivity().getSharedPreferences(getString(R.string.preference_file_name), MODE_PRIVATE)
+                .getString(getString(R.string.user_id_key), null);
 
-        if(token != null) presenter.setCurrentToken(token);
+        if(token != null && user_id != null) presenter.setCurrentToken(token, user_id);
         Log.d("ContentActivity", "getToken: " + token);
     }
 

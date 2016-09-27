@@ -148,7 +148,7 @@ public class BoxAdapter extends BaseAdapter {
         final NetworkImageView dish_img = (NetworkImageView) view.findViewById(R.id.dish_img);
         priceButton checkBut = (priceButton) view.findViewById(R.id.dish_price);
 
-        ((TextViewPlus) view.findViewById(R.id.dish_name)).setText(d.getNameDish());
+        ((TextViewPlus) view.findViewById(R.id.caption)).setText(d.getNameDish());
         ((TextViewPlus) view.findViewById(R.id.dish_descript)).setText(d.getContent());
 
         checkBut.setText(addRuble(String.valueOf(d.getPriceDish())));

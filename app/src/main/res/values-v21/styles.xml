@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/background_color</item>
         <item name="colorPrimaryDark">@color/statusbar_color</item>
         <item name="colorAccent">@color/accent_color</item>
+
+        <item name="cpbStyle">@style/CircularThemeProgressBar</item>
     </style>
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

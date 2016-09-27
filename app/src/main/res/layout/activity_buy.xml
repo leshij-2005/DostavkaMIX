@@ -462,7 +462,8 @@
                         android:background="@android:color/transparent"
                         android:textColor="@color/md_white_1000"
                         android:textColorHint="@color/hint_text_color"
-                        android:textSize="@dimen/size_order_text_item" />
+                        android:textSize="@dimen/size_order_text_item"
+                        android:minWidth="@dimen/minWidth_edit"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -610,6 +611,8 @@
                         android:textColor="@color/md_white_1000"
                         android:textColorHint="@color/hint_text_color"
                         android:textSize="@dimen/size_order_text_item"
+                        android:text="@string/int_null"
+                        android:inputType="number"
                         android:minWidth="@dimen/minWidth_edit"/>
                 </RelativeLayout>
 

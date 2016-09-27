@@ -72,7 +72,7 @@ public class BuyDialog extends DialogFragment implements BuyView{
     }
 
     @Override
-    public void showError() {
+    public void showError(Throwable throwable) {
         fade(status_loading, false);
         fade(status_error, true);
         fade(status_success, false);

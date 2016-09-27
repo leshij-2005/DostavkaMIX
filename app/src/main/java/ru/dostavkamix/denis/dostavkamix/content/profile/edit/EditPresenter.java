@@ -7,6 +7,7 @@ import ru.dostavkamix.denis.dostavkamix.base.BaseRxLcePresenter;
 import ru.dostavkamix.denis.dostavkamix.model.account.Account;
 import ru.dostavkamix.denis.dostavkamix.model.account.AccountManager;
 import ru.dostavkamix.denis.dostavkamix.model.account.Credentials;
+import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Token;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -22,7 +23,7 @@ public class EditPresenter extends BaseRxLcePresenter<EditView, Account> {
     AccountManager accountManager;
 
     EditPresenter() {
-        AppController.inject(this);
+        AppController.getComponent().inject(this);
     }
 
     void updateAccount(Account account) {
@@ -37,7 +38,7 @@ public class EditPresenter extends BaseRxLcePresenter<EditView, Account> {
                 .observeOn(AndroidSchedulers.mainThread()), false);
     }
 
-    void setCurrentToken(String token) {
-        accountManager.setCurrentCredentials(new Credentials(token));
+    void setCurrentToken(String token, String user_id) {
+        accountManager.setCurrentCredentials(new Credentials(token, user_id));
     }
 }

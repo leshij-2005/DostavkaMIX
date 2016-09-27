@@ -18,7 +18,7 @@ public class Item implements Parcelable{
     private String title;
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private String id;
     @SerializedName("image")
     @Expose
     private String image;
@@ -34,13 +34,27 @@ public class Item implements Parcelable{
     @SerializedName("count")
     @Expose
     private Integer count;
+    @SerializedName("caption")
+    private String caption;
+    @SerializedName("discount")
+    private boolean discount;
+    @SerializedName("resourceId")
+    private int resourceId;
+    @SerializedName("total")
+    private int total;
 
     public Item() {
     }
 
-    public Item(String title, Integer id, Integer count) {
+    public Item(String title, String id, Integer count) {
         this.title = title;
         this.id = id;
+        this.count = count;
+    }
+
+    public Item(String title, int id, Integer count) {
+        this.title = title;
+        this.id = String.valueOf(id);
         this.count = count;
     }
 
@@ -67,7 +81,7 @@ public class Item implements Parcelable{
      * @return
      *     The id
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -76,7 +90,7 @@ public class Item implements Parcelable{
      * @param id
      *     The id
      */
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -160,7 +174,39 @@ public class Item implements Parcelable{
         this.count = count;
     }
 
-    public Item(String title, Integer id, String image, Integer price, String weight, String content) {
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public int getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(int resourceId) {
+        this.resourceId = resourceId;
+    }
+
+    public boolean isDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(boolean discount) {
+        this.discount = discount;
+    }
+
+    public String getCaption() {
+        return caption;
+    }
+
+    public void setCaption(String caption) {
+        this.caption = caption;
+    }
+
+    public Item(String title, String id, String image, Integer price, String weight, String content) {
         this.title = title;
         this.id = id;
         this.image = image;
@@ -171,7 +217,7 @@ public class Item implements Parcelable{
 
     public Item(Parcel parcel) {
         this.title = parcel.readString();
-        this.id = parcel.readInt();
+        this.id = parcel.readString();
         this.image = parcel.readString();
         this.price = parcel.readInt();
         this.weight = parcel.readString();
@@ -186,7 +232,7 @@ public class Item implements Parcelable{
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(this.title);
-        parcel.writeInt(this.id);
+        parcel.writeString(this.id);
         parcel.writeString(this.image);
         parcel.writeInt(this.price);
         parcel.writeString(this.weight);

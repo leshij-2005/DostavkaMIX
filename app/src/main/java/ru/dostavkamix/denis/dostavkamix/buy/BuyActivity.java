@@ -4,15 +4,20 @@ import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.v4.widget.NestedScrollView;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +30,9 @@ import ru.dostavkamix.denis.dostavkamix.R;
 import ru.dostavkamix.denis.dostavkamix.base.BaseMvpActivity;
 import ru.dostavkamix.denis.dostavkamix.model.account.Account;
 import ru.dostavkamix.denis.dostavkamix.model.content.pojo.Item;
-import ru.dostavkamix.denis.dostavkamix.model.order.pojo.Buyer;
+import ru.dostavkamix.denis.dostavkamix.model.order.pojo.Order;
+import ru.dostavkamix.denis.dostavkamix.utils.Utils;
+import ru.dostavkamix.denis.dostavkamix.utils.ViewUtils;
 
 import static ru.dostavkamix.denis.dostavkamix.utils.ViewUtils.fade;
 import static ru.dostavkamix.denis.dostavkamix.utils.ViewUtils.focus;
@@ -42,30 +49,72 @@ public class BuyActivity extends BaseMvpActivity<BuyView, BuyPresenter> implemen
     private static final String TAG = "BuyActivity";
     BuyDialog dialog = new BuyDialog();
 
-    @BindView(R.id.delivery) TextView delivery;
-    @BindView(R.id.pickup) TextView pickup;
+    @BindView(R.id.delivery)
+    TextView delivery;
+    @BindView(R.id.pickup)
+    TextView pickup;
 
-    @BindView(R.id.scrollView) NestedScrollView scrollView;
+    @BindView(R.id.scrollView)
+    NestedScrollView scrollView;
 
-    @OnClick(R.id.name_frame) void click_name_frame() { focus(name); }
-    @OnClick(R.id.phone_frame) void click_phone_frame() { focus(phone); }
-    @OnClick(R.id.email_frame) void click_email_frame() { focus(email); }
-    @BindView(R.id.name) EditText name;
-    @BindView(R.id.phone) EditText phone;
-    @BindView(R.id.email) EditText email;
+    @OnClick(R.id.name_frame)
+    void click_name_frame() {
+        focus(name);
+    }
 
-    @BindView(R.id.label_address) View label_address;
-    @BindView(R.id.street_frame) View street_frame;
-    @BindView(R.id.number_frame) View number_frame;
-    @BindView(R.id.apartment_frame) View apartment_frame;
-    @BindView(R.id.street) AutoCompleteTextView street;
-    @BindView(R.id.number) EditText number;
-    @BindView(R.id.apartment) EditText apartment;
+    @OnClick(R.id.phone_frame)
+    void click_phone_frame() {
+        focus(phone);
+    }
 
-    @OnClick(R.id.now_frame) void click_now_frame() { }
-    @OnClick(R.id.at_time_frame) void click_at_time_frame() { }
-    @BindView(R.id.now) View now;
-    @BindView(R.id.at_time) View at_time;
+    @OnClick(R.id.email_frame)
+    void click_email_frame() {
+        focus(email);
+    }
+
+    @BindView(R.id.name)
+    EditText name;
+    @BindView(R.id.phone)
+    EditText phone;
+    @BindView(R.id.email)
+    EditText email;
+
+    @BindView(R.id.label_address)
+    View label_address;
+    @BindView(R.id.street_frame)
+    View street_frame;
+    @BindView(R.id.number_frame)
+    View number_frame;
+    @BindView(R.id.apartment_frame)
+    View apartment_frame;
+    @BindView(R.id.street)
+    AutoCompleteTextView street;
+    @BindView(R.id.number)
+    EditText number;
+    @BindView(R.id.apartment)
+    EditText apartment;
+
+    @OnClick(R.id.now_frame)
+    void click_now_frame() {
+        fade(now, true);
+        fade(at_time, false);
+    }
+
+    @OnClick(R.id.at_time_frame)
+    void click_at_time_frame() {
+        if(at_time.getVisibility() == View.GONE) {
+            if(ViewUtils.isEmpty(at_time))
+                dateDialog.show(getFragmentManager(), "dateDialog");
+        } else dateDialog.show(getFragmentManager(), "dateDialog");
+
+        fade(at_time, true);
+        fade(now, false);
+    }
+
+    @BindView(R.id.now)
+    View now;
+    @BindView(R.id.at_time)
+    TextView at_time;
 
     @BindView(R.id.cash) View cash;
     @BindView(R.id.cash_count_frame) View cash_count_frame;
@@ -75,11 +124,22 @@ public class BuyActivity extends BaseMvpActivity<BuyView, BuyPresenter> implemen
     @BindView(R.id.points_count_frame) View points_count_frame;
     @BindView(R.id.points_seekbar_frame) View points_seekbar_frame;
     @BindView(R.id.points_count) EditText points_count;
+    @BindView(R.id.points_min) TextView points_min;
+    @BindView(R.id.points_max) TextView points_max;
     @BindView(R.id.points_seekbar) SeekBar points_seekbar;
 
-    @OnClick(R.id.street_frame) void click_street_frame() { focus(street); }
-    @OnClick(R.id.number_frame) void click_number_frame() { focus(number); }
-    @OnClick(R.id.apartment_frame) void click_apartment_frame() { focus(apartment); }
+    @OnClick(R.id.street_frame) void click_street_frame() {
+        focus(street);
+    }
+
+    @OnClick(R.id.number_frame) void click_number_frame() {
+        focus(number);
+    }
+
+    @OnClick(R.id.apartment_frame) void click_apartment_frame() {
+        focus(apartment);
+    }
+
     @OnClick(R.id.cash_frame) void click_cash_frame() {
         fade(cash, true);
         fade(card, false);
@@ -89,6 +149,7 @@ public class BuyActivity extends BaseMvpActivity<BuyView, BuyPresenter> implemen
         points_seekbar_frame.setVisibility(View.GONE);
         cash_count_frame.setVisibility(View.VISIBLE);
     }
+
     @OnClick(R.id.card_frame) void click_card_frame() {
         fade(cash, false);
         fade(card, true);
@@ -98,6 +159,7 @@ public class BuyActivity extends BaseMvpActivity<BuyView, BuyPresenter> implemen
         points_seekbar_frame.setVisibility(View.GONE);
         cash_count_frame.setVisibility(View.GONE);
     }
+
     @OnClick(R.id.points_frame) void click_points_frame() {
         fade(cash, false);
         fade(card, false);
@@ -108,17 +170,24 @@ public class BuyActivity extends BaseMvpActivity<BuyView, BuyPresenter> implemen
         cash_count_frame.setVisibility(View.GONE);
         scrollView.fullScroll(View.FOCUS_DOWN);
     }
-    @OnClick(R.id.cash_count_frame) void click_cash_count_frame() { focus(cash_count); }
-    @OnClick(R.id.points_count_frame) void click_points_count_frame() { focus(points_count); }
 
-    @OnClick({ R.id.delivery, R.id.pickup }) void select_method(TextView selected) {
-        if(selected.getTag() != null) return;
+    @OnClick(R.id.cash_count_frame)void click_cash_count_frame() {
+        focus(cash_count);
+    }
+
+    @OnClick(R.id.points_count_frame) void click_points_count_frame() {
+        focus(points_count);
+    }
+
+    @OnClick({R.id.delivery, R.id.pickup}) void select_method(TextView selected) {
+        if (selected.getTag() != null) return;
         selected.setTag("selected");
         ((TransitionDrawable) selected.getBackground()).startTransition(100);
         setTextColorAnim(selected, getResources().getColor(android.R.color.black));
 
         TextView unselected = selected.getId() == R.id.delivery ? pickup : delivery;
-        if(unselected.getTag() != null) ((TransitionDrawable) unselected.getBackground()).reverseTransition(100);
+        if (unselected.getTag() != null)
+            ((TransitionDrawable) unselected.getBackground()).reverseTransition(100);
         setTextColorAnim(unselected, getResources().getColor(android.R.color.white));
         unselected.setTag(null);
 
@@ -131,6 +200,28 @@ public class BuyActivity extends BaseMvpActivity<BuyView, BuyPresenter> implemen
     @OnClick(R.id.buy_frame) void click_buy() {
         presenter.buying(buildBuyer());
     }
+
+    TimePickerDialog timeDialog = TimePickerDialog.newInstance((view, hourOfDay, minute, second) -> {
+                at_time.setText(at_time.getText().toString() + " " + Utils.formatTime(String.valueOf(hourOfDay) + ":" + String.valueOf(minute),
+                        "h:m", "HH:MM"));
+                if (!presenter.validOrderTime(hourOfDay, minute))
+                    showLightError(R.string.msg_invalid_time);
+
+            },
+            Utils.getCurrentHourOfDay(),
+            Utils.getCurrentMinute(),
+            true);
+
+    DatePickerDialog dateDialog = DatePickerDialog.newInstance((view, year, monthOfYear, dayOfMonth) -> {
+                at_time.setText(Utils.formatTime(String.valueOf(monthOfYear) + "." + String.valueOf(dayOfMonth), "M.d", "dd MMMM"));
+                if (Utils.isCurrentDate(year, monthOfYear, dayOfMonth))
+                    timeDialog.setMinTime(Utils.getCurrentHourOfDay(), Utils.getCurrentMinute(), 0);
+                else timeDialog.setMinTime(0, 0, 0);
+                timeDialog.show(getFragmentManager(), "timeDialog");
+            },
+            Utils.getCurrentYear(),
+            Utils.getCurrentMonth(),
+            Utils.getCurrentDayOfMonth());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,6 +251,40 @@ public class BuyActivity extends BaseMvpActivity<BuyView, BuyPresenter> implemen
             number.setText(address.getNumber());
             apartment.setText(address.getApartment());
         });
+        points_seekbar.setMax(account.getPoints());
+        points_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                points_count.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        points_count.setText(String.valueOf(points_seekbar.getProgress()));
+        points_count.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                points_seekbar.setProgress(TextUtils.isEmpty(s) ? 0 : Integer.valueOf(s.toString()));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override
@@ -174,36 +299,45 @@ public class BuyActivity extends BaseMvpActivity<BuyView, BuyPresenter> implemen
     }
 
     @Override
-    public void showError() {
-        dialog.showError();
+    public void showError(Throwable throwable) {
+        throwable.printStackTrace();
+        dialog.showError(throwable);
         new Handler().postDelayed(() -> dialog.dismiss(), 2000);
     }
 
-    private Buyer buildBuyer() {
-        Buyer buyer = new Buyer();
+    private Order buildBuyer() {
+        Order order = new Order();
 
-        buyer.setName(name.getText().toString());
-        buyer.setPhone(phone.getText().toString());
-        buyer.setStreet(street.getText().toString());
-        buyer.setHouse(number.getText().toString());
-        buyer.setApartment(apartment.getText().toString());
-        buyer.setType(label_address.getVisibility() == View.VISIBLE
+        order.setName(name.getText().toString());
+        order.setPhone(phone.getText().toString());
+        order.setStreet(street.getText().toString());
+        order.setHouse(number.getText().toString());
+        order.setApartment(apartment.getText().toString());
+        order.setType(label_address.getVisibility() == View.VISIBLE
                 ? "доставка"
                 : "самовывоз");
-        buyer.setMoney(cash.getVisibility() == View.VISIBLE
+        order.setMoney(cash.getVisibility() == View.VISIBLE
                 ? "наличка, сдача с: " + cash_count.getText().toString()
                 : card.getVisibility() == View.VISIBLE
                 ? "безнал"
                 : "баллами, их аж: " + points_count.getText().toString());
-        //buyer.setItems(getIntent().getExtras().getParcelableArrayList(""));
+        //order.setItems(getIntent().getExtras().getParcelableArrayList(""));
         List<Item> items = new ArrayList<>();
         for (Dish dish :
                 AppController.getInstance().getInBag()) {
             items.add(new Item(dish.getNameDish(), dish.getIdDish(), dish.getCountOrder()));
         }
-        buyer.setItems(items);
+        order.setItems(items);
 
-        return buyer;
+        return order;
+    }
+
+    void showLightError(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+    }
+
+    void showLightError(@StringRes int id) {
+        Toast.makeText(this, id, Toast.LENGTH_LONG).show();
     }
 
     private void startup() {

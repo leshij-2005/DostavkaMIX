@@ -33,7 +33,7 @@
         android:orientation="vertical">
 
         <ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus
-            android:id="@+id/dish_name"
+            android:id="@+id/caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 

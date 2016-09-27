@@ -1,12 +1,16 @@
 package ru.dostavkamix.denis.dostavkamix.model.account.api;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.model.account.Account;
 import ru.dostavkamix.denis.dostavkamix.model.account.AccountManager;
 import ru.dostavkamix.denis.dostavkamix.model.account.AuthCredentials;
@@ -15,6 +19,7 @@ import ru.dostavkamix.denis.dostavkamix.model.account.NotAuthenticatedException;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Address;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Login;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.User;
+import ru.dostavkamix.denis.dostavkamix.model.order.pojo.Order;
 import rx.Observable;
 import rx.subjects.PublishSubject;
 
@@ -35,22 +40,17 @@ public class ChaihanaAccountManager implements AccountManager {
     PublishSubject<Account> subjectAccount = PublishSubject.create();
     PublishSubject<Credentials> subjectCredentials = PublishSubject.create();
 
+    @Inject
+    OkHttpClient httpClient;
+
     public ChaihanaAccountManager() {
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        // set your desired log level
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        // add your other interceptors …
-
-        // add logging as last interceptor
-        httpClient.addInterceptor(logging);  // <-- this is the important line!
+        AppController.getComponent().inject(this);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient.build())
+                .client(httpClient)
                 .build();
 
         service = retrofit.create(AccountAPIService.class);
@@ -72,7 +72,7 @@ public class ChaihanaAccountManager implements AccountManager {
                 .doOnNext(userResponse ->
                         currentAccount = Utils.User2Account(userResponse.getUser()))
                 .flatMap(userResponse -> service.getToken(new Login(authCredentials.getEmail(), authCredentials.getPassword(), "123456")))
-                .map(token -> new Credentials(token.getAccess_token()))
+                .map(token -> new Credentials(token.getAccess_token(), token.getUser_id()))
                 .doOnNext(subjectCredentials::onNext);
     }
 
@@ -80,15 +80,12 @@ public class ChaihanaAccountManager implements AccountManager {
     public Observable<Credentials> doSignIn(AuthCredentials authCredentials) {
         return service.getToken(new Login(authCredentials.getEmail(), authCredentials.getPassword(), "123456"))
                 .compose(new ResponseTransformer<>())
-                .map(token -> new Credentials(token.getAccess_token()))
+                .map(token -> new Credentials(token.getAccess_token(), token.getUser_id()))
                 .doOnNext(subjectCredentials::onNext);
     }
 
     @Override
     public Observable<Account> getAccount(Credentials credentials) {
-        if(!isUserAuthenticated()) {
-            return Observable.error(new NotAuthenticatedException());
-        }
 
         return service.getUser(credentials.getToken())
                 .map(User::getUser)
@@ -98,16 +95,34 @@ public class ChaihanaAccountManager implements AccountManager {
 
     @Override
     public Observable<Account> getAccount() {
-        return service.getUser(currentAuth.getToken())
-                .map(User::getUser)
-                .map(Utils::User2Account)
-                .doOnNext(subjectAccount::onNext);
+        if(!isUserAuthenticated()) {
+            return Observable.error(new NotAuthenticatedException());
+        }
+
+        return getAccount(getCurrentAuth());
+    }
+
+    @Override
+    public Observable<List<Order>> getOrders(Credentials credentials) {
+        return service.getOrders(credentials.getToken());
+    }
+
+    @Override
+    public Observable<List<Order>> getOrders() {
+        if(!isUserAuthenticated()) {
+            return Observable.error(new NotAuthenticatedException());
+        }
+
+        return getOrders(currentAuth);
     }
 
     @Override
     public Observable<Account> updateAccount(Credentials credentials, Account account) {
         return service.updateUser(credentials.getToken(), Utils.Account2User(account))
-                .map(userResponse -> Utils.User2Account(userResponse.getUser()))
+                .flatMap(userResponse -> {
+                    if(!userResponse.isStatus()) return Observable.error(new AccountException(userResponse));
+                    else return Observable.just(Utils.User2Account(userResponse.getUser()));
+                })
                 .doOnNext(subjectAccount::onNext);
     }
 
@@ -117,16 +132,7 @@ public class ChaihanaAccountManager implements AccountManager {
             return Observable.error(new NotAuthenticatedException());
         }
 
-        /*
-        return service.updateUser(currentAuth.getToken(), Utils.Account2User(account))
-                .map(userResponse -> Utils.User2Account(userResponse.getUser()))
-                .doOnNext(subjectAccount::onNext);
-                */
-        return service.updateUser(currentAuth.getToken(), Utils.Account2User(account))
-                .flatMap(userResponse -> {
-                    if(!userResponse.isStatus()) return Observable.error(new AccountException(userResponse));
-                    else return Observable.just(Utils.User2Account(userResponse.getUser()));
-                });
+        return updateAccount(currentAuth, account);
     }
 
     @Override

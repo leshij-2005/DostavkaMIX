@@ -23,6 +23,7 @@ import ru.dostavkamix.denis.dostavkamix.R;
 import ru.dostavkamix.denis.dostavkamix.base.BaseViewStateActivity;
 import ru.dostavkamix.denis.dostavkamix.model.account.Account;
 import ru.dostavkamix.denis.dostavkamix.model.account.AuthCredentials;
+import ru.dostavkamix.denis.dostavkamix.model.account.Credentials;
 import ru.dostavkamix.denis.dostavkamix.utils.ExceptionUtuls;
 
 /**
@@ -203,7 +204,7 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
 
     @Override
     protected void injectDependencies() {
-        AppController.inject(this);
+        AppController.getComponent().inject(this);
     }
 
     private void shakeView(View view) {
@@ -221,9 +222,10 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
         pass_r.setEnabled(b);
     }
 
-    private void saveToken(String token) {
+    private void saveToken(Credentials credentials) {
         getSharedPreferences(getString(R.string.preference_file_name), MODE_PRIVATE).edit()
-                .putString(getString(R.string.token_key), token)
+                .putString(getString(R.string.token_key), credentials.getToken())
+                .putString(getString(R.string.user_id_key), credentials.getUser_id())
                 .commit();
     }
 }

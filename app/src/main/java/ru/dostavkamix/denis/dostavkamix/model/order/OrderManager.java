@@ -1,11 +1,13 @@
 package ru.dostavkamix.denis.dostavkamix.model.order;
 
+import javax.inject.Inject;
+
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import ru.dostavkamix.denis.dostavkamix.model.order.pojo.Buyer;
+import ru.dostavkamix.denis.dostavkamix.AppController;
+import ru.dostavkamix.denis.dostavkamix.model.order.pojo.Order;
 import rx.Observable;
 
 /**
@@ -17,33 +19,32 @@ import rx.Observable;
 public class OrderManager {
 
     private OrderService orderService;
+    @Inject
+    OkHttpClient httpClient;
 
     public OrderManager() {
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        // set your desired log level
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        // add your other interceptors …
-
-        // add logging as last interceptor
-        httpClient.addInterceptor(logging);  // <-- this is the important line!
+        AppController.getComponent().inject(this);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://chaihanamix.ru/")
+                .baseUrl("http://test.chaihanamix.ru/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .client(httpClient.build())
+                .client(httpClient)
                 .build();
 
         orderService = retrofit.create(OrderService.class);
+
+
     }
 
-    public Observable sendOrder(Buyer buyer) {
-        return orderService.sendOrder(buyer);
+    public Observable sendOrder(Order order) {
+        return orderService.sendOrder(order);
     }
 
-    public Observable sendOrder(Buyer buyer, String token) {
-        return orderService.sendOrder(buyer, token);
+    public Observable<String> sendOrder(Order order, String token) {
+        return orderService.sendOrder(order, token)
+                .map(String::valueOf);
     }
+
+
 }

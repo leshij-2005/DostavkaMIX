@@ -1,5 +1,7 @@
 package ru.dostavkamix.denis.dostavkamix.model.account.api;
 
+import java.util.List;
+
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -10,10 +12,13 @@ import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.User;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.UserResponse;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Token;
 
+import ru.dostavkamix.denis.dostavkamix.model.order.pojo.Order;
 import rx.Observable;
 
 /**
  * Created by Денис on 04.09.2016.
+ *
+ * @author Denis Tkachenko
  */
 
 public interface AccountAPIService {
@@ -30,5 +35,7 @@ public interface AccountAPIService {
     @POST("api/v1/token")
     Observable<Token> getToken(@Body Login login);
 
+    @GET("api/v1/order")
+    Observable<List<Order>> getOrders(@Header("Authorization") String access_token);
 
 }

@@ -32,6 +32,15 @@ public class Account {
         this.addresses = addresses;
     }
 
+    public Account(String name, String phone, String email, String birthday, List<Address> addresses, int points) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.birthday = birthday;
+        this.addresses = addresses;
+        this.points = points;
+    }
+
     public Account(Account account) {
         name = account.getName();
         phone = account.getPhone();

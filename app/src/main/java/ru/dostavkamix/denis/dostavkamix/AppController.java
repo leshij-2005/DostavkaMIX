@@ -1,7 +1,6 @@
 package ru.dostavkamix.denis.dostavkamix;
 
 import android.Manifest;
-import android.app.Application;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.ListFragment;
@@ -31,15 +30,11 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
-import dagger.ObjectGraph;
-import ru.dostavkamix.denis.dostavkamix.Activitys.IntroActivity;
 import ru.dostavkamix.denis.dostavkamix.Activitys.MainActivity;
 import ru.dostavkamix.denis.dostavkamix.Custom.CustomTypefaceSpan;
 import ru.dostavkamix.denis.dostavkamix.Custom.LruBitmapCache;
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.Custom.blurbehind.BlurBehind;
-import ru.dostavkamix.denis.dostavkamix.Custom.blurbehind.OnBlurCompleteListener;
-import ru.dostavkamix.denis.dostavkamix.Fragments.Profile.ProfileFragment;
 import ru.dostavkamix.denis.dostavkamix.Objects.Dish;
 import ru.dostavkamix.denis.dostavkamix.Fragments.AboutFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ActionListFragment;
@@ -50,8 +45,6 @@ import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewListFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewPagerFragment;
 import ru.dostavkamix.denis.dostavkamix.Objects.User;
 import ru.dostavkamix.denis.dostavkamix.login.LoginActivity;
-import ru.dostavkamix.denis.dostavkamix.login.LoginModule;
-import ru.dostavkamix.denis.dostavkamix.model.ModelModule;
 
 
 /**
@@ -60,7 +53,7 @@ import ru.dostavkamix.denis.dostavkamix.model.ModelModule;
  */
 public class AppController extends MultiDexApplication {
 
-    private static ObjectGraph objectGraph;
+    private static AppComponent component;
 
     private static final String TAG = AppController.class.getSimpleName();
 
@@ -225,10 +218,15 @@ public class AppController extends MultiDexApplication {
 
     }
 
+    public static AppComponent getComponent() {
+        return component;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+        component = buildComponent();
         Log.d(TAG, "Start AppController");
         fontRub = Typeface.createFromAsset(getAssets(), "fonts/RUBSN.otf");
         fontReg = Typeface.createFromAsset(getAssets(), "fonts/GothaProReg.otf");
@@ -258,8 +256,6 @@ public class AppController extends MultiDexApplication {
                 }
             });
         }
-
-        init(new LoginModule(), new ModelModule());
     }
 
     public void setMainActivity(MainActivity mainActivity) {
@@ -513,14 +509,10 @@ public class AppController extends MultiDexApplication {
         }
     }
 
-    public static void init(Object... modules)
-    {
-        objectGraph = ObjectGraph.create(modules);
-    }
-
-    public static void inject(Object target)
-    {
-        objectGraph.inject(target);
+    protected AppComponent buildComponent() {
+        return DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .build();
     }
 
 }

@@ -4,10 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import ru.dostavkamix.denis.dostavkamix.buy.BuyPresenter;
-import ru.dostavkamix.denis.dostavkamix.content.profile.ProfilePresenter;
-import ru.dostavkamix.denis.dostavkamix.content.profile.edit.EditPresenter;
-import ru.dostavkamix.denis.dostavkamix.login.LoginPresenter;
+
 import ru.dostavkamix.denis.dostavkamix.model.account.AccountManager;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.ChaihanaAccountManager;
 import ru.dostavkamix.denis.dostavkamix.model.order.OrderManager;
@@ -18,7 +15,7 @@ import ru.dostavkamix.denis.dostavkamix.model.order.OrderManager;
  * @author Denis Tkachenko
  */
 
-@Module(injects = { LoginPresenter.class, ProfilePresenter.class, EditPresenter.class, BuyPresenter.class})
+@Module
 public class ModelModule {
 
     @Provides

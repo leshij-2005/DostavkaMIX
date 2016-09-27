@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -49,8 +50,12 @@ public class ViewUtils {
                 "textColor",
                 v.getCurrentTextColor(),
                 color);
-        colorAnim.setDuration(100);
+        colorAnim.setDuration(v.getResources().getInteger(R.integer.animation_duration_short));
         colorAnim.setEvaluator(new ArgbEvaluator());
         colorAnim.start();
+    }
+
+    public static boolean isEmpty(TextView textView) {
+        return TextUtils.isEmpty(textView.getText().toString());
     }
 }

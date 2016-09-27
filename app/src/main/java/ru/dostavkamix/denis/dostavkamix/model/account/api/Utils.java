@@ -25,7 +25,7 @@ public class Utils {
             }
         }
 
-        return new Account(user.getName(), user.getPhone(), user.getEmail(), user.getBirthday(), addresses);
+        return new Account(user.getName(), user.getPhone(), user.getEmail(), user.getBirthday(), addresses, user.getPoints());
     }
 
     static User Account2User(Account account) {

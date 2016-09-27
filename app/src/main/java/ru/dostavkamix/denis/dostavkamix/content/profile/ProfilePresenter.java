@@ -22,7 +22,7 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
     AccountManager accountManager;
 
     public ProfilePresenter() {
-        AppController.inject(this);
+        AppController.getComponent().inject(this);
 
         accountManager.getSubjectAccount()
                 .map(Account::getPoints)

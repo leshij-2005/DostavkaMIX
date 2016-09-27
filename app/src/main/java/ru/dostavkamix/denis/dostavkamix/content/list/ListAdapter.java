@@ -38,7 +38,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.img) NetworkImageView img;
+        @BindView(R.id.image) NetworkImageView img;
         @BindView(R.id.progress) ProgressBar progress;
 
         @BindView(R.id.name) TextView name;

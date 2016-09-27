@@ -11,7 +11,7 @@ import dagger.Provides;
  * @author Denis Tkachenko
  */
 
-@Module(injects = LoginActivity.class)
+@Module
 public class LoginModule {
 
     @Provides

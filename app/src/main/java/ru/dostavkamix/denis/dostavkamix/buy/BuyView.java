@@ -18,5 +18,5 @@ public interface BuyView extends MvpView {
 
     void showBuying();
 
-    void showError();
+    void showError(Throwable throwable);
 }

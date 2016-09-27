@@ -4,14 +4,16 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Денис on 04.09.2016.
+ *
+ * @author Denis Tkachenko
  */
 
 public class Token extends BaseResponse {
 
     @SerializedName("user_id")
-    String user_id;
+    private String user_id;
     @SerializedName("access_token")
-    String access_token;
+    private String access_token;
 
     public void setUser_id(String user_id) {
         this.user_id = user_id;
