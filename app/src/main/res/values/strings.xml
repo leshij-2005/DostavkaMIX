@@ -103,5 +103,12 @@
     <string name="int_null">0</string>
     <string name="user_id_key">user_id_key</string>
 
+    <string name="value_price" formatted="false">%d руб.</string>
+    <string name="value_price_cur" formatted="false">%d Я</string>
+    <string name="value_weight" formatted="false">%d гр.</string>
+    <string name="value_ball" formatted="false">%d руб.</string>
+
+    <string name="transaction_point">Начисленно</string>
+    <string name="transaction_shot">Списанно</string>
 
 </resources>

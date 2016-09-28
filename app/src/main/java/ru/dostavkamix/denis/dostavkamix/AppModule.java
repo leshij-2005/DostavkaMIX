@@ -7,6 +7,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import ru.dostavkamix.denis.dostavkamix.model.preference.AndroidPreferenceManager;
+import ru.dostavkamix.denis.dostavkamix.model.preference.PreferenceManager;
 
 /**
  * Created by denis on 27.09.16.
@@ -27,5 +29,11 @@ public class AppModule {
     @Singleton
     Context provideContext() {
         return context;
+    }
+
+    @Provides
+    @Singleton
+    PreferenceManager providePreferenceManager() {
+        return new AndroidPreferenceManager(context);
     }
 }

@@ -19,4 +19,7 @@
     <color name="color_border_white">#0affffff</color>
 
     <color name="red">#F44336</color>
+
+    <color name="green_point">#20c533</color>
+    <color name="red_point">#ff4c05</color>
 </resources>

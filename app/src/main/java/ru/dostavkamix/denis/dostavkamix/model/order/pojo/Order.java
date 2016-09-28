@@ -53,8 +53,8 @@ public class Order {
     private String time;
     @SerializedName("person")
     private int person;
-    @SerializedName("createDate")
-    private String createDate;
+    @SerializedName("created_at")
+    private String created_at;
     @SerializedName("user_id")
     private String user_id;
 
@@ -274,11 +274,11 @@ public class Order {
         this.person = person;
     }
 
-    public String getCreateDate() {
-        return createDate;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 }

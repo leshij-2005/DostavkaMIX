@@ -10,10 +10,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
-import ru.dostavkamix.denis.dostavkamix.Fragments.Profile.PointsFragment;
 import ru.dostavkamix.denis.dostavkamix.R;
 import ru.dostavkamix.denis.dostavkamix.content.profile.edit.EditFragment;
 import ru.dostavkamix.denis.dostavkamix.content.profile.orders.OrdersFragment;
+import ru.dostavkamix.denis.dostavkamix.content.profile.points.PointsFragment;
 
 /**
  * Created by Денис on 02.08.2016.

@@ -8,6 +8,8 @@ import ru.dostavkamix.denis.dostavkamix.content.profile.ProfilePresenter;
 import ru.dostavkamix.denis.dostavkamix.content.profile.edit.EditPresenter;
 import ru.dostavkamix.denis.dostavkamix.content.profile.orders.OrdersAdapter;
 import ru.dostavkamix.denis.dostavkamix.content.profile.orders.OrdersPresenter;
+import ru.dostavkamix.denis.dostavkamix.content.profile.points.PointsAdapter;
+import ru.dostavkamix.denis.dostavkamix.content.profile.points.PointsPresenter;
 import ru.dostavkamix.denis.dostavkamix.login.LoginActivity;
 import ru.dostavkamix.denis.dostavkamix.login.LoginModule;
 import ru.dostavkamix.denis.dostavkamix.login.LoginPresenter;
@@ -39,4 +41,9 @@ public interface AppComponent {
     void inject(OrdersAdapter ordersAdapter );
 
     void inject(LoginActivity loginActivity);
+
+    void inject(PointsPresenter pointsPresenter);
+
+    void inject(PointsAdapter pointsAdapter);
+
 }

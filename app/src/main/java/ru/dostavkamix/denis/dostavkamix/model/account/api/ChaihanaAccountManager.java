@@ -18,8 +18,10 @@ import ru.dostavkamix.denis.dostavkamix.model.account.Credentials;
 import ru.dostavkamix.denis.dostavkamix.model.account.NotAuthenticatedException;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Address;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Login;
+import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Transaction;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.User;
 import ru.dostavkamix.denis.dostavkamix.model.order.pojo.Order;
+import ru.dostavkamix.denis.dostavkamix.model.preference.PreferenceManager;
 import rx.Observable;
 import rx.subjects.PublishSubject;
 
@@ -35,16 +37,13 @@ public class ChaihanaAccountManager implements AccountManager {
     private AccountAPIService service;
 
     private Account currentAccount;
-    private Credentials currentAuth;
 
     PublishSubject<Account> subjectAccount = PublishSubject.create();
-    PublishSubject<Credentials> subjectCredentials = PublishSubject.create();
 
-    @Inject
-    OkHttpClient httpClient;
+    private PreferenceManager preferenceManager;
 
-    public ChaihanaAccountManager() {
-        AppController.getComponent().inject(this);
+    public ChaihanaAccountManager(OkHttpClient httpClient, PreferenceManager preferenceManager) {
+        this.preferenceManager = preferenceManager;
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -56,7 +55,6 @@ public class ChaihanaAccountManager implements AccountManager {
         service = retrofit.create(AccountAPIService.class);
 
         subjectAccount.subscribe(this::setCurrentAccount);
-        subjectCredentials.subscribe(this::setCurrentCredentials);
     }
 
     @Override
@@ -73,7 +71,7 @@ public class ChaihanaAccountManager implements AccountManager {
                         currentAccount = Utils.User2Account(userResponse.getUser()))
                 .flatMap(userResponse -> service.getToken(new Login(authCredentials.getEmail(), authCredentials.getPassword(), "123456")))
                 .map(token -> new Credentials(token.getAccess_token(), token.getUser_id()))
-                .doOnNext(subjectCredentials::onNext);
+                .doOnNext(this::setCurrentCredentials);
     }
 
     @Override
@@ -81,7 +79,7 @@ public class ChaihanaAccountManager implements AccountManager {
         return service.getToken(new Login(authCredentials.getEmail(), authCredentials.getPassword(), "123456"))
                 .compose(new ResponseTransformer<>())
                 .map(token -> new Credentials(token.getAccess_token(), token.getUser_id()))
-                .doOnNext(subjectCredentials::onNext);
+                .doOnNext(this::setCurrentCredentials);
     }
 
     @Override
@@ -113,16 +111,28 @@ public class ChaihanaAccountManager implements AccountManager {
             return Observable.error(new NotAuthenticatedException());
         }
 
-        return getOrders(currentAuth);
+        return getOrders(getCurrentAuth());
+    }
+
+    @Override
+    public Observable<List<Transaction>> getTransactions(Credentials credentials) {
+        return service.getTransactions(credentials.getToken());
+    }
+
+    @Override
+    public Observable<List<Transaction>> getTransactions() {
+        if(!isUserAuthenticated()) {
+            return Observable.error(new NotAuthenticatedException());
+        }
+
+        return getTransactions(getCurrentAuth());
     }
 
     @Override
     public Observable<Account> updateAccount(Credentials credentials, Account account) {
         return service.updateUser(credentials.getToken(), Utils.Account2User(account))
-                .flatMap(userResponse -> {
-                    if(!userResponse.isStatus()) return Observable.error(new AccountException(userResponse));
-                    else return Observable.just(Utils.User2Account(userResponse.getUser()));
-                })
+                .compose(new ResponseTransformer<>())
+                .map(userResponse -> Utils.User2Account(userResponse.getUser()))
                 .doOnNext(subjectAccount::onNext);
     }
 
@@ -132,12 +142,12 @@ public class ChaihanaAccountManager implements AccountManager {
             return Observable.error(new NotAuthenticatedException());
         }
 
-        return updateAccount(currentAuth, account);
+        return updateAccount(getCurrentAuth(), account);
     }
 
     @Override
     public Credentials getCurrentAuth() {
-        return currentAuth;
+        return new Credentials(preferenceManager.getToken(), preferenceManager.getUser_Id());
     }
 
     @Override
@@ -147,7 +157,7 @@ public class ChaihanaAccountManager implements AccountManager {
 
     @Override
     public boolean isUserAuthenticated() {
-        return currentAuth != null;
+        return preferenceManager.isLogin();
     }
 
     @Override
@@ -157,7 +167,8 @@ public class ChaihanaAccountManager implements AccountManager {
 
     @Override
     public void setCurrentCredentials(Credentials credentials) {
-        this.currentAuth = credentials;
+        preferenceManager.setToken(credentials.getToken());
+        preferenceManager.setUser_Id(credentials.getUser_id());
     }
 
     @Override
@@ -168,16 +179,10 @@ public class ChaihanaAccountManager implements AccountManager {
     @Override
     public void doLogout() {
         currentAccount = null;
-        currentAuth = null;
     }
 
     @Override
     public PublishSubject<Account> getSubjectAccount() {
         return subjectAccount;
-    }
-
-    @Override
-    public PublishSubject<Credentials> getSubjectCredentials() {
-        return subjectCredentials;
     }
 }

@@ -8,6 +8,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Login;
+import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Transaction;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.User;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.UserResponse;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Token;
@@ -37,5 +38,8 @@ public interface AccountAPIService {
 
     @GET("api/v1/order")
     Observable<List<Order>> getOrders(@Header("Authorization") String access_token);
+
+    @GET("api/v1/points")
+    Observable<List<Transaction>> getTransactions(@Header("Authorization") String access_token);
 
 }

@@ -33,7 +33,7 @@
                 />
 
             <TextView
-                android:id="@+id/sumTotal"
+                android:id="@+id/sum"
                 android:layout_below="@+id/caption"
                 android:layout_alignStart="@+id/caption"
                 android:layout_width="wrap_content"
@@ -47,8 +47,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="250 гр."
-                android:layout_toEndOf="@+id/sumTotal"
-                android:layout_alignTop="@+id/sumTotal"
+                android:layout_toEndOf="@+id/sum"
+                android:layout_alignTop="@+id/sum"
                 android:textColor="@color/color_hint"
                 android:layout_marginStart="20sp"/>
         </RelativeLayout>

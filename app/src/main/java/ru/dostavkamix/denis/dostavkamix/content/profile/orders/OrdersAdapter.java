@@ -1,5 +1,6 @@
 package ru.dostavkamix.denis.dostavkamix.content.profile.orders;
 
+import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import ru.dostavkamix.denis.dostavkamix.Constants;
 import ru.dostavkamix.denis.dostavkamix.R;
 import ru.dostavkamix.denis.dostavkamix.model.content.pojo.Item;
 import ru.dostavkamix.denis.dostavkamix.model.order.pojo.Order;
+import ru.dostavkamix.denis.dostavkamix.utils.ViewUtils;
 
 /**
  * Created by denis on 26.09.16.
@@ -33,8 +35,9 @@ import ru.dostavkamix.denis.dostavkamix.model.order.pojo.Order;
 public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder> {
 
     private List<Order> orders = new ArrayList<>();
-    @Inject
-    ImageLoader imageLoader;
+
+    @Inject Context context;
+    @Inject ImageLoader imageLoader;
 
     OrdersAdapter(List<Order> orders) {
         AppController.getComponent().inject(this);
@@ -53,9 +56,13 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
 
         holder.orders.setLayoutManager(new LinearLayoutManager(holder.orders.getContext()));
         holder.orders.setAdapter(new OrderAdapter(order.getItems()));
-        holder.createDate.setText(order.getCreateDate());
-        holder.ball.setText(order.getBall());
-        holder.sumTotal.setText(String.valueOf(order.getSumTotal()));
+        holder.created_at.setText(order.getCreated_at());
+        holder.ball.setText(String.format(context.getString(R.string.value_ball), order.getBall() != null
+                ? Integer.valueOf(order.getBall())
+                : 0));
+        holder.sum.setText(String.format(context.getString(R.string.value_price), order.getSum() != null
+                ? Integer.valueOf(order.getSum())
+                : 0));
     }
 
     @Override
@@ -67,10 +74,10 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
 
         Unbinder unbinder;
 
-        @BindView(R.id.createDate) TextView createDate;
+        @BindView(R.id.created_at) TextView created_at;
         @BindView(R.id.orders) RecyclerView orders;
         @BindView(R.id.ball) TextView ball;
-        @BindView(R.id.sumTotal) TextView sumTotal;
+        @BindView(R.id.sum) TextView sum;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -99,8 +106,8 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
 
             holder.image.setImageUrl(Constants.getBase_url() + order.getImage(), imageLoader);
             holder.caption.setText(order.getCaption());
-            holder.sumTotal.setText(String.valueOf(order.getPrice()));
-            holder.weight.setText(order.getWeight());
+            holder.sumTotal.setText(ViewUtils.addRuble(String.valueOf(order.getPrice())));
+            holder.weight.setText(String.format(context.getString(R.string.value_weight), Integer.valueOf(order.getWeight())));
             holder.count.setText(String.valueOf(order.getCount()));
         }
 
@@ -115,7 +122,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
 
             @BindView(R.id.image) NetworkImageView image;
             @BindView(R.id.caption) TextView caption;
-            @BindView(R.id.sumTotal) TextView sumTotal;
+            @BindView(R.id.sum) TextView sumTotal;
             @BindView(R.id.weight) TextView weight;
             @BindView(R.id.count) TextView count;
 

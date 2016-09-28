@@ -3,6 +3,7 @@ package ru.dostavkamix.denis.dostavkamix.model.account;
 
 import java.util.List;
 
+import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Transaction;
 import ru.dostavkamix.denis.dostavkamix.model.order.pojo.Order;
 import rx.Observable;
 import rx.subjects.PublishSubject;
@@ -27,6 +28,10 @@ public interface AccountManager {
 
     Observable<List<Order>> getOrders();
 
+    Observable<List<Transaction>> getTransactions(Credentials credentials);
+
+    Observable<List<Transaction>> getTransactions();
+
     Observable<Account> updateAccount(Credentials credentials, Account account);
 
     Observable<Account> updateAccount(Account account);
@@ -46,6 +51,4 @@ public interface AccountManager {
     void doLogout();
 
     PublishSubject<Account> getSubjectAccount();
-
-    PublishSubject<Credentials> getSubjectCredentials();
 }
