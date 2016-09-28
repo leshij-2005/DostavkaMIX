@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
@@ -30,8 +31,6 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
     public ProfilePagerAdapter(FragmentManager fm, Context ctx) {
         super(fm);
         this.ctx = ctx;
-
-
     }
 
     @Override

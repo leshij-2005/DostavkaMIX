@@ -7,7 +7,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="110sp">
 
-    <ru.dostavkamix.denis.dostavkamix.Custom.customNetworkImageView
+    <ru.dostavkamix.denis.dostavkamix.Custom.CircularNetworkImageView
         android:id="@+id/action_img"
         android:layout_width="90sp"
         android:layout_height="wrap_content"

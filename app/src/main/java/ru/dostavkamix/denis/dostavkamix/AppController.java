@@ -44,6 +44,7 @@ import ru.dostavkamix.denis.dostavkamix.Fragments.InfoFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewListFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewPagerFragment;
 import ru.dostavkamix.denis.dostavkamix.Objects.User;
+import ru.dostavkamix.denis.dostavkamix.content.profile.ProfileFragment;
 import ru.dostavkamix.denis.dostavkamix.login.LoginActivity;
 
 
@@ -155,6 +156,8 @@ public class AppController extends MultiDexApplication {
 
     private static AppController mInstance;
 
+    private android.support.v4.app.Fragment current;
+
     private void inicializeMenu() {
         menu_logo = new Dialog(mainActivity);
         menu_logo.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -256,6 +259,8 @@ public class AppController extends MultiDexApplication {
                 }
             });
         }
+
+        current = new ProfileFragment();
     }
 
     public void setMainActivity(MainActivity mainActivity) {
@@ -405,6 +410,7 @@ public class AppController extends MultiDexApplication {
     public void selectMenu(int position) {
         switch (position) {
             case 1:
+                mainActivity.getSupportFragmentManager().beginTransaction().remove(current).commit();
                 selectMenu(menu_item_1);
                 mainActivity.ft = mainActivity.getFragmentManager().beginTransaction();
                 mainActivity.ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out, R.animator.fade_in, R.animator.slide_out_left);
@@ -413,6 +419,8 @@ public class AppController extends MultiDexApplication {
                 mainActivity.ft.commit();
                 break;
             case 2:
+                mainActivity.getSupportFragmentManager().beginTransaction().remove(current).commit();
+
                 selectMenu(menu_item_2);
                 mainActivity.ft = mainActivity.getFragmentManager().beginTransaction();
                 mainActivity.ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out, R.animator.fade_in, R.animator.slide_out_left);
@@ -421,6 +429,8 @@ public class AppController extends MultiDexApplication {
                 mainActivity.ft.commit();
                 break;
             case 3:
+                mainActivity.getSupportFragmentManager().beginTransaction().remove(current).commit();
+
                 selectMenu(menu_item_3);
                 mainActivity.ft = mainActivity.getFragmentManager().beginTransaction();
                 mainActivity.ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out, R.animator.fade_in, R.animator.slide_out_left);
@@ -429,6 +439,8 @@ public class AppController extends MultiDexApplication {
                 mainActivity.ft.commit();
                 break;
             case 4:
+                mainActivity.getSupportFragmentManager().beginTransaction().remove(current).commit();
+
                 selectMenu(menu_item_4);
                 mainActivity.ft = mainActivity.getFragmentManager().beginTransaction();
                 mainActivity.ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out, R.animator.fade_in, R.animator.slide_out_left);
@@ -437,6 +449,8 @@ public class AppController extends MultiDexApplication {
                 mainActivity.ft.commit();
                 break;
             case 5:
+                mainActivity.getSupportFragmentManager().beginTransaction().remove(current).commit();
+
                 selectMenu(menu_item_5);
                 mainActivity.ft = mainActivity.getFragmentManager().beginTransaction();
                 mainActivity.ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out, R.animator.fade_in, R.animator.slide_out_left);
@@ -445,6 +459,8 @@ public class AppController extends MultiDexApplication {
                 mainActivity.ft.commit();
                 break;
             case 6:
+                mainActivity.getSupportFragmentManager().beginTransaction().remove(current).commit();
+
                 selectMenu(menu_item_6);
                 mainActivity.ft = mainActivity.getFragmentManager().beginTransaction();
                 mainActivity.ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out, R.animator.fade_in, R.animator.slide_out_left);
@@ -453,6 +469,9 @@ public class AppController extends MultiDexApplication {
                 mainActivity.ft.commit();
                 break;
             case 7:
+
+                mainActivity.getSupportFragmentManager().beginTransaction().remove(current).commit();
+
                 selectMenu(menu_item_7);
                 mainActivity.ft = mainActivity.getFragmentManager().beginTransaction();
                 mainActivity.ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left, R.animator.fade_in, R.animator.slide_out_left);
@@ -487,9 +506,8 @@ public class AppController extends MultiDexApplication {
                     */
                     mainActivity.getFragmentManager().beginTransaction().remove(mainActivity.getFragmentManager().findFragmentById(R.id.frame_fragment)).commit();
                     mainActivity.getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.frame_fragment, new ru.dostavkamix.denis.dostavkamix.content.profile.ProfileFragment())
-                            .addToBackStack(null)
-                            .commit();
+                            .replace(R.id.frame_fragment, current)
+                            .commitNow();
                 } else {
 
                     BlurBehind.getInstance().execute(mainActivity, () -> {

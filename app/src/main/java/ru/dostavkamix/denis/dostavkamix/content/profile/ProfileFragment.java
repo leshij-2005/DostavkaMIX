@@ -37,6 +37,7 @@ public class ProfileFragment extends BaseMvpFragment<ProfileView, ProfilePresent
         super.onViewCreated(view, savedInstanceState);
 
         adapter = new ProfilePagerAdapter(getFragmentManager(), getContext());
+        pager.setOffscreenPageLimit(2);
         pager.setAdapter(adapter);
         tab.setupWithViewPager(pager);
         adapter.setupTab(tab);
