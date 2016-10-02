@@ -17,7 +17,7 @@ import rx.schedulers.Schedulers;
  * @author Denis Tkachenko
  */
 
-public class PointsPresenter extends BaseRxLcePresenter<PointsView, List<Transaction>> {
+public class PointsPresenter extends BaseRxLcePresenter<PointsView, Transaction> {
 
     @Inject
     AccountManager accountManager;

@@ -115,12 +115,12 @@ public class ChaihanaAccountManager implements AccountManager {
     }
 
     @Override
-    public Observable<List<Transaction>> getTransactions(Credentials credentials) {
+    public Observable<Transaction> getTransactions(Credentials credentials) {
         return service.getTransactions(credentials.getToken());
     }
 
     @Override
-    public Observable<List<Transaction>> getTransactions() {
+    public Observable<Transaction> getTransactions() {
         if(!isUserAuthenticated()) {
             return Observable.error(new NotAuthenticatedException());
         }

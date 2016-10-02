@@ -3,6 +3,8 @@ package ru.dostavkamix.denis.dostavkamix.model.account.api.pojo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by denis on 28.09.16.
  *
@@ -11,82 +13,108 @@ import com.google.gson.annotations.SerializedName;
 
 public class Transaction {
 
-    @SerializedName("id")
-    @Expose
-    private Integer id;
-    @SerializedName("order_id")
-    @Expose
-    private Integer orderId;
-    @SerializedName("point")
-    @Expose
-    private Integer point;
-    @SerializedName("created_at")
-    @Expose
-    private String createdAt;
-    @SerializedName("updated_at")
-    @Expose
-    private String updatedAt;
-    @SerializedName("type")
-    @Expose
-    private Type type;
-    @SerializedName("date")
-    @Expose
-    private String date;
+    @SerializedName("points")
+    private int points;
 
-    public Integer getId() {
-        return id;
+    @SerializedName("items")
+    private List<Item> items;
+
+    public int getPoints() {
+        return points;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPoints(int points) {
+        this.points = points;
     }
 
-    public Integer getOrderId() {
-        return orderId;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
-    public Integer getPoint() {
-        return point;
-    }
+    public class Item {
+        @SerializedName("id")
+        @Expose
+        private Integer id;
+        @SerializedName("order_id")
+        @Expose
+        private Integer orderId;
+        @SerializedName("point")
+        @Expose
+        private Integer point;
+        @SerializedName("created_at")
+        @Expose
+        private String createdAt;
+        @SerializedName("updated_at")
+        @Expose
+        private String updatedAt;
+        @SerializedName("type")
+        @Expose
+        private Type type;
+        @SerializedName("date")
+        @Expose
+        private String date;
 
-    public void setPoint(Integer point) {
-        this.point = point;
-    }
+        public Integer getId() {
+            return id;
+        }
 
-    public String getCreatedAt() {
-        return createdAt;
-    }
+        public void setId(Integer id) {
+            this.id = id;
+        }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
+        public Integer getOrderId() {
+            return orderId;
+        }
 
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
+        public void setOrderId(Integer orderId) {
+            this.orderId = orderId;
+        }
 
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+        public Integer getPoint() {
+            return point;
+        }
 
-    public Type getType() {
-        return type;
-    }
+        public void setPoint(Integer point) {
+            this.point = point;
+        }
 
-    public void setType(Type type) {
-        this.type = type;
-    }
+        public String getCreatedAt() {
+            return createdAt;
+        }
 
-    public String getDate() {
-        return date;
-    }
+        public void setCreatedAt(String createdAt) {
+            this.createdAt = createdAt;
+        }
 
-    public void setDate(String date) {
-        this.date = date;
+        public String getUpdatedAt() {
+            return updatedAt;
+        }
+
+        public void setUpdatedAt(String updatedAt) {
+            this.updatedAt = updatedAt;
+        }
+
+        public Type getType() {
+            return type;
+        }
+
+        public void setType(Type type) {
+            this.type = type;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
+
     }
 
     public enum Type {

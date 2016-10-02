@@ -5,8 +5,8 @@
 
     <stroke android:color="@color/accent_color"
             android:width="2dp" />
-    <corners android:bottomRightRadius="8dp"
+    <corners android:bottomRightRadius="@dimen/corners_select"
              android:bottomLeftRadius="0dp"
-             android:topRightRadius="8dp"
+             android:topRightRadius="@dimen/corners_select"
              android:topLeftRadius="0dp"/>
 </shape>

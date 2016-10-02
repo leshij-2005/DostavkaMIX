@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,61 +48,42 @@ import static ru.dostavkamix.denis.dostavkamix.utils.ViewUtils.setTextColorAnim;
 public class BuyActivity extends BaseMvpActivity<BuyView, BuyPresenter> implements BuyView {
 
     private static final String TAG = "BuyActivity";
+    private int sum = 0;
     BuyDialog dialog = new BuyDialog();
 
-    @BindView(R.id.delivery)
-    TextView delivery;
-    @BindView(R.id.pickup)
-    TextView pickup;
+    @BindView(R.id.delivery) TextView delivery;
+    @BindView(R.id.pickup) TextView pickup;
 
-    @BindView(R.id.scrollView)
-    NestedScrollView scrollView;
+    @BindView(R.id.scrollView) ScrollView scrollView;
 
-    @OnClick(R.id.name_frame)
-    void click_name_frame() {
+    @OnClick(R.id.name_frame) void click_name_frame() {
         focus(name);
     }
-
-    @OnClick(R.id.phone_frame)
-    void click_phone_frame() {
+    @OnClick(R.id.phone_frame) void click_phone_frame() {
         focus(phone);
     }
-
-    @OnClick(R.id.email_frame)
-    void click_email_frame() {
+    @OnClick(R.id.email_frame) void click_email_frame() {
         focus(email);
     }
 
-    @BindView(R.id.name)
-    EditText name;
-    @BindView(R.id.phone)
-    EditText phone;
-    @BindView(R.id.email)
-    EditText email;
+    @BindView(R.id.name) EditText name;
+    @BindView(R.id.phone) EditText phone;
+    @BindView(R.id.email) EditText email;
 
-    @BindView(R.id.label_address)
-    View label_address;
-    @BindView(R.id.street_frame)
-    View street_frame;
-    @BindView(R.id.number_frame)
-    View number_frame;
-    @BindView(R.id.apartment_frame)
-    View apartment_frame;
-    @BindView(R.id.street)
-    AutoCompleteTextView street;
-    @BindView(R.id.number)
-    EditText number;
-    @BindView(R.id.apartment)
-    EditText apartment;
+    @BindView(R.id.label_address) View label_address;
+    @BindView(R.id.street_frame) View street_frame;
+    @BindView(R.id.number_frame) View number_frame;
+    @BindView(R.id.apartment_frame) View apartment_frame;
+    @BindView(R.id.street) AutoCompleteTextView street;
+    @BindView(R.id.number) EditText number;
+    @BindView(R.id.apartment) EditText apartment;
 
-    @OnClick(R.id.now_frame)
-    void click_now_frame() {
+    @OnClick(R.id.now_frame) void click_now_frame() {
         fade(now, true);
         fade(at_time, false);
     }
 
-    @OnClick(R.id.at_time_frame)
-    void click_at_time_frame() {
+    @OnClick(R.id.at_time_frame) void click_at_time_frame() {
         if(at_time.getVisibility() == View.GONE) {
             if(ViewUtils.isEmpty(at_time))
                 dateDialog.show(getFragmentManager(), "dateDialog");
@@ -111,10 +93,8 @@ public class BuyActivity extends BaseMvpActivity<BuyView, BuyPresenter> implemen
         fade(now, false);
     }
 
-    @BindView(R.id.now)
-    View now;
-    @BindView(R.id.at_time)
-    TextView at_time;
+    @BindView(R.id.now) View now;
+    @BindView(R.id.at_time) TextView at_time;
 
     @BindView(R.id.cash) View cash;
     @BindView(R.id.cash_count_frame) View cash_count_frame;
@@ -128,57 +108,41 @@ public class BuyActivity extends BaseMvpActivity<BuyView, BuyPresenter> implemen
     @BindView(R.id.points_max) TextView points_max;
     @BindView(R.id.points_seekbar) SeekBar points_seekbar;
 
+    @BindView(R.id.buy) TextView buy;
+
     @OnClick(R.id.street_frame) void click_street_frame() {
         focus(street);
     }
-
     @OnClick(R.id.number_frame) void click_number_frame() {
         focus(number);
     }
-
     @OnClick(R.id.apartment_frame) void click_apartment_frame() {
         focus(apartment);
     }
-
     @OnClick(R.id.cash_frame) void click_cash_frame() {
         fade(cash, true);
         fade(card, false);
-        fade(points, false);
-
-        points_count_frame.setVisibility(View.GONE);
-        points_seekbar_frame.setVisibility(View.GONE);
-        cash_count_frame.setVisibility(View.VISIBLE);
+        cash_count_frame.setVisibility(cash.getVisibility());
     }
 
     @OnClick(R.id.card_frame) void click_card_frame() {
         fade(cash, false);
         fade(card, true);
-        fade(points, false);
-
-        points_count_frame.setVisibility(View.GONE);
-        points_seekbar_frame.setVisibility(View.GONE);
-        cash_count_frame.setVisibility(View.GONE);
+        cash_count_frame.setVisibility(cash.getVisibility());
     }
-
     @OnClick(R.id.points_frame) void click_points_frame() {
-        fade(cash, false);
-        fade(card, false);
-        fade(points, true);
+        fade(points, points.getVisibility() != View.VISIBLE);
+        points_count_frame.setVisibility(points.getVisibility());
+        points_seekbar_frame.setVisibility(points.getVisibility());
 
-        points_count_frame.setVisibility(View.VISIBLE);
-        points_seekbar_frame.setVisibility(View.VISIBLE);
-        cash_count_frame.setVisibility(View.GONE);
         scrollView.fullScroll(View.FOCUS_DOWN);
     }
-
     @OnClick(R.id.cash_count_frame)void click_cash_count_frame() {
         focus(cash_count);
     }
-
     @OnClick(R.id.points_count_frame) void click_points_count_frame() {
         focus(points_count);
     }
-
     @OnClick({R.id.delivery, R.id.pickup}) void select_method(TextView selected) {
         if (selected.getTag() != null) return;
         selected.setTag("selected");
@@ -195,8 +159,26 @@ public class BuyActivity extends BaseMvpActivity<BuyView, BuyPresenter> implemen
         street_frame.setVisibility(selected.getId() == R.id.delivery ? View.VISIBLE : View.GONE);
         number_frame.setVisibility(selected.getId() == R.id.delivery ? View.VISIBLE : View.GONE);
         apartment_frame.setVisibility(selected.getId() == R.id.delivery ? View.VISIBLE : View.GONE);
-    }
 
+        if(selected.getId() != delivery.getId()) {
+            if (AppController.getInstance().getSale() != 0) {
+                if (AppController.getInstance().getSale() == 5) {
+                    sum = (int) (AppController.getInstance().getWithoutSale() * 0.85);
+                } else if (AppController.getInstance().getSale() == 10) {
+                    sum = (int) (AppController.getInstance().getWithoutSale() * 0.85);
+                } else if (AppController.getInstance().getSale() == 15) {
+                    sum = (int) (AppController.getInstance().getWithoutSale() * 0.8);
+                }
+            } else
+                sum = (int) ((AppController.getInstance().getWithoutSale()) * 0.90);
+        } else {
+            if (AppController.getInstance().getSale() == 0) {
+                sum = AppController.getInstance().getWithoutSale() + 150;
+            } else sum = AppController.getInstance().getWithSale();
+        }
+
+        buy.setText(getString(R.string.value_buy, sum));
+    }
     @OnClick(R.id.buy_frame) void click_buy() {
         presenter.buying(buildBuyer());
     }
@@ -344,5 +326,11 @@ public class BuyActivity extends BaseMvpActivity<BuyView, BuyPresenter> implemen
         select_method(delivery);
         click_cash_frame();
         presenter.loadAccount();
+
+        if (AppController.getInstance().getSale() == 0) {
+            sum = AppController.getInstance().getWithoutSale() + 150;
+        }
+
+        buy.setText(getString(R.string.value_buy, sum));
     }
 }

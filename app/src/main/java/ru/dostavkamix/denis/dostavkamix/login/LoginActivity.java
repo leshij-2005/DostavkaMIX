@@ -17,14 +17,15 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.OnClick;
 import ru.dostavkamix.denis.dostavkamix.AppController;
-import ru.dostavkamix.denis.dostavkamix.Custom.TextViewPlus;
 import ru.dostavkamix.denis.dostavkamix.Custom.blurbehind.BlurBehind;
 import ru.dostavkamix.denis.dostavkamix.R;
 import ru.dostavkamix.denis.dostavkamix.base.BaseViewStateActivity;
 import ru.dostavkamix.denis.dostavkamix.model.account.Account;
 import ru.dostavkamix.denis.dostavkamix.model.account.AuthCredentials;
-import ru.dostavkamix.denis.dostavkamix.model.account.Credentials;
 import ru.dostavkamix.denis.dostavkamix.utils.ExceptionUtuls;
+import ru.dostavkamix.denis.dostavkamix.utils.ViewUtils;
+
+import static ru.dostavkamix.denis.dostavkamix.utils.ViewUtils.focus;
 
 /**
  * Created by Денис on 06.09.2016.
@@ -39,7 +40,7 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
     @BindView(R.id.intro) View intro;
     @BindView(R.id.sign) View sign;
 
-    @BindView(R.id.label) TextViewPlus label;
+    @BindView(R.id.label) TextView label;
 
     @BindView(R.id.name) EditText name;
     @BindView(R.id.phone) EditText phone;
@@ -64,6 +65,10 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
 
     @OnClick(R.id.signup)
     void onSignupClick() {
+        if(((LoginViewState) viewState).state != LoginViewState.STATE_SHOW_SIGNUP_FORM) {
+            showSignupForm();
+            return;
+        }
         AuthCredentials auth = new AuthCredentials(email.getText().toString(), pass.getText().toString());
         Account account = new Account(name.getText().toString(), phone.getText().toString(), email.getText().toString(), birthday.getText().toString());
 
@@ -77,6 +82,13 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
 
     @OnClick(R.id.signin)
     void onSigninClick() {
+        if(ViewUtils.isEmpty(email)) {
+            shakeView(email);
+            return;
+        } if(ViewUtils.isEmpty(pass)) {
+            shakeView(pass);
+            return;
+        }
         AuthCredentials auth = new AuthCredentials(email.getText().toString(), pass.getText().toString());
 
         presenter.doSignin(auth);
@@ -112,6 +124,7 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
 
         intro.setVisibility(View.GONE);
         signup.setVisibility(View.GONE);
+        errorView.setVisibility(View.GONE);
 
         sign.setVisibility(View.VISIBLE);
         signin.setVisibility(View.VISIBLE);
@@ -126,6 +139,7 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
         signup.setVisibility(View.GONE);
 
         signSelect.setText(R.string.button_signup);
+        focus(email);
     }
 
     @Override
@@ -135,6 +149,7 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
 
         intro.setVisibility(View.GONE);
         signin.setVisibility(View.GONE);
+        errorView.setVisibility(View.GONE);
 
         sign.setVisibility(View.VISIBLE);
         signup.setVisibility(View.VISIBLE);
@@ -149,6 +164,7 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
         signup.setVisibility(View.VISIBLE);
 
         signSelect.setText(R.string.button_signin);
+        focus(name);
     }
 
     @Override
@@ -156,7 +172,7 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
         ((LoginViewState) viewState).setShowIntro();
 
         sign.setVisibility(View.GONE);
-
+        errorView.setVisibility(View.GONE);
         intro.setVisibility(View.VISIBLE);
     }
 
@@ -195,8 +211,6 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
 
     @Override
     public void loginSuccessful() {
-        saveToken(presenter.getToken());
-
         signin.setProgress(100);
         signup.setProgress(100);
         finish();
@@ -220,12 +234,5 @@ public class LoginActivity extends BaseViewStateActivity<LoginView, LoginPresent
         birthday.setEnabled(b);
         pass.setEnabled(b);
         pass_r.setEnabled(b);
-    }
-
-    private void saveToken(Credentials credentials) {
-        getSharedPreferences(getString(R.string.preference_file_name), MODE_PRIVATE).edit()
-                .putString(getString(R.string.token_key), credentials.getToken())
-                .putString(getString(R.string.user_id_key), credentials.getUser_id())
-                .commit();
     }
 }

@@ -35,4 +35,6 @@
     <dimen name="margin_right_content_card">10sp</dimen>
     <dimen name="height_content_card">40sp</dimen>
     <dimen name="minWidth_edit">10sp</dimen>
+
+    <dimen name="corners_select">4dp</dimen>
 </resources>

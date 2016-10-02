@@ -43,7 +43,6 @@ import ru.dostavkamix.denis.dostavkamix.Fragments.ConditionFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.InfoFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewListFragment;
 import ru.dostavkamix.denis.dostavkamix.Fragments.ReviewPagerFragment;
-import ru.dostavkamix.denis.dostavkamix.Objects.User;
 import ru.dostavkamix.denis.dostavkamix.content.profile.ProfileFragment;
 import ru.dostavkamix.denis.dostavkamix.login.LoginActivity;
 
@@ -57,9 +56,6 @@ public class AppController extends MultiDexApplication {
     private static AppComponent component;
 
     private static final String TAG = AppController.class.getSimpleName();
-
-    private static User user = null;
-    private static final String  TAG_USER_TOKEN = "user";
 
     private static final String prefName = "pref";
     public SharedPreferences preferences;
@@ -97,34 +93,6 @@ public class AppController extends MultiDexApplication {
     public ListFragment reviewListFragment;
     public ActionPagerFragment actionFragment;
     public ReviewPagerFragment reviewFragment;
-
-    public void setUser(final User user) {
-        AppController.user = user;
-
-        UserHelper.getUser(user.getToken(), this, new UserCallback() {
-            @Override
-            public void onSuccess(User result) {
-
-                AppController.user = result;
-                editPref.putString(TAG_USER_TOKEN, user.getToken());
-                editPref.commit();
-            }
-
-            @Override
-            public void onError(String error) {
-                Log.e(TAG, "onError: " + error);
-            }
-        });
-
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public String getUserToken() {
-        return preferences.getString(TAG_USER_TOKEN, null);
-    }
 
     public MainActivity getMainActivity() {
         return mainActivity;
@@ -244,21 +212,6 @@ public class AppController extends MultiDexApplication {
         reviewListFragment = new ReviewListFragment();
         actionFragment = new ActionPagerFragment();
         reviewFragment = new ReviewPagerFragment();
-
-        if(preferences.getString(TAG_USER_TOKEN, null) != null) {
-            UserHelper.getUser(preferences.getString(TAG_USER_TOKEN, null), this, new UserCallback() {
-                @Override
-                public void onSuccess(User user) {
-                    setUser(user);
-                    Log.d(TAG, "onSuccess: Авторизация пройдена!");
-                }
-
-                @Override
-                public void onError(String error) {
-
-                }
-            });
-        }
 
         current = new ProfileFragment();
     }

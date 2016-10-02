@@ -37,8 +37,4 @@ public class EditPresenter extends BaseRxLcePresenter<EditView, Account> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()), false);
     }
-
-    void setCurrentToken(String token, String user_id) {
-        accountManager.setCurrentCredentials(new Credentials(token, user_id));
-    }
 }

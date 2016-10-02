@@ -7,8 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import java.util.List;
-
 import ru.dostavkamix.denis.dostavkamix.R;
 import ru.dostavkamix.denis.dostavkamix.base.BaseLceFragment;
 import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Transaction;
@@ -19,7 +17,7 @@ import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Transaction;
  * @author Denis Tkachenko
  */
 
-public class PointsFragment extends BaseLceFragment<RecyclerView, List<Transaction>, PointsView, PointsPresenter> implements PointsView {
+public class PointsFragment extends BaseLceFragment<RecyclerView, Transaction, PointsView, PointsPresenter> implements PointsView {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -46,7 +44,7 @@ public class PointsFragment extends BaseLceFragment<RecyclerView, List<Transacti
     }
 
     @Override
-    public void setData(List<Transaction> data) {
+    public void setData(Transaction data) {
         contentView.setLayoutManager(new LinearLayoutManager(getContext()));
         contentView.setAdapter(new PointsAdapter(data));
     }

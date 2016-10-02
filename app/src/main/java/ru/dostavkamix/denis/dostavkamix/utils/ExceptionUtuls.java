@@ -22,11 +22,11 @@ public class ExceptionUtuls {
             AccountException accountException = (AccountException) throwable;
             if(accountException.getErrors() == null) return ErrorType.NONE;
 
-            if(!accountException.getErrors().getName().isEmpty()) return ErrorType.NAME;
-            if(!accountException.getErrors().getPhone().isEmpty()) return ErrorType.PHONE;
-            if(!accountException.getErrors().getEmail().isEmpty()) return ErrorType.EMAIL;
-            if(!accountException.getErrors().getBirthday().isEmpty()) return ErrorType.BIRTHDAY;
-            if(!accountException.getErrors().getPassword().isEmpty()) return ErrorType.PASSWORD;
+            if(accountException.getErrors().getName() != null) return ErrorType.NAME;
+            if(accountException.getErrors().getPhone() != null) return ErrorType.PHONE;
+            if(accountException.getErrors().getEmail() != null) return ErrorType.EMAIL;
+            if(accountException.getErrors().getBirthday() != null) return ErrorType.BIRTHDAY;
+            if(accountException.getErrors().getPassword() != null) return ErrorType.PASSWORD;
         }
 
         if(throwable instanceof PassNotMatch) return ErrorType.PASSWORD_R;

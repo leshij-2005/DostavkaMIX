@@ -16,7 +16,9 @@
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/background_color">
+            android:minHeight="?attr/actionBarSize"
+            android:background="@color/background_color"
+            app:contentInsetStart="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -32,6 +34,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:contentDescription="@string/desc_back"
+                        android:layout_marginStart="10dp"
                         app:srcCompat="@drawable/ic_arrow_downward_black_24dp" />
 
                     <ImageView
@@ -93,11 +96,13 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:orientation="vertical">
 
-        <android.support.v4.widget.NestedScrollView
+        <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:fillViewport="true"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -618,7 +623,7 @@
 
             </LinearLayout>
 
-        </android.support.v4.widget.NestedScrollView>
+        </ScrollView>
 
         <RelativeLayout
             android:id="@+id/buy_frame"

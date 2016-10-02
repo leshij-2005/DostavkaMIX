@@ -21,6 +21,7 @@ import ru.dostavkamix.denis.dostavkamix.model.account.api.AccountException;
 
 import static android.content.Context.MODE_PRIVATE;
 import static ru.dostavkamix.denis.dostavkamix.utils.ViewUtils.focus;
+import static ru.dostavkamix.denis.dostavkamix.utils.ViewUtils.isEmpty;
 
 /**
  * Created by den on 13.09.16.
@@ -73,7 +74,6 @@ public class EditFragment extends BaseLceFragment<LinearLayout, Account, EditVie
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getToken();
         loadData(false);
     }
 
@@ -117,16 +117,6 @@ public class EditFragment extends BaseLceFragment<LinearLayout, Account, EditVie
     @Override
     public void loadData(boolean pullToRefresh) {
         presenter.loadAccount();
-    }
-
-    private void getToken() {
-        String token = getActivity().getSharedPreferences(getString(R.string.preference_file_name), MODE_PRIVATE)
-                .getString(getString(R.string.token_key), null);
-        String user_id = getActivity().getSharedPreferences(getString(R.string.preference_file_name), MODE_PRIVATE)
-                .getString(getString(R.string.user_id_key), null);
-
-        if(token != null && user_id != null) presenter.setCurrentToken(token, user_id);
-        Log.d("ContentActivity", "getToken: " + token);
     }
 
     @Override

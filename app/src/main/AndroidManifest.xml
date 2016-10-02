@@ -71,9 +71,6 @@
         <activity android:name=".Activitys.HelpActivity"
                   android:theme="@android:style/Theme.NoTitleBar"/>
 
-        <activity android:name=".Activitys.IntroActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
         <activity android:name=".login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 

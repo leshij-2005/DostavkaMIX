@@ -30,11 +30,11 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.ViewHolder
     @Inject
     Context context;
 
-    private List<Transaction> data = new ArrayList<>();
+    private List<Transaction.Item> data = new ArrayList<>();
 
-    public PointsAdapter(List<Transaction> data) {
+    public PointsAdapter(Transaction data) {
         AppController.getComponent().inject(this);
-        this.data = data;
+        this.data = data.getItems();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Transaction transaction = data.get(position);
+        Transaction.Item transaction = data.get(position);
 
         holder.point.setText(String.format(context.getString(R.string.value_ball), transaction.getPoint()));
         holder.type.setText(context.getString(transaction.getType() == Transaction.Type.POINT

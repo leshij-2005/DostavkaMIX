@@ -40,6 +40,6 @@ public interface AccountAPIService {
     Observable<List<Order>> getOrders(@Header("Authorization") String access_token);
 
     @GET("api/v1/points")
-    Observable<List<Transaction>> getTransactions(@Header("Authorization") String access_token);
+    Observable<Transaction> getTransactions(@Header("Authorization") String access_token);
 
 }

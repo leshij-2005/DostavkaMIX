@@ -13,5 +13,5 @@ import ru.dostavkamix.denis.dostavkamix.model.account.api.pojo.Transaction;
  * @author Denis Tkachenko
  */
 
-public interface PointsView extends MvpView, MvpLceView<List<Transaction>> {
+public interface PointsView extends MvpView, MvpLceView<Transaction> {
 }

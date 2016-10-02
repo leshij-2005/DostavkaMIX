@@ -251,11 +251,11 @@ public class MainActivity extends AppCompatActivity {
                         BlurBehind.getInstance().execute(mAct, new OnBlurCompleteListener() {
                             @Override
                             public void onBlurComplete() {
-                                Intent intent = new Intent(mAct, IntroActivity.class);
+                                //Intent intent = new Intent(mAct, IntroActivity.class);
                                 //intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                                startActivity(intent);
+                                //startActivity(intent);
                             }
                         }, 18);
                     }

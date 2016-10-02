@@ -28,9 +28,9 @@ public interface AccountManager {
 
     Observable<List<Order>> getOrders();
 
-    Observable<List<Transaction>> getTransactions(Credentials credentials);
+    Observable<Transaction> getTransactions(Credentials credentials);
 
-    Observable<List<Transaction>> getTransactions();
+    Observable<Transaction> getTransactions();
 
     Observable<Account> updateAccount(Credentials credentials, Account account);
 
