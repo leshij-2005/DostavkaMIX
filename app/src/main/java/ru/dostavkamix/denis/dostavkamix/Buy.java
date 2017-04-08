@@ -16,12 +16,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import ru.dostavkamix.denis.dostavkamix.Constants;
+
 /**
  * Created by den on 07.02.2016.
  */
 public class Buy extends AsyncTask<Buyer, Void, Void>{
 
-    private static final String buyUrl = "http://chaihanamix.ru/server/order/";
+    private static final String buyUrl = Constants.getBase_url() + "server/order/";
 
 
     @Override

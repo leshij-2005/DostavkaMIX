@@ -13,6 +13,7 @@ import java.net.URL;
 import java.nio.charset.Charset;
 
 import ru.dostavkamix.denis.dostavkamix.AppController;
+import ru.dostavkamix.denis.dostavkamix.Constants;
 
 /**
  * Created by d.tkachenko on 30.04.2016.
@@ -21,7 +22,7 @@ public class SendToken extends AsyncTask<String, Void, Void> {
 
     private final String LOG = this.getClass().getSimpleName();
     private final String SENDER_ID = "795256844466";
-    private final String request = "http://chaihanamix.ru/server/add-token";
+    private final String request = Constants.getBase_url() + "server/add-token";
 
     @Override
     protected Void doInBackground(String... params) {

@@ -15,6 +15,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import ru.dostavkamix.denis.dostavkamix.Constants;
+
 /**
  * Created by d.tkachenko on 01.05.2016.
  */
@@ -31,7 +33,7 @@ public class BuildActions extends AsyncTask<Void, Void, String>{
     protected String doInBackground(Void... params) {
         try {
             Log.d(LOG, "export actions");
-            URL url_action = new URL("http://chaihanamix.ru/server/actionsnews");
+            URL url_action = new URL(Constants.getBase_url() + "server/actionsnews");
             urlConnection = (HttpURLConnection) url_action.openConnection();
             urlConnection.connect();
 

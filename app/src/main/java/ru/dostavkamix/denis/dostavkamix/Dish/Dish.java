@@ -9,8 +9,6 @@ public class Dish extends Category {
 
     public static int TYPE = 1;
 
-    private final String baseUrl = "http://chaihanamix.ru/";
-
     Typeface fontRub = null;
     Typeface fontReg = null;
 
@@ -30,7 +28,7 @@ public class Dish extends Category {
         this.weight = weight;
         this.nameDish = nameDish;
         this.content = content;
-        this.imjDish = baseUrl + imjDish;
+        this.imjDish = imjDish;
         this.unic = unic;
     }
 

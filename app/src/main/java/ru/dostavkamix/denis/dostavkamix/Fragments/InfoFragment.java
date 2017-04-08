@@ -39,6 +39,8 @@ import ru.dostavkamix.denis.dostavkamix.AppController;
 import ru.dostavkamix.denis.dostavkamix.R;
 import ru.dostavkamix.denis.dostavkamix.SwipeImageAdapter;
 
+import ru.dostavkamix.denis.dostavkamix.Constants;
+
 /**
  * Created by den on 04.02.2016.
  */
@@ -47,7 +49,7 @@ public class InfoFragment extends Fragment implements OnClickListener {
     ViewPager pager_view;
     SwipeImageAdapter mAdapter;
     ArrayList<Integer> image_list = new ArrayList<>();
-    private static final String url = "http://www.chaihanamix.ru";
+    private static final String url = Constants.getBase_url();
 
     //Containers
     private LinearLayout lay_info;

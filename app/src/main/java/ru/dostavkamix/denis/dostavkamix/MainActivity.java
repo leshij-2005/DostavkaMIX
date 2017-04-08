@@ -49,6 +49,7 @@ import ru.dostavkamix.denis.dostavkamix.Fragments.dishListFragment;
 import ru.dostavkamix.denis.dostavkamix.SlideMenu.ListViewItem;
 import ru.dostavkamix.denis.dostavkamix.blurbehind.BlurBehind;
 import ru.dostavkamix.denis.dostavkamix.blurbehind.OnBlurCompleteListener;
+import ru.dostavkamix.denis.dostavkamix.Constants;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -279,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
     private class ParseTask extends AsyncTask<Void, Void, String> {
-        final String base_url_img = "http://chaihanamix.ru/ios_app/action_images/action_";
+        final String base_url_img = Constants.getBase_url() + "ios_app/action_images/action_";
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String jsonExport = "";
@@ -291,7 +292,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(Void... params) {
             try {
-                URL url_export = new URL("http://chaihanamix.ru/server/export.json");
+                URL url_export = new URL(Constants.getBase_url() + "server/export.json");
 
                 urlConnection = (HttpURLConnection) url_export.openConnection();
                 urlConnection.connect();
@@ -310,8 +311,8 @@ public class MainActivity extends AppCompatActivity {
 
                 DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-                //Document docActions = dBuilder.parse("http://chaihanamix.ru/ios_app/actions.xml");
-                Document docReviews = dBuilder.parse("http://chaihanamix.ru/ios_app/reviews.xml");
+                //Document docActions = dBuilder.parse(Constants.getBase_url() + "ios_app/actions.xml");
+                Document docReviews = dBuilder.parse(Constants.getBase_url() + "ios_app/reviews.xml");
                 docReviews.getDocumentElement().normalize();
                 //docActions.getDocumentElement().normalize();
 
