@@ -32,7 +32,6 @@ public class BagFragment extends Fragment {
     TextViewPlus text_but_order;
     RelativeLayout but_order;
     MaterialDialog inposOrderDialog;
-    MaterialDialog iphoneDialog;
 
     @Nullable
     @Override
@@ -56,21 +55,7 @@ public class BagFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         inposOrderDialog.dismiss();
-                        Intent intent = new Intent(AppController.getInstance().getMainActivity().getApplicationContext(), OrderActivity.class);
-                        startActivity(intent);
-                        AppController.getInstance().getMainActivity().overridePendingTransition(R.anim.slide_in_bottom, android.R.anim.fade_out);
-                    }
-                });
-        iphoneDialog = new MaterialDialog(AppController.getInstance().getMainActivity())
-                .setMessage("Сделай заказ от 1000 рублей и учавствуй в розыгрыше iPhone 6s. Чем больше заказов, тем ближе айфон!")
-                .setPositiveButton("Закрыть", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        iphoneDialog.dismiss();
-                        Log.d("json", "new activity");
-                        Intent intent = new Intent(AppController.getInstance().getMainActivity().getApplicationContext(), OrderActivity.class);
-                        startActivity(intent);
-                        AppController.getInstance().getMainActivity().overridePendingTransition(R.anim.slide_in_bottom, android.R.anim.fade_out);
+                        startOrderActivity();
                     }
                 });
 
@@ -79,20 +64,8 @@ public class BagFragment extends Fragment {
             public void onClick(View v) {
                 if(AppController.getInstance().getSale() == 0) {
                     inposOrderDialog.show();
-
-                }
-
-                else {
-                    if(AppController.getInstance().getWithSale() < 1000)
-                    {
-                        iphoneDialog.show();
-                        return;
-                    }
-                    Log.d("json", "new activity");
-                    Intent intent = new Intent(AppController.getInstance().getMainActivity().getApplicationContext(), OrderActivity.class);
-                    startActivity(intent);
-                    AppController.getInstance().getMainActivity().overridePendingTransition(R.anim.slide_in_bottom, android.R.anim.fade_out);
-                    //AppController.getInstance().getMainActivity().overridePendingTransition();
+                } else {
+                    startOrderActivity();
                 }
             }
         });
@@ -100,6 +73,12 @@ public class BagFragment extends Fragment {
         updateFragPrie();
 
         return v;
+    }
+
+    private void startOrderActivity() {
+        Intent intent = new Intent(AppController.getInstance().getMainActivity().getApplicationContext(), OrderActivity.class);
+        startActivity(intent);
+        AppController.getInstance().getMainActivity().overridePendingTransition(R.anim.slide_in_bottom, android.R.anim.fade_out);
     }
 
     public void updateFragPrie()
