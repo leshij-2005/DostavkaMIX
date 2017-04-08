@@ -111,7 +111,7 @@ public class SlideAdapter extends ArrayAdapter {
                         Log.d("click", String.valueOf(finalViewHolder.getText().getText()));
                         toggleChecked(position);
 
-                        Category categ = AppController.getInstance().getMainActivity().getCategoryIdOfName(String.valueOf(objects[position].getText()));
+                        Category categ = AppController.getInstance().getMainActivity().getCategoryOfName(String.valueOf(objects[position].getText()));
                         if (categ != null) {
                             Log.d("json", "Category ID: " + categ.getIdCategory());
                         } else Log.d("json", "Not found category =(");

@@ -410,8 +410,6 @@ public class MainActivity extends AppCompatActivity {
                                     dish.getString("content"),
                                     dish.getString("image"),
                                     k
-
-
                             ));
                         }
                     }
@@ -450,6 +448,11 @@ public class MainActivity extends AppCompatActivity {
             arr_slide_data = slide_data.toArray(new ListViewItem[slide_data.size()]);
             slideAdapter = new SlideAdapter(AppController.getInstance().getMainActivity(), R.id.slide_text, arr_slide_data);
             listView.setAdapter(slideAdapter);
+
+            AppController.getInstance().getMainActivity()
+                    .updateListDish(
+                            AppController.getInstance().getMainActivity().getDishOfCategory(AppController.getInstance().getMainActivity().getCategoryOfName("Суши"), AppController.getInstance().getMainActivity().dishs));
+
         }
     }
 
@@ -484,15 +487,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public Category getCategoryIdOfTag(String t) {
-        for (int i = 0; i < categories.size(); i++) {
-            if (categories.get(i).getIdCategory() == Integer.valueOf(t)) {
-                return categories.get(i);
-            }
-        }
-        return null;
-    }
-    public Category getCategoryIdOfName(String name) {
+    public Category getCategoryOfName(String name) {
         for (int i = 0; i < categories.size(); i++) {
             if(categories.get(i).getNameCategory().equals(name)) {
                 return categories.get(i);
