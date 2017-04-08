@@ -318,10 +318,10 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.billing_wallet:
-
                 view_renting.setVisibility(View.VISIBLE);
                 check_card.setVisibility(View.GONE);
                 check_wallet.setVisibility(View.VISIBLE);
+
                 break;
             case R.id.billing_card:
                 view_renting.setVisibility(View.GONE);
@@ -343,7 +343,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                             order_house.getText().toString(),
                             order_apartament.getText().toString(),
                             OnSelect.getId() == R.id.select_left ? "доставка" : "самовывоз",
-                            billing_wallet.getVisibility() == View.VISIBLE ? "наличка, сдача с " + order_renting.getText().toString() : "безнал",
+                            check_wallet.getVisibility() == View.VISIBLE ? "наличка" : "безнал",
+                            order_renting.getText().toString(),
                             AppController.getInstance().getInBag()
                     ));
 

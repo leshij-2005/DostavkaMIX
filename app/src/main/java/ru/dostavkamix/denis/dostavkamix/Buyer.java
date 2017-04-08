@@ -16,10 +16,11 @@ public class Buyer {
     public String apartament;
     public String type;
     public String money;
+    public String cash;
 
     public ArrayList<item> items = new ArrayList<>();
 
-    public Buyer(String name, String phone, String street, String house, String apartament, String type, String money, ArrayList<Dish> items) {
+    public Buyer(String name, String phone, String street, String house, String apartament, String type, String money, String cash, ArrayList<Dish> items) {
         this.name = name;
         this.phone = phone;
         this.street = street;
@@ -27,6 +28,7 @@ public class Buyer {
         this.apartament = apartament;
         this.type = type;
         this.money = money;
+        this.cash = cash;
 
         for (int i = 0; i < items.size(); i++) {
             this.items.add(new item(items.get(i).getNameDish(), String.valueOf(items.get(i).getCountOrder()), String.valueOf(items.get(i).getIdDish())));
