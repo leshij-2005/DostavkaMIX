@@ -3,14 +3,12 @@ package ru.dostavkamix.denis.dostavkamix;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.DialogFragment;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.TransitionDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,7 +19,6 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
-import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -82,6 +79,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     // Other
     static Calendar now = Calendar.getInstance();
     int sum_button = AppController.getInstance().getWithSale();
+    String selectedDate = "";
 
 
     private void initialise()
@@ -177,12 +175,10 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_order);
         initialise();
         order_name.requestFocus();
-
-
     }
 
 
-    public void setDateTame()
+    public void setDateTime()
     {
         int hourResult = now.get(Calendar.HOUR);
         int minuteResult = now.get(Calendar.MINUTE);
@@ -196,6 +192,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                         String oldText = (String) order_time.getText();
                         order_time.setText(formatDate(String.valueOf(monthOfYear + 1) + String.valueOf(dayOfMonth)) + " " + oldText);
 
+                        selectedDate = String.valueOf(dayOfMonth) + "." + String.valueOf(monthOfYear + 1) + "." + String.valueOf(year) + " " + oldText;
                     }
                 }, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH)
         );
@@ -307,7 +304,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.view_time:
-                setDateTame();
+                setDateTime();
                 order_now.setVisibility(View.GONE);
                 break;
             case R.id.view_now:
@@ -342,9 +339,11 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                             order_street.getText().toString(),
                             order_house.getText().toString(),
                             order_apartament.getText().toString(),
-                            OnSelect.getId() == R.id.select_left ? "доставка" : "самовывоз",
-                            check_wallet.getVisibility() == View.VISIBLE ? "наличка" : "безнал",
+                            OnSelect.getId() == R.id.select_left ? "courier" : "self",
+                            check_wallet.getVisibility() == View.VISIBLE ? "CASH" : "CARD",
                             order_renting.getText().toString(),
+                            String.valueOf(sum_button),
+                            selectedDate,
                             AppController.getInstance().getInBag()
                     ));
 

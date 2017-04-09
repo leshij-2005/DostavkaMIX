@@ -12,23 +12,29 @@ public class Buyer {
     public String name;
     public String phone;
     public String street;
-    public String house;
-    public String apartament;
-    public String type;
-    public String money;
+    public String home;
+    public String apartment;
+    public String delivery;
+    public String payment;
     public String cash;
+    public String client;
+    public String sum;
+    public String date;
 
     public ArrayList<item> items = new ArrayList<>();
 
-    public Buyer(String name, String phone, String street, String house, String apartament, String type, String money, String cash, ArrayList<Dish> items) {
+    public Buyer(String name, String phone, String street, String home, String apartment, String delivery, String payment, String cash, String sum, String date, ArrayList<Dish> items) {
         this.name = name;
         this.phone = phone;
         this.street = street;
-        this.house = house;
-        this.apartament = apartament;
-        this.type = type;
-        this.money = money;
+        this.home = home;
+        this.apartment = apartment;
+        this.delivery = delivery;
+        this.payment = payment;
         this.cash = cash;
+        this.client = "android";
+        this.sum = sum;
+        this.date = date;
 
         for (int i = 0; i < items.size(); i++) {
             this.items.add(new item(items.get(i).getNameDish(), String.valueOf(items.get(i).getCountOrder()), String.valueOf(items.get(i).getIdDish())));
