@@ -1,14 +1,14 @@
 {
   "project_info": {
     "project_number": "795256844466",
-    "project_id": "dostavkamix"
+    "project_id": "chaihanamix"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:795256844466:android:5799e83378257561",
         "android_client_info": {
-          "package_name": "ru.dostavkamix.denis.dostavkamix"
+          "package_name": "ru.chaihanamix.denis.dostavkamix"
         }
       },
       "oauth_client": [],

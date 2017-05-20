@@ -8,7 +8,7 @@
     android:background="@color/md_black_1000"
     android:orientation="vertical">
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/menu_item_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
 
     </View>
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/menu_item_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
 
     </View>
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/menu_item_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
 
     </View>
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/menu_item_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
 
     </View>
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/menu_item_5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
 
     </View>
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/menu_item_6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -145,7 +145,7 @@
 
     </View>
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/menu_item_7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -192,7 +192,7 @@
                 android:background="@color/accent_color"
                 android:scaleType="fitXY"/>
 
-            <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+            <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
                 foo:customFont="fonts/GothaProReg.otf"
                 android:id="@+id/text_but_order"
                 android:layout_width="wrap_content"

@@ -22,7 +22,7 @@
         android:orientation="horizontal"
         >
 
-        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
             android:id="@+id/dish_name_frag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
             android:textSize="20sp"
             foo:customFont="fonts/GothaProReg.otf"/>
 
-        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
             android:id="@+id/dish_price_frag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
             android:textSize="18sp"
             foo:customFont="fonts/GothaProReg.otf"/>
 
-        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
             android:id="@+id/dish_weight_frag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
 
     </RelativeLayout>
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/dish_descript_frag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

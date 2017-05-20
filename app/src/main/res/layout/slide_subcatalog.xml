@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/slide_lay">
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/slide_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

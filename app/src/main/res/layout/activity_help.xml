@@ -32,7 +32,7 @@
 
         android:src="@drawable/arrow_help_right"/>
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         foo:customFont="fonts/GothaProReg.otf"
         android:id="@+id/text_shape1"
         android:layout_width="110sp"
@@ -47,7 +47,7 @@
         android:textColor="@color/md_white_1000"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         foo:customFont="fonts/GothaProReg.otf"
         android:id="@+id/text_shape2"
         android:layout_width="200sp"

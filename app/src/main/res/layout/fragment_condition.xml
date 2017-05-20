@@ -22,7 +22,7 @@
             android:background="@color/separator_color_1">
         </View>
 
-        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -41,7 +41,7 @@
             android:background="@color/separator_color_1">
         </View>
 
-        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -60,7 +60,7 @@
             android:background="@color/separator_color_1">
         </View>
 
-        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -79,7 +79,7 @@
             android:background="@color/separator_color_1">
         </View>
 
-        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -98,7 +98,7 @@
             android:background="@color/separator_color_1">
         </View>
 
-        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 

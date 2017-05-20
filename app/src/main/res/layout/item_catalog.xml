@@ -13,7 +13,7 @@
     xmlns:foo="http://schemas.android.com/tools">
 
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.customNetworkImageView
+    <ru.chaihanamix.denis.dostavkamix.CustomView.customNetworkImageView
         android:id="@+id/dish_img"
         android:layout_width="90sp"
         android:layout_height="90sp"
@@ -32,7 +32,7 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
             android:id="@+id/dish_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
 
             android:orientation="horizontal">
 
-            <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+            <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
                 android:id="@+id/dish_descript"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
 
                 />
 
-            <ru.dostavkamix.denis.dostavkamix.CustomView.priceButton
+            <ru.chaihanamix.denis.dostavkamix.CustomView.priceButton
                 android:id="@+id/dish_price"
                 android:layout_width="60sp"
                 android:layout_height="25sp"

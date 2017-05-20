@@ -13,7 +13,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/menu_catalog_margin_left"
@@ -25,7 +25,7 @@
         foo:customFont="fonts/GothaProBla.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category0_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category0_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category0_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category0_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category0_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category0_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category0_6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/menu_catalog_margin_left"
@@ -135,7 +135,7 @@
         foo:customFont="fonts/GothaProBla.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category1_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -149,7 +149,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category1_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category1_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -177,7 +177,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category1_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -191,7 +191,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category1_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -205,7 +205,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category1_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -219,7 +219,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category1_6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -233,7 +233,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category1_7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -247,7 +247,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category1_8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -261,7 +261,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/menu_catalog_margin_left"
@@ -273,7 +273,7 @@
         foo:customFont="fonts/GothaProBla.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category2_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -287,7 +287,7 @@
         foo:customFont="fonts/GothaProReg.otf"
         />
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/category2_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

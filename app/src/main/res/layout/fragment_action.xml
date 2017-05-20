@@ -13,7 +13,7 @@
 
     </android.support.v4.view.ViewPager>
 
-    <ru.dostavkamix.denis.dostavkamix.viewpagerindicator.CirclePageIndicator
+    <ru.chaihanamix.denis.dostavkamix.viewpagerindicator.CirclePageIndicator
         android:id="@+id/action_indicator"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

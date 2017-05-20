@@ -23,7 +23,7 @@
                 android:src="@drawable/icon_trash"
                 android:layout_centerVertical="true"
                 android:id="@+id/trash"/>
-            <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+            <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
                 foo:customFont="fonts/GothaProReg.otf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                     android:orientation="horizontal">
 
 
-        <ru.dostavkamix.denis.dostavkamix.CustomView.customNetworkImageView
+        <ru.chaihanamix.denis.dostavkamix.CustomView.customNetworkImageView
             android:id="@+id/dish_img_bag"
             android:layout_width="90sp"
             android:layout_height="90sp"
@@ -58,7 +58,7 @@
 
             />
 
-        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
             android:id="@+id/dish_name_bag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
             android:textStyle="bold"
             foo:customFont="fonts/GothaProReg.otf"/>
 
-        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
             foo:customFont="fonts/GothaProReg.otf"
             android:id="@+id/dish_price_bag"
             android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
             android:layout_gravity="right"
             android:textColor="@color/accent_color"/>
 
-        <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+        <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
             foo:customFont="fonts/GothaProReg.otf"
             android:id="@+id/dish_weight_bag"
             android:layout_width="wrap_content"

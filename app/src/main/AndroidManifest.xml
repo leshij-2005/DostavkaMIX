@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.dostavkamix.denis.dostavkamix" >
+    package="ru.chaihanamix.denis.dostavkamix" >
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
@@ -11,12 +11,12 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <permission android:name="ru.dostavkamix.denis.dostavkamix.permission.C2D_MESSAGE"
+    <permission android:name="ru.chaihanamix.denis.dostavkamix.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
-    <uses-permission android:name="ru.dostavkamix.denis.dostavkamix.permission.C2D_MESSAGE" />
+    <uses-permission android:name="ru.chaihanamix.denis.dostavkamix.permission.C2D_MESSAGE" />
 
     <application
-        android:name=".AppController"
+        android:name="ru.chaihanamix.denis.dostavkamix.AppController"
         android:allowBackup="true"
         android:icon="@drawable/icon_main"
         android:label="Доставка MIX"
@@ -29,11 +29,11 @@
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category android:name="ru.dostavkamix.denis.dostavkamix" />
+                <category android:name="ru.chaihanamix.denis.dostavkamix" />
             </intent-filter>
         </receiver>
         <service
-        android:name="ru.dostavkamix.denis.dostavkamix.Push.GcmListener"
+        android:name="ru.chaihanamix.denis.dostavkamix.Push.GcmListener"
         android:exported="false" >
         <intent-filter>
             <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -43,7 +43,7 @@
 
 
         <activity
-            android:name=".SplashActivity"
+            android:name="ru.chaihanamix.denis.dostavkamix.SplashActivity"
             android:label="Доставка MIX"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
@@ -53,19 +53,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="ru.chaihanamix.denis.dostavkamix.MainActivity"
             android:label="Доставка MIX"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".OrderActivity"
+            android:name="ru.chaihanamix.denis.dostavkamix.OrderActivity"
             android:windowSoftInputMode="adjustPan"
             android:label="Доставка MIX"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".ShapeActivity"
+        <activity android:name="ru.chaihanamix.denis.dostavkamix.ShapeActivity"
                   android:theme="@android:style/Theme.NoTitleBar"/>
-        <activity android:name=".HelpActivity"
+        <activity android:name="ru.chaihanamix.denis.dostavkamix.HelpActivity"
                   android:theme="@android:style/Theme.NoTitleBar"/>
     </application>
 

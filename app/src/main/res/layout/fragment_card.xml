@@ -14,7 +14,7 @@
 
     </android.support.v4.view.ViewPager>
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5sp"
@@ -182,7 +182,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/bag_black"/>
 
-            <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+            <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
                 android:id="@+id/text_but_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

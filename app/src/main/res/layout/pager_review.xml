@@ -8,7 +8,7 @@
 
     android:orientation="vertical">
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/review_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         android:textSize="19sp"
         android:textStyle="bold"
         foo:customFont="fonts/GothaProReg.otf"/>
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/review_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         foo:customFont="fonts/GothaProReg.otf"
 
         />
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         android:id="@+id/review_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

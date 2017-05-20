@@ -106,7 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            tools:context="ru.dostavkamix.denis.dostavkamix.Fragments.DeliveryOrderFragment"
+            tools:context="ru.chaihanamix.denis.dostavkamix.Fragments.DeliveryOrderFragment"
             android:background="@color/toolbar_background_color"
             android:animateLayoutChanges="true"
             android:isScrollContainer="true">
@@ -715,7 +715,7 @@
                 android:background="@color/accent_color"
                 android:scaleType="fitXY"/>
 
-            <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+            <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
                 foo:customFont="fonts/GothaProReg.otf"
                 android:id="@+id/text_but_order"
                 android:layout_width="wrap_content"

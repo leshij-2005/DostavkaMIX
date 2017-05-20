@@ -13,7 +13,7 @@
         android:src="@drawable/check_black"
         android:background="@color/accent_color"
         android:layout_gravity="center"/>
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
         foo:customFont="fonts/GothaProReg.otf"
         android:layout_width="150sp"
         android:layout_height="wrap_content"

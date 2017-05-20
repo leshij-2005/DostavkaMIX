@@ -7,7 +7,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion '25.0.0'
     defaultConfig {
-        applicationId "ru.dostavkamix.denis.dostavkamix"
+        applicationId "ru.chaihanamix.denis.dostavkamix"
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 10

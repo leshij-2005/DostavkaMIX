@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus
+    <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
 
         android:id="@+id/item_menu_text"
 
@@ -25,5 +25,5 @@
         android:textSize="@dimen/menu_category_text_size"
         foo:customFont="fonts/GothaProReg.otf">
 
-    </ru.dostavkamix.denis.dostavkamix.CustomView.TextViewPlus>
+    </ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus>
 </LinearLayout>
