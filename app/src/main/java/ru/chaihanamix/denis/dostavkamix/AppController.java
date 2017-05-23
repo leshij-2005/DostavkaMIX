@@ -141,7 +141,7 @@ public class AppController extends Application {
 
     private static AppController mInstance;
 
-    public void inicialiseMunu() {
+    public void initMenu() {
         menu_logo = new Dialog(mainActivity);
         menu_logo.requestWindowFeature(Window.FEATURE_NO_TITLE);
         menu_logo.setContentView(R.layout.top_menu);
@@ -225,7 +225,7 @@ public class AppController extends Application {
 
     public void setMainActivity(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
-        inicialiseMunu();
+        initMenu();
 
         if (preferences.getString("f", "yes") == "yes") {
             mainActivity.showShapeActivity();
@@ -358,9 +358,25 @@ public class AppController extends Application {
 
     public int getBagPrice() {
         int result = 0;
+
         for (int i = 0; i < inBag.size(); i++) {
-            result += inBag.get(i).getPriceDish() * inBag.get(i).getCountOrder();
+            Dish dish = inBag.get(i);
+
+            result += dish.getPriceDish() * dish.getCountOrder();
         }
+
+        return result;
+    }
+
+    public int getBagPriceWithoutPromo() {
+        int result = 0;
+
+        for (int i = 0; i < inBag.size(); i++) {
+            Dish dish = inBag.get(i);
+
+            result += dish.isPromo() ? 0 : (dish.getPriceDish() * dish.getCountOrder());
+        }
+
         return result;
     }
 

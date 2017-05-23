@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import me.drakeet.materialdialog.MaterialDialog;
 import ru.chaihanamix.denis.dostavkamix.AppController;
 import ru.chaihanamix.denis.dostavkamix.BagSwipeAdapter;
 import ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus;
+import ru.chaihanamix.denis.dostavkamix.MainActivity;
 import ru.chaihanamix.denis.dostavkamix.OrderActivity;
 import ru.chaihanamix.denis.dostavkamix.R;
 
@@ -69,25 +71,32 @@ public class BagFragment extends Fragment {
             }
         });
 
-        updateFragPrie();
+        updateFragPrice();
 
         return v;
     }
 
     private void startOrderActivity() {
-        Intent intent = new Intent(AppController.getInstance().getMainActivity().getApplicationContext(), OrderActivity.class);
+        MainActivity mainActivity = AppController.getInstance().getMainActivity();
+
+        Intent intent = new Intent(mainActivity.getApplicationContext(), OrderActivity.class);
         startActivity(intent);
-        AppController.getInstance().getMainActivity().overridePendingTransition(R.anim.slide_in_bottom, android.R.anim.fade_out);
+        mainActivity.overridePendingTransition(R.anim.slide_in_bottom, android.R.anim.fade_out);
     }
 
-    public void updateFragPrie()
+    public void updateFragPrice()
     {
-        sale.setText(String.valueOf(AppController.getInstance().getSale()) + "%");
+        int totalWithSale = AppController.getInstance().getWithSale();
+        int totalWithoutSale = AppController.getInstance().getWithoutSale();
 
-        withSale.setText(addR(String.valueOf(AppController.getInstance().getWithSale())));
-        withoutSale.setText(addR(String.valueOf(AppController.getInstance().getWithoutSale())));
+        double s = (totalWithoutSale - totalWithSale) * 100 / totalWithoutSale;
 
-        text_but_order.setText("Оформить за " + addR(String.valueOf(AppController.getInstance().getWithSale())));
+        sale.setText(String.valueOf((int) s) + "%");
+
+        withSale.setText(addR(String.valueOf(totalWithSale)));
+        withoutSale.setText(addR(String.valueOf(totalWithoutSale)));
+
+        text_but_order.setText("Оформить за " + addR(String.valueOf(totalWithSale)));
     }
 
     private String addR(String s)

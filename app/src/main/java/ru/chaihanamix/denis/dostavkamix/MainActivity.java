@@ -111,32 +111,38 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void updateBagPrice() {
-        AppController.getInstance().setWithoutSale(AppController.getInstance().getBagPrice());
+        int total = AppController.getInstance().getBagPrice();
+        int totalWithoutPromo = AppController.getInstance().getBagPriceWithoutPromo();
+
+        AppController.getInstance().setWithoutSale(total);
+
         double s = 0;
-        if (AppController.getInstance().getWithoutSale() >= 500 && AppController.getInstance().getWithoutSale() < 1500) {
+        int priceWithoutSale = AppController.getInstance().getWithoutSale();
+
+        if (priceWithoutSale >= 500 && priceWithoutSale < 1500) {
             AppController.getInstance().setSale(5);
             s = 0.95;
-        } else if (AppController.getInstance().getWithoutSale() >= 1500 && AppController.getInstance().getWithoutSale() < 2500) {
+        } else if (priceWithoutSale >= 1500 && priceWithoutSale < 2500) {
             AppController.getInstance().setSale(10);
             s = 0.90;
-        } else if (AppController.getInstance().getWithoutSale() >= 2500) {
+        } else if (priceWithoutSale >= 2500) {
             AppController.getInstance().setSale(15);
             s = 0.85;
         } else {
             AppController.getInstance().setSale(0);
             s = 1;
-
         }
 
         try {
-            AppController.getInstance().setWithSale((int) (AppController.getInstance().getWithoutSale() * s));
+            AppController.getInstance().setWithSale((int) (total - totalWithoutPromo + totalWithoutPromo * s));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        bag_price.setText(AppController.getInstance().addRuble(String.valueOf(AppController.getInstance().getWithSale())));
+        bag_price.setText(AppController.getInstance().addRuble(String.valueOf(priceWithoutSale)));
+
         try {
-            bagFrag.updateFragPrie();
+            bagFrag.updateFragPrice();
         } catch (Exception e) {
             e.printStackTrace();
         }
