@@ -111,7 +111,7 @@ public class BagAdapter extends BaseAdapter {
         dish_img_bag.setImageUrl(d.getImjDish(), imageLoader);
         dish_name_bag.setText(d.getNameDish());
         dish_price_bag.setText(addRuble(String.valueOf(d.getPriceDish())));
-        dish_weight_bag.setText(d.getWeight() + " гр.");
+        dish_weight_bag.setText(d.getWeight() + " " + d.getMeasure());
         dish_count.setText(String.valueOf(d.getCountOrder()));
 
         button_plus.setOnClickListener(new View.OnClickListener() {

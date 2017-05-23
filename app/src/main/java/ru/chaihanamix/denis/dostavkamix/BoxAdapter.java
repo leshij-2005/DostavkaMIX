@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 
 import com.android.volley.toolbox.ImageLoader;
 
@@ -144,11 +145,16 @@ public class BoxAdapter extends BaseAdapter {
 
         final customNetworkImageView dish_img = (customNetworkImageView) view.findViewById(R.id.dish_img);
         priceButton checkBut = (priceButton) view.findViewById(R.id.dish_price);
+        Button isNewBut = (Button) view.findViewById(R.id.dish_isNew);
 
         ((TextViewPlus) view.findViewById(R.id.dish_name)).setText(d.getNameDish());
         ((TextViewPlus) view.findViewById(R.id.dish_descript)).setText(d.getContent());
 
         checkBut.setText(addRuble(String.valueOf(d.getPriceDish())));
+
+        if (d.isNew()) {
+            isNewBut.setVisibility(View.VISIBLE);
+        }
 
         dish_img.setDefaultImageResId(white_progress);
         dish_img.setImageUrl(d.getImjDish(), imageLoader);

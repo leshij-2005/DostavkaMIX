@@ -12,5 +12,6 @@
     <color name="separator_color_2">#2b2e33</color>
     <color name="hint_text_color">#646464</color>
     <color name="backgroud_about">#353940</color>
+    <color name="green">#90c951</color>
 
 </resources>

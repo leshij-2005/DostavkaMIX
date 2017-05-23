@@ -2,6 +2,8 @@ package ru.chaihanamix.denis.dostavkamix;
 
 import ru.chaihanamix.denis.dostavkamix.Push.SendToken;
 import ru.chaihanamix.denis.dostavkamix.SlideMenu.SlideAdapter;
+
+import java.util.*;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
@@ -325,10 +327,6 @@ public class MainActivity extends AppCompatActivity {
 
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                         Element eElement = (Element) nNode;
-                        Log.d("parse", "title : " + eElement.getAttribute("title"));
-                        Log.d("parse", "subtitle : " + eElement.getAttribute("subtitle"));
-                        Log.d("parse", "content : " + eElement.getTextContent());
-
                         reviews.add(new Review(eElement.getAttribute("title"), eElement.getAttribute("subtitle"), eElement.getTextContent()));
                     }
                 }
@@ -336,16 +334,8 @@ public class MainActivity extends AppCompatActivity {
                 for (int temp = 0; temp < actionList.getLength(); temp++) {
                     Node nNode = actionList.item(temp);
 
-                    Log.d("parse", "Current Element : " + nNode.getNodeName());
-
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
                         Element eElement = (Element) nNode;
-
-                        Log.d("parse", "title : " + eElement.getAttribute("title"));
-                        Log.d("parse", "img_id : " + eElement.getAttribute("img_id"));
-                        Log.d("parse", "img_id : " + eElement.getTextContent());
-
                         actions.add(new Action(eElement.getAttribute("title"), base_url_img + eElement.getAttribute("img_id") + ".png", eElement.getTextContent()));
                     }
                 }
@@ -360,9 +350,9 @@ public class MainActivity extends AppCompatActivity {
         protected synchronized void onPostExecute(String strJson) {
             super.onPostExecute(strJson);
 
-            Log.d("json", "Start Parse");
-
             JSONObject dataJsonObj = null;
+
+            MainActivity mainActivity = AppController.getInstance().getMainActivity();
 
 
             try {
@@ -405,9 +395,12 @@ public class MainActivity extends AppCompatActivity {
                                     dish.getInt("id"),
                                     dish.getInt("price"),
                                     dish.getString("weight"),
+                                    dish.getString("measure"),
                                     dish.getString("title"),
                                     dish.getString("content"),
                                     dish.getString("image"),
+                                    dish.getBoolean("isNew"),
+                                    dish.getBoolean("isPromo"),
                                     k
                             ));
                         }
@@ -416,71 +409,66 @@ public class MainActivity extends AppCompatActivity {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.d("json", "Exception Parse");
             }
-
-            Log.d("json", "Stop Parse");
-            Log.d("json", "Review : ");
-            Log.d("json", "     title : " + reviews.get(1).title);
-            Log.d("json", "     subtitle : " + reviews.get(1).subtitle);
-            Log.d("json", "     content : " + reviews.get(1).content);
-            //Log.d("json", "Action : " + actions.get(1));
-            //Log.d("json", "     title : " + actions.get(1).title);
-            //Log.d("json", "     url : " + actions.get(1).url);
-            //Log.d("json", "     content : " + actions.get(1).content);
 
             isReadyDish = true;
             AppController.getInstance().actionListFragment.setListAdapter(new ActionListAdapter());
             AppController.getInstance().reviewListFragment.setListAdapter(new ReviewListAdapter());
-            //AppController.getInstance().actionFragment.setPagerAdapter(new ActionAdapter());
 
             slide_data = new ArrayList<ListViewItem>();
             for(int i = 0; i < catalogs.size(); i++) {
-                slide_data.add(new ListViewItem(catalogs.get(i).getNameCatalog(), ru.chaihanamix.denis.dostavkamix.SlideMenu.SlideAdapter.TYPE_CATALOG, 0));
+                slide_data.add(new ListViewItem(catalogs.get(i).getNameCatalog(), SlideAdapter.TYPE_CATALOG, 0));
                 for (int k = 0; k < categories.size(); k++) {
                     if(categories.get(k).getIdCatalog() == catalogs.get(i).getIdCatalog()) {
-                        slide_data.add(new ListViewItem(categories.get(k).getNameCategory(), ru.chaihanamix.denis.dostavkamix.SlideMenu.SlideAdapter.TYPE_SUBCATALOG, categories.get(i).getIdCategory()));
+                        slide_data.add(new ListViewItem(categories.get(k).getNameCategory(), SlideAdapter.TYPE_SUBCATALOG, categories.get(i).getIdCategory()));
                     }
                 }
             }
-            // Нежно пихаем его в слайд
+
             arr_slide_data = slide_data.toArray(new ListViewItem[slide_data.size()]);
-            slideAdapter = new SlideAdapter(AppController.getInstance().getMainActivity(), R.id.slide_text, arr_slide_data);
+            slideAdapter = new SlideAdapter(mainActivity, R.id.slide_text, arr_slide_data);
             listView.setAdapter(slideAdapter);
 
-            AppController.getInstance().getMainActivity()
-                    .updateListDish(
-                            AppController.getInstance().getMainActivity().getDishOfCategory(AppController.getInstance().getMainActivity().getCategoryOfName("Суши"), AppController.getInstance().getMainActivity().dishs));
+            mainActivity.updateListDish(mainActivity.getDishOfCategory(mainActivity.getCategoryOfName("Суши"), mainActivity.dishs));
 
         }
     }
 
     public ArrayList<Dish> getDishOfCategory(Category category, ArrayList<Dish> dishL) {
-        Log.d("json", "Начинаю сортировку...");
-        Log.d("json", "Жду готовности списка...");
-        Log.d("json", "Список готов! Сортирую...");
         ArrayList<Dish> result = new ArrayList<Dish>();
+
+        Collections.sort(dishL, new Comparator<Dish>() {
+            public int compare(Dish a, Dish b)
+            {
+                Boolean isNewA = a.isNew();
+                Boolean isNewB = b.isNew();
+
+                return isNewA.compareTo(isNewB) * -1;
+            }
+        });
+
         for (int i = 0; i < dishL.size(); i++) {
-            if (dishL.get(i).getIdCategory() == category.getIdCategory()) result.add(dishL.get(i));
+            if (dishL.get(i).getIdCategory() == category.getIdCategory()) {
+                result.add(dishL.get(i));
+            }
         }
         return result;
     }
 
     public void updateListDish(ArrayList<Dish> aDish) {
         try {
-            Log.d("json", "Готовлю фрагмент для обновления...");
             boxAdapter = new BoxAdapter(this, aDish, ft);
-            //MenuFragment.setListAdapter(boxAdapter);
+
             MenuFragment.setAdapter(boxAdapter);
-            Log.d("json", "back to Menu");
             ft = getFragmentManager().beginTransaction();
             ft.setCustomAnimations(R.animator.fade_in, R.animator.slide_out_left);
             ft.replace(R.id.frame_fragment, MenuFragment);
+
             AppController.getInstance().setIsShowMenuList(true);
             AppController.getInstance().setIsShowDescriptFrag(false);
             AppController.getInstance().selectMenu(1, true);
+
             ft.commit();
-            Log.d("json", "Фрагмент обновлен!");
         } catch (Exception e) {
             e.printStackTrace();
         }

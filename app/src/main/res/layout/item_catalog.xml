@@ -52,7 +52,8 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="5sp"
 
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
             <ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus
                 android:id="@+id/dish_descript"
@@ -72,21 +73,41 @@
 
                 />
 
-            <ru.chaihanamix.denis.dostavkamix.CustomView.priceButton
-                android:id="@+id/dish_price"
-                android:layout_width="60sp"
-                android:layout_height="25sp"
-                android:layout_marginLeft="5sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginTop="18sp"
+            <LinearLayout
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="1"
+                android:baselineAligned="false">
 
-                android:background="@drawable/transition_check"
+                <Button
+                    android:id="@+id/dish_isNew"
+                    android:layout_width="45dp"
+                    android:layout_height="25sp"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginRight="10sp"
+                    android:layout_marginTop="8sp"
+                    android:background="@color/green"
+                    android:text="@string/isNew_text"
+                    android:textColor="@android:color/white"
+                    android:textSize="8sp"
+                    android:visibility="invisible" />
 
-                android:textAllCaps="false"
-                android:textColor="@color/accent_color"
-                android:text="price"
-                android:textSize="14sp"
-                />
+                <ru.chaihanamix.denis.dostavkamix.CustomView.priceButton
+                    android:id="@+id/dish_price"
+                    android:layout_width="45dp"
+                    android:layout_height="25sp"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginRight="10sp"
+                    android:layout_marginTop="8sp"
+
+                    android:background="@drawable/transition_check"
+
+                    android:text="price"
+                    android:textAllCaps="false"
+                    android:textColor="@color/accent_color"
+                    android:textSize="14sp" />
+            </LinearLayout>
 
         </LinearLayout>
 

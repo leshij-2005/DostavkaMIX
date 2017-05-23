@@ -8,7 +8,6 @@ import android.graphics.drawable.TransitionDrawable;
 import android.util.AttributeSet;
 import android.widget.Button;
 
-import ru.chaihanamix.denis.dostavkamix.AppController;
 import ru.chaihanamix.denis.dostavkamix.R;
 
 /**
@@ -26,14 +25,14 @@ public class priceButton extends Button {
                 this,
                 "textColor",
                 Color.TRANSPARENT,
-                AppController.getInstance().getResources().getColor(R.color.accent_color));
+                R.color.accent_color);
         textInAnim.setDuration(100);
         textInAnim.setEvaluator(new ArgbEvaluator());
 
         textOutAnim = ObjectAnimator.ofInt(
                 this,
                 "textColor",
-                AppController.getInstance().getResources().getColor(R.color.accent_color),
+                R.color.accent_color,
                 Color.TRANSPARENT);
         textOutAnim.setDuration(100);
         textOutAnim.setEvaluator(new ArgbEvaluator());
@@ -47,14 +46,14 @@ public class priceButton extends Button {
                 this,
                 "textColor",
                 Color.TRANSPARENT,
-                AppController.getInstance().getResources().getColor(R.color.accent_color));
+                R.color.accent_color);
         textInAnim.setDuration(100);
         textInAnim.setEvaluator(new ArgbEvaluator());
 
         textOutAnim = ObjectAnimator.ofInt(
                 this,
                 "textColor",
-                AppController.getInstance().getResources().getColor(R.color.accent_color),
+                R.color.accent_color,
                 Color.TRANSPARENT);
         textOutAnim.setDuration(100);
         textOutAnim.setEvaluator(new ArgbEvaluator());
@@ -67,14 +66,14 @@ public class priceButton extends Button {
                 this,
                 "textColor",
                 Color.TRANSPARENT,
-                AppController.getInstance().getResources().getColor(R.color.accent_color));
+                R.color.accent_color);
         textInAnim.setDuration(100);
         textInAnim.setEvaluator(new ArgbEvaluator());
 
         textOutAnim = ObjectAnimator.ofInt(
                 this,
                 "textColor",
-                AppController.getInstance().getResources().getColor(R.color.accent_color),
+                R.color.accent_color,
                 Color.TRANSPARENT);
         textOutAnim.setDuration(100);
         textOutAnim.setEvaluator(new ArgbEvaluator());
