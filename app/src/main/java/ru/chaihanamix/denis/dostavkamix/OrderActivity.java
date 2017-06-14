@@ -4,6 +4,7 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -33,9 +34,8 @@ import java.util.Locale;
 import me.drakeet.materialdialog.MaterialDialog;
 import ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus;
 import ru.chaihanamix.denis.dostavkamix.Fragments.BuyDialog;
-import ru.chaihanamix.denis.dostavkamix.Fragments.BagFragment;
 
-public class OrderActivity extends AppCompatActivity implements View.OnClickListener {
+public class OrderActivity extends AppCompatActivity implements View.OnClickListener, DialogInterface.OnDismissListener {
 
     //Dialogs
     MaterialDialog invalidDialog;
@@ -237,6 +237,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             }
         return result;
     }
+
     public void selectOnButton(Button button)
     {
         TransitionDrawable drawable = (TransitionDrawable) button.getBackground();
@@ -254,6 +255,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         OnSelect = button;
         text_but_order.setText("Оформить за " + addR(String.valueOf(sum_button)));
     }
+
     public void selectOffButton(Button button)
     {
         TransitionDrawable drawable = (TransitionDrawable) button.getBackground();
@@ -362,11 +364,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
                                     mainActivity.updateBagPrice();
                                     mainActivity.bagFrag.updateFragPrice();
-
-                                    Intent i = new Intent(OrderActivity.this, MainActivity.class);
-                                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(i);
-                                    finish();
                                 } else {
                                     errorDialog
                                         .setMessage(result.get("message").toString())
@@ -400,10 +397,17 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
                     commitEditData();
                 } else {
-                    Log.d("json", "invalid edittext");
+                    Log.d("json", "invalid edit text");
                 }
         }
 
+    }
+
+    public void onDismiss(final DialogInterface dialog) {
+        Intent i = new Intent(OrderActivity.this, MainActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+        finish();
     }
 
     private void commitEditData() {
