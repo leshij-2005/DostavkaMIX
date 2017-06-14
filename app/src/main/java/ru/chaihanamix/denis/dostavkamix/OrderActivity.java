@@ -3,6 +3,9 @@ package ru.chaihanamix.denis.dostavkamix;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.DialogFragment;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.TransitionDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +22,8 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
+import org.json.JSONObject;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,12 +33,15 @@ import java.util.Locale;
 import me.drakeet.materialdialog.MaterialDialog;
 import ru.chaihanamix.denis.dostavkamix.CustomView.TextViewPlus;
 import ru.chaihanamix.denis.dostavkamix.Fragments.BuyDialog;
+import ru.chaihanamix.denis.dostavkamix.Fragments.BagFragment;
 
 public class OrderActivity extends AppCompatActivity implements View.OnClickListener {
 
     //Dialogs
     MaterialDialog invalidDialog;
+    MaterialDialog errorDialog;
     DialogFragment buyDialog;
+    ProgressDialog progressDialog;
 
     // Toolbar
     private ImageView arrow_down;
@@ -90,6 +98,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         //softKeyboard = new SoftKeyboard(root_lay, inputManager);
 
         buyDialog = new BuyDialog();
+        progressDialog = new ProgressDialog(this);
+        errorDialog = new MaterialDialog(this);
 
         // Toolbar
         arrow_down = (ImageView) findViewById(R.id.arrow_down);
@@ -262,14 +272,16 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         Log.d("json", "click");
+
         switch (v.getId())
         {
             case R.id.select_left:
                 if (OnSelect != v) {
-                    if(AppController.getInstance().getSale() == 0)
-                    {
+                    if(AppController.getInstance().getSale() == 0) {
                         sum_button = AppController.getInstance().getWithoutSale() + 150;
-                    } else sum_button = AppController.getInstance().getWithSale();
+                    } else {
+                        sum_button = AppController.getInstance().getWithSale();
+                    }
 
                     selectOffButton(OnSelect);
                     selectOnButton((Button) v);
@@ -333,6 +345,45 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                     Log.d("json", "Заказываю...");
                     Buy b = new Buy();
 
+                    progressDialog.setMessage("Заказ отправляется...");
+                    progressDialog.show();
+
+                    b.setUpdateListener(new Buy.OnUpdateListener() {
+                        public void onUpdate(JSONObject result) {
+                            progressDialog.dismiss();
+
+                            try {
+                                if (result.get("orderId") != null) {
+                                    buyDialog.show(getFragmentManager(), "dialogInBag");
+
+                                    AppController.getInstance().inBag.clear();
+
+                                    MainActivity mainActivity = AppController.getInstance().getMainActivity();
+
+                                    mainActivity.updateBagPrice();
+                                    mainActivity.bagFrag.updateFragPrice();
+
+                                    Intent i = new Intent(OrderActivity.this, MainActivity.class);
+                                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(i);
+                                    finish();
+                                } else {
+                                    errorDialog
+                                        .setMessage(result.get("message").toString())
+                                        .setPositiveButton("Закрыть", new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                            errorDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
                     b.execute(new Buyer(
                             order_name.getText().toString(),
                             order_phone.getText().toString(),
@@ -347,100 +398,71 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                             AppController.getInstance().getInBag()
                     ));
 
-
-                    AppController.getInstance().editPref.putString("order_name", order_name.getText().toString());
-                    AppController.getInstance().editPref.putString("order_phone", order_phone.getText().toString());
-                    AppController.getInstance().editPref.putString("order_email", order_email.getText().toString());
-                    AppController.getInstance().editPref.putString("order_street", order_street.getText().toString());
-                    AppController.getInstance().editPref.putString("order_house", order_house.getText().toString());
-                    AppController.getInstance().editPref.putString("order_apartament", order_apartament.getText().toString());
-                    AppController.getInstance().editPref.commit();
-
-                    buyDialog.show(getFragmentManager(), "dialogInBag");
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            buyDialog.dismiss();
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    AppController.getInstance().inBag.clear();
-                                    AppController.getInstance().getMainActivity().updateBagPrice();
-                                    try {
-                                        Thread.sleep(1000);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                    finish();
-                                }
-                            });
-                        }
-                    }).start();
-                } else Log.d("json", "invalid edittext");
+                    commitEditData();
+                } else {
+                    Log.d("json", "invalid edittext");
+                }
         }
 
     }
 
+    private void commitEditData() {
+        SharedPreferences.Editor editPref = AppController.getInstance().editPref;
+
+        editPref.putString("order_name", order_name.getText().toString());
+        editPref.putString("order_phone", order_phone.getText().toString());
+        editPref.putString("order_email", order_email.getText().toString());
+        editPref.putString("order_street", order_street.getText().toString());
+        editPref.putString("order_house", order_house.getText().toString());
+        editPref.putString("order_apartament", order_apartament.getText().toString());
+        editPref.commit();
+    }
+
     private boolean validEditText()
     {
-        if(order_name.getText().toString().matches(""))
+        String phone = order_phone.getText().toString().trim();
+        boolean valid = true;
+        String message = "";
+
+        if (order_name.getText().toString().trim().matches(""))
         {
-            invalidDialog = new MaterialDialog(this)
-                    .setMessage("Поле \"Имя \" - обязательно для заполнения")
-                    .setPositiveButton("Закрыть", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            invalidDialog.dismiss();
-                        }
-                    });
-            invalidDialog.show();
-            return false;
+            message = "Поле \"Имя \" - обязательно для заполнения";
+            valid = false;
         }
-        if(order_phone.getText().toString().matches(""))
+
+        if (phone.matches(""))
         {
-            invalidDialog = new MaterialDialog(this)
-                    .setMessage("Поле \"Телефон \" - обязательно для заполнения")
-                    .setPositiveButton("Закрыть", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            invalidDialog.dismiss();
-                        }
-                    });
-            invalidDialog.show();
-            return false;
+            message = "Поле \"Телефон \" - обязательно для заполнения";
+            valid = false;
+        } else if (phone.length() < 12) {
+            message = "Поле \"Телефон \" - не соответствует формату";
+            valid = false;
         }
-        if(OnSelect.getId() == R.id.select_left) {
-            if (order_street.getText().toString().matches("")) {
-                invalidDialog = new MaterialDialog(this)
-                        .setMessage("Поле \"Улица \" - обязательно для заполнения")
-                        .setPositiveButton("Закрыть", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                invalidDialog.dismiss();
-                            }
-                        });
-                invalidDialog.show();
-                return false;
+
+        if (OnSelect.getId() == R.id.select_left) {
+            if (order_street.getText().toString().trim().matches("")) {
+                message = "Поле \"Улица \" - обязательно для заполнения";
+                valid = false;
             }
-            if (order_house.getText().toString().matches("")) {
-                invalidDialog = new MaterialDialog(this)
-                        .setMessage("Поле \"Дом \" - обязательно для заполнения")
-                        .setPositiveButton("Закрыть", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                invalidDialog.dismiss();
-                            }
-                        });
-                invalidDialog.show();
-                return false;
+
+            if (order_house.getText().toString().trim().matches("")) {
+                message = "Поле \"Дом \" - обязательно для заполнения";
+                valid = false;
             }
         }
-        return true;
+
+        if (!valid) {
+            invalidDialog = new MaterialDialog(this)
+                .setMessage(message)
+                .setPositiveButton("Закрыть", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                    invalidDialog.dismiss();
+                    }
+                });
+            invalidDialog.show();
+        }
+
+        return valid;
     }
 }

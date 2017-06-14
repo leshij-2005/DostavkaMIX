@@ -188,18 +188,21 @@
                     android:id="@+id/order_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:gravity="right"
-                    android:background="@color/toolbar_background_color"
-
+                    android:layout_centerVertical="true"
                     android:layout_margin="@dimen/margin_order_text_item"
 
-                    android:inputType="phone"
+                    android:background="@color/toolbar_background_color"
+
+                    android:defaultValue="+7"
+                    android:gravity="right"
+
                     android:hint="@string/order_phone"
-                    android:textSize="@dimen/size_order_text_item"
+                    android:inputType="phone"
+                    android:maxLength="12"
                     android:textColor="@color/md_white_1000"
-                    android:textColorHint="@color/hint_text_color"/>
+                    android:textColorHint="@color/hint_text_color"
+                    android:textSize="@dimen/size_order_text_item" />
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1sp"

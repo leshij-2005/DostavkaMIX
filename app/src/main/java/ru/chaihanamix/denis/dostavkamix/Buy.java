@@ -7,6 +7,7 @@ import android.util.Log;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,43 +19,55 @@ import java.net.URL;
 /**
  * Created by den on 07.02.2016.
  */
-public class Buy extends AsyncTask<Buyer, Void, Void>{
+public class Buy extends AsyncTask<Buyer, Void, JSONObject>{
 
     private static final String buyUrl = Constants.getBase_url() + "server/order/";
 
+    public interface OnUpdateListener {
+        public void onUpdate(JSONObject response);
+    }
+
+    OnUpdateListener listener;
+
+    public void setUpdateListener(OnUpdateListener listener) {
+        this.listener = listener;
+    }
 
     @Override
-    protected Void doInBackground(Buyer... params) {
+    protected JSONObject doInBackground(Buyer... params) {
 
         ObjectMapper mapper = new ObjectMapper();
+        JSONObject result = null;
+
         try {
             String temp = mapper.writeValueAsString(params);
             String json = temp.substring(1, temp.length() - 1);
-            Log.d("json", json);
-
 
             URL url = new URL(buyUrl);
+
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
+
             OutputStream os = conn.getOutputStream();
             os.write(json.getBytes());
             os.flush();
-            int responseCode = conn.getResponseCode();
 
-            if(responseCode == 200) //HTTP 200: Response OK
-            {
-                String result = "";
-                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                String output;
-                while((output = br.readLine()) != null)
-                {
-                    result += output;
-                }
-                Log.d("json", "Response message: " + result);
+            //int responseCode = conn.getResponseCode();
+
+            String response = "";
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+            while((line = br.readLine()) != null) {
+                response += line;
             }
 
+            try {
+                result = new JSONObject(response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         } catch (JsonMappingException e) {
             e.printStackTrace();
@@ -63,6 +76,13 @@ public class Buy extends AsyncTask<Buyer, Void, Void>{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+
+        return result;
+    }
+
+    protected void onPostExecute(JSONObject result) {
+        if (listener != null) {
+            listener.onUpdate(result);
+        }
     }
 }

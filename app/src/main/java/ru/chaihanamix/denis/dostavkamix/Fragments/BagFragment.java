@@ -89,7 +89,7 @@ public class BagFragment extends Fragment {
         int totalWithSale = AppController.getInstance().getWithSale();
         int totalWithoutSale = AppController.getInstance().getWithoutSale();
 
-        double s = (totalWithoutSale - totalWithSale) * 100 / totalWithoutSale;
+        double s = totalWithoutSale > 0 ? ((totalWithoutSale - totalWithSale) * 100 / totalWithoutSale) : 0;
 
         sale.setText(String.valueOf((int) s) + "%");
 
