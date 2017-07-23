@@ -87,7 +87,7 @@ public class BagFragment extends Fragment {
     public void updateFragPrice()
     {
         int totalWithSale = AppController.getInstance().getWithSale();
-        int totalWithoutSale = AppController.getInstance().getWithoutSale();
+        int totalWithoutSale = AppController.getInstance().getBagPrice();
 
         double s = totalWithoutSale > 0 ? ((totalWithoutSale - totalWithSale) * 100 / totalWithoutSale) : 0;
 

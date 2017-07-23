@@ -1,8 +1,6 @@
 package ru.chaihanamix.denis.dostavkamix;
 
 import android.os.AsyncTask;
-import android.util.Log;
-
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;

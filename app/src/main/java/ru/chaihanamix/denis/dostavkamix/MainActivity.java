@@ -8,7 +8,6 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -49,8 +48,6 @@ import ru.chaihanamix.denis.dostavkamix.Fragments.FragmentOrder;
 import ru.chaihanamix.denis.dostavkamix.Fragments.InOrderDialog;
 import ru.chaihanamix.denis.dostavkamix.Fragments.dishListFragment;
 import ru.chaihanamix.denis.dostavkamix.SlideMenu.ListViewItem;
-import ru.chaihanamix.denis.dostavkamix.blurbehind.BlurBehind;
-import ru.chaihanamix.denis.dostavkamix.blurbehind.OnBlurCompleteListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
     boolean isReadyDish = false;
 
-    public DialogFragment progressDialog;
-
     public ArrayList<Review> reviews = new ArrayList<>();
     public ArrayList<Action> actions = new ArrayList<>();
     public ArrayList<Dish> dishs = new ArrayList<Dish>();
@@ -71,15 +66,9 @@ public class MainActivity extends AppCompatActivity {
 
     public Drawer slideMuneDrawer = null;
     ImageView logo = null;
-    AppCompatImageView icon_menu_up = null;
-    AppCompatImageView icon_menu_down = null;
     TextViewPlus bag_price = null;
-    //ListFragment dishList = null;
-    //Fragment topMenu = null;
-    //ListView listMain = null;
 
     BoxAdapter boxAdapter = null;
-    BagAdapter bagAdapter = null;
 
     //Мне очень стыдно...
     ArrayList<TextViewPlus> menuCategoryText = new ArrayList<TextViewPlus>();
@@ -93,19 +82,8 @@ public class MainActivity extends AppCompatActivity {
     private Fragment OrderFragment;
     DialogFragment dlg1;
     MainActivity mAct;
-    Dialog menu_logo;
     ImageView arrow_down_t;
     ImageView arrow_up_t;
-
-
-
-    TextViewPlus menu_item_1;
-    TextViewPlus menu_item_2;
-    TextViewPlus menu_item_3;
-    TextViewPlus menu_item_4;
-    TextViewPlus menu_item_5;
-    TextViewPlus menu_item_6;
-    TextViewPlus menu_item_7;
 
     LinearLayout frame;
 
@@ -114,24 +92,9 @@ public class MainActivity extends AppCompatActivity {
         int total = AppController.getInstance().getBagPrice();
         int totalWithoutPromo = AppController.getInstance().getBagPriceWithoutPromo();
 
-        AppController.getInstance().setWithoutSale(total);
+        AppController.getInstance().calculateSale();
 
-        double s = 0;
-        int priceWithoutSale = AppController.getInstance().getWithoutSale();
-
-        if (priceWithoutSale >= 500 && priceWithoutSale < 1500) {
-            AppController.getInstance().setSale(5);
-            s = 0.95;
-        } else if (priceWithoutSale >= 1500 && priceWithoutSale < 2500) {
-            AppController.getInstance().setSale(10);
-            s = 0.90;
-        } else if (priceWithoutSale >= 2500) {
-            AppController.getInstance().setSale(15);
-            s = 0.85;
-        } else {
-            AppController.getInstance().setSale(0);
-            s = 1;
-        }
+        double s = 1 - (double)AppController.getInstance().getSale() / 100;
 
         try {
             AppController.getInstance().setWithSale((int) (total - totalWithoutPromo + totalWithoutPromo * s));
@@ -139,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        bag_price.setText(AppController.getInstance().addRuble(String.valueOf(priceWithoutSale)));
+        bag_price.setText(AppController.getInstance().addRuble(String.valueOf(total)));
 
         try {
             bagFrag.updateFragPrice();
@@ -183,9 +146,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.toolbar_lay_text).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (AppController.getInstance().getWithoutSale() > 0) {
-                    Log.d("json", String.valueOf(AppController.getInstance().getWithoutSale()));
+                if (AppController.getInstance().getBagPrice() > 0) {
                     ft = getFragmentManager().beginTransaction();
                     ft.setCustomAnimations(R.animator.slide_in_right, R.animator.fade_out, R.animator.fade_in, R.animator.slide_out_left);
                     ft.replace(R.id.frame_fragment, bagFrag);
@@ -251,41 +212,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    public void showShapeActivity() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (!isReadyDish) {
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        BlurBehind.getInstance().execute(mAct, new OnBlurCompleteListener() {
-                            @Override
-                            public void onBlurComplete() {
-                                Intent intent = new Intent(mAct, ShapeActivity.class);
-                                //intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                                startActivity(intent);
-                            }
-                        }, 12);
-                    }
-                });
-            }
-        }).start();
-    }
     private class ParseTask extends AsyncTask<Void, Void, String> {
         final String base_url_img = Constants.getBase_url() + "ios_app/action_images/action_";
         HttpURLConnection urlConnection = null;

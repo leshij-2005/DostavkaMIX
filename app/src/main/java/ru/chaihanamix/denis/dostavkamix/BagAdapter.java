@@ -142,7 +142,7 @@ public class BagAdapter extends BaseAdapter {
             }
         });
 
-        AppController.getInstance().updateBag();
+        AppController.getInstance().getMainActivity().updateBagPrice();
 
         return view;
 

@@ -61,6 +61,7 @@ public class AppController extends Application {
     private int sale = 0;
     private int withoutSale = 0;
     private int withSale = 0;
+    private String delivery = "courier";
 
     private MainActivity mainActivity = null;
     private ListFragment MenuFragment;
@@ -103,10 +104,6 @@ public class AppController extends Application {
         this.sale = sale;
     }
 
-    public void setWithoutSale(int withoutSale) {
-        this.withoutSale = withoutSale;
-    }
-
     public void setWithSale(int withSale) {
         this.withSale = withSale;
     }
@@ -115,20 +112,18 @@ public class AppController extends Application {
         return sale;
     }
 
-    public int getWithoutSale() {
-        return withoutSale;
-    }
-
     public int getWithSale() {
         return withSale;
     }
 
-    public boolean isShowDescriptFrag() {
-        return isShowDescriptFrag;
+    public void setDelivery(String delivery) {
+        this.delivery = delivery;
+
+        this.calculateSale();
     }
 
-    public boolean isShowMenuList() {
-        return isShowMenuList;
+    public String getDelivery() {
+        return delivery;
     }
 
     public void setIsShowDescriptFrag(boolean isShowDescriptFrag) {
@@ -226,15 +221,6 @@ public class AppController extends Application {
     public void setMainActivity(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
         initMenu();
-
-        if (preferences.getString("f", "yes") == "yes") {
-            mainActivity.showShapeActivity();
-        }
-
-        editPref.putString("f", "no");
-        editPref.commit();
-        // =)
-
     }
 
     public SpannableStringBuilder addRuble(String s) {
@@ -332,18 +318,10 @@ public class AppController extends Application {
 
         this.getInBag().add(dish);
         mainActivity.updateBagPrice();
+
         Log.d(TAG, "добавил в карзину");
         Log.d(TAG, "в корзине " + getInBag().size() + " блюд");
 
-    }
-
-    public void updateBag() {
-        withoutSale = getBagPrice();
-        if (withoutSale >= 500) sale = 5;
-        else if (withoutSale >= 1500) sale = 10;
-        else if (withoutSale >= 2500) sale = 15;
-        withSale = withoutSale - ((withoutSale / 100) * sale);
-        mainActivity.updateBagPrice();
     }
 
     public boolean onBag(Dish dish) {
@@ -378,6 +356,36 @@ public class AppController extends Application {
         }
 
         return result;
+    }
+
+    public void calculateSale() {
+        int total = AppController.getInstance().getBagPrice();
+        int s = 0;
+        String delivery = AppController.getInstance().getDelivery();
+
+        if (delivery == "courier") {
+            if (total >= 500 && total < 1500) {
+                s = 5;
+            } else if (total >= 1500 && total < 2500) {
+                s = 10;
+            } else if (total >= 2500) {
+                s = 15;
+            } else {
+                s = 0;
+            }
+        } else {
+            if (total >= 500 && total < 1500) {
+                s = 15;
+            } else if (total >= 1500 && total < 2500) {
+                s = 20;
+            } else if (total >= 2500) {
+                s = 25;
+            } else {
+                s = 10;
+            }
+        }
+
+        AppController.getInstance().setSale(s);
     }
 
     public class clickMenu implements View.OnClickListener {

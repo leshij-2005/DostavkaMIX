@@ -122,7 +122,7 @@ public class BagSwipeAdapter extends BaseSwipeAdapter {
             }
         });
 
-        AppController.getInstance().updateBag();
+        AppController.getInstance().getMainActivity().updateBagPrice();
     }
 
     @Override

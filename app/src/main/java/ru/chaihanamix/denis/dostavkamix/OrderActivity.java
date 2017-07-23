@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -142,7 +143,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
         if(AppController.getInstance().getSale() == 0)
         {
-            sum_button = AppController.getInstance().getWithoutSale() + 150;
+            sum_button = AppController.getInstance().getBagPrice() + 150;
         }
 
         text_but_order.setText("Оформить за " + addR(String.valueOf(sum_button)));
@@ -163,6 +164,21 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         order_street.setText(AppController.getInstance().preferences.getString("order_street", ""));
         order_house.setText(AppController.getInstance().preferences.getString("order_house", ""));
         order_apartament.setText(AppController.getInstance().preferences.getString("order_apartament", ""));
+
+        OnFocusChangeListener focusListener = new OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    String value = order_phone.getText().toString().trim();
+
+                    if (value.matches("")) {
+                        order_phone.setText("+7");
+                        order_phone.setSelection(order_phone.getText().length());
+                    }
+                }
+            }
+        };
+
+        order_phone.setOnFocusChangeListener(focusListener);
     }
 
     private String addR(String s)
@@ -279,8 +295,12 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         {
             case R.id.select_left:
                 if (OnSelect != v) {
+                    AppController.getInstance().setDelivery("courier");
+
+                    AppController.getInstance().getMainActivity().updateBagPrice();
+
                     if(AppController.getInstance().getSale() == 0) {
-                        sum_button = AppController.getInstance().getWithoutSale() + 150;
+                        sum_button = AppController.getInstance().getBagPrice() + 150;
                     } else {
                         sum_button = AppController.getInstance().getWithSale();
                     }
@@ -296,17 +316,11 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.select_right:
                 if (OnSelect != v) {
+                    AppController.getInstance().setDelivery("self");
 
-                    if(AppController.getInstance().getSale() != 0) {
-                        if (AppController.getInstance().getSale() == 5) {
-                            sum_button = (int) (AppController.getInstance().getWithoutSale() * 0.85);
-                        } else if(AppController.getInstance().getSale() == 10){
-                            sum_button = (int) (AppController.getInstance().getWithoutSale() * 0.85);
-                        } else if(AppController.getInstance().getSale() == 15){
-                            sum_button = (int) (AppController.getInstance().getWithoutSale() * 0.8);
-                        }
-                    } else sum_button = (int) ((AppController.getInstance().getWithoutSale()) * 0.90);
+                    AppController.getInstance().getMainActivity().updateBagPrice();
 
+                    sum_button = AppController.getInstance().getWithSale();
 
                     selectOffButton(OnSelect);
                     selectOnButton((Button) v);
@@ -438,7 +452,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         {
             message = "Поле \"Телефон \" - обязательно для заполнения";
             valid = false;
-        } else if (phone.length() < 12) {
+        } else if (phone.length() != 12) {
             message = "Поле \"Телефон \" - не соответствует формату";
             valid = false;
         }
