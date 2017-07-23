@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import java.util.Calendar;
+
 import me.drakeet.materialdialog.MaterialDialog;
 import ru.chaihanamix.denis.dostavkamix.AppController;
 import ru.chaihanamix.denis.dostavkamix.BagSwipeAdapter;
@@ -32,7 +34,7 @@ public class BagFragment extends Fragment {
     TextViewPlus withSale;
     TextViewPlus text_but_order;
     RelativeLayout but_order;
-    MaterialDialog inposOrderDialog;
+    MaterialDialog inposOrderDialog, closeTerminalDialog;
 
     @Nullable
     @Override
@@ -60,10 +62,36 @@ public class BagFragment extends Fragment {
                     }
                 });
 
+        closeTerminalDialog = new MaterialDialog(AppController.getInstance().getMainActivity())
+                .setMessage("С 00:00 до 11:00 заказы не принимаются. Желаете оформить заказ на другое время?")
+                .setPositiveButton("Да", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        closeTerminalDialog.dismiss();
+
+                        if(AppController.getInstance().getSale() == 0) {
+                            inposOrderDialog.show();
+                        } else {
+                            startOrderActivity();
+                        }
+                    }
+                })
+                .setNegativeButton("Нет", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        closeTerminalDialog.dismiss();
+                    }
+                });
+
         but_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(AppController.getInstance().getSale() == 0) {
+                Calendar now = Calendar.getInstance();
+                int hourResult = now.get(Calendar.HOUR);
+
+                if (hourResult > 23 || hourResult < 11 ) {
+                    closeTerminalDialog.show();
+                } else if(AppController.getInstance().getSale() == 0) {
                     inposOrderDialog.show();
                 } else {
                     startOrderActivity();

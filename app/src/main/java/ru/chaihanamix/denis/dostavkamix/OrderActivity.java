@@ -87,6 +87,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     
     // Other
     static Calendar now = Calendar.getInstance();
+    int hourResult;
     int sum_button = AppController.getInstance().getWithSale();
     String selectedDate = "";
 
@@ -206,21 +207,25 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
     public void setDateTime()
     {
-        int hourResult = now.get(Calendar.HOUR);
+        hourResult = now.get(Calendar.HOUR);
         int minuteResult = now.get(Calendar.MINUTE);
+        int currentDate = now.get(Calendar.DAY_OF_MONTH);
+
+        if (hourResult > 23) {
+            now.add(Calendar.DATE, 1);
+            currentDate = currentDate + 1;
+        }
 
         final DatePickerDialog dateDialog = DatePickerDialog.newInstance(
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                        Log.d("json", "Month: " + monthOfYear);
-                        Log.d("json", "Day: " + dayOfMonth);
                         String oldText = (String) order_time.getText();
                         order_time.setText(formatDate(String.valueOf(monthOfYear + 1) + String.valueOf(dayOfMonth)) + " " + oldText);
 
                         selectedDate = String.valueOf(dayOfMonth) + "." + String.valueOf(monthOfYear + 1) + "." + String.valueOf(year) + " " + oldText;
                     }
-                }, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH)
+                }, now.get(Calendar.YEAR), now.get(Calendar.MONTH), currentDate
         );
 
         TimePickerDialog timeDialog = TimePickerDialog.newInstance(
@@ -232,6 +237,16 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                     }
                 }, hourResult, minuteResult, true
         );
+
+        if (hourResult < 11) {
+            timeDialog.setMinTime(12, minuteResult, 0);
+        } else {
+            timeDialog.setMinTime(hourResult + 1, minuteResult, 0);
+        }
+
+        dateDialog.setMinDate(now);
+
+        timeDialog.setMaxTime(23, 0, 0);
 
         timeDialog.show(getFragmentManager(), "dateDialog");
         order_now.setVisibility(View.INVISIBLE);
@@ -441,6 +456,11 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         String phone = order_phone.getText().toString().trim();
         boolean valid = true;
         String message = "";
+
+        if (order_now.getVisibility() == View.VISIBLE && (hourResult > 23 || hourResult < 11)) {
+            message = "С 00:00 до 11:00 заказы не принимаются. Пожалуйста оформите заказ на другое время";
+            valid = false;
+        }
 
         if (order_name.getText().toString().trim().matches(""))
         {
