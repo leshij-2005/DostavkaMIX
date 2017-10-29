@@ -35,7 +35,7 @@
             android:layout_width="180sp"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/mix_logo"/>
+            android:src="@drawable/logo_new_black" />
         <View
             android:layout_alignParentBottom="true"
             android:layout_width="wrap_content"

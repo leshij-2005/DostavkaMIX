@@ -31,10 +31,10 @@
 
                 <ImageView
                     android:id="@+id/logo"
-                    android:layout_width="150sp"
+                    android:layout_width="72dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/mix_logo"
-                    android:background="@color/toolbar_background_color"/>
+                    android:background="@color/toolbar_background_color"
+                    android:src="@drawable/logo_new" />
 
                 <FrameLayout
                     android:layout_width="wrap_content"

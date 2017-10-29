@@ -364,7 +364,7 @@ public class AppController extends Application {
         String delivery = AppController.getInstance().getDelivery();
 
         if (delivery == "courier") {
-            if (total >= 500 && total < 1500) {
+            if (total >= 700 && total < 1500) {
                 s = 5;
             } else if (total >= 1500 && total < 2500) {
                 s = 10;
@@ -374,7 +374,7 @@ public class AppController extends Application {
                 s = 0;
             }
         } else {
-            if (total >= 500 && total < 1500) {
+            if (total >= 700 && total < 1500) {
                 s = 15;
             } else if (total >= 1500 && total < 2500) {
                 s = 20;
