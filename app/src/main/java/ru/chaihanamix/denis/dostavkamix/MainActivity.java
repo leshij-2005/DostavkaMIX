@@ -1,5 +1,6 @@
 package ru.chaihanamix.denis.dostavkamix;
 
+import me.drakeet.materialdialog.MaterialDialog;
 import ru.chaihanamix.denis.dostavkamix.Push.SendToken;
 import ru.chaihanamix.denis.dostavkamix.SlideMenu.SlideAdapter;
 
@@ -8,6 +9,10 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,10 +20,14 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
+import com.android.volley.toolbox.ImageLoader;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 
@@ -185,7 +194,66 @@ public class MainActivity extends AppCompatActivity {
         AppController.getInstance().setMainActivity(this);
         AppController.getInstance().selectMenu(1);
 
+        new Promo().execute();
+    }
 
+    private class Promo extends AsyncTask<Void, Void, String> {
+        HttpURLConnection urlConnection = null;
+        BufferedReader reader = null;
+        String response = "";
+
+        protected String doInBackground(Void... params) {
+            try {
+                URL url = new URL(Constants.getBase_url() + "server/promo/");
+
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.connect();
+
+                InputStream inputStream = urlConnection.getInputStream();
+                StringBuffer buffer = new StringBuffer();
+
+                reader = new BufferedReader(new InputStreamReader(inputStream));
+
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line);
+                }
+                response = buffer.toString();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return response;
+        }
+
+        protected synchronized void onPostExecute(String promo) {
+            if (!promo.trim().isEmpty()) {
+                showImage(Constants.getBase_url() + promo);
+            }
+        }
+    }
+
+    public void showImage(String url) {
+        Dialog builder = new Dialog(this);
+        builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        builder.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                //nothing;
+            }
+        });
+
+        ImageLoader loader = AppController.getInstance().getImageLoader();
+        ImageView imageView = new ImageView(this);
+
+        loader.get(url, ImageLoader.getImageListener(imageView, 0, 0));
+
+        builder.addContentView(imageView, new RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+        builder.show();
     }
 
 
