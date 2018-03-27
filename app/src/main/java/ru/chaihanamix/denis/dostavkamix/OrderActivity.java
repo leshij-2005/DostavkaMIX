@@ -224,6 +224,14 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                         order_time.setText(formatDate(String.valueOf(monthOfYear + 1) + String.valueOf(dayOfMonth)) + " " + oldText);
 
                         selectedDate = String.valueOf(dayOfMonth) + "." + String.valueOf(monthOfYear + 1) + "." + String.valueOf(year) + " " + oldText;
+
+                        AppController.getInstance().setDeliveryDate(selectedDate);
+
+                        AppController.getInstance().getMainActivity().updateBagPrice();
+
+                        sum_button = AppController.getInstance().getWithSale();
+
+                        setTextInButton(sum_button);
                     }
                 }, now.get(Calendar.YEAR), now.get(Calendar.MONTH), currentDate
         );
@@ -250,6 +258,12 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
         timeDialog.show(getFragmentManager(), "dateDialog");
         order_now.setVisibility(View.INVISIBLE);
+    }
+
+    private void setTextInButton(int sum) {
+        int total = sum + (AppController.getInstance().getDelivery().equals("courier") ? 150 : 0);
+
+        text_but_order.setText("Оформить за " + addR(String.valueOf(total)));
     }
 
     public String formatDate(String dateS)
@@ -284,7 +298,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         colorAnim.start();
 
         OnSelect = button;
-        text_but_order.setText("Оформить за " + addR(String.valueOf(sum_button)));
     }
 
     public void selectOffButton(Button button)
@@ -314,14 +327,12 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
                     AppController.getInstance().getMainActivity().updateBagPrice();
 
-                    if(AppController.getInstance().getSale() == 0) {
-                        sum_button = AppController.getInstance().getBagPrice() + 150;
-                    } else {
-                        sum_button = AppController.getInstance().getWithSale();
-                    }
+                    sum_button = AppController.getInstance().getWithSale();
 
                     selectOffButton(OnSelect);
                     selectOnButton((Button) v);
+
+                    setTextInButton(sum_button);
 
                     row_address.setVisibility(View.VISIBLE);
                     view_street.setVisibility(View.VISIBLE);
@@ -340,6 +351,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                     selectOffButton(OnSelect);
                     selectOnButton((Button) v);
 
+                    setTextInButton(sum_button);
+
                     row_address.setVisibility(View.GONE);
                     view_street.setVisibility(View.GONE);
                     view_house.setVisibility(View.GONE);
@@ -347,10 +360,12 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.view_time:
+                AppController.getInstance().setDeliveryTime("concrete");
                 setDateTime();
                 order_now.setVisibility(View.GONE);
                 break;
             case R.id.view_now:
+                AppController.getInstance().setDeliveryTime("now");
                 order_now.setVisibility(View.VISIBLE);
                 if(order_time.getText() != "") {
                     order_time.setHint(order_time.getText());

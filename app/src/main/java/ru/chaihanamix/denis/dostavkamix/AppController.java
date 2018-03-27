@@ -29,7 +29,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import me.drakeet.materialdialog.MaterialDialog;
 import ru.chaihanamix.denis.dostavkamix.CustomView.CustomTypefaceSpan;
@@ -59,14 +63,12 @@ public class AppController extends Application {
     public ArrayList<Dish> inBag = new ArrayList<Dish>();
 
     private int sale = 0;
-    private int withoutSale = 0;
     private int withSale = 0;
     private String delivery = "courier";
+    private String deliveryTime = "now";
+    private Date deliveryDate = null;
 
     private MainActivity mainActivity = null;
-    private ListFragment MenuFragment;
-
-    private ArrayList<Fragment> stackFragment = new ArrayList<Fragment>();
 
 
     Typeface fontRub = null;
@@ -74,8 +76,6 @@ public class AppController extends Application {
 
     boolean isShowDescriptFrag = false;
     boolean isShowMenuList = true;
-
-    public MaterialDialog inposOrder;
 
     Dialog menu_logo;
     TextViewPlus menu_item_1;
@@ -123,7 +123,33 @@ public class AppController extends Application {
     }
 
     public String getDelivery() {
-        return delivery;
+        return this.delivery;
+    }
+
+    public void setDeliveryTime(String deliveryTime) {
+        this.deliveryTime = deliveryTime;
+
+        this.calculateSale();
+    }
+
+    public String getDeliveryTime() {
+        return this.deliveryTime;
+    }
+
+    public void setDeliveryDate(String deliveryDate) {
+        Locale locale = new Locale("ru");
+        SimpleDateFormat format = new SimpleDateFormat ("dd.MM.yyyy HH:mm", locale);
+        try {
+            this.deliveryDate = format.parse(deliveryDate);
+        } catch (ParseException e) {
+            this.deliveryDate = null;
+        }
+
+        this.calculateSale();
+    }
+
+    public Date getDeliveryDate() {
+        return this.deliveryDate;
     }
 
     public void setIsShowDescriptFrag(boolean isShowDescriptFrag) {
@@ -359,29 +385,21 @@ public class AppController extends Application {
     }
 
     public void calculateSale() {
-        int total = AppController.getInstance().getBagPrice();
         int s = 0;
         String delivery = AppController.getInstance().getDelivery();
+        String deliveryTime = AppController.getInstance().getDeliveryTime();
+        Date deliveryDate = AppController.getInstance().getDeliveryDate();
+        Date now = new Date();
 
-        if (delivery == "courier") {
-            if (total >= 700 && total < 1500) {
-                s = 5;
-            } else if (total >= 1500 && total < 2500) {
-                s = 10;
-            } else if (total >= 2500) {
-                s = 15;
-            } else {
-                s = 0;
-            }
-        } else {
-            if (total >= 700 && total < 1500) {
-                s = 15;
-            } else if (total >= 1500 && total < 2500) {
-                s = 20;
-            } else if (total >= 2500) {
-                s = 25;
-            } else {
-                s = 10;
+        if (delivery == "self") {
+            s = 10;
+        }
+
+        if (deliveryTime == "concrete" && deliveryDate != null) {
+            long offset = (deliveryDate.getTime() - now.getTime()) / 3600000;
+
+            if (offset >= 4) {
+                s = s + 10;
             }
         }
 
