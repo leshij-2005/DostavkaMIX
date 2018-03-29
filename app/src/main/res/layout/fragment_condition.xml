@@ -105,7 +105,7 @@
             android:layout_margin="@dimen/condition_margin_text"
             android:gravity="center"
 
-            android:text="Бесплатная доставка в пределах г. Оренбург при заказе от 500 р., при заказе менее 500 рублей, а так же доставка за город +150 р."
+            android:text="Бесплатная доставка в пределах г. Оренбург при заказе от 700 рублей, при заказе менее 700 рублей, а так же доставка за город +150 р."
             android:textColor="@color/md_white_1000"
             android:textSize="@dimen/condition_text_size"/>
 

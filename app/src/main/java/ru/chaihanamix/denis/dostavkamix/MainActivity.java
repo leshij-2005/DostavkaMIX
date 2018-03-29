@@ -5,6 +5,8 @@ import ru.chaihanamix.denis.dostavkamix.Push.SendToken;
 import ru.chaihanamix.denis.dostavkamix.SlideMenu.SlideAdapter;
 
 import java.util.*;
+
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
@@ -235,24 +237,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showImage(String url) {
-        Dialog builder = new Dialog(this);
-        builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        builder.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                //nothing;
-            }
-        });
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         ImageLoader loader = AppController.getInstance().getImageLoader();
         ImageView imageView = new ImageView(this);
 
-        loader.get(url, ImageLoader.getImageListener(imageView, 0, 0));
+        loader.get(url, ImageLoader.getImageListener(imageView, R.drawable.progress_image, 0));
 
-        builder.addContentView(imageView, new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT));
+        builder.setView(imageView);
+
+        builder.setTitle("Акция дня");
+
+        builder.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
         builder.show();
     }
 

@@ -142,7 +142,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
         selectOnButton(select_left);
 
-        if(AppController.getInstance().getSale() == 0)
+        if(AppController.getInstance().getDelivery().equals("courier") && AppController.getInstance().getBagPrice() < 700)
         {
             sum_button = AppController.getInstance().getBagPrice() + 150;
         }
@@ -261,7 +261,10 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void setTextInButton(int sum) {
-        int total = sum + (AppController.getInstance().getDelivery().equals("courier") ? 150 : 0);
+        String delivery = AppController.getInstance().getDelivery();
+        int amount = AppController.getInstance().getBagPrice();
+
+        int total = sum + (delivery.equals("courier") && amount < 700 ? 150 : 0);
 
         text_but_order.setText("Оформить за " + addR(String.valueOf(total)));
     }
@@ -384,6 +387,11 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 check_wallet.setVisibility(View.GONE);
                 break;
             case R.id.arrow_down:
+                AppController.getInstance().setDelivery("courier");
+                AppController.getInstance().setDeliveryTime("now");
+
+                AppController.getInstance().getMainActivity().updateBagPrice();
+
                 finish();
                 break;
             case R.id.but_to_order:
