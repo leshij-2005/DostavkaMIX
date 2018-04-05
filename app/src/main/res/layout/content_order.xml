@@ -727,7 +727,7 @@
                 android:background="@color/accent_color"
 
                 android:text="Оформить за "
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textColor="@color/base_color"
                 />
         </LinearLayout>

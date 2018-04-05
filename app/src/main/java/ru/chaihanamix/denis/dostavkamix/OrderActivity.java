@@ -87,7 +87,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     
     // Other
     static Calendar now = Calendar.getInstance();
-    int hourResult;
     int sum_button = AppController.getInstance().getWithSale();
     String selectedDate = "";
 
@@ -143,7 +142,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         selectOnButton(select_left);
 
         setTextInButton(sum_button);
-        order_time.setHint("Сегодня" + " " + (String.valueOf(now.get(Calendar.HOUR)) + ":" + String.valueOf(now.get(Calendar.MINUTE))));
+        order_time.setHint("Сегодня" + " " + (String.valueOf(now.get(Calendar.HOUR_OF_DAY)) + ":" + String.valueOf(now.get(Calendar.MINUTE))));
 
         but_to_order.setOnClickListener(this);
         arrow_down.setOnClickListener(this);
@@ -202,7 +201,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
     public void setDateTime()
     {
-        hourResult = now.get(Calendar.HOUR);
+        int hourResult = now.get(Calendar.HOUR_OF_DAY);
         int minuteResult = now.get(Calendar.MINUTE);
         int currentDate = now.get(Calendar.DAY_OF_MONTH);
 
@@ -316,8 +315,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        Log.d("json", "click");
-
         switch (v.getId())
         {
             case R.id.select_left:
@@ -389,7 +386,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.but_to_order:
                 if(validEditText()) {
-                    Log.d("json", "Заказываю...");
                     Buy b = new Buy();
 
                     progressDialog.setMessage("Заказ отправляется...");
@@ -476,11 +472,12 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
     private boolean validEditText()
     {
+        int hour = now.get(Calendar.HOUR_OF_DAY);
         String phone = order_phone.getText().toString().trim();
         boolean valid = true;
         String message = "";
 
-        if (order_now.getVisibility() == View.VISIBLE && (hourResult > 23 || hourResult < 11)) {
+        if (order_now.getVisibility() == View.VISIBLE && (hour > 23 || hour < 11)) {
             message = "С 00:00 до 11:00 заказы не принимаются. Пожалуйста оформите заказ на другое время";
             valid = false;
         }
