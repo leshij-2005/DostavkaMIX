@@ -87,7 +87,7 @@ public class BagFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Calendar now = Calendar.getInstance();
-                int hourResult = now.get(Calendar.HOUR);
+                int hourResult = now.get(Calendar.HOUR_OF_DAY);
 
                 if (hourResult > 23 || hourResult < 11 ) {
                     closeTerminalDialog.show();
