@@ -142,12 +142,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
         selectOnButton(select_left);
 
-        if(AppController.getInstance().getDelivery().equals("courier") && AppController.getInstance().getBagPrice() < 700)
-        {
-            sum_button = AppController.getInstance().getBagPrice() + 150;
-        }
-
-        text_but_order.setText("Оформить за " + addR(String.valueOf(sum_button)));
+        setTextInButton(sum_button);
         order_time.setHint("Сегодня" + " " + (String.valueOf(now.get(Calendar.HOUR)) + ":" + String.valueOf(now.get(Calendar.MINUTE))));
 
         but_to_order.setOnClickListener(this);
@@ -263,10 +258,11 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private void setTextInButton(int sum) {
         String delivery = AppController.getInstance().getDelivery();
         int amount = AppController.getInstance().getBagPrice();
+        int sale = AppController.getInstance().getSale();
 
         int total = sum + (delivery.equals("courier") && amount < 700 ? 150 : 0);
 
-        text_but_order.setText("Оформить за " + addR(String.valueOf(total)));
+        text_but_order.setText("Оформить за " + addR(String.valueOf(total)) + (sale > 0 ? " (скидка " + sale + "%)" : ""));
     }
 
     public String formatDate(String dateS)
@@ -274,7 +270,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         String result = "";
 
             Locale locale = new Locale("ru");
-            SimpleDateFormat originalFormat = new SimpleDateFormat("Md");
+            SimpleDateFormat originalFormat = new SimpleDateFormat("Md", locale);
             SimpleDateFormat newFormat = new SimpleDateFormat("dd (MMMM)", locale);
             try {
                 Date formatDate = originalFormat.parse((String.valueOf(dateS)));
@@ -387,10 +383,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 check_wallet.setVisibility(View.GONE);
                 break;
             case R.id.arrow_down:
-                AppController.getInstance().setDelivery("courier");
-                AppController.getInstance().setDeliveryTime("now");
-
-                AppController.getInstance().getMainActivity().updateBagPrice();
+                clear();
 
                 finish();
                 break;
@@ -412,10 +405,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
                                     AppController.getInstance().inBag.clear();
 
-                                    MainActivity mainActivity = AppController.getInstance().getMainActivity();
-
-                                    mainActivity.updateBagPrice();
-                                    mainActivity.bagFrag.updateFragPrice();
+                                    clear();
                                 } else {
                                     errorDialog
                                         .setMessage(result.get("message").toString())
@@ -453,6 +443,16 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 }
         }
 
+    }
+
+    private void clear() {
+        AppController.getInstance().setDelivery("courier");
+        AppController.getInstance().setDeliveryTime("now");
+
+        MainActivity mainActivity = AppController.getInstance().getMainActivity();
+
+        mainActivity.updateBagPrice();
+        mainActivity.bagFrag.updateFragPrice();
     }
 
     public void onDismiss(final DialogInterface dialog) {

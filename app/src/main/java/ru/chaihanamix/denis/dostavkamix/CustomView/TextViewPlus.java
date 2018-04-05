@@ -3,6 +3,7 @@ package ru.chaihanamix.denis.dostavkamix.CustomView;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.TextView;
@@ -12,7 +13,7 @@ import ru.chaihanamix.denis.dostavkamix.R;
 /**
  * Created by denis on 26.12.15.
  */
-public class TextViewPlus extends TextView {
+public class TextViewPlus extends AppCompatTextView {
     private static final String TAG = "TextView";
 
     public TextViewPlus(Context context) {

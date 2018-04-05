@@ -2,6 +2,7 @@ package ru.chaihanamix.denis.dostavkamix.CustomView;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,7 +10,7 @@ import android.widget.ImageView;
 /**
  * Created by den on 24.01.2016.
  */
-public class ResizableImageView extends ImageView {
+public class ResizableImageView extends AppCompatImageView {
 
     public ResizableImageView(Context context, AttributeSet attrs) {
         super(context, attrs);

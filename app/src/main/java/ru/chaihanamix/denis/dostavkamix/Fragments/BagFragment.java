@@ -69,7 +69,7 @@ public class BagFragment extends Fragment {
                     public void onClick(View v) {
                         closeTerminalDialog.dismiss();
 
-                        if(AppController.getInstance().getSale() == 0) {
+                        if(AppController.getInstance().getBagPrice() < 700) {
                             inposOrderDialog.show();
                         } else {
                             startOrderActivity();
@@ -91,7 +91,7 @@ public class BagFragment extends Fragment {
 
                 if (hourResult > 23 || hourResult < 11 ) {
                     closeTerminalDialog.show();
-                } else if(AppController.getInstance().getSale() == 0) {
+                } else if(AppController.getInstance().getBagPrice() < 700) {
                     inposOrderDialog.show();
                 } else {
                     startOrderActivity();

@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.TransitionDrawable;
+import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 import android.widget.Button;
 
@@ -13,7 +14,7 @@ import ru.chaihanamix.denis.dostavkamix.R;
 /**
  * Created by den on 25.01.2016.
  */
-public class priceButton extends Button {
+public class priceButton extends AppCompatButton {
     private boolean checked = false;
     private ObjectAnimator textInAnim = null;
     private ObjectAnimator textOutAnim = null;
