@@ -7,7 +7,7 @@ package ru.chaihanamix.denis.dostavkamix;
  */
 
 public class Constants {
-    private static final String base_url= "http://chaihanamix.ru/";
+    private static final String base_url= "https://chaihanamix.ru/";
 
     public static String getBase_url() {
         return base_url;

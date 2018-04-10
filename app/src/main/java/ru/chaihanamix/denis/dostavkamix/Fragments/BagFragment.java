@@ -43,13 +43,9 @@ public class BagFragment extends Fragment {
 
         AppController.getInstance().selectMenu(7, true);
         listView = (ListView) v.findViewById(R.id.list_bag);
-        sale = (TextViewPlus) v.findViewById(R.id.sale);
-        withoutSale = (TextViewPlus) v.findViewById(R.id.without_sale);
-        withSale = (TextViewPlus) v.findViewById(R.id.with_sale);
         text_but_order = (TextViewPlus) v.findViewById(R.id.text_but_order);
         but_order = (RelativeLayout) v.findViewById(R.id.but_to_order);
 
-        //listView.setAdapter(new BagAdapter(AppController.getInstance().getApplicationContext()));
         listView.setAdapter(new BagSwipeAdapter(AppController.getInstance().getApplicationContext()));
 
         inposOrderDialog = new MaterialDialog(AppController.getInstance().getMainActivity())
@@ -118,11 +114,6 @@ public class BagFragment extends Fragment {
         int totalWithoutSale = AppController.getInstance().getBagPrice();
 
         double s = totalWithoutSale > 0 ? ((totalWithoutSale - totalWithSale) * 100 / totalWithoutSale) : 0;
-
-        sale.setText(String.valueOf((int) s) + "%");
-
-        withSale.setText(addR(String.valueOf(totalWithSale)));
-        withoutSale.setText(addR(String.valueOf(totalWithoutSale)));
 
         text_but_order.setText("Оформить за " + addR(String.valueOf(totalWithSale)));
     }
